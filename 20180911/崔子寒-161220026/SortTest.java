@@ -40,7 +40,7 @@ public class SortTest {
         Scanner sc=new Scanner(System.in);
         /*Vector as input buffer1*/
         Vector<Integer>buffer=new Vector<>();
-        System.out.println("Input the array(end with a non-integer, e.g '#'):");
+        System.out.println("Input the array(end with a non-integer, e.g '#') and press Enter:");
         while(sc.hasNextInt()){
             buffer.add(sc.nextInt());
         }
