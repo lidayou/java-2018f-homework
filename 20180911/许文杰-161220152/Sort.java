@@ -29,13 +29,13 @@ public class Sort {
 
     public static void main(String[] args)
     {
-        int []a = {10,9,8,7,6,5,4,3,2,1};
+        int []a = {5,7,3,5,7,9,32,4,5,43,55};
         System.out.print("Before sort:");
         for(int i=0;i<a.length;i++)
             System.out.print(a[i]+" ");
         System.out.println();
 
-        quick_sort(a,0,9);
+        quick_sort(a,0,a.length-1);
         System.out.print("After sort:");
         for(int i=0;i<a.length;i++)
             System.out.print(a[i]+" ");
