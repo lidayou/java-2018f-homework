@@ -1,4 +1,4 @@
-package sourceCode;
+
 import java.io.*;
 public class HomeworkOfJava {
 	private int[] arraySort(int[] array) {
