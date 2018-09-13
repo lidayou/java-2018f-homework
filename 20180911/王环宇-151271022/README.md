@@ -1,9 +1,7 @@
-# 作业
+Simple code for sorting using different algorithms.
 
-1. 安装配置Java开发环境；
-2. 编写一个Java类及其main方法，实现对一个给定的整型数组进行排序后输出；
-3. 按照作业提交要求和流程，完成作业提交。
+1. bubble sort
+2. quick_sort
+3. merge sort
 
-
-
-This is for test.
+9/13 2018 @author why
