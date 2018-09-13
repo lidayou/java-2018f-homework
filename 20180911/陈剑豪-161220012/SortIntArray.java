@@ -1,29 +1,32 @@
 package com.company;
 
-public class SortIntArray {
-    public static void sort(int Array[]){//默认从小到大排序
-        for(int i=0;i<Array.length;i++)
+public class SortIntArray {/**创建人：陈剑豪 创建时间：2018.9.11*/
+    void sort(int[] array){/**默认从小到大排序,采用冒泡排序的方式*/
+        for(int i = 0; i < array.length; i++)
         {
-            for(int j=i+1;j<Array.length;j++)
+            for(int j = i + 1; j < array.length; j++)
             {
-                if(Array[i]>Array[j])
+                if(array[i] > array[j])
                 {
-                    int temp=0;
-                    temp=Array[j];
-                    Array[j]=Array[i];
-                    Array[i]=temp;
+                    int temp = 0;
+                    temp = array[j];
+                    array[j] = array[i];
+                    array[i] = temp;
                 }
             }
         }
     }
-    public static void main(String[] args)
+    public static void main(String[] args)/*程序测试接口*/
     {
-        int Array[]={67,9889,123,234,1,6,9,-4,0,43};//随便初始化一个数组
-        SortIntArray A=new SortIntArray();
-        A.sort(Array);
-        for(int i=0;i<Array.length;i++)
+        // 随便初始化一个数组
+        int[] array = {67, 9889, 123, 234, 1, 6, 9, -4, 0, 43};
+        SortIntArray A = new SortIntArray();
+        // 调用排序方法
+        A.sort(array);
+        // 输出结果
+        for(int i = 0;i < array.length; i++)
         {
-            System.out.println(Array[i]);
+            System.out.println(array[i]);
         }
     }
 }
