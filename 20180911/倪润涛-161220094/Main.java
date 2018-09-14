@@ -61,41 +61,41 @@ public class Main{
         return top;
     }
 
-    public static void Quicksort(int []array, int left, int right)
+    public static void QuickSort(int []array, int left, int right)
     {
         if (left < right)
         {
             int top = Partition(array,left, right);
-            Quicksort(array, left, top - 1);
-            Quicksort(array, top + 1, right);
+            QuickSort(array, left, top - 1);
+            QuickSort(array, top + 1, right);
         }
     }
 
     public static void main(String[] args) {
-        int[] array = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3 };
-        BubbleSort(array);
+        int[] BubbleSortArray = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3 };
+        BubbleSort(BubbleSortArray);
         System.out.print("冒泡排序算法排序结果：");
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(BubbleSortArray));
 
-        int[] brray = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3 };
-        SelectionSort(brray);
+        int[] SelectionSortArray = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3 };
+        SelectionSort(SelectionSortArray);
         System.out.print("选择排序算法排序结果：");
-        System.out.println(Arrays.toString(brray));
+        System.out.println(Arrays.toString(SelectionSortArray));
 
-        int[] drray = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3 };
-        Quicksort(drray,0,(drray.length-1));
+        int[] QuickSortArray = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3 };
+        QuickSort(QuickSortArray,0,(QuickSortArray.length-1));
         System.out.print("快速排序算法排序结果：");
-        System.out.println(Arrays.toString(drray));
+        System.out.println(Arrays.toString(QuickSortArray));
 
         System.out.print("任意输入长度不定的数组进行排序：");
         Scanner sc = new Scanner(System.in);
         String s=sc.nextLine();//读入一行string
         String[] c=s.split(" ");//根据空格进行分割
-        int[] arr=new int[c.length];
+        int[] array=new int[c.length];
         for(int i=0;i<c.length;i++) {
-            arr[i]=Integer.parseInt(c[i]);//将string转为int型
+            array[i]=Integer.parseInt(c[i]);//将string转为int型
         }
-        Arrays.sort(arr);
-        System.out.println(Arrays.toString(arr));
+        Arrays.sort(array);
+        System.out.println(Arrays.toString(array));
     }
 }
