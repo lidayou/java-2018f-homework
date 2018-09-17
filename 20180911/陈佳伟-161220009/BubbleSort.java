@@ -6,21 +6,21 @@ import java.util.Scanner;
 public class BubbleSort{
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        int Number = scanner.nextInt();
-        int[] Array = new int[Number];
-        for(int i = 0; i < Number; i++){
-            Array[i] = scanner.nextInt();
+        int number = scanner.nextInt();
+        int[] array = new int[number];
+        for(int i = 0; i < number; i++){
+            array[i] = scanner.nextInt();
         }
         scanner.close();
-        for(int i = 0; i < Number; i++){
-            for(int j = Number-1; j > i; j--){
-                if(Array[j]<Array[j-1]){
-                    int Temp = Array[j];
-                    Array[j] = Array[j-1];
-                    Array[j-1] = Temp;
+        for(int i = 0; i < number; i++){
+            for(int j = number-1; j > i; j--){
+                if(array[j]<array[j-1]){
+                    int temp = array[j];
+                    array[j] = array[j-1];
+                    array[j-1] = temp;
                 }
             }
         }
-        System.out.println(Arrays.toString(Array));
+        System.out.println(Arrays.toString(array));
     }
 }
