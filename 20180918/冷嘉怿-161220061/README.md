@@ -1,3 +1,3 @@
-命令行编译运行时使用
+鍛戒护琛岀紪璇戣繍琛屾椂浣跨敤
 javac -encoding UTF-8 .\CucurbitBoy.java .\God.java
 java God
