@@ -107,6 +107,21 @@ public class CalabashBrothers {
         }
         System.out.println();
     }
+    /*output ranking*/
+    public void showRanking() {
+        for(CalabashBrother x:brothers) {
+            System.out.print(CalabashBrother.name[x.getRanking()] + " ");
+        }
+        System.out.println();
+    }
+
+    /*output color*/
+    public void showColor() {
+        for(CalabashBrother x:brothers) {
+            System.out.print(x.getColor() + " ");
+        }
+        System.out.println();
+    }
     /*call myBubbleSort*/
     public void bubbleSortByRanking() {
         System.out.println("按照排行进行冒泡排序：");

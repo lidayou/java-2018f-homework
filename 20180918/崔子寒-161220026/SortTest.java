@@ -7,12 +7,12 @@ public class SortTest {
         clBrothers.showBrothers();
         clBrothers.bubbleSortByRanking();
         System.out.print("结果：");
-        clBrothers.showBrothers();
+        clBrothers.showRanking();
         clBrothers.shuffle();   //shuffle the array
         System.out.print("置乱：");
         clBrothers.showBrothers();
         clBrothers.binarySortByColor();
         System.out.print("结果：");
-        clBrothers.showBrothers();
+        clBrothers.showColor();
     }
 }
