@@ -7,11 +7,15 @@ enum Color{
 }
 
 class Calabash{
-    public Calabash(Color myColor, String myName, int place){
+    public Calabash(Color myColor, String myName){
         this.name = myName;
-        this.place = place;
         this.order = myColor.ordinal();
         this.selfColor = myColor;
+    }
+    public Calabash(Calabash toCopy){
+        this.name = toCopy.name;
+        this.order = toCopy.order;
+        this.selfColor = toCopy.selfColor;
     }
     public void toldColor(){
         System.out.println(selfColor);
@@ -28,15 +32,6 @@ class Calabash{
     public Color getSelfColor() {
         return selfColor;
     }
-
-    public int getPlace() {
-        return place;
-    }
-
-    public void setPlace(int place) {
-        this.place = place;
-    }
-
     private String name;
     private int order;
     private int place;
@@ -56,9 +51,16 @@ public class CalabashBrothers {
         brothers.set(i, brothers.get(j));
         brothers.set(j, temp);
     }
-
+    private void movePlace(int i, int j){
+        System.out.print(((Calabash) brothers.get(i)).getName()+':'+ (i+1) + "->" + (j+1) + ' ');
+        brothers.set(j, brothers.get(i));
+    }
+    private void movePlace(Calabash temp, int i, int j){
+        System.out.print(temp.getName()+':'+ (i+1) + "->" + (j+1) + ' ');
+        brothers.set(j, temp);
+    }
     // 快速排序找spilit point
-    public int partition(int start, int end, GetKey getKey) {
+    private int partition(int start, int end, GetKey getKey) {
         int pivot = getKey.key(brothers.get(end));
         int i = start - 1;
         for (int j = start; j <= end - 1; j++) {
@@ -81,6 +83,29 @@ public class CalabashBrothers {
             int spilitPoint = partition(start, end, getKey);
             quickSort(start, spilitPoint - 1, getKey);
             quickSort(spilitPoint + 1, end, getKey);
+        }
+    }
+    // 二分排序
+    public void binarySort(GetKey getKey){
+        for(int i = 0; i < brothers.size(); i++){
+            Calabash temp = new Calabash((Calabash)brothers.get(i));
+            int left = 0;
+            int right = i-1;
+            int middle = 0;
+            while(left <= right){
+                middle = (left + right)/2;
+                if(getKey.key(temp) < getKey.key(brothers.get(middle))){
+                    right = middle - 1;
+                }
+                else{
+                    left = middle + 1;
+                }
+            }
+            for(int j = i-1; j >= left; j--){
+                movePlace(j, j+1);
+            }
+            if(i != left)
+                movePlace(temp, i, left);
         }
     }
     // 冒泡排序
@@ -109,19 +134,23 @@ public class CalabashBrothers {
     }
     // 初始化葫芦兄弟
     public CalabashBrothers(){
-        brothers.add(new Calabash(Color.RED,"老大", 1));
-        brothers.add(new Calabash(Color.CYAN,"老五", 2));
-        brothers.add(new Calabash(Color.ORANGE,"老二", 3));
-        brothers.add(new Calabash(Color.YELLOW,"老三", 4));
-        brothers.add(new Calabash(Color.GREEN,"老四", 5));
-        brothers.add(new Calabash(Color.BLUE,"老六", 6));
-        brothers.add(new Calabash(Color.PURPLE,"老七", 7));
+        brothers.add(new Calabash(Color.RED,"老大"));
+        brothers.add(new Calabash(Color.PURPLE,"老七"));
+        brothers.add(new Calabash(Color.CYAN,"老五"));
+        brothers.add(new Calabash(Color.ORANGE,"老二"));
+        brothers.add(new Calabash(Color.GREEN,"老四"));
+        brothers.add(new Calabash(Color.YELLOW,"老三"));
+        brothers.add(new Calabash(Color.BLUE,"老六"));
     }
-
     public void CalabashBubbleSort(){
         bubbleSort(new getAge());
         System.out.println();
         toldColor();
+    }
+    public void CalabashBinarySort(){
+        binarySort(new getColor());
+        System.out.println();
+        toldName();
     }
     public void CalabashQuickSort(){
         quickSort(0, brothers.size()-1, new getColor());
@@ -143,7 +172,7 @@ public class CalabashBrothers {
     public static void main(String[] args) {
         CalabashBrothers mybrothers = new CalabashBrothers();
         //System.out.println(mybrothers.brothers.toString());
-        mybrothers.CalabashQuickSort();
+        mybrothers.CalabashBinarySort();
         //System.out.println(mybrothers.brothers.toString());
         mybrothers.CalabashBubbleSort();
     }
