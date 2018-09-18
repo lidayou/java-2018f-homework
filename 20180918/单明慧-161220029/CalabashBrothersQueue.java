@@ -11,44 +11,44 @@ class OneCalabash {
     private String name;
     OneCalabash(int i) {
     	if(i>6 || i<0) {
-    		System.out.println("³õÊ¼»¯Ê§°Ü¡£");
+    		System.out.println("åˆå§‹åŒ–å¤±è´¥ã€‚");
     	}else {
     		this.number = i;
     		switch (i) {
     		case 0:
     			this.color = COLOR.RED;
-    			this.colorName = "ºìÉ«";
-    			this.name = "ÀÏ´ó"; 
+    			this.colorName = "çº¢è‰²";
+    			this.name = "è€å¤§"; 
     			break;
     		case 1:
     			this.color = COLOR.ORANGE;
-    			this.colorName = "³ÈÉ«";
-    			this.name = "ÀÏ¶þ"; 
+    			this.colorName = "æ©™è‰²";
+    			this.name = "è€äºŒ"; 
     			break;
     		case 2:
     			this.color = COLOR.YELLOW;
-    			this.colorName = "»ÆÉ«";
-    			this.name = "ÀÏÈý"; 
+    			this.colorName = "é»„è‰²";
+    			this.name = "è€ä¸‰"; 
     			break;
     		case 3:
     			this.color = COLOR.GREEN;
-    			this.colorName = "ÂÌÉ«";
-    			this.name = "ÀÏËÄ"; 
+    			this.colorName = "ç»¿è‰²";
+    			this.name = "è€å››"; 
     			break;
     		case 4:
     			this.color = COLOR.BLUE;
-    			this.colorName = "À¶É«";
-    			this.name = "ÀÏÎå"; 
+    			this.colorName = "è“è‰²";
+    			this.name = "è€äº”"; 
     			break;
     		case 5:
     			this.color = COLOR.CYAN;
-    			this.colorName = "ÇàÉ«";
-    			this.name = "ÀÏÁù"; 
+    			this.colorName = "é’è‰²";
+    			this.name = "è€å…­"; 
     			break;
     		case 6:
     			this.color = COLOR.PURPLE;
-    			this.colorName = "×ÏÉ«";
-    			this.name = "ÀÏÆß"; 
+    			this.colorName = "ç´«è‰²";
+    			this.name = "è€ä¸ƒ"; 
     		}
     	}
     }
