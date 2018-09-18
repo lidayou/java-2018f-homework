@@ -1,4 +1,11 @@
 import java.util.*;
+/*
+* This file has three classes and an enum .
+* Enum 'Color' lists 7 colors of calabash brothers .
+* Class 'CalabashBrother' defines attributes of a calabash brother .
+* Class 'MySort' provides two kinds of static sorting methods .
+* Class 'CalabashBrothers' defines a group of calabash brothers .
+*/
 
 enum Color{RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE}
 
@@ -6,24 +13,29 @@ class CalabashBrother {
     private int ranking;
     private Color color;
     static  String[] name = {"老大","老二","老三","老四","老五","老六","老七"};
+    /*Constructor*/
     CalabashBrother(int ranking){
         this.ranking = ranking;
         this.color = Color.values()[ranking];
     }
+    /*return the ranking */
     public int getRanking() {
         return this.ranking;
     }
 
+    /*return the color*/
     public Color getColor() {
         return this.color;
     }
 
+    /*calabash brother reports its action.*/
     public void report(int src, int dest) {
         System.out.print(name[ranking]+": "+src+"->"+dest+" ");
     }
 }
 
 class MySort {
+    /*Swap two elements*/
     private static void swap(CalabashBrother[] brothers, int index1, int index2) {
         brothers[index1].report(index1,index2);
         brothers[index2].report(index2,index1);
@@ -32,6 +44,7 @@ class MySort {
         brothers[index1] = brothers[index2];
         brothers[index2] = temp;
     }
+    /*search for the suitable insertion position using binary search .*/
     private static int searchInsertPosition(CalabashBrother[] brothers, int index) {
         int begin = 0, end = index-1;
         while(begin < end){
@@ -43,6 +56,7 @@ class MySort {
         }
         return begin;
     }
+    /*bubble sort based on ranking*/
     public static void myBubbleSort(CalabashBrother[] brothers) {
         for(int i = 0;i < 6;i++) {
             for(int j = 0;j < 6-i;j++) {
@@ -51,6 +65,7 @@ class MySort {
             }
         }
     }
+    /*binary sort based on color*/
     public static void myBinarySort(CalabashBrother[] brothers) {
         for(int i = 1;i < 7;i++) {
             int targetPosition = searchInsertPosition(brothers, i);
@@ -75,7 +90,7 @@ public class CalabashBrothers {
             brothers[i] = new CalabashBrother(i);
         }
     }
-
+    /*shuffle randomly*/
      public void shuffle() {
         Random rand = new Random() ;
         for(int i = 0;i < 6;i++) {
@@ -85,17 +100,19 @@ public class CalabashBrothers {
             brothers[6 - i] = temp;
         }
     }
+    /*output the array*/
     public void showBrothers() {
         for(CalabashBrother x:brothers) {
             System.out.print(CalabashBrother.name[x.getRanking()] + "(" + x.getColor() + ") ");
         }
         System.out.println();
     }
+    /*call myBubbleSort*/
     public void bubbleSortByRanking() {
         System.out.println("按照排行进行冒泡排序：");
         MySort.myBubbleSort(brothers);
     }
-
+    /*call myBinarySort*/
     public void binarySortByColor() {
         System.out.println("按照颜色进行二分排序：");
         MySort.myBinarySort(brothers);
