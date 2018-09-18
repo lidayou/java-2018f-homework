@@ -63,13 +63,11 @@ class Management {
 			case 1:{
 				for(int i=0;i<7;i++)
 					System.out.print(cala[i].statusname);
-				break;
-			}
+			}break;
 			case 2:{
 				for(int i=0;i<7;i++)
 					System.out.print(cala[i].colorname);
-				break;
-			}
+			}break;
 			default:System.out.print("nonexistent");
 		}
 		System.out.println("");
@@ -103,9 +101,9 @@ class Management {
 			while(left<=right) {
 				int middle=(right+left)/2;
 				if(cala[i].color<cala[middle].color)
-					right=right-1;
+					right=middle-1;
 				else
-					left=left+1;
+					left=middle+1;
 			}
 			//²åµ½leftÎ»ÖÃ
 			if(i!=left) {
