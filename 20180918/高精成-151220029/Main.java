@@ -128,7 +128,7 @@ class CalabashBrothers {
 				array[left] = temp;
 			}
 			System.out.println();
-	}
+		}
 	}
 	void start () {
 		randomArrange(); // 产生随机序列
