@@ -4,13 +4,13 @@ class Calabash {
 	public Calabash(int rank) {
 		this.rank = rank;
 		switch (rank) {
-		case 1:color="ºìÉ«";rankName="ÀÏ´ó";break;
-		case 2:color="³ÈÉ«";rankName="ÀÏ¶þ";break;
-		case 3:color="»ÆÉ«";rankName="ÀÏÈý";break;
-		case 4:color="ÂÌÉ«";rankName="ÀÏËÄ";break;
-		case 5:color="ÇàÉ«";rankName="ÀÏÎå";break;
-		case 6:color="À¶É«";rankName="ÀÏÁù";break;
-		case 7:color="×ÏÉ«";rankName="ÀÏÆß";break;
+		case 1:color="çº¢è‰²";rankName="è€å¤§";break;
+		case 2:color="æ©™è‰²";rankName="è€äºŒ";break;
+		case 3:color="é»„è‰²";rankName="è€ä¸‰";break;
+		case 4:color="ç»¿è‰²";rankName="è€å››";break;
+		case 5:color="é’è‰²";rankName="è€äº”";break;
+		case 6:color="è“è‰²";rankName="è€å…­";break;
+		case 7:color="ç´«è‰²";rankName="è€ä¸ƒ";break;
 		default:
 		}
 	}
@@ -21,7 +21,7 @@ class Calabash {
 		System.out.println(color);
 	}
 	public void reportPositionChange(int pos1, int pos2) {
-		System.out.println(rankName+"£º"+pos1+"->"+pos2);
+		System.out.println(rankName+"ï¼š"+pos1+"->"+pos2);
 	}
 	public final int rank;
 	private String color;
