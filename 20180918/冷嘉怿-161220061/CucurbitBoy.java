@@ -16,13 +16,13 @@ public class CucurbitBoy {
         this.id=CucurbitBoys.values()[CucurbitBoy.nextid];
         CucurbitBoy.nextid++;
     }
-    public void tellColor()
+    public String tellColor()
     {
-        System.out.print(CucurbitBoy.colors[this.id.ordinal()]+"!");
+        return CucurbitBoy.colors[this.id.ordinal()];
     }
-    public void tellName()
+    public String tellName()
     {
-        System.out.print(CucurbitBoy.names[this.id.ordinal()]+"!");
+        return CucurbitBoy.names[this.id.ordinal()];
     }
     public int getID(){ return id.ordinal(); }
 }
