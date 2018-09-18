@@ -97,5 +97,4 @@ public class CalabashBrothers {
 		cBrothers.binarySort();;
 		cBrothers.reportColors();
 	}
-
 }
