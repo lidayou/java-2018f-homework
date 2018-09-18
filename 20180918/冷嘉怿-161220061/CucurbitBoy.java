@@ -24,4 +24,5 @@ public class CucurbitBoy {
     {
         System.out.print(CucurbitBoy.names[this.id.ordinal()]+"!");
     }
+    public int getID(){ return id.ordinal(); }
 }
