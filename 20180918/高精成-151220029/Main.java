@@ -1,16 +1,7 @@
 public class Main{
 	public static void main(String[] args) {
 		CalabashBrothers test = new CalabashBrothers();
-		test.randomArrange(); // 产生随机序列
-		test.reportNum(); // 打印随机站队的葫芦娃兄弟
-		test.bubbleSort(); // 冒泡排序
-		test.reportNum(); // 打印排序后的葫芦娃兄弟
-		System.out.print("\n\n");
-		test.randomArrange(); // 产生随机序列
-		test.reportNum(); // 打印随机序列
-		test.reportColor(); // 报告颜色
-		test.binaryInsertSort(); // 2分法插入排序
-		test.reportColor(); // 报告颜色
+		test.start();
 	}
 }
 //定义葫芦娃类，包含属性有名字、颜色、等阶(老大排名第一，即rank = 1，按此类推)
@@ -138,5 +129,17 @@ class CalabashBrothers {
 			}
 			System.out.println();
 	}
+	}
+	void start () {
+		randomArrange(); // 产生随机序列
+		reportNum(); // 打印随机站队的葫芦娃兄弟
+		bubbleSort(); // 冒泡排序
+		reportNum(); // 打印排序后的葫芦娃兄弟
+		System.out.print("\n\n");
+		randomArrange(); // 产生随机序列
+		reportNum(); // 打印随机序列
+		reportColor(); // 报告颜色
+		binaryInsertSort(); // 2分法插入排序
+		reportColor(); // 报告颜色
 	}
 }
