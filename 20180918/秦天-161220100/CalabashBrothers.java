@@ -31,7 +31,7 @@ class Calabash {
 public class CalabashBrothers {
 	public Calabash[] brothers=new Calabash[7];
 	public CalabashBrothers(){
-		for(int i=0;i<;i++)
+		for(int i=0;i<brothers.length;i++)
 			brothers[i]=new Calabash(i+1);
 	}
 	public void randomArrange() {
