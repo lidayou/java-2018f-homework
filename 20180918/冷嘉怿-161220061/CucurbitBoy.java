@@ -18,10 +18,10 @@ public class CucurbitBoy {
     }
     public void tellColor()
     {
-        System.out.print(CucurbitBoy.colors[this.id.ordinal()]);
+        System.out.print(CucurbitBoy.colors[this.id.ordinal()]+"!");
     }
     public void tellName()
     {
-        System.out.print(CucurbitBoy.names[this.id.ordinal()]);
+        System.out.print(CucurbitBoy.names[this.id.ordinal()]+"!");
     }
 }
