@@ -5,58 +5,70 @@ enum COLOR {
 }
 
 class OneCalabash {
-    int number;
-    COLOR color;
-    String colorName;
-    String name;
+    private int number;
+    private COLOR color;
+    private String colorName;
+    private String name;
     OneCalabash(int i) {
     	if(i>6 || i<0) {
-    		System.out.println("åˆå§‹åŒ–å¤±è´¥ã€‚");
+    		System.out.println("³õÊ¼»¯Ê§°Ü¡£");
     	}else {
     		this.number = i;
     		switch (i) {
     		case 0:
     			this.color = COLOR.RED;
-    			this.colorName = "çº¢è‰²";
-    			this.name = "è€å¤§"; 
+    			this.colorName = "ºìÉ«";
+    			this.name = "ÀÏ´ó"; 
     			break;
     		case 1:
     			this.color = COLOR.ORANGE;
-    			this.colorName = "æ©™è‰²";
-    			this.name = "è€äºŒ"; 
+    			this.colorName = "³ÈÉ«";
+    			this.name = "ÀÏ¶þ"; 
     			break;
     		case 2:
     			this.color = COLOR.YELLOW;
-    			this.colorName = "é»„è‰²";
-    			this.name = "è€ä¸‰"; 
+    			this.colorName = "»ÆÉ«";
+    			this.name = "ÀÏÈý"; 
     			break;
     		case 3:
     			this.color = COLOR.GREEN;
-    			this.colorName = "ç»¿è‰²";
-    			this.name = "è€å››"; 
+    			this.colorName = "ÂÌÉ«";
+    			this.name = "ÀÏËÄ"; 
     			break;
     		case 4:
     			this.color = COLOR.BLUE;
-    			this.colorName = "è“è‰²";
-    			this.name = "è€äº”"; 
+    			this.colorName = "À¶É«";
+    			this.name = "ÀÏÎå"; 
     			break;
     		case 5:
     			this.color = COLOR.CYAN;
-    			this.colorName = "é’è‰²";
-    			this.name = "è€å…­"; 
+    			this.colorName = "ÇàÉ«";
+    			this.name = "ÀÏÁù"; 
     			break;
     		case 6:
     			this.color = COLOR.PURPLE;
-    			this.colorName = "ç´«è‰²";
-    			this.name = "è€ä¸ƒ"; 
+    			this.colorName = "×ÏÉ«";
+    			this.name = "ÀÏÆß"; 
     		}
     	}
+    }
+    int tellNo() {
+    	return this.number;
+    }
+    String tellName() {
+    	return this.name;
+    }
+    String tellColorName() {
+    	return this.colorName;
+    }
+    COLOR tellColor() {
+    	return this.color;
     }
 }
 
 class CalabashBrothers {
 	OneCalabash[] sevenBrothers = new OneCalabash[7];
-	int[] queue = new int[7] ;
+	int[] queue = new int[7];
 	CalabashBrothers() {		
 		for (int i = 0; i < 7; i++) {
 			sevenBrothers[i] = new OneCalabash(i);
@@ -75,17 +87,17 @@ class CalabashBrothers {
 		initQueue();
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6 - i; j++) {
-				if (sevenBrothers[queue[j]].number > sevenBrothers[queue[j + 1]].number) {
+				if (sevenBrothers[queue[j]].tellNo() > sevenBrothers[queue[j + 1]].tellNo()) {
 					int tmp = queue[j];
 					queue[j] = queue[j + 1];
 					queue[j + 1] = tmp;
-					System.out.println(sevenBrothers[queue[j + 1]].name + ": "+ (j + 1) + " -> " + (j + 2));
-					System.out.println(sevenBrothers[queue[j]].name + ": "+ (j + 2) + " -> " + (j + 1));
+					System.out.println(sevenBrothers[queue[j + 1]].tellName() + ": "+ (j + 1) + " -> " + (j + 2));
+					System.out.println(sevenBrothers[queue[j]].tellName() + ": "+ (j + 2) + " -> " + (j + 1));
 				}
 			}
 		}
 		for (int i = 0; i < 7; i++) {
-			System.out.println(sevenBrothers[queue[i]].name);
+			System.out.println(sevenBrothers[queue[i]].tellName());
 		}
 	}
 	void sortByColor() {
@@ -97,7 +109,7 @@ class CalabashBrothers {
 			int middle = 0;
 			while (left <= right) {
 				middle = (left + right) / 2;
-				if (sevenBrothers[queue[i]].color.compareTo(sevenBrothers[queue[middle]].color) > 0) {
+				if (sevenBrothers[queue[i]].tellColor().compareTo(sevenBrothers[queue[middle]].tellColor()) > 0) {
 					left = middle + 1;
 				}else {
 					right = middle - 1;
@@ -105,15 +117,15 @@ class CalabashBrothers {
 			}
 			for (int j = i - 1; j >= left; j--) {
 				queue[j+1] = queue[j];
-				System.out.println(sevenBrothers[queue[j]].name + ": "+ (j + 1) + " -> " + (j + 2));
+				System.out.println(sevenBrothers[queue[j]].tellName() + ": "+ (j + 1) + " -> " + (j + 2));
 			}
 			if (left != i) {
 				queue[left] = tmp;
-				System.out.println(sevenBrothers[queue[left]].name + ": "+ (i + 1) + " -> " + (left + 1));
+				System.out.println(sevenBrothers[queue[left]].tellName() + ": "+ (i + 1) + " -> " + (left + 1));
 			}
 		}
 		for (int i = 0; i < 7; i++) {
-			System.out.println(sevenBrothers[queue[i]].colorName);
+			System.out.println(sevenBrothers[queue[i]].tellColorName());
 		}
 	}
 }
