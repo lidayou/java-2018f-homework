@@ -1,9 +1,9 @@
-package ljy.Cucurbit;
+//package ljy.Cucurbit;
 
 import java.util.Random;
 
 public class God {
-    private final int CB_NUM=7;
+    private final int CB_NUM=7;     //世界上有七个葫芦娃兄弟
     private CucurbitBoy cbs[]=new CucurbitBoy[CB_NUM];
     public static void main(String[] args){
 //        System.out.println("God is created");
@@ -21,18 +21,22 @@ public class God {
 //        god.countoff();
         god.BubbleSort();
     }
+
     God() throws Exception {
+        //创造世界上的葫芦娃
         for(int i=0;i<CB_NUM;i++)
             cbs[i]=new CucurbitBoy();
     }
 
     public void countoff()
     {
+        //用于调试输出葫芦娃顺序
         for(CucurbitBoy x:cbs)
             System.out.printf("%d ",x.getID());
         System.out.printf("\n");
     }
 
+    //交换两个葫芦娃的位置
     private void swap(int cb1, int cb2)
     {
         if(cb1==cb2)
@@ -45,6 +49,7 @@ public class God {
         return;
     }
 
+    //葫芦娃随机站队
     protected void randomize()
     {
         Random random=new Random();
@@ -55,6 +60,7 @@ public class God {
         }
     }
 
+    //对葫芦娃使用冒泡排序并报出自己的名字
     protected void BubbleSort()
     {
         for(int i=0;i<CB_NUM-1;i++)
@@ -68,6 +74,7 @@ public class God {
         System.out.print("\n");
     }
 
+    //对葫芦娃使用二分法排序并报出自己的颜色
     protected void BiSort()
     {
         for(int i=1;i<CB_NUM;i++)
