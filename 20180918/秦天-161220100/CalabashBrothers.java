@@ -92,7 +92,7 @@ public class CalabashBrothers {
 		cBrothers.bubbleSort();
 		cBrothers.reportRanks();
 		cBrothers.randomArrange();
-		cBrothers.binarySort();;
+		cBrothers.binarySort();
 		cBrothers.reportColors();
 	}
 }
