@@ -60,9 +60,8 @@ public class CalabashBrothers {
 				else
 					left=mid+1;
 			}
-			for(int j=i-1;j>right;j--) {
+			for(int j=i-1;j>right;j--)
 				swap(j, j+1, true);
-			}
 		}
 	}
 	public void reportRanks() {
