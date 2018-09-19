@@ -1,18 +1,20 @@
 import java.util.Random;
 
-class Calabash {
-	public Calabash(int rank) {
-		this.rank = rank;
-		switch (rank) {
-		case 1:color="红色";rankName="老大";break;
-		case 2:color="橙色";rankName="老二";break;
-		case 3:color="黄色";rankName="老三";break;
-		case 4:color="绿色";rankName="老四";break;
-		case 5:color="青色";rankName="老五";break;
-		case 6:color="蓝色";rankName="老六";break;
-		case 7:color="紫色";rankName="老七";break;
-		default:
-		}
+enum Calabash {
+	FIRST(1,"老大","红色"),
+	SECOND(2,"老二","橙色"),
+	THIRD(3,"老三","黄色"),
+	FOURTH(4,"老四","绿色"),
+	FIFTH(5,"老五","青色"),
+	SIXTH(6,"老六","蓝色"),
+	SEVENTH(7,"老七","紫色");
+	public final int rank;
+	private final String rankName;
+	private final String color;
+	Calabash(int rank,String rankName,String color) {
+		this.rank=rank;
+		this.rankName = rankName;
+		this.color=color;
 	}
 	public void reportRank() {
 		System.out.println(rankName);
@@ -23,16 +25,12 @@ class Calabash {
 	public void reportPositionChange(int pos1, int pos2) {
 		System.out.println(rankName+"："+pos1+"->"+pos2);
 	}
-	public final int rank;
-	private String color;
-	private String rankName; 
 }
 
 public class CalabashBrothers {
-	public Calabash[] brothers=new Calabash[7];
+	public Calabash[] brothers;
 	public CalabashBrothers(){
-		for(int i=0;i<brothers.length;i++)
-			brothers[i]=new Calabash(i+1);
+		brothers=Calabash.values();
 	}
 	public void randomArrange() {
 		Random random=new Random();
@@ -41,6 +39,7 @@ public class CalabashBrothers {
 		}
 	}
 	public void bubbleSort() {
+		System.out.println("Bubble Sort:");
 		for(int i=0;i<brothers.length-1;i++) {
 			for(int j=0;j<brothers.length-1-i;j++) {
 				if(brothers[j].rank>brothers[j+1].rank) {
@@ -50,6 +49,7 @@ public class CalabashBrothers {
 		}
 	}
 	public void binarySort() {
+		System.out.println("Binary Sort:");
 		for(int i=1;i<brothers.length;i++) {
 			int left=0,right=i-1;
 			Calabash tmp=brothers[i];
@@ -61,10 +61,8 @@ public class CalabashBrothers {
 					left=mid+1;
 			}
 			for(int j=i-1;j>right;j--) {
-				brothers[j+1].reportPositionChange(j+1, j);
-				brothers[j+1]=brothers[j];
+				swap(j, j+1, true);
 			}
-			brothers[right+1]=tmp;
 		}
 	}
 	public void reportRanks() {
@@ -94,7 +92,7 @@ public class CalabashBrothers {
 		cBrothers.bubbleSort();
 		cBrothers.reportRanks();
 		cBrothers.randomArrange();
-		cBrothers.binarySort();
+		cBrothers.binarySort();;
 		cBrothers.reportColors();
 	}
 }
