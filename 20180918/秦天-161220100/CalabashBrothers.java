@@ -28,14 +28,11 @@ enum Calabash {
 }
 
 public class CalabashBrothers {
-	public Calabash[] brothers;
-	public CalabashBrothers(){
-		brothers=Calabash.values();
-	}
+	public Calabash[] brothers=Calabash.values();
 	public void randomArrange() {
 		Random random=new Random();
 		for(int i=0;i<7;i++) {
-			swap(random.nextInt(7), random.nextInt(7),false);
+			swap(random.nextInt(brothers.length), random.nextInt(brothers.length),false);
 		}
 	}
 	public void bubbleSort() {
