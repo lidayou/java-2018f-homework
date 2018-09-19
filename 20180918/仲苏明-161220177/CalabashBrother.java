@@ -1,8 +1,8 @@
 package CalabashBrother;
 
 public enum CalabashBrother {
-	RED("ÀÏ´ó","ºìÉ«",1),ORANGE("ÀÏ¶ş","³ÈÉ«",2),YELLOW("ÀÏÈı","»ÆÉ«",3),GREEN("ÀÏËÄ","ÂÌÉ«",4),
-	CYAN("ÀÏÎå","ÇàÉ«",5),BLUE("ÀÏÁù","À¶É«",6),PURPLE("ÀÏÆß","×ÏÉ«",7);
+	RED("è€å¤§","çº¢è‰²",1),ORANGE("è€äºŒ","æ©™è‰²",2),YELLOW("è€ä¸‰","é»„è‰²",3),GREEN("è€å››","ç»¿è‰²",4),
+	CYAN("è€äº”","é’è‰²",5),BLUE("è€å…­","è“è‰²",6),PURPLE("è€ä¸ƒ","ç´«è‰²",7);
 	private final String name;
 	private final String color;
 	private final int rank;
@@ -75,14 +75,14 @@ public enum CalabashBrother {
 	public static void main(String[] args) {
 		CalabashBrother[] brothers= {ORANGE,BLUE,GREEN,PURPLE,RED,CYAN,YELLOW};
 		//CalabashBrother.values();	
-		System.out.println("Ã°ÅİÅÅĞò£º");
+		System.out.println("å†’æ³¡æ’åºï¼š");
 		CalabashBrother.bubbleSort(brothers);
 		for(int i=0;i<brothers.length;i++) {
 			System.out.println(brothers[i].name);
 		}
 		System.out.println();
 		CalabashBrother[] brothers2= {ORANGE,BLUE,GREEN,PURPLE,RED,CYAN,YELLOW};
-		System.out.println("¶ş·Ö²åÈëÅÅĞò£º");
+		System.out.println("äºŒåˆ†æ’å…¥æ’åºï¼š");
 		CalabashBrother.binaryInsertSort(brothers2);
 		for(int i=0;i<brothers2.length;i++) {
 			System.out.println(brothers2[i].color);
