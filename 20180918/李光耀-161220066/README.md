@@ -1,6 +1,6 @@
 # 说明：
 
-![uml](D:\Eclipse_workspace\java-2018f-homework\20180918\李光耀-161220066\uml.png)
+![uml](https://github.com/lidayou/java-2018f-homework/blob/master/20180918/%E6%9D%8E%E5%85%89%E8%80%80-161220066/uml.png)
 
 
 
