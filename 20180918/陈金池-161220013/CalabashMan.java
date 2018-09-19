@@ -3,12 +3,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class CalabashMan {
-    public CalabashMan(int sequence, String name, Color color) {
-        this.sequence = sequence;
+    public CalabashMan(String name, Color color) {
+        totalCalabashManNum++;
+        this.sequence = totalCalabashManNum;
         this.name = name;
         this.color = color;
     }
 
+    static private int totalCalabashManNum = 0;
     private int sequence;
     private String name;
     private Color color;
@@ -98,10 +100,10 @@ class CalabashManSort {
 class CalabashManSortTest {
     public static void main(String[] args) {
         // create brothersList
-        final CalabashMan[] brothers = { new CalabashMan(1, "老大", Color.RED), new CalabashMan(2, "老二", Color.ORANGE),
-                new CalabashMan(3, "老三", Color.YELLOW), new CalabashMan(4, "老四", Color.GREEN),
-                new CalabashMan(5, "老五", Color.CYAN), new CalabashMan(6, "老六", Color.BLUE),
-                new CalabashMan(7, "老七", Color.VIOLET), };
+        final CalabashMan[] brothers = { new CalabashMan("老大", Color.RED), new CalabashMan("老二", Color.ORANGE),
+                new CalabashMan("老三", Color.YELLOW), new CalabashMan("老四", Color.GREEN),
+                new CalabashMan("老五", Color.CYAN), new CalabashMan("老六", Color.BLUE),
+                new CalabashMan("老七", Color.VIOLET), };
         List<CalabashMan> brothersList = Arrays.asList(brothers);
 
         // generate random sequence array and test
