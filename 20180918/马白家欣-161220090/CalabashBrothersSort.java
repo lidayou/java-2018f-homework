@@ -57,8 +57,6 @@ public class CalabashBrothersSort {
 
 }
 
-enum Color{RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE}
-
 class CalabashBrothers {
 
     public static final int MAX_CALABASH_BROTHERS_COUNT = 7;
@@ -151,18 +149,3 @@ enum CalabashBoy {
     }
 }
 
-//enum CalabashInfo {
-//
-//    private String name;
-//
-//    CalabashInfo(String name)
-//    {
-//        this.name = name;
-//    }
-//
-//    @Override
-//    public String toString() {
-//
-//        return this.name;
-//    }
-//}
