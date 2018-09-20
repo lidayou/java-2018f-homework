@@ -98,8 +98,8 @@ class CalabashBrothers {
         if (i < 0 || i > MAX_CALABASH_BROTHERS_COUNT - 1 || j < 0 || j > MAX_CALABASH_BROTHERS_COUNT - 1) {
             System.out.println("ERROR IN swapCalabashBoy()");
         }
-        System.out.print("" + calabashBoyArray[i] + i + " -> " + j + " && ");
-        System.out.println("" + calabashBoyArray[j] + j + " -> " + i);
+        System.out.print("" + calabashBoyArray[i].getName() + i + " -> " + j + " && ");
+        System.out.println("" + calabashBoyArray[j].getName() + j + " -> " + i);
 
         CalabashBoy temp = calabashBoyArray[i];
         calabashBoyArray[i] = calabashBoyArray[j];
@@ -113,7 +113,7 @@ class CalabashBrothers {
 
     public void printAllCalabashBoys() {
         for (int i = 0; i < calabashBoyArray.length; i++) {
-            System.out.print("" + calabashBoyArray[i]);
+            System.out.print(calabashBoyArray[i].getColor() + "(" + calabashBoyArray[i].getRank() + ")");
             if (i != calabashBoyArray.length - 1) {
                 System.out.print(" -> ");
             }
@@ -124,20 +124,26 @@ class CalabashBrothers {
 
 enum CalabashBoy {
 
-    RED("老大", 1), ORANGE("老二", 2), YELLOW("老三", 3), GREEN("老四", 4),
-    CYAN("老五", 5), BLUE("老六", 6), PURPLE("老七", 7);
+    RED("老大", 1, "红色"), ORANGE("老二", 2, "橙色"), YELLOW("老三", 3, "黄色"), GREEN("老四", 4, "绿色"),
+    CYAN("老五", 5, "青色"), BLUE("老六", 6, "蓝色"), PURPLE("老七", 7, "紫色");
 
     private int rank;
     private String name;
+    private String color;
 
-    CalabashBoy(String name, int rank) {
+    CalabashBoy(String name, int rank, String color) {
         this.name = name;
         this.rank = rank;
+        this.color = color;
     }
 
-    @Override
-    public String toString() {
+
+    public String getName() {
         return this.name;
+    }
+
+    public String getColor() {
+        return this.color;
     }
 
     public int getRank() {
