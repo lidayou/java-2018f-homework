@@ -1,4 +1,4 @@
-package CalabashBrothers;
+锘縫ackage CalabashBrothers;
 
 enum Color
 {
@@ -48,10 +48,10 @@ public enum CalabashBrother
 		CalabashBrother[] menu = CalabashBrother.values().clone();
 		for(int i = 6; i >= 0; i--)
 		{
-			//生成0 ~ i随机整数
+			//鐢熸垚0 ~ i闅忔満鏁存暟
 			int random = (int)(Math.random()* i);
 			list[6 - i] = menu[random];
-			//调整menu
+			//璋冩暣menu
 			menu[random] = menu[i];
 		}
 		return list;

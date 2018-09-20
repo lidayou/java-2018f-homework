@@ -4,7 +4,6 @@ public class sort_test
 {
 		public static void main(String[] args) 
 		{
-			// TODO Auto-generated method stub
 			System.out.println("HELLO WORLD");
 			int array[] = {1, 9, 3, 6, 7, 2};
 			int max = 0;
