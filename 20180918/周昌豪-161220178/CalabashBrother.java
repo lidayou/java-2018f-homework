@@ -1,15 +1,16 @@
-package HuluBrother;
+package CalabashBrothers;
+
 enum Color
 {
 	Red, Orange, Yellow, Green, Cyan, Blue, Purple;
 }
 
-public enum HuluBrother 
+public enum CalabashBrother
 {	HongWa("Red", 1), ChengWa("Orange", 2), HuangWa("Yellow", 3), LvWa("Green", 4),
 	QingWa("Cyan", 5), LanWa("Blue", 6), ZiWa("Purple", 7);
 	private Color color;
 	private final int rank;
-	private HuluBrother(String color, int rank)
+	private CalabashBrother(String color, int rank)
 	{
 		switch(color)
 		{
@@ -41,10 +42,10 @@ public enum HuluBrother
 		System.out.print(this.color.name() + " ");
 	}
 	
-	public static HuluBrother[] getRandomList()
+	public static CalabashBrother[] getRandomList()
 	{
-		HuluBrother[] list = new HuluBrother[7];
-		HuluBrother[] menu = HuluBrother.values().clone();
+		CalabashBrother[] list = new CalabashBrother[7];
+		CalabashBrother[] menu = CalabashBrother.values().clone();
 		for(int i = 6; i >= 0; i--)
 		{
 			//生成0 ~ i随机整数
@@ -59,12 +60,12 @@ public enum HuluBrother
 
 class HuluBrotherSort
 {
-	static void BinarySort(HuluBrother[] list) 
+	static void BinarySort(CalabashBrother[] list) 
 	{
 		for(int i = 1;i < 7;i++)
 		{
 			int mid = FindIndexToInsert(list, i);
-			HuluBrother tmp = list[i];
+			CalabashBrother tmp = list[i];
 			for(int j = i; j > mid; j--)
 				list[j] = list[j - 1];
 			list[mid] = tmp;
@@ -73,7 +74,7 @@ class HuluBrotherSort
 		}
 	}
 	
-	static int FindIndexToInsert(HuluBrother[] list, int CIndex)
+	static int FindIndexToInsert(CalabashBrother[] list, int CIndex)
 	{
 		if(list[0].getColorRank() > list[CIndex].getColorRank())
 			return 0;
@@ -96,7 +97,7 @@ class HuluBrotherSort
 		}
 	}
 
-    static void BubbleSort(HuluBrother[] list) {
+    static void BubbleSort(CalabashBrother[] list) {
     	for(int i = 0; i < 7; i++)
     	{
     		for(int j = 0; j < 7; j++)
@@ -105,7 +106,7 @@ class HuluBrotherSort
     				//report
     				list[i].PlaceChangeReport(i, j);
     				list[j].PlaceChangeReport(j, i);
-    				HuluBrother tmp = list[i];
+    				CalabashBrother tmp = list[i];
     				list[i] = list[j];
     				list[j] = tmp;
     			}
