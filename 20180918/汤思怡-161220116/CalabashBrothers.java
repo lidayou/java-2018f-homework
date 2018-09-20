@@ -1,7 +1,37 @@
 package secondHomework;
 
+//颜色的枚举类
+enum Color {
+	RED("红娃"), ORANGE("橙娃"), YELLOW("黄娃"), GREEN("绿娃"), CYAN("青娃"), BLUE("蓝色"), PURPLE("紫色");
+	private String color;
+
+	private Color(String color) {
+		this.color = color;
+	}
+
+	public String toString() {
+		return this.color;
+	}
+};
+
+//排行的枚举类
+enum Rank {
+	ONE("大娃"), TWO("二娃"), THREE("三娃"), FOUR("四娃"), FIVE("五娃"), SIX("六娃"), SEVEN("七娃");
+	private String rank;
+
+	private Rank(String rank) {
+		this.rank = rank;
+	}
+
+	public String toString() {
+		return this.rank;
+	}
+};
+
+//葫芦娃兄弟类
 public class CalabashBrothers {
-	private final int COLOR = 2, RANK = 1, NUM = 7;
+	// 葫芦娃个数
+	private final static int NUM = 7, COLOR = 0, RANK = 1;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -14,31 +44,27 @@ public class CalabashBrothers {
 		c2.bubbleSort();
 	}
 
+	// 葫芦娃类
 	private class Calabash {
-		private int order;
-		private String color;
-		private String name;
+		private Color color;
+		private Rank rank;
 
-		protected Calabash(int order) {
+		protected Calabash(int index) {
 			// TODO Auto-generated constructor stub
-			this.order = order;
-			this.color = rtnCharacter(order, COLOR);
-			this.name = rtnCharacter(order, RANK);
+			this.color = Color.values()[index];
+			this.rank = Rank.values()[index];
 		}
 
-		protected int getOrder() {
-			return this.order;
-		}
-
-		protected String getColor() {
+		protected Color getColor() {
 			return this.color;
 		}
 
-		protected String getName() {
-			return this.name;
+		protected Rank getRank() {
+			return this.rank;
 		}
 	}
 
+	// 葫芦娃数组
 	private Calabash calabashBrothers[] = new Calabash[NUM];
 
 	public CalabashBrothers(int[] array) {
@@ -54,7 +80,7 @@ public class CalabashBrothers {
 		System.out.println("按冒泡法依照各自排行排序：");
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6 - i; j++) {
-				if (calabashBrothers[j].getOrder() > calabashBrothers[j + 1].getOrder()) {
+				if (calabashBrothers[j].getRank().ordinal() > calabashBrothers[j + 1].getRank().ordinal()) {
 					// 位置从0计数
 					System.out.println(swapProcess(calabashBrothers[j], j, j + 1, RANK));
 					System.out.println(swapProcess(calabashBrothers[j + 1], j + 1, j, RANK));
@@ -66,7 +92,7 @@ public class CalabashBrothers {
 			}
 		}
 		for (int i = 0; i < NUM; i++) {
-			System.out.print(calabashBrothers[i].name + " ");
+			System.out.print(calabashBrothers[i].rank.toString() + " ");
 		}
 		System.out.println("\n");
 	}
@@ -80,7 +106,7 @@ public class CalabashBrothers {
 			int left = 0, right = i - 1;
 			while (left <= right) {
 				int mid = (left + right) / 2;
-				if (calabashBrothers[mid].getOrder() > temp.getOrder())
+				if (calabashBrothers[mid].getColor().ordinal() > temp.getColor().ordinal())
 					right = mid - 1;
 				else
 					left = mid + 1;
@@ -93,72 +119,9 @@ public class CalabashBrothers {
 			System.out.println(swapProcess(temp, i, right + 1, COLOR));
 		}
 		for (int i = 0; i < NUM; i++) {
-			System.out.print(calabashBrothers[i].color + " ");
+			System.out.print(calabashBrothers[i].color.toString() + " ");
 		}
 		System.out.println("\n");
-	}
-
-	// 根据排行返回相应的字符串:func = COLOR时返回颜色;fun = RANK时返回排行
-	private String rtnCharacter(int index, int func) {
-		String temp = null;
-		switch (func) {
-		case COLOR:
-			switch (index) {
-			case 0:
-				temp = "红色";
-				break;
-			case 1:
-				temp = "橙色";
-				break;
-			case 2:
-				temp = "黄色";
-				break;
-			case 3:
-				temp = "绿色";
-				break;
-			case 4:
-				temp = "青色";
-				break;
-			case 5:
-				temp = "蓝色";
-				break;
-			case 6:
-				temp = "紫色";
-				break;
-			default:
-				System.out.println("葫芦娃只有七个呀兄弟！");
-				break;
-			}
-			break;
-		case RANK:
-			switch (index) {
-			case 0:
-				temp = "第一";
-				break;
-			case 1:
-				temp = "第二";
-				break;
-			case 2:
-				temp = "第三";
-				break;
-			case 3:
-				temp = "第四";
-				break;
-			case 4:
-				temp = "第五";
-				break;
-			case 5:
-				temp = "第六";
-				break;
-			case 6:
-				temp = "第七";
-				break;
-			default:
-				System.out.println("葫芦娃只有七个呀兄弟！");
-				break;
-			}
-		}
-		return temp;
 	}
 
 	// 返回交换过程的字符串
@@ -166,10 +129,10 @@ public class CalabashBrothers {
 		String temp = null;
 		switch (func) {
 		case COLOR:
-			temp = calabash.getColor() + "：" + i + "->" + j;
+			temp = calabash.getColor().toString() + "：" + i + "->" + j;
 			break;
 		case RANK:
-			temp = calabash.getName() + "：" + i + "->" + j;
+			temp = calabash.getRank().toString() + "：" + i + "->" + j;
 			break;
 		default:
 			break;
