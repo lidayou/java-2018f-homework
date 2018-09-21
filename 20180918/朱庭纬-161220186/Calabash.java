@@ -39,13 +39,13 @@ class CalabashWorld {
 	
 	CalabashWorld() {
 		// TODO Auto-generated constructor stub
-		CalabashBrother theOldest = new CalabashBrother(1, "ÀÏ´ó", COLOR.RED);
-		CalabashBrother theSecond = new CalabashBrother(2, "ÀÏ¶ş", COLOR.ORANGE);
-		CalabashBrother theThird = new CalabashBrother(3, "ÀÏÈı", COLOR.YELLOW);
-		CalabashBrother theForth = new CalabashBrother(4, "ÀÏËÄ", COLOR.GREEN);
-		CalabashBrother theFifth = new CalabashBrother(5, "ÀÏÎå", COLOR.CYAN);
-		CalabashBrother theSixth = new CalabashBrother(6, "ÀÏÁù", COLOR.BLUE);
-		CalabashBrother theYoungest = new CalabashBrother(7, "ÀÏÆß", COLOR.PURPLE);		
+		CalabashBrother theOldest = new CalabashBrother(1, "è€å¤§", COLOR.RED);
+		CalabashBrother theSecond = new CalabashBrother(2, "è€äºŒ", COLOR.ORANGE);
+		CalabashBrother theThird = new CalabashBrother(3, "è€ä¸‰", COLOR.YELLOW);
+		CalabashBrother theForth = new CalabashBrother(4, "è€å››", COLOR.GREEN);
+		CalabashBrother theFifth = new CalabashBrother(5, "è€äº”", COLOR.CYAN);
+		CalabashBrother theSixth = new CalabashBrother(6, "è€å…­", COLOR.BLUE);
+		CalabashBrother theYoungest = new CalabashBrother(7, "è€ä¸ƒ", COLOR.PURPLE);		
 		
 		brothers = new CalabashBrother[]{theOldest, theSecond, theThird, theForth, theFifth, theSixth, theYoungest};
 		
@@ -53,7 +53,7 @@ class CalabashWorld {
 
 	
 	void shuffle() {
-		// ºùÂ«ÍŞËæ»úÕ¾¶Ó
+		// è‘«èŠ¦å¨ƒéšæœºç«™é˜Ÿ
 		int length = brothers.length;
         for ( int i = length; i > 0; i-- ) {
         	Random random = new Random();
@@ -70,7 +70,7 @@ class CalabashWorld {
     }	
 	
 	void bubbleSort() {
-		// Ã°ÅİÅÅĞò
+		// å†’æ³¡æ’åº
 		for (int i = brothers.length; i > 0 ; i--) {
 			for (int j = 0; j < i-1; j++) {
 				if (brothers[j].rank > brothers[j+1].rank) {
@@ -88,7 +88,7 @@ class CalabashWorld {
 	
 	
 	void halfSort() {
-		//¶ş·ÖÅÅĞò
+		//äºŒåˆ†æ’åº
 		int start;
 	    int end;
 	    CalabashBrother target;
