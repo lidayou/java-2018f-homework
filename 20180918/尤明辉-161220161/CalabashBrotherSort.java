@@ -1,5 +1,119 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Collections;
+
+enum CalabashBrother {
+    ONE(1, "老大", "红色"),
+    TWO(2, "老二", "橙色"),
+    THREE(3, "老三", "黄色"),
+    FOUR(4, "老四", "绿色"),
+    FIVE(5, "老五", "青色"),
+    SIX(6, "老六", "蓝色"),
+    SEVEN(7, "老七", "紫色");
+
+    public final int order;
+    private final String orderChn;
+    private final String color;
+
+    CalabashBrother(int ranking, String rankingChn, String colour) {
+        this.order = ranking;
+        this.orderChn = rankingChn;
+        this.color = colour;
+    }
+
+    public void reportOrder() {
+        System.out.print(this.orderChn + " ");
+    }
+
+    public void reportColor() {
+        System.out.print(this.color + " ");
+    }
+
+    public void reportChange(int pos1, int pos2) {
+        System.out.println(orderChn + "：" + pos1 + " -> " + pos2);
+    }
+}
+
 public class CalabashBrotherSort {
+    //private final CalabashBrother[] brothers;
+    private List<CalabashBrother> brothersList;
+
+    private CalabashBrotherSort() {
+        final CalabashBrother[] brothers = CalabashBrother.values();
+        brothersList = Arrays.asList(brothers);
+    }
+
+    private void ShuffleList() {
+        Collections.shuffle(brothersList);
+    }
+
+    private void reportEveryOrder() {
+        for (CalabashBrother i : brothersList)
+            i.reportOrder();
+        System.out.println();
+    }
+
+    private void reportEveryColor() {
+        for (CalabashBrother i : brothersList)
+            i.reportColor();
+        System.out.println();
+    }
+
+    private void printChange(int pos1, int pos2) {
+        brothersList.get(pos1).reportChange(pos1, pos2);
+        brothersList.get(pos2).reportChange(pos2, pos1);
+    }
+
+    private void bubbleSort() {
+        //Collections.swap(brothersList,1,2);
+        for (int i = 0; i < brothersList.size() - 1; ++i)
+            for (int j = 0; j < brothersList.size() - i - 1; ++j)
+                if (brothersList.get(j).order > brothersList.get(j + 1).order) {
+                    printChange(j, j + 1);
+                    Collections.swap(brothersList, j, j + 1);
+                }
+    }
+
+    private void binarySort() {
+        for (int i = 1; i < brothersList.size(); ++i) {
+            int low = 0, high = i - 1, mid = 0;
+            CalabashBrother tmp = brothersList.get(i);
+            while (low <= high) {
+                mid = (low + high) >> 1;
+                if (tmp.order < brothersList.get(mid).order) high = mid - 1;
+                else low = mid + 1;
+            }
+            for (int j = i - 1; j >= low; --j) {
+                printChange(j, j + 1);
+                //brothersList.set(j + 1, brothersList.get(j));
+                Collections.swap(brothersList, j, j + 1);
+            }
+            //printChange(low, low + 1);
+            //brothersList.set(low, tmp);
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.print(123+"\n");
+        CalabashBrotherSort brothersSort = new CalabashBrotherSort();
+        //brothersSort.reportEveryOrder();
+        System.out.println("打乱队列：");
+        brothersSort.ShuffleList();
+        brothersSort.reportEveryOrder();
+        System.out.println();
+
+        System.out.println("冒泡排序：");
+        brothersSort.bubbleSort();
+        brothersSort.reportEveryOrder();
+        System.out.println();
+
+        System.out.println("打乱队列：");
+        brothersSort.ShuffleList();
+        brothersSort.reportEveryColor();
+        System.out.println();
+
+        System.out.println("二分排序：");
+        brothersSort.binarySort();
+        brothersSort.reportEveryColor();
+        System.out.println();
     }
 }
