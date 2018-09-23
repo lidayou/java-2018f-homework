@@ -16,7 +16,7 @@ public class huluwa{
 		for(int i = 0;i<6;i++) {
 			for(int j = 0;j<7-i-1;j++) {
 				if(order[j].compareTo(order[j+1])>0) {
-					System.out.println(name(order[j],true)+"£º"+(j+1)+"->"+(j+2));
+					System.out.println(name(order[j],true)+"ï¼š"+(j+1)+"->"+(j+2));
 					String temp=order[j];
 					order[j]=order[j+1];
 					order[j+1]=temp;
@@ -39,7 +39,7 @@ public class huluwa{
 				}
 			}
 			for(int j = i-1;j>=left;j--) {
-				System.out.println(name(order[j],true)+"£º"+(j+1)+"->"+(j+2));
+				System.out.println(name(order[j],true)+"ï¼š"+(j+1)+"->"+(j+2));
 				order[j+1]=order[j];
 				if(j+1==tempi) {
 					tempi=j;
@@ -47,7 +47,7 @@ public class huluwa{
 			}
 			if(left!=i) {
 				if(left!=tempi) {
-					System.out.println(name(temp,true)+"£º"+(tempi+1)+"->"+(left+1));
+					System.out.println(name(temp,true)+"ï¼š"+(tempi+1)+"->"+(left+1));
 				}
 				order[left]=temp;
 			}
@@ -55,25 +55,25 @@ public class huluwa{
 	}
 	private String name(String a,Boolean mode) {
 		if(a.equals("1")) {
-			return mode?"ÀÏ´ó":"ºìÉ«";
+			return mode?"è€å¤§":"çº¢è‰²";
 		}
 		else if(a.equals("2")) {
-			return mode?"ÀÏ¶ş":"³ÈÉ«";
+			return mode?"è€äºŒ":"æ©™è‰²";
 		}
 		else if(a.equals("3")) {
-			return mode?"ÀÏÈı":"»ÆÉ«";
+			return mode?"è€ä¸‰":"é»„è‰²";
 		}
 		else if(a.equals("4")) {
-			return mode?"ÀÏËÄ":"ÂÌÉ«";
+			return mode?"è€å››":"ç»¿è‰²";
 		}
 		else if(a.equals("5")) {
-			return mode?"ÀÏÎå":"ÇàÉ«";
+			return mode?"è€äº”":"é’è‰²";
 		}
 		else if(a.equals("6")) {
-			return mode?"ÀÏÁù":"À¶É«";
+			return mode?"è€å…­":"è“è‰²";
 		}
 		else{
-			return mode?"ÀÏÆß":"×ÏÉ«";
+			return mode?"è€ä¸ƒ":"ç´«è‰²";
 		}
 	}
 
