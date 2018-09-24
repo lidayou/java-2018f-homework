@@ -2,9 +2,9 @@ package huluwa0918;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
-public class huluwa{
+public class Huluwa{
 	String []order;
-	huluwa(){
+	Huluwa(){
 		order=new String[]{"1","2","3","4","5","6","7"};
 	}
 	
@@ -90,7 +90,7 @@ public class huluwa{
 		printAll(false);
 	}
 	public static void main(String[] args) {
-		huluwa wawa = new huluwa();
+		Huluwa wawa = new Huluwa();
 		wawa.random();
 		wawa.printOrder();
 		
