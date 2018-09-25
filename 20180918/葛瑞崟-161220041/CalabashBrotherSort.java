@@ -12,7 +12,6 @@ enum CalabashBrother{
     }
     void setPos(int pos, int newPos){
         System.out.print(name + ", " + pos + "->" + newPos + " ");
-        pos = newPos;
     }
     void numberOffByName(){
         System.out.print(name + " ");
