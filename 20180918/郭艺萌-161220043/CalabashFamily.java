@@ -1,12 +1,13 @@
-package hw.cb.sort;
+锘縫ackage hw.cb.sort;
 
 import java.util.Random;
 
+
 enum CalabashBrother {
-    RED(1, "老大", "红色"),        ORANGE(2, "老二", "橙色"), 
-    YELLOW(3, "老三", "黄色"),     GREEN(4, "老四", "绿色"), 
-    CYAN(5, "老五", "青色"),       BLUE(6, "老六", "蓝色"), 
-    PURPLE(7, "老七", "紫色");
+    RED(1, "鑰佸ぇ", "绾㈣壊"),        ORANGE(2, "鑰佷簩", "姗欒壊"), 
+    YELLOW(3, "鑰佷笁", "榛勮壊"),     GREEN(4, "鑰佸洓", "缁胯壊"), 
+    CYAN(5, "鑰佷簲", "闈掕壊"),       BLUE(6, "鑰佸叚", "钃濊壊"), 
+    PURPLE(7, "鑰佷竷", "绱壊");
  
 	private int no;
     private String name;
