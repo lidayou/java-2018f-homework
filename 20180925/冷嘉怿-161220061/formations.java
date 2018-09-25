@@ -1,12 +1,10 @@
-package ljy.Cucurbit;
-
-public class formations
+public class formations //阵型类
 {
-    public int troopsize;
-    public int[][] RelativePosition;  //(x,y) pairs
-    public int topDistance,bottomDistance,leftDistance,rightDistance;
+    public int troopsize;       //阵型需要的喽啰人数
+    public int[][] RelativePosition;  //(x,y) pairs         //阵法
+    public int topDistance,bottomDistance,leftDistance,rightDistance;       //布阵所需空间
 }
-class Fengshi extends formations
+class Fengshi extends formations        //锋失阵
 {
     public Fengshi(){
         troopsize=18;
@@ -16,7 +14,7 @@ class Fengshi extends formations
     }
 }
 
-class Yanyue extends formations
+class Yanyue extends formations         //偃月阵
 {
     public Yanyue(){
         troopsize=18;

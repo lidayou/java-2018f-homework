@@ -1,8 +1,6 @@
-package ljy.Cucurbit;
-
 import java.util.Random;
 
-public class Brotherhood{
+public class Brotherhood{            //葫芦兄弟类
     private final int CB_NUM=7;     //世界上有七个葫芦娃兄弟
     private CucurbitBoy cbs[]=new CucurbitBoy[CB_NUM];
     private int positionX=2, positionY=4;
@@ -10,10 +8,10 @@ public class Brotherhood{
         //创造世界上的葫芦娃
         for(int i=0;i<CB_NUM;i++)
             cbs[i]=new CucurbitBoy();
-        randomize();
+        randomize();                  //最初葫芦娃们随机排列
     }
 
-    public void StandStill()
+    public void StandStill()        //葫芦娃们更新自己的位置
     {
         for(int i=0;i<CB_NUM;i++)
             cbs[i].StandStill();
@@ -64,7 +62,7 @@ public class Brotherhood{
                 if(cbs[j].getID()>cbs[j+1].getID())
                     swap(j,j+1);
         }
-        for(int i=0;i<CB_NUM;i++) {
+        for(int i=0;i<CB_NUM;i++) {             //在排队后通知每个葫芦娃他在队列中的相对位置，并更新位置信息
             cbs[i].setInnerPosition("兄弟们", i);
             cbs[i].resort("兄弟们",positionX, positionY);
         }
