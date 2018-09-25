@@ -24,6 +24,7 @@ public class Tile {
     }
     public void removeCreatureStandOnTile(){
         creatureStandOnTile = null;
+        //System.out.println(" "+coordinateX+" "+coordinateY);
     }
     public void setCreatureStandOnTile(Creature x){
         creatureStandOnTile = x;

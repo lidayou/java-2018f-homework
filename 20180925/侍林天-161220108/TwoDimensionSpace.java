@@ -34,12 +34,13 @@ public class TwoDimensionSpace {
         }
     }
     public void displaySpace(){
+        System.out.println();
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
                 if (space[i][j].isEmpty()){
-                    System.out.print("  @  ");
+                    System.out.print(" \t@\t");
                 } else {
-                    System.out.print(""+space[i][j].getCreatureName()+" ");
+                    System.out.print(space[i][j].getCreatureName()+"\t");
                 }
             }
             System.out.println();

@@ -32,7 +32,6 @@ public class HuluBrothers extends Team{
             member[x] = temp;
         }
     }
-
     public void prioritySort(){
         Sort sort = new Sort();
         sort.bubbleSort(member);
@@ -41,8 +40,20 @@ public class HuluBrothers extends Team{
         Sort sort = new Sort();
         sort.biInsertSort(member);
     }
-    public void generateChangshe(TwoDimensionSpace space, int x, int y){
+    public void generateChangshe(TwoDimensionSpace space, int x, int y, int direction){
         Formation formation = new Formation();
-        formation.generateChangsheFormation(space, member, x, y);
+        formation.generateChangsheFormation(space, member, x, y, direction);
+    }
+    public void generateHeyi(TwoDimensionSpace space, int x, int y, int direction){
+        Formation formation = new Formation();
+        formation.generateHeyiFormation(space, member, x, y, direction);
+    }
+    public void generateYanhang(TwoDimensionSpace space, int x, int y, int direction){
+        Formation formation = new Formation();
+        formation.generateYanhangFormation(space, member, x, y, direction);
+    }
+    public void generateHenge(TwoDimensionSpace space, int x, int y, int direction){
+        Formation formation = new Formation();
+        formation.generateHengeFormation(space, member, x, y, direction);
     }
 }
