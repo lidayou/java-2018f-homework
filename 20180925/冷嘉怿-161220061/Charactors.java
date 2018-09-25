@@ -12,12 +12,13 @@ public class Charactors {
     }
     public void StandStill()
     {
-        BattleField.field[positionY][positionX]=testview;
+        if(alive)
+            BattleField.field[positionY][positionX]=testview;
     }
 }
 class Rank{
     static public String[] MonsterClass=new String[]{"小喽啰","蝎子精","蛇精","青蛇精"};
-    static public String[] HumanClass=new String[]{"百姓","葫芦娃","爷爷"};
+    static public String[] HumanClass=new String[]{"百姓","葫芦娃","兄弟们","爷爷"};
     static public int find(String str, boolean human)
     {
         int index=0;
@@ -62,6 +63,7 @@ class CucurbitBoy extends Charactors
     //按照排行顺序存放葫芦娃的姓名和颜色
     static protected int nextid=0;     //每个葫芦娃都是唯一的，nextid用来记录下一个未出生的葫芦娃排行
     private CucurbitBoys id;            //每个葫芦娃拥有自己的id，描述他在兄弟中的排行
+    private int innerPosition;
     CucurbitBoy() throws Exception {
         //每个葫芦娃只能出生一次，并且最多有七个
         if(CucurbitBoy.nextid>=7)
@@ -72,12 +74,25 @@ class CucurbitBoy extends Charactors
         this.id=CucurbitBoys.values()[CucurbitBoy.nextid];
         CucurbitBoy.nextid++;
         typename=id.getName();
-        testview='H';
+        testview=(char)('1'+this.getID());
     }
     //返回自己的颜色
     public String tellColor(){ return id.getColor(); }
     //返回自己的排行
     public int getID(){ return id.ordinal(); }
+    public void setInnerPosition(String type, int newpst)
+    {
+        if(Rank.find(typename,true)>Rank.find(type,true))
+            return;
+        innerPosition=newpst;
+    }
+    public void resort(String type, int mx, int my)
+    {
+        if(Rank.find(typename,true)>Rank.find(type,true))
+            return;
+        moveto(mx, my+innerPosition);
+    }
+
 }
 
 class Roro extends Charactors
@@ -120,9 +135,10 @@ class Scorpion extends Charactors
     public void StandStill()
     {
         super.StandStill();
+        if(alive==false)
+            return;
         for(int i=0;i<troops.length;i++)
-            if(troops[i].alive)
-                troops[i].StandStill();
+            troops[i].StandStill();
     }
 
     public void changeFMT()
