@@ -1,17 +1,35 @@
 package com.homework2;
 
-public class CalabashBrothersSort {
+import java.util.Random;
+
+public class SortCoordinator implements SortAlgorithm{
 
     public static void main(String[] args) {
 
-        CalabashBrothersSort calabashBrothersSort = new CalabashBrothersSort();
-        calabashBrothersSort.bubbleSortCalabashBrothers();
-        calabashBrothersSort.binaryInsertSortCalabashBrothers();
+        SortCoordinator sortCoordinator = new SortCoordinator();
+        sortCoordinator.bubbleSort();
+        sortCoordinator.binaryInsertSort();
     }
 
-    private void bubbleSortCalabashBrothers() {
+    final int MAX_SHUFFLE_COUNT = 1000;
+    private CalabashBrothers calabashBrothers = new CalabashBrothers();
+
+    private void shuffleCalabashBrothers()
+    {
+        Random rand = new Random();
+
+        for(int i = 0; i < MAX_SHUFFLE_COUNT;i++)
+        {
+            int positionToBeSwapped1 = rand.nextInt(CalabashBrothers.MAX_CALABASH_BROTHERS_COUNT);
+            int positionToBeSwapped2 = rand.nextInt(CalabashBrothers.MAX_CALABASH_BROTHERS_COUNT);
+            calabashBrothers.swapCalabashBoyWithoutOutput(positionToBeSwapped1, positionToBeSwapped2);
+        }
+    }
+
+
+    public void bubbleSort() {
         System.out.println("It's Bubble sort");
-        CalabashBrothers calabashBrothers = new CalabashBrothers();
+        shuffleCalabashBrothers();
         System.out.print("Before sorted: ");
         calabashBrothers.printAllCalabashBoys();
         for (int i = CalabashBrothers.MAX_CALABASH_BROTHERS_COUNT - 1; i > 0; i--) {
@@ -26,15 +44,15 @@ public class CalabashBrothersSort {
         System.out.println();
     }
 
-    private void binaryInsertSortCalabashBrothers() {
+    public void binaryInsertSort() {
         System.out.println("It's Binary Insert sort");
-        CalabashBrothers calabashBrothers = new CalabashBrothers();
+        shuffleCalabashBrothers();
         System.out.print("Before sorted: ");
         calabashBrothers.printAllCalabashBoys();
         for (int i = 1; i < CalabashBrothers.MAX_CALABASH_BROTHERS_COUNT; i++) {
             int highPosition = i;
             int lowPosition = 0;
-            int midPosition = (highPosition + lowPosition) / 2;
+            int midPosition;
             while (highPosition >= lowPosition) {
                 midPosition = (highPosition + lowPosition) / 2;
                 if (calabashBrothers.compareCalabashBoy(midPosition, i) > 0) {
