@@ -40,4 +40,11 @@ public class Creature {
         }
         return false;
     }
+    public void removeFrom(TwoDimensionSpace space){
+        if (!space.isExceed(coordinateX, coordinateY)){
+            space.cleanSpace(coordinateX, coordinateY);
+            coordinateX = -1;
+            coordinateY = -1;
+        }
+    }
 }

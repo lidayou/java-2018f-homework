@@ -5,7 +5,7 @@ public class BattleField {
     public BattleField(int N){
         space = new TwoDimensionSpace(N);
         huluBrothers = new HuluBrothers();
-        monsters = new Team("妖怪", 6);
+        monsters = new Team("妖怪", 7);
     }
     public void displayBattleField(){
         space.displaySpace();
@@ -29,6 +29,12 @@ public class BattleField {
         field.monsters.generateYanhang(field.space, 13, 12, 1);
         field.space.displaySpace();
         field.huluBrothers.generateHenge(field.space, 10, 7, 0);
+        field.space.displaySpace();
+        field.monsters.generateFangmen(field.space, 10, 12, 1);
+        field.space.displaySpace();
+        field.monsters.generateFengshi(field.space, 10, 13, 1);
+        field.space.displaySpace();
+        field.huluBrothers.generateYulin(field.space, 10, 7, 0);
         field.space.displaySpace();
         /*field.huluBrothers.random();
         field.huluBrothers.shoutBrothersName();

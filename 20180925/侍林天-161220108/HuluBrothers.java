@@ -56,4 +56,16 @@ public class HuluBrothers extends Team{
         Formation formation = new Formation();
         formation.generateHengeFormation(space, member, x, y, direction);
     }
+    public void generateFangmen(TwoDimensionSpace space, int x, int y, int direction){
+        Formation formation = new Formation();
+        formation.generateFangmenFormation(space, member, x, y, direction);
+    }
+    public void generateFengshi(TwoDimensionSpace space, int x, int y, int direction){
+        Formation formation = new Formation();
+        formation.generateFengshiFormation(space, member, x, y, direction);
+    }
+    public void generateYulin(TwoDimensionSpace space, int x, int y, int direction){
+        Formation formation = new Formation();
+        formation.generateYulinFormation(space, member, x, y, direction);
+    }
 }
