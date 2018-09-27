@@ -7,7 +7,7 @@
 5. 主类**Battle**类，用来完成战场和双方阵营的实例化，以及对战的过程。
 
 ## 设计
-###1. 类的划分
+### 1. 类的划分
 (1) enum Color，enum MonsterCategory，为两个枚举类型，用来枚举葫芦娃的颜色属性和怪物的种类（喽啰，蝎子精，蛇精）。
 (2) Creature类：各种出场人物的基类。派生类包括Calabashbrother, GrandFather, Monster。这里没有采用作业二中用枚举的方法实现葫芦娃，是考虑到需要进行类继承。
 (3) Block类：表明一个单位空间，采用组合的方式，含有一个Creature的成员对象。
@@ -18,7 +18,7 @@
 (8) Battle类：main方法所在的类。
 
 
-###2. 类方法的说明
+### 2. 类方法的说明
 
 (1) Creature及其派生类:
 ``` java  
@@ -82,14 +82,14 @@ public static void main(String[] args) throws InterruptedException{
 
 
 
-##面向对象的特性
+## 面向对象的特性
 1. 继承：CalabashBrother,GrandFahter,Monster继承了基类Creature
 2. 组合：Battlefield的成员有Block对象的矩阵，Block的成员中有Creature及其派生类的对象。
 3. 多态：在遍历空间，输出战场信息的时候，调用每个Creature对象的outputInfo方法，这些方法会动态绑定到具体的子类中的方法，运用了多态的思想。
 
 这些设计思想提高了代码的复用效率，而且和现实世界比较类似，是以后的学习过程中应该多加运用，多多领悟的。
 
-##运行效果
+## 运行效果
 
 ![image](https://github.com/czhnju161220026/image/blob/master/res3.png?raw=true)
 
