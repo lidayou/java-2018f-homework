@@ -11,7 +11,7 @@ public class Battlefield {
     public Block[][] getBattlefield() {
         return battlefield;
     }
-
+    /*print the situation of the battlefield*/ 
     public void print() {
         for(int i = 0;i < 10;i++) {
             for(int j = 0; j<20 ;j++) {

@@ -18,6 +18,7 @@ public class Heroes {
             calabashBrothers[6 - i] = temp;
         }
     }
+    /*line up and enter the battlefield*/ 
     public void lineUp(Battlefield battlefield) {
         shuffle();
         System.out.print("葫芦娃初始状态：");

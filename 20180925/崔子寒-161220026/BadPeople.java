@@ -2,6 +2,7 @@ import java.util.Random;
 
 public class BadPeople {
     private Monster[] monsters = new Monster[10];
+    /*create 8 common monsters, a snake, a scorpion*/
     public BadPeople() {
         for(int i = 0; i < 8;i++) {
             monsters[i] = new Monster(MonsterCategory.MONSTER);
@@ -10,6 +11,7 @@ public class BadPeople {
         monsters[9] = new Monster(MonsterCategory.SCORPION);
     }
 
+    /*change the formation defined by formationName*/
     public void changeFormation(Battlefield battlefield, FormationName formationName) {
         int index = formationName.ordinal();
         for(int i = 0;i < 8; i++) {
