@@ -29,12 +29,12 @@ public class Heroes {
 
         for(int i = 0;i < 7;i++) {
             Position positionOfCala = new Position(i+1, 17);
-            calabashBrothers[i].move(battlefield,positionOfCala,AttributeofBlock.CALA);
+            calabashBrothers[i].move(battlefield,positionOfCala);
         }
         Random rand = new Random();
         int temp_x = 3+rand.nextInt(4);
         Position positionOfGrandfater = new Position(temp_x, 19);
-        grandFather.move(battlefield, positionOfGrandfater, AttributeofBlock.GRANDFATHER);
+        grandFather.move(battlefield, positionOfGrandfater);
     }
 
 /*

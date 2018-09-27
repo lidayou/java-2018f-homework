@@ -37,12 +37,8 @@ class Position {
 }
 public class Creature {
     private Position position = new Position();
-    public int[] getPosition() {
-        int[] temp = {position.x,position.y};
-        return temp;
-    }
 
-    private void setPosition(int x, int y) {
+    protected void setPosition(int x, int y) {
         position.x = x;
         position.y = y;
     }
@@ -51,9 +47,10 @@ public class Creature {
         System.out.print("生物");
     }
 
-    public void move(Battlefield battlefield, Position newPosition,AttributeofBlock attributeofBlock) {
+    public void move(Battlefield battlefield, Position newPosition) {
         battlefield.getBattlefield()[this.position.x][this.position.y].creatureLeave(this);
-        battlefield.getBattlefield()[newPosition.x][newPosition.y].creatureEnter(this, attributeofBlock);
+        if(!battlefield.getBattlefield()[newPosition.x][newPosition.y].creatureEnter(this))
+            System.out.println("Move failed");
         setPosition(newPosition.x, newPosition.y);
     }
 }
