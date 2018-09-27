@@ -4,7 +4,6 @@
 > <font size=4 face='微软雅黑'>1. 葫芦娃改用enum进行定义而不是class，限制了其数量。  
 <code>
 <pre>
-'''java
 <font size=4 >
 //用枚举类型定义七个葫芦娃
 enum Calabash implements printinfo{
@@ -18,7 +17,6 @@ enum Calabash implements printinfo{
 	Purple("紫色","老七",7);
 	......
 }
-'''
 </pre>
 <code>
 > <font size=4 face='微软雅黑'>
