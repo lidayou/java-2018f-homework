@@ -1,3 +1,15 @@
+//References:
+//https://blog.csdn.net/incyanggan/article/details/9819005
+//https://www.cnblogs.com/frankliiu-java/archive/2010/12/07/1898721.html
+//https://blog.csdn.net/liboom/article/details/68488279
+//https://www.cnblogs.com/opangle/p/4082692.html
+//https://blog.csdn.net/ytuglt/article/details/47312543
+//http://maven.outofmemory.cn/org.fusesource.jansi/jansi/1.11/
+//https://jingyan.baidu.com/article/ca41422fc76c4a1eae99ed9f.html
+//https://blog.csdn.net/u010889616/article/details/51477037
+//https://blog.csdn.net/nvliba/article/details/53520611
+//https://blog.csdn.net/magi1201/article/details/42212537
+//http://blog.51cto.com/dongdong1314/79385
 
 package code;
 import java.io.*;
@@ -110,8 +122,10 @@ public class HW3 {
 	public static final Object [][] grid=new Object[size] [size];
 	//存储各种阵型
 	public static char [][][] shapes=new char [num_shapes][size/2][size];
+	// 获取当前路径	
+	private static final String wd=System.getProperty("user.dir");
 	//存储阵型的配置文件名
-	private static final String filename="shape_list.txt";
+	private static final String filename=wd+"\\shape_list.txt";
 	//将grid全部初始化为Blank	
 	public static void cleargrid() {
 
@@ -244,6 +258,7 @@ public class HW3 {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		//System.out.println(filename);
 		read_shapelist();
 		Random r=new Random();
 		shape_code=r.nextInt(num_shapes);
