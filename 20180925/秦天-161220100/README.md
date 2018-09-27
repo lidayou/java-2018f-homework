@@ -1,5 +1,3 @@
-
-@[TOC](目录)
 # 设计理念
 ## 万物皆对象
 - 作战双方是一类共同对象Troop的两种特殊形式，分别抽象为类CalabashSide和MonsterSide的对象。
