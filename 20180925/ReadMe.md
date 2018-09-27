@@ -19,7 +19,8 @@ enum Calabash implements printinfo{
 }
 </pre>
 </code>
-> <font size=4 face='微软雅黑'>2. 数量不定的类型(小喽啰和空缺)以及数量确定的类型(蝎子精、蛇精和老爷爷都只有  
+> <font size=4 face='微软雅黑'>
+> 2. 数量不定的类型(小喽啰和空缺)以及数量确定的类型(蝎子精、蛇精和老爷爷都只有  
 > 一个)有不同的构造方法，如:  
 <pre><code class='java' ><font size=4 >
 //空缺位置  
