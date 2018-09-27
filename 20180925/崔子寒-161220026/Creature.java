@@ -42,13 +42,19 @@ public class Creature {
         return temp;
     }
 
-    public void setPosition(int x, int y) {
+    private void setPosition(int x, int y) {
         position.x = x;
         position.y = y;
     }
 
     public void outputInfo() {
         System.out.print("生物");
+    }
+
+    public void move(Battlefield battlefield, Position newPosition,AttributeofBlock attributeofBlock) {
+        battlefield.getBattlefield()[this.position.x][this.position.y].creatureLeave(this);
+        battlefield.getBattlefield()[newPosition.x][newPosition.y].creatureEnter(this, attributeofBlock);
+        setPosition(newPosition.x, newPosition.y);
     }
 }
 

@@ -23,10 +23,12 @@ public class Block {
         }
     }
 
-    public void creatureLeave() {
-        empty = true;
-        creature = null;
-        attribute = AttributeofBlock.EMPTY;
+    public void creatureLeave(Creature creature) {
+        if(creature == this.creature) {
+            empty = true;
+            this.creature = null;
+            attribute = AttributeofBlock.EMPTY;
+        }
     }
 
     public void outputInfo() {

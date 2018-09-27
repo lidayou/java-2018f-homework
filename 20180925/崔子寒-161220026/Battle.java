@@ -11,7 +11,6 @@ public class Battle{
             badPeople.changeFormation(battlefield, x);
             battlefield.print();
             Thread.sleep(1500);
-            badPeople.leaveField(battlefield);
         }
     }
 }

@@ -26,16 +26,15 @@ public class Heroes {
         }
         System.out.println("\n准备列队");
         Mysort.myBubbleSort(calabashBrothers);
-        Block[][] field = battlefield.getBattlefield();
+
         for(int i = 0;i < 7;i++) {
-            field[i+1][17].creatureEnter(calabashBrothers[i],AttributeofBlock.CALA);
-            calabashBrothers[i].setPosition(i+1,17);
+            Position positionOfCala = new Position(i+1, 17);
+            calabashBrothers[i].move(battlefield,positionOfCala,AttributeofBlock.CALA);
         }
         Random rand = new Random();
         int temp_x = 3+rand.nextInt(4);
-
-        field[temp_x][19].creatureEnter(grandFather, AttributeofBlock.GRANDFATHER);
-        grandFather.setPosition(9,temp_x);
+        Position positionOfGrandfater = new Position(temp_x, 19);
+        grandFather.move(battlefield, positionOfGrandfater, AttributeofBlock.GRANDFATHER);
     }
 
 /*
