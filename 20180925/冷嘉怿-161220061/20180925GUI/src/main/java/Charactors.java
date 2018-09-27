@@ -6,8 +6,8 @@ public class Charactors {       //角色类
     public int positionX,positionY;         //每个角色有自己的位置坐标
     public char testview;                    //在命令行中输出代表的字符
     public boolean alive=true;              //角色是否存活
-    protected BackGroundPanel world;
-    protected JLabel testLabel=new JLabel("T");
+    protected BackGroundPanel world;         //每个角色所在的容器
+    protected JLabel testLabel=new JLabel("T");     //每个角色在界面中表现为一个具有特殊图片的JLabel
     public void moveto(int x,int y)          //移动到新位置
     {
         positionX=x;
@@ -15,7 +15,7 @@ public class Charactors {       //角色类
     }
     public void StandStill()                 //更新自己在战场上的位置信息
     {
-        if(alive) {
+        if(alive) {         //只有活着的角色能够在战场上移动
             virtualField.field[positionY][positionX] = testview;
             testLabel.setBounds(world.xstart+positionX*world.deltax,world.ystart+positionY*world.deltay,testLabel.getWidth(),testLabel.getHeight());
         }
@@ -59,12 +59,12 @@ class Grandpa extends Charactors        //老爷爷
     Grandpa(BackGroundPanel father)
     {               //老爷爷初始时在战场左下角观战
         world=father;
-        ImageIcon imgicon=new ImageIcon(this.getClass().getResource("grandpa.PNG"));
+        ImageIcon imgicon=new ImageIcon(this.getClass().getResource("grandpa.PNG"));        //初始化自己的JLabel
         imgicon.setImage(imgicon.getImage().getScaledInstance(father.deltax, father.deltay, Image.SCALE_SMOOTH));
         testLabel.setSize(father.deltax,father.deltay);
         testLabel.setIcon(imgicon);
         testLabel.setOpaque(false);
-        world.add(testLabel);
+        world.add(testLabel);           //将老爷爷加入战场界面中
         positionX=0;
         positionY=virtualField.height-1;
         typename="爷爷";
@@ -82,12 +82,12 @@ class CucurbitBoy extends Charactors        //葫芦娃类
         world=father;
         this.id=CucurbitBoys.values()[CucurbitBoy.nextid];
         typename=id.getName();
-        ImageIcon imgicon=new ImageIcon(this.getClass().getResource(id.getImg()));
+        ImageIcon imgicon=new ImageIcon(this.getClass().getResource(id.getImg()));      //每个葫芦娃的形象不同
         imgicon.setImage(imgicon.getImage().getScaledInstance(father.deltax, father.deltay, Image.SCALE_SMOOTH));
         testLabel.setSize(father.deltax,father.deltay);
         testLabel.setIcon(imgicon);
         testLabel.setOpaque(false);
-        world.add(testLabel);
+        world.add(testLabel);           //将葫芦娃加入界面中
         //每个葫芦娃只能出生一次，并且最多有七个
         if(CucurbitBoy.nextid>=7)
         {
@@ -128,7 +128,7 @@ class Roro extends Charactors           //小喽啰类
         testLabel.setSize(father.deltax,father.deltay);
         testLabel.setIcon(imgicon);
         testLabel.setOpaque(false);
-        world.add(testLabel);
+        world.add(testLabel);           //将小喽啰加入界面中
         typename="小喽啰";
         testview='R';
     }
@@ -157,7 +157,7 @@ class Scorpion extends Charactors                       //蝎子精
         testLabel.setSize(father.deltax,father.deltay);
         testLabel.setIcon(imgicon);
         testLabel.setOpaque(false);
-        world.add(testLabel);
+        world.add(testLabel);       //将蝎子精加入战场界面中
         typename="蝎子精";
         testview='X';
         for(int i=0;i<troops.length;i++) {
