@@ -44,13 +44,13 @@ This is the definition of CalabashBrother and the entrance to main function
  */
 
 public enum CalabashBrother {
-	First("老大","红色",1),
-	Second("老二","橙色",2),
-	Third("老三","黄色",3),
-	Fourth("老四","绿色",4),
-	Fifth("老五","青色",5),
-	Sixth("老六","蓝色",6),
-	Seventh("老七","紫色",7);
+	First("鑰佸ぇ","绾㈣壊",1),
+	Second("鑰佷簩","姗欒壊",2),
+	Third("鑰佷笁","榛勮壊",3),
+	Fourth("鑰佸洓","缁胯壊",4),
+	Fifth("鑰佷簲","闈掕壊",5),
+	Sixth("鑰佸叚","钃濊壊",6),
+	Seventh("鑰佷竷","绱壊",7);
 	final String rank;
 	final String color;
 	final int number;
