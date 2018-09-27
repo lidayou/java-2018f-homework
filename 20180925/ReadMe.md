@@ -2,9 +2,8 @@
 
 ## 本次code用到的OOP思想
 > <font size=4 face='微软雅黑'>1. 葫芦娃改用enum进行定义而不是class，限制了其数量。  
-<code>
-<pre>
-<code class='java'><font size=4 >
+'''java
+<font size=4 >
 //用枚举类型定义七个葫芦娃
 enum Calabash implements printinfo{
 	//实例化
@@ -17,8 +16,7 @@ enum Calabash implements printinfo{
 	Purple("紫色","老七",7);
 	......
 }
-</pre>
-</code>
+'''
 > <font size=4 face='微软雅黑'>
 > 2. 数量不定的类型(小喽啰和空缺)以及数量确定的类型(蝎子精、蛇精和老爷爷都只有  
 > 一个)有不同的构造方法，如:  
