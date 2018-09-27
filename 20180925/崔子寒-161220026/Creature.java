@@ -1,3 +1,4 @@
+/*the attribute of CalabashBrother*/ 
 enum Color {
     RED("大娃"), ORANGE("二娃"), YELLOW("三娃"), GREEN("四娃"),
     CYAN("五娃"), BLUE("六娃"), PURPLE("七娃");
@@ -6,23 +7,26 @@ enum Color {
     Color(String name) {
         this.name = name;
     }
+    /*return the name of the CalabashBrother object*/ 
     String getName() {
         return this.name;
     }
 }
 
+/*Types of monsters*/
 enum MonsterCategory {
     MONSTER("小怪"), SNAKE("蛇精"), SCORPION("蝎子");
     final private String name;
     MonsterCategory(String name) {
         this.name = name;
     }
-
+    /*return the name*/ 
     String getName() {
         return name;
     }
 }
 
+/*indicate the position of a creature*/ 
 class Position {
     public int x;
     public int y;
@@ -35,6 +39,8 @@ class Position {
         y = 0;
     }
 }
+
+/*the basic class*/ 
 public class Creature {
     private Position position = new Position();
 
@@ -42,11 +48,12 @@ public class Creature {
         position.x = x;
         position.y = y;
     }
-
+    /*output the information.*/
+    /*this method will be overrided*/ 
     public void outputInfo() {
         System.out.print("生物");
     }
-
+    /*object move to the next position*/ 
     public void move(Battlefield battlefield, Position newPosition) {
         battlefield.getBattlefield()[this.position.x][this.position.y].creatureLeave(this);
         if(!battlefield.getBattlefield()[newPosition.x][newPosition.y].creatureEnter(this))
@@ -54,6 +61,7 @@ public class Creature {
         setPosition(newPosition.x, newPosition.y);
     }
 }
+
 
 class CalabashBrother extends Creature {
     private Color color;
