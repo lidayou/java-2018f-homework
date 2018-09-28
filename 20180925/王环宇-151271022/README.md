@@ -41,7 +41,7 @@ CalabashBrothers.java
 
 #### 3. UML图
 
-![UML](C:\Users\why\Documents\GitHub\java-2018f-homework\20180925\王环宇-151271022/UML.png)
+![UML](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/UML.png)
 
 
 
