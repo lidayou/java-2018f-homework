@@ -1,10 +1,10 @@
-public class Sort {
-    public static void bubbleSort(Calabash[] arr, int num) {
+public class CalabashSort {
+    public static void bubbleSort(CalabashBro[] arr, int num) {
         for(int i = 0; i < num - 1; i++) {
             for(int j = num - 1; j >= i + 1; j--) {
                 if(arr[j].getBroNum() < arr[j - 1].getBroNum()) {
                     System.out.println(arr[j].getBroName() + ":" + (j + 1) + "->" + j);
-                    Calabash tmp = arr[j];
+                    CalabashBro tmp = arr[j];
                     arr[j] = arr[j - 1];
                     arr[j - 1] = tmp;
                 }
@@ -12,9 +12,9 @@ public class Sort {
         }
     }
 
-    public static void combineArray(Calabash[] arr, int left, int medium, int right){
+    public static void combineArray(CalabashBro[] arr, int left, int medium, int right){
         int length = right - left + 1;
-        Calabash[] tmp = new Calabash[length];
+        CalabashBro[] tmp = new CalabashBro[length];
         int i = left, j = medium + 1;
         int cnt = 0;
         while(i <= medium && j <= right){
@@ -44,7 +44,7 @@ public class Sort {
         }
     }
 
-    public static void mergeSort(Calabash[] arr, int left, int right){
+    public static void mergeSort(CalabashBro[] arr, int left, int right){
         if(left < right){
             int medium = (left + right) / 2;
             mergeSort(arr, left, medium);
@@ -53,23 +53,5 @@ public class Sort {
         }
     }
 
-    public static void main(String[] args){
-        Calabash[] calabashArray = new Calabash[7];
-        for(int i = 0; i < calabashArray.length; i++){//初始化为倒序
-            calabashArray[i] = new Calabash(7 - i);
-        }
-        bubbleSort(calabashArray, 7);
-        for(int i = 0; i < calabashArray.length; i++){//报数(老大)
-            System.out.print(calabashArray[i].getBroName() + " ");
-        }
-        System.out.println();
-        for(int i = 0; i < calabashArray.length; i++){//初始化为倒序
-            calabashArray[i] = new Calabash(7 - i);
-        }
-        mergeSort(calabashArray, 0, 6);
-        for(int i = 0; i < calabashArray.length; i++){//报数(红色)
-            System.out.print(calabashArray[i].getBroColor() + " ");
-        }
-        System.out.println();
-    }
+
 }
