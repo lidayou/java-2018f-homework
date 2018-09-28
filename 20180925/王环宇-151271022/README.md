@@ -1,14 +1,8 @@
----
-typora-copy-images-to: ./
----
-
 # README
 
-copyright@why
+## copyright@why | version 1.2 | date 2018-9-28 
 
-version@1.0 
-
-date@2018-9-28
+## https://github.com/cjnjuwhy
 
 ##### 1. 所包含的文件
 
@@ -138,12 +132,12 @@ public class CalabashBrothers extends Warrior{
 
 #### 5. 执行过程
 
-![](C:\Users\why\Documents\GitHub\java-2018f-homework\20180925\王环宇-151271022/round1.png)
+![](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/round1.png)
 
 
 
-![round2](C:\Users\why\Documents\GitHub\java-2018f-homework\20180925\王环宇-151271022/round2.png)
+![round2](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/round2.png)
 
 
 
-![allwarriors](C:\Users\why\Documents\GitHub\java-2018f-homework\20180925\王环宇-151271022/allwarriors.png)
+![allwarriors](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/allwarriors.png)
