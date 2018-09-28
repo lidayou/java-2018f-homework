@@ -3,19 +3,19 @@ package sort;
 import java.util.Random;
 
 enum Color{
-	ºìÉ«,³ÈÉ«,»ÆÉ«,ÂÌÉ«,ÇàÉ«,À¶É«,×ÏÉ«;
+	çº¢è‰²,æ©™è‰²,é»„è‰²,ç»¿è‰²,é’è‰²,è“è‰²,ç´«è‰²;
 }
 enum Name{
-	ÀÏ´ó,ÀÏ¶ş,ÀÏÈı,ÀÏËÄ,ÀÏÎå,ÀÏÁù,ÀÏÆß;
+	è€å¤§,è€äºŒ,è€ä¸‰,è€å››,è€äº”,è€å…­,è€ä¸ƒ;
 }
 public enum CalabashBrothers {
-	One(Name.ÀÏ´ó,Color.ºìÉ«),
-	Two(Name.ÀÏ¶ş,Color.³ÈÉ«),
-	Three(Name.ÀÏÈı,Color.»ÆÉ«),
-	Four(Name.ÀÏËÄ,Color.ÂÌÉ«),
-	Five(Name.ÀÏÎå,Color.ÇàÉ«),
-	Six(Name.ÀÏÁù,Color.À¶É«),
-	Seven(Name.ÀÏÆß,Color.×ÏÉ«);
+	One(Name.è€å¤§,Color.çº¢è‰²),
+	Two(Name.è€äºŒ,Color.æ©™è‰²),
+	Three(Name.è€ä¸‰,Color.é»„è‰²),
+	Four(Name.è€å››,Color.ç»¿è‰²),
+	Five(Name.è€äº”,Color.é’è‰²),
+	Six(Name.è€å…­,Color.è“è‰²),
+	Seven(Name.è€ä¸ƒ,Color.ç´«è‰²);
 	
 	private Name name;
 	private Color color;
@@ -40,18 +40,18 @@ public enum CalabashBrothers {
 class CalabashQueue {
 	Random random = new Random();
 	public void RandomSort(CalabashBrothers[] Calabash) {
-		System.out.println("³õÊ¼»¯¶ÓÁĞ¿ªÊ¼");
+		System.out.println("åˆå§‹åŒ–é˜Ÿåˆ—å¼€å§‹");
 		for(int i=0;i<Calabash.length;i++) {
 			int p=random.nextInt(i+1);
 			CalabashBrothers temp=Calabash[i];
 			Calabash[i]=Calabash[p];
 			Calabash[p]=temp;
 		}
-		System.out.println("³õÊ¼»¯¶ÓÁĞ½áÊø");
+		System.out.println("åˆå§‹åŒ–é˜Ÿåˆ—ç»“æŸ");
 	}
 	
 	public void BubbleSort(CalabashBrothers[] Calabash) {
-		System.out.println("\nÃ°ÅİÅÅĞò¿ªÊ¼");
+		System.out.println("\nå†’æ³¡æ’åºå¼€å§‹");
 		for(int i=0;i<Calabash.length;i++) {
 			for(int j=i+1;j<Calabash.length;j++) {
 				if(Calabash[i].ordinal()>Calabash[j].ordinal()) {
@@ -62,11 +62,11 @@ class CalabashQueue {
 				}
 			}
 		}
-		System.out.println("Ã°ÅİÅÅĞò½áÊø");
+		System.out.println("å†’æ³¡æ’åºç»“æŸ");
 	}
 	
 	public void BinarySort(CalabashBrothers[] Calabash) {
-		System.out.println("\n¶ş·ÖÅÅĞò¿ªÊ¼");
+		System.out.println("\näºŒåˆ†æ’åºå¼€å§‹");
 		for(int i=1;i<Calabash.length;i++) {
 			CalabashBrothers temp=Calabash[i];
 			int temp_old_location=i;
@@ -85,21 +85,21 @@ class CalabashQueue {
 			Calabash[low]=temp;
 			Calabash[low].swapClaim(Calabash[low].getName(),temp_old_location,low);
 		}
-		System.out.println("¶ş·ÖÅÅĞò½áÊø");
+		System.out.println("äºŒåˆ†æ’åºç»“æŸ");
 	}
 	
 	public void queueClaimName(CalabashBrothers[] Calabash) {
-		System.out.println("\n±¨Êı¿ªÊ¼");
+		System.out.println("\næŠ¥æ•°å¼€å§‹");
 		for(int i=0;i<Calabash.length;i++)
 			System.out.println(Calabash[i].getName());
-		System.out.println("±¨Êı½áÊø\n");
+		System.out.println("æŠ¥æ•°ç»“æŸ\n");
 	}
 	
 	public void queueClaimColor(CalabashBrothers[] Calabash) {
-		System.out.println("\n±¨ÑÕÉ«¿ªÊ¼");
+		System.out.println("\næŠ¥é¢œè‰²å¼€å§‹");
 		for(int i=0;i<Calabash.length;i++)
 			System.out.println(Calabash[i].getColor());
-		System.out.println("±¨ÑÕÉ«½áÊø");
+		System.out.println("æŠ¥é¢œè‰²ç»“æŸ");
 	}
 
 	
