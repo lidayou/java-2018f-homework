@@ -1,8 +1,20 @@
+/*
+ * 以造世主的角度，创建双方上场的战士，并将其组织放入战场中。
+ * @see class FightFileld, class Formation, Class Team.
+ * @author why
+ * @Time 2018-9-27
+ * @version 1.0
+ * 
+ * */
+
 package javahw3;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FightField {
+	/*
+	 * 程序主要的执行入口，在此类中导入战场，加入战士，选择阵型，显示战场信息。
+	 * */
 	private static final int N = 15;
 	private Warrior[][] fields;
 
@@ -17,13 +29,13 @@ public class FightField {
 		teamBad.showWarriors();
 		//初始化阵型
 		Formation.initialization();
-		/*----------------------------------------------------*/
+		/*-----------------------ROUND 1------------------------*/
 		System.out.println("ROUND1");
 		ff.round(teamGood, teamBad, in);
 		ff.showFields();
 		
 		System.out.println();
-		/*----------------------------------------------------*/
+		/*-----------------------ROUND 2------------------------*/
 		ff.initialization();
 		System.out.println("ROUND2");
 		ff.round(teamGood, teamBad, in);
@@ -34,16 +46,16 @@ public class FightField {
 		teamGood.showWarriors();
 		teamBad.showWarriors();
 	}
-	
-	public FightField() {
+	//Constructor
+	private FightField() {
 		initialization();
 	}
-	
-	public void initialization() {
+	//初始化战场信息
+	private void initialization() {
 		fields = new Warrior[N][N];
 	}
-	//loading the warriors of two teams.
-	public static void loading(ArrayList<Warrior> teamGood, ArrayList<Warrior> teamBad) {
+	//登录两只队伍的武将
+	private static void loading(ArrayList<Warrior> teamGood, ArrayList<Warrior> teamBad) {
 		System.out.println("创建即将上场进行对决的对象......");
 		String name = "大二三四五六七";
 		for (int i=0; i<7; i++) {
@@ -56,9 +68,9 @@ public class FightField {
 		}
 		teamBad.add(new Warrior("蛇精", "吃瓜", 2));
 	}
-	
-	public void showFields() {
-		System.out.println("*****************************************************战场对阵情况*****************************************************");
+	//显示战场的对决情况
+	private void showFields() {
+		System.out.println("***************************************************战场对阵情况****************************************************");
 		for (int i=0; i<N; i++) {
 			for (int j=0; j<N; j++) {
 				if(fields[i][j]==null)
@@ -69,21 +81,21 @@ public class FightField {
 			}
 			System.out.println();
 		}
-		System.out.println("*****************************************************战场对阵情况*****************************************************");
+		System.out.println("***************************************************战场对阵情况****************************************************");
 	}
-	
-	public void goBattle(ArrayList<Warrior> team, int[][] place) {
+	//将双方的武将送上战场
+	private void goBattle(ArrayList<Warrior> team, int[][] place) {
 		for (int i=0; i<team.size(); i++) {
 			int m = place[i][0];
 			int n = place[i][1];
-			team.get(i).changePosiion(m, n);
+			team.get(i).changePosition(m, n);
 			fields[m][n] = team.get(i);
 		}
 	}
-	
-	public void round(Team teamGood, Team teamBad, Scanner in) {
-		System.out.println("**************双方战士上场*************");
-		System.out.println("**********请选择妖精上场的阵型***********");
+	//自定义选择双方的阵型
+	private void round(Team teamGood, Team teamBad, Scanner in) {
+		System.out.println("************双方战士上场*************");
+		System.out.println("********请选择妖精上场的阵型*********");
 		System.out.println("**********0----------长蛇阵**********");
 		System.out.println("**********1----------雁形阵**********");
 		System.out.println("**********2----------鹤翼阵**********");
@@ -96,6 +108,11 @@ public class FightField {
 
 
 class Team{
+	/*
+	 * 创建队伍类，由此创建双方的队伍对象
+	 * Variables: ArrayList<Warrior> team;
+	 * Methods: showWarriors();
+	 * */
 	public ArrayList<Warrior> team;
 	
 	Team(){
@@ -107,10 +124,14 @@ class Team{
 	}
 }
 
-
 class Formation{
-	public static ArrayList<int[][]> book1;
-	public static ArrayList<int[][]> book2;
+	/*
+	 * 阵型类，保存双方的阵型信息
+	 * Variables: ArrayList<int[][]> book1, ArrayList<int[][]> book1;
+	 * Methods: initialization(), getForm(), convert();
+	 * */
+	private static ArrayList<int[][]> book1;
+	private static ArrayList<int[][]> book2;
 	
 	public static void initialization() {
 		book1 = new ArrayList<int[][]>();
@@ -148,16 +169,3 @@ class Formation{
 	}
 	
 }
-
-
-/*
-七个葫芦娃，老爷爷，蛇精，蝎子精都是属于独一无二的个体，而小妖精是可以有很多个的
-敌对的双方各自有一个备战区，备战区用于生成将要上场的对象，有一个对象：战场，
-在这个对象里，记录着每个位置上的个体的名字，这个对象有：查询位置、更改位置信息、打印等操作
-双方的对象：都具备一个位置信息，记录了这个对象在战场中的位置，记录着各自的名字，以及所属的战队
-战法对象：记录了队形信息，根据所属的战队不同，其在战场上排列的位置不同
-
-葫芦娃可以使用枚举类型，也可以使用受限的类（枚举类型的使用作为自己的练习）
-用二维的ArrayList似乎会比较麻烦，Java中的存取没有cpp中那么方便，所以对于战场该如何实现？？？
- * 
- * */

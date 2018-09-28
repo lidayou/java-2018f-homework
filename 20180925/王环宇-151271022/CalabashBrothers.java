@@ -1,13 +1,18 @@
 package javahw3;
-
+/*
+ * 
+ * @ author: why
+ * @
+ * 
+ * */
 public class CalabashBrothers extends Warrior {
-	private String color;
+	//private String color;
 	//private int order;
 	
 	public CalabashBrothers(String name, String function) {
 		super(name, function, 1);
 		//order = 1;
-		color = " ";
+		//color = " ";
 	}
 	
 //	public String getColor() {
