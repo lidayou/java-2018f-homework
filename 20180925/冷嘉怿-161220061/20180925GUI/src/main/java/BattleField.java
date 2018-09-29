@@ -11,6 +11,7 @@ public class BattleField {
 
     private JPanel battlefield;
     private Font mfont=new Font("华文楷体",Font.BOLD,25);
+    AnimationHandler animationHandler;
     private Scorpion scorption;
     private Grandpa grandpa;
     private Snake snake;
@@ -34,12 +35,14 @@ public class BattleField {
         battlefield=new BackGroundPanel();
         battlefield.setBounds(0,0,1000,700);
         battlefield.setLayout(null);
-        actionButton button1=new actionButton(800,500,90,80,"monsterhead.PNG","monsterhead2.png");
+        actionButton button1=new actionButton(800,500,90,80,"monsterhead.PNG","monsterhead2.PNG");
         button1.addMouseListener(new MouseListener() {          //负责蝎子精变换阵型的按钮
             @Override
             public void mouseClicked(MouseEvent e) {
+                while(animationHandler.avaliable.get()==false);
                 scorption.changeFMT();
-                scorption.StandStill();
+//                scorption.StandStill();
+                animationHandler.cmd.set(1);
             }
 
             @Override
@@ -59,12 +62,14 @@ public class BattleField {
         button2.addMouseListener(new MouseListener() {          //负责葫芦娃排队的按钮
             @Override
             public void mouseClicked(MouseEvent e) {
+                while(animationHandler.avaliable.get()==false);
                 if(Bsorted)
                     brotherhood.randomize();
                 else
                     brotherhood.BubbleSort();
                 Bsorted=!Bsorted;
-                brotherhood.StandStill();
+//                scorption.StandStill();
+                animationHandler.cmd.set(1);
             }
 
             @Override
@@ -79,13 +84,27 @@ public class BattleField {
             @Override
             public void mouseExited(MouseEvent e) {}
         });        battlefield.add(button2);
+        animationHandler=new AnimationHandler();
         scorption=new Scorpion((BackGroundPanel)battlefield);               //创建人类和妖怪
+        animationHandler.addChat(scorption);
+        animationHandler.addChat(scorption.troops);
+
         grandpa=new Grandpa((BackGroundPanel)battlefield);
+        animationHandler.addChat(grandpa);
         grandpa.StandStill();
+
         snake=new Snake((BackGroundPanel)battlefield);
+        animationHandler.addChat(snake);
         snake.StandStill();
+
         brotherhood = new Brotherhood((BackGroundPanel) battlefield);
-        brotherhood.StandStill();
+        animationHandler.addChat(brotherhood.cbs);
+//        brotherhood.StandStill();
+
+        Thread anim=new Thread(animationHandler);
+        anim.start();
+        animationHandler.cmd.set(1);
+//        animationHandler.print();
     }
 }
 

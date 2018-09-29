@@ -3,16 +3,36 @@ import java.awt.*;
 
 public class Charactors {       //角色类
     public String typename;        //每个角色有自己的名字
-    public int positionX,positionY;         //每个角色有自己的位置坐标
-    public char testview;                    //在命令行中输出代表的字符
-    public boolean alive=true;              //角色是否存活
+    public String basename;
+    ImageIcon baseimg;
+    ImageIcon movingimg;
     protected BackGroundPanel world;         //每个角色所在的容器
     protected JLabel testLabel=new JLabel("T");     //每个角色在界面中表现为一个具有特殊图片的JLabel
+    public boolean animate=false;
+
+
+    public int positionX,positionY;         //每个角色有自己的位置坐标
+    public int nextX=0, nextY=0;
+    public double tmpX=0,tmpY=0;
+    public char testview;                    //在命令行中输出代表的字符
+    public boolean alive=true;              //角色是否存活
+    public void load()
+    {
+        baseimg=new ImageIcon(this.getClass().getResource(basename+".PNG"));
+        baseimg.setImage(baseimg.getImage().getScaledInstance(world.deltax, world.deltay, Image.SCALE_SMOOTH));
+        movingimg=new ImageIcon(this.getClass().getResource(basename+"mov1.PNG"));
+        movingimg.setImage(movingimg.getImage().getScaledInstance(world.deltax, world.deltay, Image.SCALE_SMOOTH));
+    }
     public void moveto(int x,int y)          //移动到新位置
     {
-        positionX=x;
-        positionY=y;
+        nextX=x;
+        nextY=y;
+        animate=true;
     }
+    public int realX(int x)
+    { return world.xstart+x*world.deltax; }
+    public int realY(int y)
+    { return world.ystart+y*world.deltay; }
     public void StandStill()                 //更新自己在战场上的位置信息
     {
         if(alive) {         //只有活着的角色能够在战场上移动
@@ -59,14 +79,14 @@ class Grandpa extends Charactors        //老爷爷
     Grandpa(BackGroundPanel father)
     {               //老爷爷初始时在战场左下角观战
         world=father;
-        ImageIcon imgicon=new ImageIcon(this.getClass().getResource("grandpa.PNG"));        //初始化自己的JLabel
-        imgicon.setImage(imgicon.getImage().getScaledInstance(father.deltax, father.deltay, Image.SCALE_SMOOTH));
+        basename="grandpa";
+        load();
         testLabel.setSize(father.deltax,father.deltay);
-        testLabel.setIcon(imgicon);
+        testLabel.setIcon(baseimg);
         testLabel.setOpaque(false);
         world.add(testLabel);           //将老爷爷加入战场界面中
-        positionX=0;
-        positionY=virtualField.height-1;
+        nextX=positionX=0;
+        nextY=positionY=virtualField.height-1;
         typename="爷爷";
         testview='Y';
     }
@@ -82,10 +102,10 @@ class CucurbitBoy extends Charactors        //葫芦娃类
         world=father;
         this.id=CucurbitBoys.values()[CucurbitBoy.nextid];
         typename=id.getName();
-        ImageIcon imgicon=new ImageIcon(this.getClass().getResource(id.getImg()));      //每个葫芦娃的形象不同
-        imgicon.setImage(imgicon.getImage().getScaledInstance(father.deltax, father.deltay, Image.SCALE_SMOOTH));
+        basename="brother"+(id.ordinal()+1);
+        load();
         testLabel.setSize(father.deltax,father.deltay);
-        testLabel.setIcon(imgicon);
+        testLabel.setIcon(baseimg);
         testLabel.setOpaque(false);
         world.add(testLabel);           //将葫芦娃加入界面中
         //每个葫芦娃只能出生一次，并且最多有七个
@@ -123,10 +143,10 @@ class Roro extends Charactors           //小喽啰类
     private formations curFMT=null;     //小喽啰们当前应该站的阵型
     public Roro(BackGroundPanel father){
         world=father;
-        ImageIcon imgicon=new ImageIcon(this.getClass().getResource("Roro.PNG"));
-        imgicon.setImage(imgicon.getImage().getScaledInstance(father.deltax, father.deltay, Image.SCALE_SMOOTH));
+        basename="Roro";
+        load();
         testLabel.setSize(father.deltax,father.deltay);
-        testLabel.setIcon(imgicon);
+        testLabel.setIcon(baseimg);
         testLabel.setOpaque(false);
         world.add(testLabel);           //将小喽啰加入界面中
         typename="小喽啰";
@@ -148,14 +168,14 @@ class Scorpion extends Charactors                       //蝎子精
 {
     private int curFMT=-1;
     private formations[] learnedFormations=new formations[]{new Fengshi(), new Yanyue()};       //蝎子精学过的阵型
-    private Roro[] troops=new Roro[18];                  //每个蝎子精带有18个小喽啰
+    public Roro[] troops=new Roro[18];                  //每个蝎子精带有18个小喽啰
     public Scorpion(BackGroundPanel father)
     {
         world=father;
-        ImageIcon imgicon=new ImageIcon(this.getClass().getResource("scorption.PNG"));
-        imgicon.setImage(imgicon.getImage().getScaledInstance(father.deltax, father.deltay, Image.SCALE_SMOOTH));
+        basename="scorption";
+        load();
         testLabel.setSize(father.deltax,father.deltay);
-        testLabel.setIcon(imgicon);
+        testLabel.setIcon(baseimg);
         testLabel.setOpaque(false);
         world.add(testLabel);       //将蝎子精加入战场界面中
         typename="蝎子精";
@@ -180,10 +200,9 @@ class Scorpion extends Charactors                       //蝎子精
     public void changeFMT()                             //蝎子精改变阵型，并且要求喽罗们按照新阵型站队
     {
         curFMT=(curFMT+1)%learnedFormations.length;
-        positionX=virtualField.width-learnedFormations[curFMT].rightDistance-1;
-        positionY=virtualField.height/2;
+        moveto(virtualField.width-learnedFormations[curFMT].rightDistance-1,virtualField.height/2);
         for(int i=0;i<troops.length;i++) {
-            troops[i].resort(typename,positionX,positionY,learnedFormations[curFMT]);
+            troops[i].resort(typename,nextX,nextY,learnedFormations[curFMT]);
         }
     }
 }
@@ -193,14 +212,14 @@ class Snake extends Charactors          //蛇精
     public Snake(BackGroundPanel father)
     {                                     //蛇精初始时在战场右上角观战
         world=father;
-        ImageIcon imgicon=new ImageIcon(this.getClass().getResource("snake.PNG"));
-        imgicon.setImage(imgicon.getImage().getScaledInstance(father.deltax, father.deltay, Image.SCALE_SMOOTH));
+        basename="snake";
+        load();
         testLabel.setSize(father.deltax,father.deltay);
-        testLabel.setIcon(imgicon);
+        testLabel.setIcon(baseimg);
         testLabel.setOpaque(false);
         world.add(testLabel);
-        positionX=virtualField.width-1;
-        positionY=0;
+        nextX=positionX=virtualField.width-1;
+        nextY=positionY=0;
         typename="蛇精";
         testview='S';
     }

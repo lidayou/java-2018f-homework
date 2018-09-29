@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Brotherhood{            //葫芦兄弟类
     private final int CB_NUM=7;     //世界上有七个葫芦娃兄弟
-    private CucurbitBoy cbs[]=new CucurbitBoy[CB_NUM];
+    public CucurbitBoy cbs[]=new CucurbitBoy[CB_NUM];
     private int positionX=2, positionY=4;
     Brotherhood(BackGroundPanel father) throws Exception {
         //创造世界上的葫芦娃
