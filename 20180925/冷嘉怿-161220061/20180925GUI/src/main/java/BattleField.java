@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Objects;
@@ -23,8 +24,14 @@ public class BattleField {
 
     public JFrame father;
     private JTextField debug;
-    private JPanel hlmask;
+    private TransparentPanel hlmask;
     private SelectionBar toolbar;
+
+    MouseListener ms;
+
+    public static int selectionsize=80;
+
+    public int curX=0,curY=0;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("BattleField");
@@ -32,6 +39,7 @@ public class BattleField {
         frame.setResizable(false);
         BattleField battle=new BattleField();
         battle.father=frame;
+        frame.addMouseListener(battle.ms);
         frame.setContentPane(battle.battlefield);
 //        battle.scorption=new Scorpion((BackGroundPanel)battle.battlefield);
         frame.setBounds(130,20,1200,700);
@@ -42,14 +50,15 @@ public class BattleField {
 
     private void createUIComponents() throws Exception {
         // TODO: place custom component creation code here
-        battlefield=new BackGroundPanel();
-        battlefield.setBounds(0,0,1200,700);
+        battlefield = new BackGroundPanel();
+        battlefield.setBounds(0, 0, 1200, 700);
         battlefield.setLayout(null);
-        actionButton button1=new actionButton(1100,500,90,80,"monsterhead.PNG","monsterhead2.PNG");
+
+        actionButton button1 = new actionButton(1100, 500, 90, 80, "monsterhead.PNG", "monsterhead2.PNG");
         button1.addMouseListener(new MouseListener() {          //负责蝎子精变换阵型的按钮
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(animationHandler.avaliable.get()==false)
+                if (animationHandler.avaliable.get() == false)
                     return;
                 scorption.changeFMT();
 //                scorption.StandStill();
@@ -57,56 +66,65 @@ public class BattleField {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {
+            }
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+            }
 
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {
+            }
 
             @Override
-            public void mouseExited(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {
+            }
         });
         battlefield.add(button1);
-        actionButton button2=new actionButton(1000,500,90,80,"humanhead.PNG","humanhead2.PNG");
+        actionButton button2 = new actionButton(1000, 500, 90, 80, "humanhead.PNG", "humanhead2.PNG");
         button2.addMouseListener(new MouseListener() {          //负责葫芦娃排队的按钮
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(animationHandler.avaliable.get()==false)
+                if (animationHandler.avaliable.get() == false)
                     return;
-                if(Bsorted)
+                if (Bsorted)
                     brotherhood.randomize();
                 else
                     brotherhood.BubbleSort();
-                Bsorted=!Bsorted;
+                Bsorted = !Bsorted;
 //                scorption.StandStill();
                 animationHandler.cmd.set(1);
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {
+            }
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+            }
 
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {
+            }
 
             @Override
-            public void mouseExited(MouseEvent e) {}
-        });        battlefield.add(button2);
-        animationHandler=new AnimationHandler();
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+        battlefield.add(button2);
+        animationHandler = new AnimationHandler();
         /*创建角色*/
-        scorption=new Scorpion((BackGroundPanel)battlefield);               //创建人类和妖怪
+        scorption = new Scorpion((BackGroundPanel) battlefield);               //创建人类和妖怪
         animationHandler.addChat(scorption);
         animationHandler.addChat(scorption.troops);
 
-        grandpa=new Grandpa((BackGroundPanel)battlefield);
+        grandpa = new Grandpa((BackGroundPanel) battlefield);
         animationHandler.addChat(grandpa);
         grandpa.StandStill();
 
-        snake=new Snake((BackGroundPanel)battlefield);
+        snake = new Snake((BackGroundPanel) battlefield);
         animationHandler.addChat(snake);
         snake.StandStill();
 
@@ -115,23 +133,42 @@ public class BattleField {
 //        brotherhood.StandStill();
 
         /*加入动画处理器*/
-        Thread anim=new Thread(animationHandler);
+        Thread anim = new Thread(animationHandler);
         anim.start();
         animationHandler.cmd.set(1);
 
         /*加入其他控件*/
-        debug=new JTextField("debug");
-        debug.setBounds(400,630,200,20);
+        debug = new JTextField("debug");
+        debug.setBounds(400, 630, 200, 20);
         battlefield.add(debug);
 
-        hlmask=new JPanel();
-        hlmask.setBounds(((BackGroundPanel) battlefield).xstart,((BackGroundPanel) battlefield).ystart,((BackGroundPanel) battlefield).deltax,((BackGroundPanel) battlefield).deltay);
-        hlmask.setBackground(Color.LIGHT_GRAY);
+        hlmask = new TransparentPanel();
+        hlmask.setBounds(((BackGroundPanel) battlefield).xstart, ((BackGroundPanel) battlefield).ystart, ((BackGroundPanel) battlefield).deltax, ((BackGroundPanel) battlefield).deltay);
+        hlmask.setTransparency(.3f);
         battlefield.add(hlmask);
 
-        toolbar=new SelectionBar();
-        toolbar.setBounds(-20,100,200,500);
+        toolbar = new SelectionBar(this);
+        toolbar.setBounds(-20, 100, 200, 500);
         battlefield.add(toolbar);
+
+        ms=new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                toolbar.reloadBars();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        };
     }
 
     public void getMouseInfo()
@@ -161,7 +198,12 @@ public class BattleField {
         int virtuleY=(int)y/tmp.deltay-1;
         if(virtuleX<0 || virtuleX>=15 || virtuleY<0 || virtuleY>=15)
             return;
-        debug.setText(virtuleX+":"+virtuleY);
+        String name="empty";
+        if(virtualField.field[virtuleY][virtuleX]!=null)
+            name=virtualField.field[virtuleY][virtuleX].basename;
+        debug.setText("("+virtuleX+", "+virtuleY+"):"+name);
+        curX=virtuleX;
+        curY=virtuleY;
         hlmask.setBounds(tmp.xstart+virtuleX*tmp.deltax, tmp.ystart+virtuleY*tmp.deltay,tmp.deltax,tmp.deltay);
     }
 }
@@ -222,9 +264,87 @@ class actionButton extends JButton{                 //使用图片形状的按�
 }
 
 class SelectionBar extends JPanel{      //一个选择侧边栏，为以后添加各种角色的技能做准备
+    private BattleField father;
     private Image image=(Image)new ImageIcon(this.getClass().getResource("floatbar.PNG")).getImage();
+    private Font mfont=new Font("华文楷体",Font.BOLD,30);
+    private JLabel Chatname;
+    private JLabel regularattack;
+    private JLabel AOE;
+    private JLabel ZXC;
+    public SelectionBar(BattleField battle)
+    {
+        father=battle;
+        this.setLayout(null);
+        int size=BattleField.selectionsize;
+
+        Chatname=new JLabel();
+        Chatname.setBounds(50,50,size,size/2);
+        Chatname.setText("空");
+        Chatname.setForeground(new Color(255,215,000));
+        Chatname.setFont(mfont);
+
+        regularattack=new JLabel();
+        regularattack.setBounds(52,100,size,size);
+        regularattack.setOpaque(false);
+        regularattack.setBorder(null);
+
+        AOE=new JLabel();
+        AOE.setBounds(52,200,size,size);
+        AOE.setOpaque(false);
+        AOE.setBorder(null);
+
+        ZXC=new JLabel();
+        ZXC.setBounds(52,300,size,size);
+        ZXC.setOpaque(false);
+        ZXC.setBorder(null);
+
+        this.add(regularattack);
+        this.add(AOE);
+        this.add(ZXC);
+        this.add(Chatname);
+    }
     protected void paintComponent(Graphics g)
     {
         g.drawImage(image,0,0,this.getWidth(),this.getHeight(),this);
+    }
+
+    public void reloadBars()
+    {
+        Charactors tmp=virtualField.field[father.curY][father.curX];
+        if(tmp==null || tmp.monster) {
+            regularattack.setIcon(null);
+            AOE.setIcon(null);
+            ZXC.setIcon(null);
+            Chatname.setText("空");
+            return;
+        }
+        String name="";
+        switch (tmp.basename.charAt(0))
+        {
+            case 'b': name=((CucurbitBoy)tmp).tellName();break;
+            case 'g': name="爷爷";break;
+        }
+        Chatname.setText(name);
+        regularattack.setIcon(tmp.regularattack);
+        AOE.setIcon(tmp.AOE);
+        ZXC.setIcon(tmp.ZXC);
+    }
+}
+
+class TransparentPanel extends JPanel{
+    protected float transparency;
+    public void setTransparency(float trans)
+    {
+        transparency=trans;
+    }
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+//        super.paintComponent(g);
+        Graphics2D graphics2D=(Graphics2D)g.create();
+        graphics2D.setBackground(Color.GRAY);
+        graphics2D.setComposite(AlphaComposite.SrcOver.derive(transparency));
+        graphics2D.fillRect(0,0,getWidth(),getHeight());
+        graphics2D.dispose();
     }
 }

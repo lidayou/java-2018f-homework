@@ -86,12 +86,14 @@ public class AnimationHandler implements Runnable{
                 e.printStackTrace();
             }
         }
+        virtualField.clear();
         for (Charactors x : chats)
         {
             x.testLabel.setIcon(x.baseimg);
             x.animate=false;
             x.positionX=x.nextX;
             x.positionY=x.nextY;
+            virtualField.field[x.positionY][x.positionX]=x;
             x.testLabel.setLocation(x.realX((int)x.positionX),x.realY((int)x.positionY));
         }
         avaliable.set(true);

@@ -6,6 +6,10 @@ public class Charactors {       //角色类
     public String basename;
     ImageIcon baseimg;
     ImageIcon movingimg;
+    ImageIcon regularattack;
+    ImageIcon AOE;
+    ImageIcon ZXC;
+
     protected BackGroundPanel world;         //每个角色所在的容器
     protected JLabel testLabel=new JLabel("T");     //每个角色在界面中表现为一个具有特殊图片的JLabel
     public boolean animate=false;
@@ -16,12 +20,24 @@ public class Charactors {       //角色类
     public double tmpX=0,tmpY=0;
     public char testview;                    //在命令行中输出代表的字符
     public boolean alive=true;              //角色是否存活
+    public boolean monster=true;                 //是否为敌人
     public void load()
     {
         baseimg=new ImageIcon(this.getClass().getResource(basename+".PNG"));
         baseimg.setImage(baseimg.getImage().getScaledInstance(world.deltax, world.deltay, Image.SCALE_SMOOTH));
         movingimg=new ImageIcon(this.getClass().getResource(basename+"mov1.PNG"));
         movingimg.setImage(movingimg.getImage().getScaledInstance(world.deltax, world.deltay, Image.SCALE_SMOOTH));
+
+        int size=BattleField.selectionsize;
+        if(monster==false)
+        {
+            regularattack=new ImageIcon(this.getClass().getResource("tmpskill.PNG"));
+            regularattack.setImage(regularattack.getImage().getScaledInstance(size,size, Image.SCALE_SMOOTH));
+            AOE=new ImageIcon(this.getClass().getResource("tmpskill.PNG"));
+            AOE.setImage(AOE.getImage().getScaledInstance(size,size, Image.SCALE_SMOOTH));
+            ZXC=new ImageIcon(this.getClass().getResource("tmpskill.PNG"));
+            ZXC.setImage(ZXC.getImage().getScaledInstance(size, size, Image.SCALE_SMOOTH));
+        }
     }
     public void moveto(int x,int y)          //移动到新位置
     {
@@ -36,7 +52,7 @@ public class Charactors {       //角色类
     public void StandStill()                 //更新自己在战场上的位置信息
     {
         if(alive) {         //只有活着的角色能够在战场上移动
-            virtualField.field[positionY][positionX] = testview;
+//            virtualField.field[positionY][positionX] = testview;
             testLabel.setBounds(world.xstart+positionX*world.deltax,world.ystart+positionY*world.deltay,testLabel.getWidth(),testLabel.getHeight());
         }
     }
@@ -80,6 +96,7 @@ class Grandpa extends Charactors        //老爷爷
     {               //老爷爷初始时在战场左下角观战
         world=father;
         basename="grandpa";
+        monster=false;
         load();
         testLabel.setSize(father.deltax,father.deltay);
         testLabel.setIcon(baseimg);
@@ -103,6 +120,7 @@ class CucurbitBoy extends Charactors        //葫芦娃类
         this.id=CucurbitBoys.values()[CucurbitBoy.nextid];
         typename=id.getName();
         basename="brother"+(id.ordinal()+1);
+        this.monster=false;
         load();
         testLabel.setSize(father.deltax,father.deltay);
         testLabel.setIcon(baseimg);
@@ -118,6 +136,8 @@ class CucurbitBoy extends Charactors        //葫芦娃类
 
         CucurbitBoy.nextid++;
     }
+    //返回自己的名字
+    public String tellName(){ return id.getName(); }
     //返回自己的颜色
     public String tellColor(){ return id.getColor(); }
     //返回自己的排行
