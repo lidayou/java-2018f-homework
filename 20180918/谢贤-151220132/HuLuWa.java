@@ -1,5 +1,5 @@
 public class HuLuWa {
-	private int rank;	//ºùÂ«ÍŞÅÅĞĞ
+	private int rank;	//è‘«èŠ¦å¨ƒæ’è¡Œ
 	private String name;
 	private Color color;
 	
@@ -7,7 +7,7 @@ public class HuLuWa {
 		red, orange, yellow, green, cyan, blue, purple
 	}
 	
-	public HuLuWa(int rank,Color color,String debutWork) //¹¹Ôìº¯Êı
+	public HuLuWa(int rank,Color color,String debutWork) //æ„é€ å‡½æ•°
 	{
 		this.rank=rank;
 		this.color=color;
@@ -15,7 +15,7 @@ public class HuLuWa {
 	}
 	
 	
-	public void howl(int srcPosition,int desPosition)	//¸Ä±äÎ»ÖÃÊ±±¨¸æ
+	public void howl(int srcPosition,int desPosition)	//æ”¹å˜ä½ç½®æ—¶æŠ¥å‘Š
 	{
 		this.callOffByRank();		
 		System.out.println(srcPosition+"->"+desPosition);
@@ -25,13 +25,13 @@ public class HuLuWa {
 	{
 		switch(this.rank)
 		{
-		case 1:System.out.println("ÀÏ´ó");break;
-		case 2:System.out.println("ÀÏ¶ş");break;
-		case 3:System.out.println("ÀÏÈı");break;
-		case 4:System.out.println("ÀÏËÄ");break;
-		case 5:System.out.println("ÀÏÎå");break;
-		case 6:System.out.println("ÀÏÁù");break;
-		case 7:System.out.println("ÀÏÆß");break;
+		case 1:System.out.println("è€å¤§");break;
+		case 2:System.out.println("è€äºŒ");break;
+		case 3:System.out.println("è€ä¸‰");break;
+		case 4:System.out.println("è€å››");break;
+		case 5:System.out.println("è€äº”");break;
+		case 6:System.out.println("è€å…­");break;
+		case 7:System.out.println("è€ä¸ƒ");break;
 		default:break;
 		}
 	}
@@ -40,13 +40,13 @@ public class HuLuWa {
 	{
 		switch(this.color.ordinal()+1)
 		{
-		case 1:System.out.println("ºìÉ«");break;
-		case 2:System.out.println("³ÈÉ«");break;
-		case 3:System.out.println("»ÆÉ«");break;
-		case 4:System.out.println("ÂÌÉ«");break;
-		case 5:System.out.println("ÇàÉ«");break;
-		case 6:System.out.println("À¶É«");break;
-		case 7:System.out.println("×ÏÉ«");break;
+		case 1:System.out.println("çº¢è‰²");break;
+		case 2:System.out.println("æ©™è‰²");break;
+		case 3:System.out.println("é»„è‰²");break;
+		case 4:System.out.println("ç»¿è‰²");break;
+		case 5:System.out.println("é’è‰²");break;
+		case 6:System.out.println("è“è‰²");break;
+		case 7:System.out.println("ç´«è‰²");break;
 		default:break;
 		}
 		
