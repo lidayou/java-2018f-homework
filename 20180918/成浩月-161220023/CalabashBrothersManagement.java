@@ -1,156 +1,135 @@
 import java.util.Random;
 
-enum Color{
-	RED("红色"),ORANGE("橙色"),YELLOW("黄色"),GREEN("绿色"),CYAN("青色"),BLUE("蓝色"),PURPLE("紫色");
-	String color;
-	Color(String color){
+enum CalabashBrother{
+	FIRST("老大","红色"),SECOND("老二","橙色"),THIRD("老三","黄色"),FOURTH("老四","绿色"),FIFTH("老五","青色"),SIXTH("老六","蓝色"),SEVENTH("老七","紫色");
+	private String status;
+	private String color;
+	CalabashBrother(String status,String color){
+		this.status=status;
 		this.color=color;
 	}
-	public String toString() {
-		return color;
+	public void tellstatus() {
+		System.out.print(status);
 	}
-}
-
-enum Status{
-	FIRST("老大"),SECOND("老二"),THIRD("老三"),FOURTH("老四"),FIFTH("老五"),SIXTH("老六"),SEVENTH("老七");
-	String status;
-	Status(String status){
-		this.status=status;
-	}
-	public String toString() {
-		return status;
+	public void tellcolor() {
+		System.out.print(color);
 	}
 }
 
 class CalabashBrothers{
-	private Status status;
-	private Color color;
-	CalabashBrothers(int number){
-		switch(number) {
-			case 1:color=Color.RED;status=Status.FIRST;break;
-			case 2:color=Color.ORANGE;status=Status.SECOND;break;
-			case 3:color=Color.YELLOW;status=Status.THIRD;break;
-			case 4:color=Color.GREEN;status=Status.FOURTH;break;
-			case 5:color=Color.CYAN;status=Status.FIFTH;break;
-			case 6:color=Color.BLUE;status=Status.SIXTH;break;
-			case 7:color=Color.PURPLE;status=Status.SEVENTH;break;
-			default:System.out.println("nonexistent");
-		}
+	public static final int len=7;
+	private CalabashBrother[] cala=new CalabashBrother[len];
+	public CalabashBrothers() {
+		for(int i=0;i<len;i++)
+			cala[i]=CalabashBrother.values()[i];
 	}
-	String statusstring() {
-		return status.toString();
+	public void swap(int i,int j) {
+		if(i<0||i>=len||j<0||j>=len)
+			System.out.println("error!");
+		CalabashBrother temp=cala[i];
+		cala[i]=cala[j];
+		cala[j]=temp;
+		tellmove(i,j);
+		tellmove(j,i);
 	}
-	String colorstring() {
-		return color.toString();
+	private void tellmove(int x,int y) {
+		if(x<0||x>=len||y<0||y>=len)
+			System.out.println("error!");
+		cala[y].tellstatus();
+		System.out.println(":"+(x+1)+"->"+(y+1));
 	}
-	int statusnumber() {
-		return status.ordinal();
+	public boolean larger(int i,int j) {
+		return cala[i].ordinal()>cala[j].ordinal();
 	}
-	int colornumber() {
-		return color.ordinal();
+	public void countoffbystatus() {
+		for(int i=0;i<len;i++)
+			cala[i].tellstatus();
+		System.out.println();
 	}
+	public void countoffbycolor() {
+		for(int i=0;i<len;i++)
+			cala[i].tellcolor();
+		System.out.println();
+	}
+
 }
 
-class Management {
-	CalabashBrothers[] cala=new CalabashBrothers[7];
-	Management(){
-		for(int i=0;i<7;i++)
-			cala[i]=new CalabashBrothers(i+1);
-	}
-	public void randomize() {
-		Random random=new Random();
-		for(int i=0;i<20;i++) {
-			int x=random.nextInt(6);
-			int y=random.nextInt(6);
-			if(x!=y) {
-				//将x位置和y位置的葫芦娃交换
-				CalabashBrothers temp = cala[x];
-				cala[x]=cala[y];
-				cala[y]=temp;
-			}
-		}
-	}
-	public void countoff(int name) {
-		switch(name) {
-			case 1:{//按照排行报数
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].statusstring());
-			}break;
-			case 2:{//按照颜色报数
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].colorstring());
-			}break;
-			default:System.out.print("nonexistent");
-		}
-		System.out.println("");
-	}
-	private void tellstatuschange(int number,int x,int y) {
-		System.out.println(cala[number].statusstring()+":"+x+"->"+y);
-	}
-	private void tellcolorchange(int number,int x,int y) {
-		System.out.println(cala[number].colorstring()+":"+x+"->"+y);
-	}
-	public void sortbystatus() {
-		System.out.println("冒泡法依照排行排序");
+interface Sort{
+	public void sort(CalabashBrothers c);
+}
+
+class BubbleSort implements Sort{
+	public void sort(CalabashBrothers c) {
+		System.out.println("BubbleSort");
 		int i,j;
 		boolean exchange;
-		for(i=0;i<6;i++) {
+		int len=CalabashBrothers.len;
+		for(i=0;i<len-1;i++) {
 			exchange=false;
-			for(j=6;j>i;j--) {
-				if(cala[j].statusnumber()<cala[j-1].statusnumber()) {
-					CalabashBrothers temp=cala[j];
-					cala[j]=cala[j-1];
-					cala[j-1]=temp;
+			for(j=len-1;j>i;j--) {
+				if(c.larger(j-1,j)) {
+					c.swap(j-1, j);
 					exchange=true;
-					tellstatuschange(j,j,j+1);
-					tellstatuschange(j-1,j+1,j);
 				}
 			}
 			if(!exchange)
 				break;
 		}
 	}
-	public void sortbycolor() {
-		System.out.println("二分法依照颜色排序");
+}
+
+class BinarySort implements Sort{
+	public void sort(CalabashBrothers c) {
+		System.out.println("BinarySort");
 		int i;
-		for(i=1;i<7;i++) {
+		int len=CalabashBrothers.len;
+		for(i=1;i<len;i++) {
 			int left=0,right=i-1;
 			while(left<=right) {
 				int middle=(right+left)/2;
-				if(cala[i].colornumber()<cala[middle].colornumber())
+				if(c.larger(middle, i))
 					right=middle-1;
 				else
 					left=middle+1;
 			}
 			//插到left位置
-			if(i!=left) {
-				//将left到i-1之间的所有数往右移
-				CalabashBrothers temp=cala[i];
-				for(int j=i;j>=left+1;j--) {
-					cala[j]=cala[j-1];
-					tellcolorchange(j,j,j+1);
-				}
-				cala[left]=temp;
-				tellcolorchange(left,i+1,left+1);
-			}
+			//从i逐个交换到left的位置
+			for(int j=i;j>=left+1;j--)
+				c.swap(j,j-1);
+		}
+	}
+}
+
+class Randomize implements Sort{
+	public void sort(CalabashBrothers c) {
+		Random random=new Random();
+		System.out.println("Randomizing...");
+		for(int i=0;i<10;i++) {
+			int x=random.nextInt(6);
+			int y=random.nextInt(6);
+			if(x!=y)
+				c.swap(x,y);
 		}
 	}
 }
 
 public class CalabashBrothersManagement{
 	public static void main(String[] args) {
-		Management m=new Management();
-		m.randomize();
-		System.out.print("随机化结果: ");
-		m.countoff(1);
-		m.sortbystatus();
-		System.out.print("排序结果: ");
-		m.countoff(1);
-		m.randomize();
-		System.out.print("随机化结果: ");
-		m.countoff(2);
-		m.sortbycolor();
-		System.out.print("排序结果: ");
-		m.countoff(2);
+		CalabashBrothers calabashbrothers=new CalabashBrothers();
+		Randomize randomize=new Randomize();
+		BubbleSort bubblesort=new BubbleSort();
+		BinarySort binarysort=new BinarySort();
+		randomize.sort(calabashbrothers);
+		System.out.print("Randomization result:");
+		calabashbrothers.countoffbystatus();
+		bubblesort.sort(calabashbrothers);
+		System.out.print("bubblesort result:");
+		calabashbrothers.countoffbystatus();
+		randomize.sort(calabashbrothers);
+		System.out.print("Randomization result:");
+		calabashbrothers.countoffbystatus();
+		binarysort.sort(calabashbrothers);
+		System.out.print("binarysort result:");
+		calabashbrothers.countoffbycolor();
 	}
 }
