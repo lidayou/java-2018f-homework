@@ -138,25 +138,25 @@ public class Creatures{
 		Scorpion y=new Scorpion();
 		Serpent s=new Serpent();
 		Toad a=new Toad();
-		//Ìí¼ÓºùÂ«ÍŞµ½³¤ÉßÕó
+		//æ·»åŠ è‘«èŠ¦å¨ƒåˆ°é•¿è›‡é˜µ
 		array.addcreatures(cala);
 		
 
-		//»»Ò»¸öÕóĞÎ,Ìí¼ÓÑı¾«
+		//æ¢ä¸€ä¸ªé˜µå½¢,æ·»åŠ å¦–ç²¾
 		Thread.sleep(5000);
 		array.setrandomplace();
 		form=array.setrandomplace();
 		array.addcreatures(y);
 		array.addcreatures(a);
 		
-		//Ìí¼ÓºùÂ«ÍŞ
+		//æ·»åŠ è‘«èŠ¦å¨ƒ
 		Thread.sleep(3000);
 		array.addcreatures(cala);
 		
-		//Ìí¼ÓÀ²À²¶Ó
+		//æ·»åŠ å•¦å•¦é˜Ÿ
 		array.addcreatures(grandpa,s);
 		
-		//»»Ò»¸ö¶ÓĞÎ
+		//æ¢ä¸€ä¸ªé˜Ÿå½¢
 		Thread.sleep(5000);
 		form=array.setrandomplace();
 		array.addcreatures(y);

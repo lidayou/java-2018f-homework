@@ -1,7 +1,7 @@
 import java.util.Random;
 
 enum CalabashBrother{
-	FIRST("ÀÏ´ó","ºìÉ«"),SECOND("ÀÏ¶þ","³ÈÉ«"),THIRD("ÀÏÈý","»ÆÉ«"),FOURTH("ÀÏËÄ","ÂÌÉ«"),FIFTH("ÀÏÎå","ÇàÉ«"),SIXTH("ÀÏÁù","À¶É«"),SEVENTH("ÀÏÆß","×ÏÉ«");
+	FIRST("è€å¤§","çº¢è‰²"),SECOND("è€äºŒ","æ©™è‰²"),THIRD("è€ä¸‰","é»„è‰²"),FOURTH("è€å››","ç»¿è‰²"),FIFTH("è€äº”","é’è‰²"),SIXTH("è€å…­","è“è‰²"),SEVENTH("è€ä¸ƒ","ç´«è‰²");
 	private String status;
 	private String color;
 	CalabashBrother(String status,String color){
@@ -92,8 +92,8 @@ class BinarySort implements Sort{
 				else
 					left=middle+1;
 			}
-			//²åµ½leftÎ»ÖÃ
-			//´ÓiÖð¸ö½»»»µ½leftµÄÎ»ÖÃ
+			//æ’åˆ°leftä½ç½®
+			//ä»Žié€ä¸ªäº¤æ¢åˆ°leftçš„ä½ç½®
 			for(int j=i;j>=left+1;j--)
 				c.swap(j,j-1);
 		}

@@ -6,7 +6,7 @@ import java.io.*;
 
 public class FrameShow {
 	private JFrame frame=new JFrame();
-	private final String title="ºùÂ«ÍÞ´óÕ½Ñý¾«";
+	private final String title="è‘«èŠ¦å¨ƒå¤§æˆ˜å¦–ç²¾";
 	private JPanel imagepanel=new JPanel();
 	private String formationname="";
 	private JLabel[] labels;

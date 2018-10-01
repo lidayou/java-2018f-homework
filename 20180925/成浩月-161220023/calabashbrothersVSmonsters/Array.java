@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.Random;
 
 enum Formation{
-	CRANEWING("º×ÒíÕó",new CraneWing()),WILDGOOSEROW("ÑãĞĞÕó",new WildGooseRow()),CROSSBAR("ºâÜ—Õó",new CrossBar()),SERPENT("³¤ÉßÕó",new SerpentArray()),FISHSCALE("ÓãÁÛÕó",new FishScale()),SQUARECIRCLE("·½Ô²Õó",new SquareCircle()),CRESCENTMOON("ÙÈÔÂÕó",new CrescentMoon()),ARROW("·æÊ¸Õó",new Arrow());
+	CRANEWING("é¹¤ç¿¼é˜µ",new CraneWing()),WILDGOOSEROW("é›è¡Œé˜µ",new WildGooseRow()),CROSSBAR("è¡¡è»›é˜µ",new CrossBar()),SERPENT("é•¿è›‡é˜µ",new SerpentArray()),FISHSCALE("é±¼é³é˜µ",new FishScale()),SQUARECIRCLE("æ–¹åœ†é˜µ",new SquareCircle()),CRESCENTMOON("åƒæœˆé˜µ",new CrescentMoon()),ARROW("é”‹çŸ¢é˜µ",new Arrow());
 	String name;
 	Stance stance;
 	static final int number=8;
@@ -35,7 +35,7 @@ public class Array {
 	}
 	void addcreatures(Creature... c) throws InterruptedException {
 		if(form==null) {
-			System.out.println("»¹Î´ÉèÖÃÕóĞÎ!");
+			System.out.println("è¿˜æœªè®¾ç½®é˜µå½¢!");
 			return;
 		}
 		int len=c.length;
