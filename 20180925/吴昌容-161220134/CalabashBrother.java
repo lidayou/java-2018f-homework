@@ -1,4 +1,4 @@
-package wcr;
+package creature;
 
 enum Color {
     RED("红色"),
@@ -18,7 +18,7 @@ enum Color {
     public String getStr() {
         return str;
     }
-}
+};
 
 enum Age {
     ONE("老大"),
@@ -38,15 +38,16 @@ enum Age {
     public String getStr() {
         return str;
     }
-}
+};
 
-public class CalabashBrother {
+public class CalabashBrother extends Creature {
     Age rank;
     Color colorAttr;
 
     public CalabashBrother (int n) {
         rank = Age.values()[n];
         colorAttr = Color.values()[n];
+        sign = Integer.toString(n + 1);
     }
 
     public int compareAge(CalabashBrother right) {
@@ -57,10 +58,11 @@ public class CalabashBrother {
     }
 
     public void displayMov(int src, int dst) { System.out.println(rank.getStr() + ": "+ src + "->" + dst); }
-    public void moveTo(CalabashBrother[] sequence, int index) {
-        sequence[index] = this;
+    public void moveTo(CalabashBrother[] queue, int index) {
+        queue[index] = this;
     }
 
+    public int getNum() { return rank.ordinal(); }
     public void printAge() { System.out.printf("%s ", rank.getStr()); }
     public void printCol() {
         System.out.printf("%s ", colorAttr.getStr());
