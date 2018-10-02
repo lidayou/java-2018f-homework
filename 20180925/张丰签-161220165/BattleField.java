@@ -95,29 +95,31 @@ public class BattleField {
             N=11;
         sc.close();
         BattleField x=new BattleField(N);
-        x.formation=new Formation(N,7,1,x);
-        x.formation.change_formaion();
-        x.soldiers=new Soldiers[7];
-        for(int i=0,k=0;i<N;i++){
-            for(int j=0;j<N;j++){
-                if(x.battlefield[i][j]!=0){
-                    if(k==0) {
-                        x.soldiers[k] = new Soldiers(i, j, x.isWho(i, j),true);
-                        k++;
-                    }
-                    else{
-                        x.soldiers[k] = new Soldiers(i, j, x.isWho(i, j),false);
-                        k++;
+        for(int change=1;change<=6;change++) {
+            x.clear_all();
+            x.formation = new Formation(N, 7, change, x);
+            x.formation.change_formaion();
+            x.soldiers = new Soldiers[7];
+            for (int i = 0, k = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (x.battlefield[i][j] != 0) {
+                        if (k == 0) {
+                            x.soldiers[k] = new Soldiers(i, j, x.isWho(i, j), true);
+                            k++;
+                        } else {
+                            x.soldiers[k] = new Soldiers(i, j, x.isWho(i, j), false);
+                            k++;
+                        }
                     }
                 }
             }
+            x.brother_act = new BrotherAct(7, N, x);
+            x.set_one(N / 2, 2, 8);
+            x.grandpa = new Grandpa(N / 2, 2);
+            x.set_one(N / 2, N / 2, 10);
+            x.snake = new Snake(N / 2, N / 2);
+            System.out.println("\n\n第"+change+"次变阵:");
+            x.show_all();
         }
-        x.brother_act=new BrotherAct(7,N,x);
-        x.set_one(N/2,2,8);
-        x.grandpa=new Grandpa(N/2,2);
-        x.set_one(N/2,N/2,10);
-        x.snake=new Snake(N/2,N/2);
-
-        x.show_all();
     }
 }
