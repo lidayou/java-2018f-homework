@@ -18,7 +18,7 @@ enum Color {
     public String getStr() {
         return str;
     }
-};
+}
 
 enum Age {
     ONE("老大"),
@@ -38,7 +38,7 @@ enum Age {
     public String getStr() {
         return str;
     }
-};
+}
 
 public class CalabashBrother extends Creature {
     Age rank;
