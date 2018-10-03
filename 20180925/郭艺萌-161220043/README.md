@@ -1,5 +1,5 @@
 
-#Creature生物体
+# Creature生物体
 
 ```src/creature //该package中含所有生物体```
 
@@ -26,7 +26,7 @@ Creature类作为所有生物体类的父类，拥有一个“移动”的功能
 
 小喽啰简单继承了父类。蝎子精还有一个“带领”功能，但因为只有其一人拥有，不再设置接口。
 
-#Formation阵法
+# Formation阵法
 
 ```src/formation //该package里面包含各种阵法```
 
@@ -34,7 +34,7 @@ Creature类作为所有生物体类的父类，拥有一个“移动”的功能
 
 设置一个接口Formation，使每个阵型都有“形成阵型”和“解散阵型”两个功能。每个阵型的具体功能是在给定队首的坐标下，拍成或解散相应图形的阵型，实现离不开Creature中的move功能。
 
-#Map地图
+# Map地图
 
 ```src/map //该package里包含完整的地图信息```
 
