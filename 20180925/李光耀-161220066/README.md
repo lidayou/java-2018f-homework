@@ -6,7 +6,7 @@
 
 由于本题涉及的对象众多，采用包管理。引入4个包。creature包用于描述各种生物体，以及相关枚举属性。space包用于描述二维空间以及阵法。regulate包用于描述对游戏整体的管理。gui包用于描述相应的图形界面以及根据游戏流程调用游戏整体管理的相应方法。具体结构如下。
 
-![packet](C:\Users\13745\Desktop\packet.jpg)
+![packet](https://github.com/lidayou/java-2018f-homework/blob/master/20180925/%E6%9D%8E%E5%85%89%E8%80%80-161220066/packet.jpg)
 
 概括而言，通过层层抽象、封装，分解任务，使得任务模块化。
 
@@ -116,7 +116,7 @@ public class Formation{
 
 通过按钮点击变换阵法。通过上下左右移动老爷爷、蛇精(先老爷爷后蛇精)，移动到合适位置后按`S`固定位置。每次变换阵法后，老爷爷、蛇精都需要重新固定位置。
 
-![result](C:\Users\13745\Desktop\result.JPG)
+![result](https://github.com/lidayou/java-2018f-homework/blob/master/20180925/%E6%9D%8E%E5%85%89%E8%80%80-161220066/result.jpg)
 
 
 
