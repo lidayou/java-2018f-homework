@@ -1,38 +1,63 @@
 import java.util.Random;
 
+enum Color{
+	RED("红色"),ORANGE("橙色"),YELLOW("黄色"),GREEN("绿色"),CYAN("青色"),BLUE("蓝色"),PURPLE("紫色");
+	String color;
+	Color(String color){
+		this.color=color;
+	}
+	public String toString() {
+		return color;
+	}
+}
+
+enum Status{
+	FIRST("老大"),SECOND("老二"),THIRD("老三"),FOURTH("老四"),FIFTH("老五"),SIXTH("老六"),SEVENTH("老七");
+	String status;
+	Status(String status){
+		this.status=status;
+	}
+	public String toString() {
+		return status;
+	}
+}
+
 class CalabashBrothers{
-	int status;
-	int color;
-	String statusname=new String();
-	String colorname=new String();
-	void set(int number){
-		status=color=number;
-		switch(status) {
-			case 1:statusname="老大";colorname="红色";break;
-			case 2:statusname="老二";colorname="橙色";break;
-			case 3:statusname="老三";colorname="黄色";break;
-			case 4:statusname="老四";colorname="绿色";break;
-			case 5:statusname="老五";colorname="青色";break;
-			case 6:statusname="老六";colorname="蓝色";break;
-			case 7:statusname="老七";colorname="紫色";break;
+	private Status status;
+	private Color color;
+	CalabashBrothers(int number){
+		switch(number) {
+			case 1:color=Color.RED;status=Status.FIRST;break;
+			case 2:color=Color.ORANGE;status=Status.SECOND;break;
+			case 3:color=Color.YELLOW;status=Status.THIRD;break;
+			case 4:color=Color.GREEN;status=Status.FOURTH;break;
+			case 5:color=Color.CYAN;status=Status.FIFTH;break;
+			case 6:color=Color.BLUE;status=Status.SIXTH;break;
+			case 7:color=Color.PURPLE;status=Status.SEVENTH;break;
 			default:System.out.println("nonexistent");
 		}
 	}
-	void talk(int sc){
-		switch(sc) {
-			case 0:
-				System.out.println(statusname);break;
-			case 1:
-				System.out.println(colorname);break;
-			default:
-				System.out.println("nonexistent");
-		}
+	String statusstring() {
+		return status.toString();
+	}
+	String colorstring() {
+		return color.toString();
+	}
+	int statusnumber() {
+		return status.ordinal();
+	}
+	int colornumber() {
+		return color.ordinal();
 	}
 }
 
 class Management {
 	CalabashBrothers[] cala=new CalabashBrothers[7];
-	public void randomize(int name) {
+	Management(){
+		for(int i=0;i<7;i++)
+			cala[i]=new CalabashBrothers(i+1);
+	}
+	public void randomize() {
 		Random random=new Random();
 		for(int i=0;i<20;i++) {
 			int x=random.nextInt(6);
@@ -44,33 +69,26 @@ class Management {
 				cala[y]=temp;
 			}
 		}
-		System.out.print("随机排列:");
-		switch(name) {
-			case 1:{
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].statusname+" ");
-			}break;
-			case 2:{
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].colorname+" ");
-			}
-		}
-		System.out.println("");
 	}
-	private void countoff(int name) {
-		System.out.print("排序结果:");
+	public void countoff(int name) {
 		switch(name) {
-			case 1:{
+			case 1:{//按照排行报数
 				for(int i=0;i<7;i++)
-					System.out.print(cala[i].statusname);
+					System.out.print(cala[i].statusstring());
 			}break;
-			case 2:{
+			case 2:{//按照颜色报数
 				for(int i=0;i<7;i++)
-					System.out.print(cala[i].colorname);
+					System.out.print(cala[i].colorstring());
 			}break;
 			default:System.out.print("nonexistent");
 		}
 		System.out.println("");
+	}
+	private void tellstatuschange(int number,int x,int y) {
+		System.out.println(cala[number].statusstring()+":"+x+"->"+y);
+	}
+	private void tellcolorchange(int number,int x,int y) {
+		System.out.println(cala[number].colorstring()+":"+x+"->"+y);
 	}
 	public void sortbystatus() {
 		System.out.println("冒泡法依照排行排序");
@@ -79,19 +97,18 @@ class Management {
 		for(i=0;i<6;i++) {
 			exchange=false;
 			for(j=6;j>i;j--) {
-				if(cala[j].status<cala[j-1].status) {
+				if(cala[j].statusnumber()<cala[j-1].statusnumber()) {
 					CalabashBrothers temp=cala[j];
 					cala[j]=cala[j-1];
 					cala[j-1]=temp;
 					exchange=true;
-					System.out.println(cala[j].statusname+":"+j+"->"+(j+1));
-					System.out.println(cala[j-1].statusname+":"+(j+1)+"->"+j);
+					tellstatuschange(j,j,j+1);
+					tellstatuschange(j-1,j+1,j);
 				}
 			}
 			if(!exchange)
 				break;
 		}
-		countoff(1);
 	}
 	public void sortbycolor() {
 		System.out.println("二分法依照颜色排序");
@@ -100,7 +117,7 @@ class Management {
 			int left=0,right=i-1;
 			while(left<=right) {
 				int middle=(right+left)/2;
-				if(cala[i].color<cala[middle].color)
+				if(cala[i].colornumber()<cala[middle].colornumber())
 					right=middle-1;
 				else
 					left=middle+1;
@@ -111,18 +128,11 @@ class Management {
 				CalabashBrothers temp=cala[i];
 				for(int j=i;j>=left+1;j--) {
 					cala[j]=cala[j-1];
-					System.out.println(cala[j].colorname+":"+j+"->"+(j+1));
+					tellcolorchange(j,j,j+1);
 				}
 				cala[left]=temp;
-				System.out.println(cala[left].colorname+":"+(i+1)+"->"+(left+1));
+				tellcolorchange(left,i+1,left+1);
 			}
-		}
-		countoff(2);
-	}
-	Management(){
-		for(int i=0;i<7;i++) {
-			cala[i]=new CalabashBrothers();
-			cala[i].set(i+1);
 		}
 	}
 }
@@ -130,9 +140,17 @@ class Management {
 public class CalabashBrothersManagement{
 	public static void main(String[] args) {
 		Management m=new Management();
-		m.randomize(1);
+		m.randomize();
+		System.out.print("随机化结果: ");
+		m.countoff(1);
 		m.sortbystatus();
-		m.randomize(2);
+		System.out.print("排序结果: ");
+		m.countoff(1);
+		m.randomize();
+		System.out.print("随机化结果: ");
+		m.countoff(2);
 		m.sortbycolor();
+		System.out.print("排序结果: ");
+		m.countoff(2);
 	}
 }
