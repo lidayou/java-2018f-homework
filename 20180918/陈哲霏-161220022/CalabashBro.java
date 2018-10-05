@@ -1,8 +1,9 @@
-public class Calabash {
+public enum CalabashBro {
+    FIRST(1), SECOND(2), THIRD(3), FOURTH(4), FIFTH(5), SIXTH(6), SEVENTH(7);
     private int broNum;
     private String broName;
     private String broColor;
-    Calabash(int num){
+    CalabashBro(int num){
         switch(num){
             case 1:
                 broNum = 1; broName = "老大"; broColor = "赤"; break;
@@ -18,7 +19,7 @@ public class Calabash {
                 broNum = 6; broName = "老六"; broColor = "蓝"; break;
             case 7:
                 broNum = 7; broName = "老七"; broColor = "紫"; break;
-            default: System.out.println("初始化错误！num应在1-7之间"); break;
+//            default: System.out.println("葫芦娃只有七个！num应在1-7之间"); break;
         }
     }
     int getBroNum(){
