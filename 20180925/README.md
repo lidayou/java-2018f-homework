@@ -1,19 +1,38 @@
-# 作业：面向葫芦娃编程
+# 程序说明
 
-葫芦娃有七兄弟（没看过的请参考[豆瓣](https://movie.douban.com/subject/1428576/)）。红娃排行老大、橙娃排行老二、黄娃排行老三、绿娃排行老四、青娃排行老五、蓝娃排行老六、紫娃排行老七，七兄弟各有一身独特的本领。故事中还有其他主配角，包括老爷爷、蛇精、蝎子精、小喽啰等。
+###1.类的划分
+(1)Creature类：各种生物的基类，定义生物的基本属性，诸如类型、名字等等。其子类包括Brothers类、Grandpa类、Scorpion类、Snake类、Minions类等，分别表示葫芦娃、爷爷、蝎子精、蛇精、喽啰等生物;
+(2)CalabashBrothers类：存储Brothers类的数组;
+(3)Block类：表示战场空间中一个单位空间，包含一个Creature类对象(存储该单位空间内的生物);
+(4)Troop类及TroopArray类：Troop类存储每个阵型的基本信息，包括名字、长度、宽度、所需数目及排布时各元素相对于基准偏移的横纵坐标，TroopArray类中则存储了一个Troop类数组，存储了已知各阵型的所有信息;
+(5)Battlefield类：主类，用于完成战场和双方阵营的实例化，以及对战的过程，包含Creature类中诸多对象，Block类的二维数组，TroopArray类的对象.
 
-![葫芦兄弟](http://english.cri.cn/mmsource/images/2009/06/24/4634carton1.jpg)
+###2.类方法的实现
+(1)Creature类及其子类：输出自身信息，基类中输出生物不存在的信息，各子类中覆盖为自己的输出方法;
+```java
+public void printinfo()
+```
+(2)CalabashBrothers类：Brothers类数组的初始乱序，排序算法，输出数组的信息;
+```java
+public void RandomArray()
+public void BubbleSort()
+public void ShowRank()
+```
+(3)TroopArray类：Troop类数组的初始化，根据序号返回对应的阵型信息;
+```java
+TroopArray() 
+public Troop choose(int i)
+```
+(4)Block类：所拥有Creature类成员的放置、清空及信息输出;
+```java
+public void init()
+public boolean put()
+public void print()
+```
+(5)Battlefield类：葫芦娃、爷爷一方及蝎子、喽啰、蛇精一方阵型的放置，战场信息的打印;
+```java
+public void Calabashtroop(int x, int y)
+public void Monstertroop(int x, int y, int select)
+public void Showbattle()
+```
 
-请用**面向对象编程方法**，以Java语言编写程序，实现以下过程:
-1. 假设存在一个`NxN`的二维空间（`N>10`)，该空间中的任意一个位置坐标上可站立一个生物体（葫芦娃、老爷爷、蛇精、蝎子精、小喽啰均属于生物体）；
-2. 请让初始乱序的七个兄弟按下图所示阵型中的长蛇形依序（老大至老七）站队；
-3. 请在图中选择一个阵型（长蛇除外）让蝎子精领若干小喽啰站队；
-4. 将葫芦兄弟的长蛇阵营和蝎子精小喽啰阵营放置于二位空间中，形成对峙局面；
-5. 请选择合适位置将老爷爷和蛇精放置于空间中，为各自一方加油助威；
-6. 将上述对峙局面打印输出；
-7. 请让蝎子精小喽啰阵营变换一个阵法（长蛇除外），重复4-6步。
-
-![阵法](http://www.jingduzhisheng.com/wsxs/201609/12/W020160912537837823809.jpg)
-
-
-完成后按照作业提交要求和流程，完成作业提交。各人在自己作业目录中除代码外，请添加一个README.md文件，用markdown语法以文字说明所写代码中用到哪些面向对象的概念、机制、设计理念等，并阐述这样做的好处。
