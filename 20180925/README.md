@@ -1,5 +1,4 @@
 # 程序说明
-
 ###1.类的划分
 (1)Creature类：各种生物的基类，定义生物的基本属性，诸如类型、名字等等。其子类包括Brothers类、Grandpa类、Scorpion类、Snake类、Minions类等，分别表示葫芦娃、爷爷、蝎子精、蛇精、喽啰等生物;
 (2)CalabashBrothers类：存储Brothers类的数组;
