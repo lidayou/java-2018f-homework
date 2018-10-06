@@ -36,3 +36,6 @@ public void Monstertroop(int x, int y, int select)
 public void Showbattle()
 ```
 
+## 3.设计小结
+整个设计过程中，综合使用了继承、组合等多种面向对象的设计方法，提高了代码的复用率，在今后应去更好的学习运用面向对象的设计方法。
+
