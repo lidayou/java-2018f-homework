@@ -1,3 +1,5 @@
+package HuluPack;
+
 class HuluBrothers
 {
     private SingleHuluBrother[] Brothers;
@@ -13,6 +15,10 @@ class HuluBrothers
         Brothers[4] = new SingleHuluBrother(5);
         Brothers[5] = new SingleHuluBrother(6);
         Brothers[6] = new SingleHuluBrother(7);
+    }
+
+    public SingleHuluBrother[] getBrothersByArray() {
+        return Brothers;
     }
 
     public SingleHuluBrother getBrother(int i)
