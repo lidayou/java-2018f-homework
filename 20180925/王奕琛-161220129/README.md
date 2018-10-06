@@ -64,7 +64,7 @@ public class Map {
 }    
 ```
 
-##用户设计
+## 用户设计
 在 `main`函数中提供给用户选择双方阵型的功能  
 ```
 Scanner src = new Scanner(System.in);
