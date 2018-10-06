@@ -13,25 +13,25 @@ public class Calabash {
 		this.color = color;
 		switch (color) {
 		case RED:
-			name = "老大";
+			name = "鑰佸ぇ";
 			break;
 		case ORANGE:
-			name = "老二";
+			name = "鑰佷簩";
 			break;
 		case YELLOW:
-			name = "老三";
+			name = "鑰佷笁";
 			break;
 		case GREEN:
-			name = "老四";
+			name = "鑰佸洓";
 			break;
 		case CYAN:
-			name = "老五";
+			name = "鑰佷簲";
 			break;
 		case BLUE:
-			name = "老六";
+			name = "鑰佸叚";
 			break;
 		case PURPLE:
-			name = "老七";
+			name = "鑰佷竷";
 			break;
 		default:
 			break;
