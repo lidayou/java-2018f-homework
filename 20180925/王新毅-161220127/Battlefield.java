@@ -9,6 +9,9 @@ class Creature{
         this.type = Type.NONEXISTENET;
         this.flag = false;
     }
+    public void printinfo(){
+        System.out.print("口口");
+    }
 }
 
 enum Color{红色, 橙色, 黄色, 绿色,  青色, 蓝色, 紫色}
@@ -35,6 +38,10 @@ class Brothers extends Creature{
         return this.color;
     }
     public String Getname(){return this.name;}
+    @Override
+    public void printinfo(){
+        System.out.print(this.name);
+    }
 }
 class CalabashBrothers {
     private final int NUM = 7;
@@ -80,6 +87,10 @@ class Grandpa extends Creature{
         this.flag = true;
         this.name = "爷爷";
     }
+    @Override
+    public void printinfo(){
+        System.out.print(this.name);
+    }
 }
 
 class Scorpion extends Creature{
@@ -87,6 +98,10 @@ class Scorpion extends Creature{
         this.type = Type.SCORPION;
         this.flag = true;
         this.name = "蝎子";
+    }
+    @Override
+    public void printinfo(){
+        System.out.print(this.name);
     }
 }
 
@@ -96,6 +111,10 @@ class Snake extends Creature{
         this.flag = true;
         this.name = "蛇精";
     }
+    @Override
+    public void printinfo(){
+        System.out.print(this.name);
+    }
 }
 
 class Minions extends Creature{
@@ -104,32 +123,23 @@ class Minions extends Creature{
         this.flag = true;
         this.name = "喽啰";
     }
+    @Override
+    public void printinfo(){
+        System.out.print(this.name);
+    }
 }
 
-class Position{
-    public int x;
-    public int y;
-    Position(){
-        this.x = -1;
-        this.y = -1;
-    }
-    public void fill(int temp1, int temp2){
-        this.x = temp1;
-        this.y = temp2;
-    }
-}
+
 class Block{
     public Creature creature;
-    public Position position;
     public boolean empty;
     Block(){
         creature = new Creature();
-        position = new Position();
         empty = true;
     }
-    public void init(int temp1, int temp2){
-        this.position.x = temp1;
-        this.position.y = temp2;
+    public void init(){
+        creature = new Creature();
+        empty = true;
     }
     public boolean put(Creature crea){
         if(this.empty){
@@ -139,6 +149,9 @@ class Block{
         }
         else
             return false;
+    }
+    public void print(){
+        this.creature.printinfo();
     }
 }
 
@@ -240,8 +253,9 @@ class TroopArray{
         System.arraycopy(shapex7, 0, troops[7].x, 0, troops[7].num);
         System.arraycopy(shapey7, 0, troops[7].y, 0, troops[7].num);
     }
-
-
+    public Troop choose(int i) {
+        return troops[i];
+    }
 }
 
 public class Battlefield {
@@ -252,77 +266,71 @@ public class Battlefield {
     private Minions minion;
     private final int N = 20;
     private Block [][]battlefield = new Block[N][N];
-    private TroopArray temp;
+    private TroopArray trooparray;
+
     Battlefield(){
         calabash = new CalabashBrothers();
         grandpa = new Grandpa();
         scorpion = new Scorpion();
         snake = new Snake();
         minion = new Minions();
-        temp = new TroopArray();
+        trooparray = new TroopArray();
 
         for(int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 battlefield[i][j] = new Block();
-                battlefield[i][j].position.fill(i, j);
             }
         }
     }
     public void init(){
         for(int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                battlefield[i][j] = new Block();
-                battlefield[i][j].position.fill(i, j);
+                battlefield[i][j].init();
             }
         }
     }
 
     public void Calabashtroop(int x, int y){
-        for(int i = 0; i < 7; i ++){
-            battlefield[x+temp.troops[7].x[i]][y+temp.troops[7].y[i]].creature = calabash.brothers[i];
-            battlefield[x+temp.troops[7].x[i]][y+temp.troops[7].y[i]].empty = false;
 
+        Troop temp = trooparray.choose(7);
+        for(int i = 0; i < 7; i ++){
+            battlefield[x+temp.x[i]][y+temp.y[i]].put(calabash.brothers[i]);
         }
         int grand_x,grand_y;
-        grand_y = y + temp.troops[7].width/2;
-        if(x+temp.troops[7].length/2 > 9)
+        grand_y = y + temp.width/2;
+        if(x+temp.length/2 > 9)
             grand_x = x - 3;
         else
-            grand_x = x + temp.troops[7].length + 3;
-        battlefield[grand_x][grand_y].creature = grandpa;
-        battlefield[grand_x][grand_y].empty = false;
+            grand_x = x + temp.length + 3;
+        battlefield[grand_x][grand_y].put(grandpa);
 
     }
     public void Monstertroop(int x, int y, int select){
 
-        battlefield[x][y].creature = scorpion;
-        battlefield[x][y].empty = false;
-        for(int i = 1; i < temp.troops[select].num; i ++){
-            battlefield[x+temp.troops[select].x[i]][y+temp.troops[select].y[i]].creature = minion;
-            battlefield[x+temp.troops[select].x[i]][y+temp.troops[select].y[i]].empty = false;
+        Troop temp = trooparray.choose(select);
+
+        battlefield[x][y].put(scorpion);
+        for(int i = 1; i < temp.num; i ++){
+
+            battlefield[x+temp.x[i]][y+temp.y[i]].put(minion);
         }
 
         int snake_x,snake_y;
 
         snake_y = y;
 
-        if(x+temp.troops[select].length/2 > 9)
+        if(x+temp.length/2 > 9)
             snake_x = x - 3;
         else
-            snake_x = x + temp.troops[select].length + 3;
-        battlefield[snake_x][snake_y].creature = snake;
-        battlefield[snake_x][snake_y].empty = false;
+            snake_x = x + temp.length + 3;
+
+        battlefield[snake_x][snake_y].put(snake);
     }
 
     public void Showbattle(){
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N; j ++){
-                if(battlefield[i][j].empty) {
-                    System.out.print("口口");
-                }
-                else{
-                    System.out.print(battlefield[i][j].creature.name);
-                }
+                battlefield[i][j].print();
             }
             System.out.print("\n");
         }
