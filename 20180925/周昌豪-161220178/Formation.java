@@ -2,7 +2,7 @@ package Battle;
 
 enum FormationType
 {
-	/*阵型记录了 相对位置*/
+	/* 阵型记录了相对位置*/
 	ChangSe(Pos(0, 0), Pos(1, 0), Pos(2, 0), Pos(3, 0), Pos(4, 0), Pos(5, 0), Pos(6, 0)),
 	HeYi(Pos(0, 0), Pos(1, 1), Pos(2, 2), Pos(3, 3), Pos(4, 2), Pos(5, 1), Pos(6, 0)),
 	JianTu(Pos(0, 0), Pos(1, 0), Pos(1, 1), Pos(2, 2), Pos(3, 0), Pos(3, 1), Pos(4, 0)),
