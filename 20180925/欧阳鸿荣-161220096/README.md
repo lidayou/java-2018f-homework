@@ -11,14 +11,16 @@
 #### a.生物
 
 <div>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538837506349.png" width=70%>
+    <img src="images\1.png" width=70%>
 </div>
+
 
 #### b.阵法
 
 <div>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538837557005.png" width=100%>
+    <img src="images\2.png" width=100%>
 </div>
+
 
 
 
@@ -123,22 +125,24 @@ God类相当于一个调度器，用于控制各个生物类的创生以及各�
 #### a. CMD输出
 
 <div>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538840153617.png" width=60%>
+    <img src="images\3.png" width=60%>
 </div>
+
 
 #### b. GUI显示
 
 <div>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538840273003.png" width=50%>
+    <img src="images\4.png" width=50%>
  	<hr/>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538840380630.png" width=50%>
+    <img src="images\5.png" width=50%>
     <hr/>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538840422003.png" width=50%>
+    <img src="images\6.png" width=50%>
     <hr/>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538840465733.png" width=50%>
+    <img src="images\7.png" width=50%>
     <hr/>
-    <img src="C:\Users\89525\AppData\Roaming\Typora\typora-user-images\1538840285654.png" width=50%>
+    <img src="images\8.png" width=50%>
 </div>
+
 
 
 
