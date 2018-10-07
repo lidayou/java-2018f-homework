@@ -1,138 +1,135 @@
 import java.util.Random;
 
-class CalabashBrothers{
-	int status;
-	int color;
-	String statusname=new String();
-	String colorname=new String();
-	void set(int number){
-		status=color=number;
-		switch(status) {
-			case 1:statusname="ÀÏ´ó";colorname="ºìÉ«";break;
-			case 2:statusname="ÀÏ¶ş";colorname="³ÈÉ«";break;
-			case 3:statusname="ÀÏÈı";colorname="»ÆÉ«";break;
-			case 4:statusname="ÀÏËÄ";colorname="ÂÌÉ«";break;
-			case 5:statusname="ÀÏÎå";colorname="ÇàÉ«";break;
-			case 6:statusname="ÀÏÁù";colorname="À¶É«";break;
-			case 7:statusname="ÀÏÆß";colorname="×ÏÉ«";break;
-			default:System.out.println("nonexistent");
-		}
+enum CalabashBrother{
+	FIRST("è€å¤§","çº¢è‰²"),SECOND("è€äºŒ","æ©™è‰²"),THIRD("è€ä¸‰","é»„è‰²"),FOURTH("è€å››","ç»¿è‰²"),FIFTH("è€äº”","é’è‰²"),SIXTH("è€å…­","è“è‰²"),SEVENTH("è€ä¸ƒ","ç´«è‰²");
+	private String status;
+	private String color;
+	CalabashBrother(String status,String color){
+		this.status=status;
+		this.color=color;
 	}
-	void talk(int sc){
-		switch(sc) {
-			case 0:
-				System.out.println(statusname);break;
-			case 1:
-				System.out.println(colorname);break;
-			default:
-				System.out.println("nonexistent");
-		}
+	public void tellstatus() {
+		System.out.print(status);
+	}
+	public void tellcolor() {
+		System.out.print(color);
 	}
 }
 
-class Management {
-	CalabashBrothers[] cala=new CalabashBrothers[7];
-	public void randomize(int name) {
-		Random random=new Random();
-		for(int i=0;i<20;i++) {
-			int x=random.nextInt(6);
-			int y=random.nextInt(6);
-			if(x!=y) {
-				//½«xÎ»ÖÃºÍyÎ»ÖÃµÄºùÂ«ÍŞ½»»»
-				CalabashBrothers temp = cala[x];
-				cala[x]=cala[y];
-				cala[y]=temp;
-			}
-		}
-		System.out.print("Ëæ»úÅÅÁĞ:");
-		switch(name) {
-			case 1:{
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].statusname+" ");
-			}break;
-			case 2:{
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].colorname+" ");
-			}
-		}
-		System.out.println("");
+class CalabashBrothers{
+	public static final int len=7;
+	private CalabashBrother[] cala=new CalabashBrother[len];
+	public CalabashBrothers() {
+		for(int i=0;i<len;i++)
+			cala[i]=CalabashBrother.values()[i];
 	}
-	private void countoff(int name) {
-		System.out.print("ÅÅĞò½á¹û:");
-		switch(name) {
-			case 1:{
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].statusname);
-			}break;
-			case 2:{
-				for(int i=0;i<7;i++)
-					System.out.print(cala[i].colorname);
-			}break;
-			default:System.out.print("nonexistent");
-		}
-		System.out.println("");
+	public void swap(int i,int j) {
+		if(i<0||i>=len||j<0||j>=len)
+			System.out.println("error!");
+		CalabashBrother temp=cala[i];
+		cala[i]=cala[j];
+		cala[j]=temp;
+		tellmove(i,j);
+		tellmove(j,i);
 	}
-	public void sortbystatus() {
-		System.out.println("Ã°Åİ·¨ÒÀÕÕÅÅĞĞÅÅĞò");
+	private void tellmove(int x,int y) {
+		if(x<0||x>=len||y<0||y>=len)
+			System.out.println("error!");
+		cala[y].tellstatus();
+		System.out.println(":"+(x+1)+"->"+(y+1));
+	}
+	public boolean larger(int i,int j) {
+		return cala[i].ordinal()>cala[j].ordinal();
+	}
+	public void countoffbystatus() {
+		for(int i=0;i<len;i++)
+			cala[i].tellstatus();
+		System.out.println();
+	}
+	public void countoffbycolor() {
+		for(int i=0;i<len;i++)
+			cala[i].tellcolor();
+		System.out.println();
+	}
+
+}
+
+interface Sort{
+	public void sort(CalabashBrothers c);
+}
+
+class BubbleSort implements Sort{
+	public void sort(CalabashBrothers c) {
+		System.out.println("BubbleSort");
 		int i,j;
 		boolean exchange;
-		for(i=0;i<6;i++) {
+		int len=CalabashBrothers.len;
+		for(i=0;i<len-1;i++) {
 			exchange=false;
-			for(j=6;j>i;j--) {
-				if(cala[j].status<cala[j-1].status) {
-					CalabashBrothers temp=cala[j];
-					cala[j]=cala[j-1];
-					cala[j-1]=temp;
+			for(j=len-1;j>i;j--) {
+				if(c.larger(j-1,j)) {
+					c.swap(j-1, j);
 					exchange=true;
-					System.out.println(cala[j].statusname+":"+j+"->"+(j+1));
-					System.out.println(cala[j-1].statusname+":"+(j+1)+"->"+j);
 				}
 			}
 			if(!exchange)
 				break;
 		}
-		countoff(1);
 	}
-	public void sortbycolor() {
-		System.out.println("¶ş·Ö·¨ÒÀÕÕÑÕÉ«ÅÅĞò");
+}
+
+class BinarySort implements Sort{
+	public void sort(CalabashBrothers c) {
+		System.out.println("BinarySort");
 		int i;
-		for(i=1;i<7;i++) {
+		int len=CalabashBrothers.len;
+		for(i=1;i<len;i++) {
 			int left=0,right=i-1;
 			while(left<=right) {
 				int middle=(right+left)/2;
-				if(cala[i].color<cala[middle].color)
+				if(c.larger(middle, i))
 					right=middle-1;
 				else
 					left=middle+1;
 			}
-			//²åµ½leftÎ»ÖÃ
-			if(i!=left) {
-				//½«leftµ½i-1Ö®¼äµÄËùÓĞÊıÍùÓÒÒÆ
-				CalabashBrothers temp=cala[i];
-				for(int j=i;j>=left+1;j--) {
-					cala[j]=cala[j-1];
-					System.out.println(cala[j].colorname+":"+j+"->"+(j+1));
-				}
-				cala[left]=temp;
-				System.out.println(cala[left].colorname+":"+(i+1)+"->"+(left+1));
-			}
+			//æ’åˆ°leftä½ç½®
+			//ä»ié€ä¸ªäº¤æ¢åˆ°leftçš„ä½ç½®
+			for(int j=i;j>=left+1;j--)
+				c.swap(j,j-1);
 		}
-		countoff(2);
 	}
-	Management(){
-		for(int i=0;i<7;i++) {
-			cala[i]=new CalabashBrothers();
-			cala[i].set(i+1);
+}
+
+class Randomize implements Sort{
+	public void sort(CalabashBrothers c) {
+		Random random=new Random();
+		System.out.println("Randomizing...");
+		for(int i=0;i<10;i++) {
+			int x=random.nextInt(6);
+			int y=random.nextInt(6);
+			if(x!=y)
+				c.swap(x,y);
 		}
 	}
 }
 
 public class CalabashBrothersManagement{
 	public static void main(String[] args) {
-		Management m=new Management();
-		m.randomize(1);
-		m.sortbystatus();
-		m.randomize(2);
-		m.sortbycolor();
+		CalabashBrothers calabashbrothers=new CalabashBrothers();
+		Randomize randomize=new Randomize();
+		BubbleSort bubblesort=new BubbleSort();
+		BinarySort binarysort=new BinarySort();
+		randomize.sort(calabashbrothers);
+		System.out.print("Randomization result:");
+		calabashbrothers.countoffbystatus();
+		bubblesort.sort(calabashbrothers);
+		System.out.print("bubblesort result:");
+		calabashbrothers.countoffbystatus();
+		randomize.sort(calabashbrothers);
+		System.out.print("Randomization result:");
+		calabashbrothers.countoffbystatus();
+		binarysort.sort(calabashbrothers);
+		System.out.print("binarysort result:");
+		calabashbrothers.countoffbycolor();
 	}
 }
