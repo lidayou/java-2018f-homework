@@ -2,6 +2,8 @@ package calabashBrothers;
 
 import calabashBrothers.beings.Creature;
 
+import javax.swing.*;
+
 /**
  * @ Author     ：Young
  * @ Description：战场的地图，二维平面，每个点是一个Unit
@@ -53,7 +55,11 @@ public class Maps {
                         }break;
 
                         case MONSTER_LEADER:{
-                            System.out.print("L");
+                            if(tmp.getName().equals("蛇精")){
+                                System.out.print("S");
+                            }else{
+                                System.out.print("L");
+                            }
                         }break;
                         default:{
                             System.out.println("类型出错");

@@ -58,34 +58,30 @@ public class BattleField {
     void ShowBattleField(Maps maps) {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                String picPath=new String();
+                ImageIcon  icon = new ImageIcon("");
                 if(maps.getMaps()[i][j].getCreature()!=null){
                     Creature tmp = maps.getMaps()[i][j].getCreature();
                     switch (tmp.getType()){
                         case CALABASH_BOY:{
                             int rank = nameToRank.get(tmp.getName()) + 1;
 //                            System.out.println(rank);
-                            picPath = System.getProperty("user.dir")+ "\\src\\static\\pic\\"+rank+".jpg";
-//                            picPath = "F:\\大三上\\JAVA程序设计\\hw3_BattleField\\src\\static\\pic\\"+rank+".jpg";
+                            icon = new ImageIcon(this.getClass().getResource("/"+rank+".jpg"));
                         }break;
 
                         case HUMAN_BEING:{
-                            picPath = System.getProperty("user.dir")+ "\\src\\static\\pic\\grandpa.jpg";
-//                            picPath = "F:\\大三上\\JAVA程序设计\\hw3_BattleField\\src\\static\\pic\\grandpa.jpg";
+                            icon = new ImageIcon(this.getClass().getResource("/grandpa.jpg"));
                         }break;
 
                         case MONSTER:{
-                            picPath = System.getProperty("user.dir")+ "\\src\\static\\pic\\lolo.jpg";
-//                            picPath = "F:\\大三上\\JAVA程序设计\\hw3_BattleField\\src\\static\\pic\\lolo.jpg";
+                            icon = new ImageIcon(this.getClass().getResource("/lolo.jpg"));
                         }break;
 
                         case MONSTER_LEADER:{
                             if(tmp.getName().equals("蛇精")){
-                                picPath = System.getProperty("user.dir")+ "\\src\\static\\pic\\snake.jpg";
-//                                picPath = "F:\\大三上\\JAVA程序设计\\hw3_BattleField\\src\\static\\pic\\snake.jpg";
+                                icon = new ImageIcon(this.getClass().getResource("/snake.jpg"));
+
                             }else{
-                                picPath = System.getProperty("user.dir")+ "\\src\\static\\pic\\scorpion.jpg";
-//                                picPath = "F:\\大三上\\JAVA程序设计\\hw3_BattleField\\src\\static\\pic\\scorpion.jpg";
+                                icon = new ImageIcon(this.getClass().getResource("/scorpion.jpg"));
                             }
                         }break;
                         default:{
@@ -94,10 +90,8 @@ public class BattleField {
 
                     }
                 }else{
-                    picPath = System.getProperty("user.dir")+ "\\src\\static\\pic\\back.jpg";
-//                    picPath = "F:\\大三上\\JAVA程序设计\\hw3_BattleField\\src\\static\\pic\\back.jpg";
+                    icon = new ImageIcon(this.getClass().getResource("/back.jpg"));
                 }
-                ImageIcon  icon = new ImageIcon(picPath);
                 icon.setImage(icon.getImage().getScaledInstance(size, size,0));
                 JLabel l = new JLabel(icon,JLabel.CENTER);
                 l.setSize(size, size);
@@ -109,6 +103,7 @@ public class BattleField {
 
         f.add(FitInBlank());            //添加标签
         f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }

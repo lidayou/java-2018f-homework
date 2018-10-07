@@ -4,7 +4,7 @@
 
 [TOC]
 
-（附：jar打包时使用的是绝对路径，使用相对路径打包时图片无法显示，助教可直接运行jar程序）
+（附：Version2 修复了jar包不能显示图片的问题，助教可在JDK1.8环境直接运行jar程序）
 
 ### 1.程序主要的UML图
 
@@ -125,8 +125,9 @@ God类相当于一个调度器，用于控制各个生物类的创生以及各�
 #### a. CMD输出
 
 <div>
-    <img src="images\3.png" width=60%>
+    <img src="images\3b.png" width=60%>
 </div>
+
 
 
 #### b. GUI显示

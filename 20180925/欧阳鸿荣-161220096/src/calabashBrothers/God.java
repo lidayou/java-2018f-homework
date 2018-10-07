@@ -69,9 +69,9 @@ public class God {
         //Round 1： 长蛇 vs 偃月
         cs.SetFormation(maps,boys,0);
         yy.SetFormation(maps,mons,0);
-        maps.showMaps();
         gp.CheeringUp(maps,7,1);
         sk.CheeringUp(maps,7,13);
+        maps.showMaps();
         bf.ShowBattleField(maps);
         maps.removeMaps();
         battleSleep(1000);
@@ -80,9 +80,9 @@ public class God {
         bf.ClearBattleField();  //清理战场 准备回合2
         cs.SetFormation(maps,boys,0);
         yl.SetFormation(maps,mons,0);
-        maps.showMaps();
         gp.CheeringUp(maps,7,1);
         sk.CheeringUp(maps,7,13);
+        maps.showMaps();
         bf.ShowBattleField(maps);
         maps.removeMaps();
         battleSleep(1000);
@@ -91,9 +91,9 @@ public class God {
         bf.ClearBattleField();  //清理战场 准备回合2
         ce.SetFormation(maps,boys,0);
         yl.SetFormation(maps,mons,0);
-        maps.showMaps();
         gp.CheeringUp(maps,7,1);
         sk.CheeringUp(maps,7,13);
+        maps.showMaps();
         bf.ShowBattleField(maps);
         maps.removeMaps();
         battleSleep(1000);
@@ -102,9 +102,9 @@ public class God {
         bf.ClearBattleField();  //清理战场 准备回合2
         hy.SetFormation(maps,boys,0);
         fs.SetFormation(maps,mons,0);
-        maps.showMaps();
         gp.CheeringUp(maps,7,1);
         sk.CheeringUp(maps,7,13);
+        maps.showMaps();
         bf.ShowBattleField(maps);
         maps.removeMaps();
         battleSleep(1000);
@@ -113,9 +113,9 @@ public class God {
         bf.ClearBattleField();  //清理战场 准备回合2
         yx.SetFormation(maps,boys,0);
         fy.SetFormation(maps,mons,0);
-        maps.showMaps();
         gp.CheeringUp(maps,7,1);
         sk.CheeringUp(maps,7,10);
+        maps.showMaps();
         bf.ShowBattleField(maps);
         maps.removeMaps();
         battleSleep(1000);
