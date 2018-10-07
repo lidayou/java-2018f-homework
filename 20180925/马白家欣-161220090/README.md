@@ -9,7 +9,13 @@
 
 1.   *.jar文件直接运行可看到程序运行效果
 
-2.   尚未解决：每进行一轮显示，窗口会发生一次闪烁
+## 效果展示
+
+![picture1](E:\study\004大三上\Java程序设计\java-2018f-homework\20180925\马白家欣-161220090\image\picture1.JPG)
+
+
+
+![picture2](E:\study\004大三上\Java程序设计\java-2018f-homework\20180925\马白家欣-161220090\image\picture2.JPG)
 
 # 迭代1(2018.09.27)
 

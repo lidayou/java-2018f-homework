@@ -25,6 +25,9 @@ public class BattleField {
         }
 
         frame = new JFrame();
+        frame.setSize(FIELD_SIZE * (ICON_SIZE + 2 * BORDER_THICKNESS),
+                FIELD_SIZE * (ICON_SIZE + 2 * BORDER_THICKNESS) + 20);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void setBattleFieldLattice(Position position, CartoonCharacterInfo cartoonCharacterInfo) {
@@ -65,13 +68,9 @@ public class BattleField {
             System.out.println();
         } else {
 
-            frame.setSize(FIELD_SIZE * (ICON_SIZE + 2 * BORDER_THICKNESS),
-                    FIELD_SIZE * (ICON_SIZE + 2 * BORDER_THICKNESS));
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
             JPanel panel = (JPanel) frame.getContentPane();
+            panel.setLayout(new BorderLayout());
             panel.removeAll();
-            panel.setLayout(null);
 
             for(int i = 0; i < FIELD_SIZE ; i++)
             {
@@ -84,11 +83,13 @@ public class BattleField {
                     JLabel label = new JLabel(icon);
                     label.setBorder(BorderFactory.createLineBorder(Color.black, BORDER_THICKNESS));
                     label.setBounds(j * ICON_SIZE,i * ICON_SIZE,ICON_SIZE,ICON_SIZE);
-                    panel.add(label);
+                    frame.add(label);
                 }
             }
 
-            frame.setVisible(false);
+            frame.add(new JLabel());//处于某种不确定的原因，最后一个frame在panel.setLayout的参数不为null的时候会无法加入frame
+
+//            frame.setVisible(false);
             frame.setVisible(true);
 
             try {
