@@ -59,10 +59,14 @@ public class ChessBoard {
         for(int i = 0; i < 7; i++){
             chessBoardView[arr[i].getPosX()][arr[i].getPosY()].changeTaken(false);
             chessBoardView[arr[i].getPosX()][arr[i].getPosY()].changeTakenByMonster(false);
+            if(chessBoardView[arr[i].getPosX()][arr[i].getPosY()].getTakenByScorpion())
+                chessBoardView[arr[i].getPosX()][arr[i].getPosY()].changeTakenByScorpion(false);
             arr[i].changePosX(i);
             arr[i].changePosY(12);
             chessBoardView[i][12].changeTaken(true);
-            chessBoardView[i][12].changeTakenByMonster(true);
+            if(arr[i].name == "蝎子精")
+                chessBoardView[i][12].changeTakenByScorpion(true);
+            else chessBoardView[i][12].changeTakenByMonster(true);
         }
     }
 
@@ -70,10 +74,15 @@ public class ChessBoard {
         for(int i = 0; i < 7; i++){
             chessBoardView[arr[i].getPosX()][arr[i].getPosY()].changeTaken(false);
             chessBoardView[arr[i].getPosX()][arr[i].getPosY()].changeTakenByMonster(false);
+            if(chessBoardView[arr[i].getPosX()][arr[i].getPosY()].getTakenByScorpion())
+                chessBoardView[arr[i].getPosX()][arr[i].getPosY()].changeTakenByScorpion(false);
             arr[i].changePosX(i);
             arr[i].changePosY(12 - (i % 2));
             chessBoardView[i][12 - (i % 2)].changeTaken(true);
-            chessBoardView[i][12 - (i % 2)].changeTakenByMonster(true);
+            if(arr[i].name == "蝎子精")
+                chessBoardView[i][12 - (i % 2)].changeTakenByScorpion(true);
+            else chessBoardView[i][12 - (i % 2)].changeTakenByMonster(true);
+
         }
     }
 
