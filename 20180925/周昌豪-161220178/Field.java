@@ -6,7 +6,7 @@ public class Field
 	
 	public static final int PlantSize = 10;
 	
-	/*Field构造器,*****对每个位置new一个Tile*****？？？？？*/
+	/*Field构造器,对每个位置new一个Tile*/
 	public Field()
 	{
 		plant = new Tile[PlantSize][PlantSize];
