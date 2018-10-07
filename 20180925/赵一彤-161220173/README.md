@@ -19,6 +19,6 @@ public class Battlefield {
     ......
 }
 ```
-**packeage**:将与生物的class和与战场有关的class放在不同的package中，便于组织管理与控制访问。<br>
-##运行效果
+**package**：将与生物的class和与战场有关的class放在不同的package中，便于组织管理与控制访问。
+## 运行效果
 ![](image/result.png)
