@@ -11,11 +11,11 @@
 
 ## 效果展示
 
-![picture1](E:\study\004大三上\Java程序设计\java-2018f-homework\20180925\马白家欣-161220090\image\picture1.JPG)
+![picture1](.\image\picture1.JPG)
 
 
 
-![picture2](E:\study\004大三上\Java程序设计\java-2018f-homework\20180925\马白家欣-161220090\image\picture2.JPG)
+![picture2](.\image\picture2.JPG)
 
 # 迭代1(2018.09.27)
 
