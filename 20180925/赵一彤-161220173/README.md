@@ -1,6 +1,6 @@
 # 实验报告
 ## 文件结构
-这次作业文件比较多，将它们放在不同的package里可以较好地组织管理，控制访问。
+这次作业文件比较多，将它们放在不同的package里可以较好地组织管理，控制访问。<br>
 <div align=center>
 <img src="https://github.com/SyntaxError031/java-2018f-homework/tree/master/20180925/%E8%B5%B5%E4%B8%80%E5%BD%A4-161220173/image/structure.png" />
 </div>
