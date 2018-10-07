@@ -1,13 +1,13 @@
 # 0925作业说明
 
-##代码的说明
-###关于战场的类
+## 代码的说明
+### 关于战场的类
     BattleField BF = new BattleField();//创建战场
 **BattleField**是一个类，里面包含了N*N个坐标对象，具有显示战场、清空战场的功能。
 
 **Coordinate**是一个类，里面包含了X,Y坐标，以及一个Tite对象和empty标志着此坐标是否为空。
 
-###关于人物的类
+### 关于人物的类
     HuluBrothers HuluFamily = new HuluBrothers();//产生葫芦娃兄弟
     Sort.RandomChange(HuluFamily.Hulu);//乱序排列
 **HuluBrothers**是一个类，里面包含了7个葫芦娃HuluBrother的类，具有报名字、报颜色的功能。
@@ -41,7 +41,7 @@
 	public class YuLin implements Formation{...}
 分别实现了八个队形的类，有判断位置是否为空以及放置人物的功能。
 
-##设计理念
+## 设计理念
 1. 因为有五种人物，所以就设置五种人物分别为Tite类的继承，这样他们都会有相同的属性，也属于同一大类里面，即有面向对象的理念。
 2. 创建一个战场，里面有若干个坐标，每个坐标都可以放置一个人物，战场的功能只是显示和清空，坐标可以打印自己位置上人物的名字。
 3. 变换队形，在main函数里面可以进行选择需要的队形，并输入蝎子精的坐标，对应的队形就队形相应的对象里面实现相应的操作，即可不断的变化小喽啰的队形。
@@ -56,7 +56,7 @@
                 case 6: louluoFengShi.SetTites(BF.Field,XieZix,XieZiy,LouluoMonsters.monsters);break;//将妖怪们设置成锋失类型
                 default: System.out.println("请输入正确选项");
             }
-##程序操作
+## 程序操作
 按程序中所给提示，依次输入战斗次数、葫芦娃领队坐标、选择小喽啰队形、蝎子精坐标、爷爷坐标、蛇精坐标即可进行一轮战斗。
 
 下一次战斗即从葫芦娃领队坐标重新进行输入。
