@@ -11,11 +11,15 @@
 
 ## 效果展示
 
-![picture1](.\image\picture1.JPG)
+<div>
+    <img src = "image\picture1.JPG">
+</div>
 
 
 
-![picture2](.\image\picture2.JPG)
+<div>
+    <img src = "image\picture2.JPG">
+</div>
 
 # 迭代1(2018.09.27)
 
