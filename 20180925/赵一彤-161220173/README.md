@@ -1,7 +1,7 @@
 # 实验报告
 ## 文件结构
 这次作业文件比较多，将它们放在不同的package里可以较好地组织管理，控制访问。
-![](/image/structure.png)
+![](image/structure.png)
 ## UML图
 ![](/image/UML.png)
 ## 相关说明
@@ -21,4 +21,4 @@ public class Battlefield {
 ```
 **packeage**:将与生物的class和与战场有关的class放在不同的package中，便于组织管理与控制访问。
 ##运行效果
-![](/image/result.png)
+![](image/result.png)
