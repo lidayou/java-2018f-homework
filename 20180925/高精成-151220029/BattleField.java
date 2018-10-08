@@ -3,7 +3,6 @@ public class BattleField {
     //存在一个战场，用二维数组表示
     BattleField() {
         battleField = new char[15][15];
-
         for (int i = 0; i < battleField.length; i++) {
             for (int j = 0; j < battleField[i].length; j++) {
                 battleField[i][j] = ' ';
