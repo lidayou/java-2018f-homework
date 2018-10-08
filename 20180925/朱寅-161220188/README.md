@@ -1,7 +1,7 @@
 #整体构建
-1. CalabashBrother.java
+1. CalabashBrother.java;
 	1.用于声明葫芦娃的种类，这个部分和延用了上一个作业的枚举变量，作为葫芦娃的种类存在，并可之后修改
-2. Coordinate.java
+2. Coordinate.java;
 	1.用于产生坐标相关信息
 	2.hashLoc() 生成哈希的对应地址
 3. Battlefield.java
