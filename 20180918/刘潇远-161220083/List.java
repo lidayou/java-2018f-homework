@@ -1,20 +1,21 @@
 import java.io.*;
-enum CalabashBrother{
+enum CalabashBrother{//ï¿½ã¶®ï¿½ï¿½
 	RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE;
-	String[] NAME = {"ÀÏ´ó", "ÀÏ¶ş", "ÀÏÈı", "ÀÏËÄ", "ÀÏÎå", "ÀÏÁù", "ÀÏÆß"};
-	String[] COLOR = {"³à", "³È", "»Æ", "ÂÌ", "Çà", "À¶", "×Ï"};
-	String getName() {
+	String[] NAME = {"è€å¤§", "è€äºŒ", "è€ä¸‰", "è€å››", "è€äº”", "è€å…­", "è€ä¸ƒ"};
+	String[] COLOR = {"èµ¤", "æ©™", "é»„", "ç»¿", "é’", "è“", "ç´«"};
+	String getName() {//è¿”å›æšä¸¾å˜é‡çš„NAME
 		return this.NAME[ordinal()];
 	}
-	String getColor() {
+	String getColor() {//è¿”å›æšä¸¾å˜é‡çš„COLOR
 		return this.COLOR[ordinal()];
 	}
 }
 
-class CalabashBrothers{
-	CalabashBrother[] calabashbrothers = new CalabashBrother[7];
+class CalabashBrothers{//
+	CalabashBrother[] calabashbrothers;
 	CalabashBrothers(){
-		Disorder();
+		calabashbrothers = new CalabashBrother[7];
+		Disorder();//æ— åºåˆå§‹åŒ–è‘«èŠ¦å…„å¼Ÿ
 /*
 		boolean[] existence= {false, false, false, false, false, false, false};
 		for(int i = 0; i < 7; i++) {
@@ -27,37 +28,37 @@ class CalabashBrothers{
 		}
 */
 	}
-	void SwapBrother(int index1, int index2) {
+	void SwapBrother(int index1, int index2) {//ä¸¤å…„å¼Ÿäº¤æ¢ä½ç½®
 		System.out.println(calabashbrothers[index1].getName()+":"+ index1 + "->" + index2);
 		System.out.println(calabashbrothers[index2].getName()+":" + index2 + "->" + index1);
 		CalabashBrother swaper = calabashbrothers[index1];
 		calabashbrothers[index1] = calabashbrothers[index2];
 		calabashbrothers[index2] = swaper;
 	}
-	CalabashBrother getBrother(int index) {
+	CalabashBrother getBrother(int index) {//è¿”å›indexä½ç½®çš„è‘«èŠ¦å¨ƒ
 		return calabashbrothers[index];
 	}
-	String getName(int index) {
+	String getName(int index) {//è¿”å›indexä½ç½®çš„è‘«èŠ¦å¨ƒåå­—
 		//System.out.print(calabashbrothers[index].getName());
 		return calabashbrothers[index].getName();
 	}
-	String getColor(int index) {
+	String getColor(int index) {//è¿”å›indexä½ç½®çš„è‘«èŠ¦å¨ƒé¢œè‰²
 		//System.out.print(calabashbrothers[index].getColor());
 		return calabashbrothers[index].getColor();
 	}
-	public void QueueNameStatus() {//°´ÃûÊä³ö¶ÓÁĞµ±Ç°Ğò
+	public void QueueNameStatus() {//æŒ‰åæŠ¥æ•°
 		for(int i = 0;i<7;i++) {
 			System.out.print(calabashbrothers[i].getName() + " ");
 		}
 		System.out.println("");
 	}
-	public void QueueColorStatus() {//°´ÑÕÉ«Êä³ö¶ÓÁĞµ±Ç°Ğò
+	public void QueueColorStatus() {//æŒ‰é¢œè‰²æŠ¥æ•°
 		for(int i = 0;i<7;i++) {
 			System.out.print(calabashbrothers[i].getColor() + " ");
 		}
 		System.out.println("");
 	}
-	public void Disorder() {
+	public void Disorder() {//æ— åºåŒ–
 		boolean[] existence= {false, false, false, false, false, false, false};
 		for(int i = 0; i < 7; i++) {
 			int tmp;
@@ -74,24 +75,24 @@ class Director{
 	/*
 	private CalabashBrothers calabashbrothers = new CalabashBrothers();
 	
-	public void QueueNameStatus() {//°´ÃûÊä³ö¶ÓÁĞµ±Ç°Ğò
+	public void QueueNameStatus() {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Ç°ï¿½ï¿½
 		for(int i = 0;i<7;i++) {
 			System.out.print(calabashbrothers.getName(i) + " ");
 		}
 	}
-	public void QueueColorStatus() {//°´ÑÕÉ«Êä³ö¶ÓÁĞµ±Ç°Ğò
+	public void QueueColorStatus() {//ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Ç°ï¿½ï¿½
 		for(int i = 0;i<7;i++) {
 			System.out.print(calabashbrothers.getColor(i) + " ");
 		}
 	}
 	*/
-	public void QueueNameStatus(CalabashBrothers calabashbrothers) {
+	public void QueueNameStatus(CalabashBrothers calabashbrothers) {//ä½¿æŒ‰åæŠ¥æ•°
 		calabashbrothers.QueueNameStatus();
 	}
-	public void QueueColorStatus(CalabashBrothers calabashbrothers) {
+	public void QueueColorStatus(CalabashBrothers calabashbrothers) {//ä½¿æŒ‰é¢œè‰²æŠ¥æ•°
 		calabashbrothers.QueueColorStatus();
 	}
-	public void BubbleSort(CalabashBrothers calabashbrothers) {
+	public void BubbleSort(CalabashBrothers calabashbrothers) {//ä»¥å†’æ³¡æ³•æŒ‡æŒ¥æ’åº
 		for(int i = 0; i < 7; i++) {
 			for(int j = 0; j < 6 - i; j++) {
 				if(calabashbrothers.getBrother(j).compareTo(calabashbrothers.getBrother(j + 1))>0) {
@@ -116,7 +117,7 @@ class Director{
 		//elements[i + 1] = pivot;
 		return i + 1;
 	}
-	public void QuickSort(CalabashBrothers calabashbrothers, int p, int r) {
+	public void QuickSort(CalabashBrothers calabashbrothers, int p, int r) {//ä»¥å¿«æ’æ³•æŒ‡æŒ¥æ’åº
 		if(p < r) {
 			int q = Partition(calabashbrothers, p, r);
 			QuickSort(calabashbrothers, p, q - 1);
