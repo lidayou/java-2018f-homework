@@ -29,4 +29,4 @@ private void storyTell() {
 ```
 
 ## 运行效果
-![效果图](https://github.com/Julius-c/java-2018f-homework/raw/master/img/cc.JPG)
+![效果图](https://raw.githubusercontent.com/wiki/Julius-c/java-2018f-homework/sample.jpg)
