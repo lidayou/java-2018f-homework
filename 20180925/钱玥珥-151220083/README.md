@@ -3,24 +3,24 @@
 ### 1、类
 #### 个体
 	将NXN空间中的个体看作是其在该空间中的特殊的存在意义，即在将空间分为NXN的部分后，个体对于其所占的部分的贡献。因此在我的思路中，个体不仅仅包含葫芦娃、蛇精等，空白本身也是个体。因此描述个体的枚举类型Member包括了空位置，七个葫芦娃,爷爷，蝎子精，喽啰和蛇精。即
-> enum Member {
->	EMPTY(" "),
->	RED("大娃"),
->	ORANGE("二娃"),
->	YELLOW("三娃"),
->	GREEN("四娃"),
->	CYAN("五娃"),
->	BLUE("六娃"),
->	PURPLE("七娃"),
->	GRANDFATHER("爷爷"),
->	SCORPION("蜈蚣精"),
->	SERPENT("蛇精"),
->	UNDERLING("喽啰");
->	Member(String name){
->		this.name=name;
->	}
->	String name;
-> };  
+> enum Member {  
+>	EMPTY(" "),  
+>	RED("大娃"),  
+>	ORANGE("二娃"),  
+>	YELLOW("三娃"),  
+>	GREEN("四娃"),  
+>	CYAN("五娃"),  
+>	BLUE("六娃"),  
+>	PURPLE("七娃"),  
+>	GRANDFATHER("爷爷"),  
+>	SCORPION("蜈蚣精"),   
+>	SERPENT("蛇精"),  
+>	UNDERLING("喽啰");  
+>	Member(String name){  
+>		this.name=name;  
+>	}  
+>	String name;  
+> };    
 
 #### 队列
 	队列包含了葫芦娃队列和蝎子精队列，其中葫芦娃队列固定长蛇阵，蝎子精队列的队形在余下的七个阵型中选择。对队列的要求是，在进入NXN的空间之前，先做好队形的调整，以便于与空间进行良好的交互。
@@ -33,13 +33,12 @@
 #### 个体与队列与空间
 	队列由个体构成。
 	与空间进行交流的主要是葫芦娃队列、蝎子精队列，蛇精个体和爷爷个体。以下两个函数分别用于描述并安排队列和个体进入空间。
->   public void enterQueue(Member [][]queue,int row,int col,Forces force); //此处的force是指势力，属于葫芦娃势力还是妖怪势力
+>   public void enterQueue(Member [][]queue,int row,int col,Forces force); //此处的force是指势力，属于葫芦娃势力还是妖怪势力  
 >	public void enter(Member member,Forces force);   
 
 #### 操控方式
 	用Control类来对个体、队列、空间的交互进行控制和描述，包括了创造队列、创造空间，要求队列重排、要求空间清场、使空间接纳队列等。
 	同时Control类还用于对用户表述空间的情况。  
 	
-### 界面展示
-![](pic\interface.JPG)
-如图，可通过按钮来切换妖怪阵型。
+### 3、软件使用方式
+	点击按钮“改变阵形”就能使妖怪队列的阵型改变。
