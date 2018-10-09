@@ -32,18 +32,40 @@ public class CalabashBrothers {
 # 战场(BattleField)
 用二维数组表示战场  
 `private char[][] battleField;`  
-定义了三个方法：  
+定义了三个方法:  
 **获取战场的二维数组**`public char[][] getBattleField()`  
 **打印战场的现状**`public void printTheBattle()`  
 **清扫战场**`public void cleanUpTheBattleFiled()`  
 # 阵法(Formation)
-实现的四个阵法:
+实现的四个阵法:  
 **鹤翼阵**`public void setCraneShapeBattleArray (Creature cre,BattleField battle)`  
 **雁行阵**`public void setGooseShapeBattleArray (Creature cre,BattleField battle)`  
 **锋矢阵**`public void setFrontalSagittalBattleArray (Creature cre,BattleField battle)`  
 **偃月阵**`public void setCrescentMoonShapeBattleArray (Creature cre,BattleField battle)`  
 # 排序器(Sort)
-排序器实现了一个简单的冒泡排序
+排序器实现了一个简单的冒泡排序调用容器  ```public void BubbleSort (Creature []cre)```
 # 监视器(Monitor)
-**监视器类似于上帝的一个角色，创造整个战场世界**  
+**监视器类似于上帝的一个角色，实例化各种对象,创造整个战场世界**  
+```java
+    BattleField battle;
+    Formation formation;
+    GrandfatherOfCalabash grandpa;
+    Snake snake;
+    Scorpion scorpion;
+    Underling underling;
+    CalabashBrothers calabashBrothers;
+    Monitor () {
+        battle = new BattleField();
+        grandpa = new GrandfatherOfCalabash();
+        snake = new Snake();
+        scorpion = new Scorpion();
+        underling = new Underling();
+        calabashBrothers = new CalabashBrothers();
+        formation = new Formation();
+    }
+```
+**另外有二个函数，处理战场```void set ()```和放置阵法```void start ()```**  
+# Main函数
 **Main函数是整个函数的入口**
+# 优点
+基于面向对象的设计原则，程序的可扩展性、易读性、安全性得到提高。将对象封装到类里面易于管理和保护代码安全。
