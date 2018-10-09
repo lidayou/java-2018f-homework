@@ -29,4 +29,8 @@ private void storyTell() {
 ```
 
 ## 运行效果
+<<<<<<< HEAD
 ![效果图](https://raw.githubusercontent.com/wiki/Julius-c/java-2018f-homework/sample.jpg)
+=======
+![效果图](https://github.com/Julius-c/java-2018f-homework/blob/master/20180925/%E9%99%88%E8%AF%9A-161240003/img/cc.JPG)
+>>>>>>> a8c9456f92a20b5234c7d1406e032567976def7e
