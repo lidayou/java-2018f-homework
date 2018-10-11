@@ -1,41 +1,40 @@
-import java.util.Arrays;
-public class sort {
-    //快速排序找spilit point
-    private static int Partition(int[] Array, int Start, int End){
-        int Pivot = Array[End];
-        int i = Start - 1;
-        for (int j = Start; j <= End - 1; j++){
-            if(Array[j] < Pivot){
+public class Sort{
+    // 快速排序找spilit point
+    private static int partition(int[] array, int start, int end){
+        int pivot = array[end];
+        int i = start - 1;
+        for (int j = start; j <= end - 1; j++){
+            if(array[j] < pivot){
                 i = i + 1;
-                int temp = Array[i];
-                Array[i] = Array[j];
-                Array[j] = temp;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
-        int temp = Array[i+1];
-        Array[i+1] = Array[End];
-        Array[End] = temp;
+        int temp = array[i+1];
+        array[i+1] = array[end];
+        array[end] = temp;
         return i + 1;
     }
-    //快速排序
-    private static void QuickSort(int[] Array, int Start, int End){
-        if(Start < End){
-            int SpilitPoint = Partition(Array, Start, End);
-            QuickSort(Array, Start, SpilitPoint-1);
-            QuickSort(Array, SpilitPoint+1, End);
+    // 快速排序
+    private static void quickSort(int[] array, int start, int end){
+        if(start < end){
+            int spilitPoint = partition(array, start, end);
+            quickSort(array, start, spilitPoint-1);
+            quickSort(array, spilitPoint+1, end);
         }
     }
-    //打印数组，空格分隔，结尾换行
-    private static void Print(int[] Array){
-        for(int i = 0; i < Array.length; i++){
-            System.out.print(Array[i]);
+    // 打印数组，空格分隔，结尾换行
+    private static void print(int[] array){
+        for(int i = 0; i < array.length; i++){
+            System.out.print(array[i]);
             System.out.print(' ');
         }
         System.out.print('\n');
     }
     public static void main(String[] args) {
-        int Numbers[] = {3,12,4,5,10,2,11,1,15,7,14,8,13,9,0,6};
-        QuickSort(Numbers,0,Numbers.length-1);
-        Print(Numbers);
+        int[] numbers = {3,12,4,5,10,2,11,1,15,8,13,9,0,7,14,6};
+        quickSort(numbers,0,numbers.length-1);
+        print(numbers);
     }
 }
