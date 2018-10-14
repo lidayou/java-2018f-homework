@@ -1,3 +1,5 @@
+package creature.fighter;
+
 public enum Attribute {
     FIRST(1,"大娃","红色"),
     SECOND(2,"二娃","橙色"),
