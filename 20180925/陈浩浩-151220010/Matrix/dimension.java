@@ -192,6 +192,13 @@ public class dimension {
         }
     }
     public void printMatrix(){
+        System.out.println("The CalashBoys is NUMBER.");
+        System.out.println("The Grandfather is G.");
+        System.out.println("The Scorpion is D.");
+        System.out.println("The Snake is S.");
+        System.out.println("The Frog is F.");
+        System.out.println("Input 5 to continue the next circulation.");
+        System.out.println("Input 0 to kill the program.");
         for (int i = 0; i < ROW; i ++){
             for (int j = 0; j < COL; j++){
                 switch(mat[i][j]){

@@ -40,11 +40,11 @@ public class CalabashBoys_2 {
             int length = input.nextInt();
             boolean bo = true;
             while (true){
-                if (length == 0){
+                if (length == 0){            //input 0 to kill
                     bo = false;
                     break;
                 }
-                else if (length == 5)
+                else if (length == 5)         //input 5 to continue next circulation
                     break;
                 else
                     length = input.nextInt();
