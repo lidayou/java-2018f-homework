@@ -32,8 +32,7 @@ public class dimension {
 ```
 **优点**  
 将数据及其操作进行封装，避免了对于数据随意更改，保障了数据的安全性，同时对于代码的抽象程度提高使得编程更易于理解。  
-复用  
----
+## 复用  
 ```java
 public void ValuationMonster(Scorpion Scor, Frog[] frog){}//蝎子精和蛤蟆精放进矩阵  
 ```
