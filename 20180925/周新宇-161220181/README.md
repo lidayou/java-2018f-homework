@@ -235,9 +235,7 @@ public void GoTo(int rowPosition,int columnPosition,Land oldLand,Land newLand);
 
 ### Final Output
 
-![屏幕快照 2018-10-15 下午8.21.17](/Users/njuzxy/Desktop/屏幕快照 2018-10-15 下午8.21.17.png)
-
-![屏幕快照 2018-10-15 下午8.21.25](/Users/njuzxy/Desktop/屏幕快照 2018-10-15 下午8.21.25.png)
+Run it!
 
 
 
