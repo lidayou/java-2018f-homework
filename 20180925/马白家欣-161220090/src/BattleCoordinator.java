@@ -75,13 +75,6 @@ public class BattleCoordinator {
             Formation.changeFormation(Formation.values()[formationNumber],
                     newPosition.evilPosition, newPosition.justicePosition, battleField);
             battleField.printBattleField();
-
-//            try {
-//                Thread.sleep(1000);
-//            } catch (Exception e) {
-//                System.out.println("[ERROR] In BattleGoOn()");
-//                System.exit(0);//退出程序
-//            }
         }
     }
 }
