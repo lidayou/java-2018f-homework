@@ -1,3 +1,28 @@
+# 迭代2(2018.10.07)
+
+## 新增功能
+
+1. CartoonCharacter的显示变成了图形显示
+2. 保留迭代1“功能2”，可通过改变public class BattleField中的GRAPHICAL_DISPLAY变量选择是否进行图形化显示，非图形化显示只用于debug
+
+## 其它说明
+
+1.   *.jar文件直接运行可看到程序运行效果
+
+## 效果展示
+
+<div>
+    <img src = "image\picture1.JPG">
+</div>
+
+
+
+<div>
+    <img src = "image\picture2.JPG">
+</div>
+
+# 迭代1(2018.09.27)
+
 ## 注意
 
 1. 如果需要在命令行运行，需要加上参数 -ea，用来启用assert，当然如果你希望一些能发现重要错误的assert无效的话以此使得程序能不受中断持续运行，那么可以不添加这个参数
