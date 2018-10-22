@@ -1,6 +1,6 @@
-package com.company.Tite;
+package com.company.Creature;
 
-import com.company.Tite.HuluBrother;
+import com.company.Creature.HuluBrother;
 
 public class HuluBrothers {
     public HuluBrother[] Hulu = new HuluBrother[7];//初始化构造七个葫芦娃

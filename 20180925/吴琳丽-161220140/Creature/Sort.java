@@ -1,5 +1,5 @@
-package com.company.Tite;
-import com.company.Tite.HuluBrother;
+package com.company.Creature;
+import com.company.Creature.HuluBrother;
 
 import java.util.Random;
 
