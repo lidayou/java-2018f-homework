@@ -1,24 +1,27 @@
-package com.company.Tite;
+package com.company.Creature;
 
-import com.company.Tite.Color;
-import com.company.Tite.Human;
-
-public class Tite {
+public class Creature {
     public String name;
-    public Tite(){
+    public Creature( ){
         name="NULL";
     }
-    public void TitePrintName(){
+    void setName(String a){
+        name = a;
+    }
+    public void Cheers(){
+            System.out.print("Cheers");
+    }
+    public void CreaturePrintName(){
         System.out.print(name+" ");
     }
 }
 
-class HuluBrother extends Tite{
+class HuluBrother extends Creature{
     private Human HumanHulu;
     public Color color;
     HuluBrother(){
         HumanHulu = Human.ONE;
-        name = HumanHulu.getName();
+        super.setName( HumanHulu.getName());
         color = HumanHulu.getColor();
     }
     HuluBrother(int i){
@@ -27,7 +30,7 @@ class HuluBrother extends Tite{
                 HumanHulu = c;
             }
         }
-        name = HumanHulu.getName();
+        super.setName(HumanHulu.getName());
         color = HumanHulu.getColor();
     }
     public int TellOrdinal(){
@@ -43,15 +46,15 @@ class HuluBrother extends Tite{
 }
 
 
-class LouLuo extends Tite{
+class LouLuo extends Creature{
     LouLuo(){
-        name="小喽啰";
+        super.setName("小喽啰");
     }
 }
 
-class XieZi extends Tite{
+class XieZi extends Creature{
     XieZi(){
-        name="蝎子精";
+        super.setName("蝎子精");
     }
 }
 

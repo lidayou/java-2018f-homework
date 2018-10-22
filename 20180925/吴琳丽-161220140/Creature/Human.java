@@ -1,4 +1,4 @@
-package com.company.Tite;
+package com.company.Creature;
 
 enum Color{
     RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, VIOLET
