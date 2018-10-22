@@ -27,8 +27,8 @@ public class Game {
                 new Monster("小喽啰", "*"),
         };
 
-        Leader grandpa = new Leader("爷爷", "$");
-        Leader snaker = new Leader("蛇精", "&");
+        Leader grandpa = new Leader("爷爷");
+        Leader snaker = new Leader("蛇精");
 
         initializeFormation(snaker, grandpa);
 
