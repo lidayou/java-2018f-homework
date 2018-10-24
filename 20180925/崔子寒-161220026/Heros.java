@@ -1,13 +1,14 @@
-import java.util.*;
-public class Heroes {
-    private CalabashBrother[] calabashBrothers = new CalabashBrother[7];
-    private GrandFather grandFather;
-    public Heroes() {
-        for(int i = 0;i < 7; i++) {
-            calabashBrothers[i] = new CalabashBrother(i);
-        }
-        grandFather = new GrandFather();
-    }
+import Attributes.Color;
+import Creatures.Grandfather;
+import Creatures.CalabashBrother;
+import java.util.Random;
+
+public class Heros {
+    private CalabashBrother[] calabashBrothers={new CalabashBrother(Color.RED),new CalabashBrother(Color.ORANGE),
+            new CalabashBrother(Color.YELLOW), new CalabashBrother(Color.GREEN),new CalabashBrother(Color.BLUE),
+            new CalabashBrother(Color.CYAN),new CalabashBrother(Color.PURPLE),};
+    private Grandfather grandfather = new Grandfather();
+
     /*shuffle randomly*/
     public void shuffle() {
         Random rand = new Random() ;
@@ -18,8 +19,9 @@ public class Heroes {
             calabashBrothers[6 - i] = temp;
         }
     }
-    /*line up and enter the battlefield*/ 
-    public void lineUp(Battlefield battlefield) {
+
+    /*line up */
+    public void lineUp() {
         shuffle();
         System.out.print("葫芦娃初始状态：");
         for(CalabashBrother x:calabashBrothers){
@@ -28,24 +30,20 @@ public class Heroes {
         System.out.println("\n准备列队");
         Mysort.myBubbleSort(calabashBrothers);
 
-        for(int i = 0;i < 7;i++) {
-            Position positionOfCala = new Position(i+1, 17);
-            calabashBrothers[i].move(battlefield,positionOfCala);
+        System.out.print("葫芦娃列队完毕：");
+        for(CalabashBrother x:calabashBrothers){
+            System.out.print(x.getColor().getName()+" ");
         }
-        Random rand = new Random();
-        int temp_x = 3+rand.nextInt(4);
-        Position positionOfGrandfater = new Position(temp_x, 19);
-        grandFather.move(battlefield, positionOfGrandfater);
+        System.out.println();
     }
 
-/*
-    public static void main(String[] args) {
-        Battlefield battlefield = new Battlefield();
-        Heroes heroes = new Heroes();
-        heroes.lineUp(battlefield);
-        battlefield.print();
+    public Grandfather getGrandfather() {
+        return grandfather;
     }
-*/
+
+    public CalabashBrother[] getCalabashBrothers() {
+        return calabashBrothers;
+    }
 }
 
 class Mysort {
