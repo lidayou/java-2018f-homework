@@ -3,7 +3,7 @@
 在我设计的世界中，有两种基本类型的元素，一种是生物元素，一种是环境元素。生物元素就是包括好人（*葫芦娃*、*爷爷*），坏人（*蛇精*、*蝎子精*、*小喽啰*）在内的各种生命体；环境元素就是*战斗本身*，*战场*，*排序器*，*阵型*等。好人和坏人阵营各有一个领导者，分别为爷爷和蛇精，由他们来指挥所属阵营生物的排兵布阵。其他生物在接到他们的指令后，便会主动移动到相应的位置上。初始时，葫芦娃兄弟在作业2中排序控制器的指挥下，按颜色排序。根据题目要求，好人阵营中葫芦娃的阵型不变，只有爷爷的位置会变，而坏人阵营中所有生物的位置都要变动，因此，我设计坏人在伪方阵（钻石阵）和衡轭阵间切换。
 ## 类说明
 ### 生物包(Package Creature)
-1. Creature
+1. **Creature**
 描述普适性的生物概念，是所有生物元素的基类
 ```
 public class Creature {
@@ -20,7 +20,7 @@ public class Creature {
     public int getY(); //获取生物的y坐标
 }
 ```
-2. CalabashBrother
+2. **CalabashBrother**
 描述葫芦娃，除了继承自Creature类的属性外，还有位次和颜色两种重要的属性，用两种枚举类来描述，属性域见代码。
 ```
 public class CalabashBrother extends Creature {
@@ -40,7 +40,7 @@ public class CalabashBrother extends Creature {
     public void printCol(); //打印葫芦娃的颜色信息
 }
 ```
-3. Monster
+3. **Monster**
 描述蝎子精、小喽啰等具有战斗属性的坏人，除了继承自Creature类的属性外，还有名称属性
 ```
 public class Monster extends Creature {
@@ -49,22 +49,22 @@ public class Monster extends Creature {
     public Monster(String argName, String argSign); //用于初始化一个坏人的信息
 }
 ```
-4. Leader
+4. **Leader**
+描述两方的领导者——爷爷和蛇精，除了继承自Creature类的属性外，还有身份属性（枚举类型属性），以及自己的战略库（一个用于储存阵型的可变长向量）和当前采用战略的指针。身份属性用LeaderEnum枚举类型来描述，从而限制属性域。如果在构造Leader时，传入了一个非法的名称，则初始化成特定的“空实例”，并触发警告。
 ```
-描述爷爷、蛇精等领导者，除了继承自Creature类的属性外，还有名称属性，以及自己的战略库（一个用于储存阵型的可变长向量）和当前采用战略的指针。
-public class Leader extends Creature{
+public class Leader extends Creature {
     Vector strategies; //战略库
-    int nowPtr; //当前使用的阵型的指针
-    String name; //名称
+    int nowPtr; //当前采用战略的指针
+    LeaderEnum id; //身份属性
 
-    public Leader(String argName, String argSign); //用于初始化一个领导者的信息
+    public Leader(String argName); //构造函数，按名构造，sign在枚举类型构造时指定，此处只是读取
 
-    public void addFormation(Formation fm); //添加一个阵型
-    public void embattle(Battlefield world, Creature[] kids); //排兵布阵，指挥生物（儿子）移动到指定位置上
+    public void addFormation(Formation fm); //向战略库中添加阵型
+    public void embattle(Battlefield world, Creature[] kids); //排兵布阵，安排阵营中生物的位置（包括自身）
 }
 ```
 ### 环境包(Package Environment)
-1. Game
+1. **Game**
 描述整个程序的主体——游戏
 ```
 public class Game {
@@ -72,7 +72,7 @@ public class Game {
     static void initializeFormation(Leader snaker, Leader grandpa); //为两位领导者初始化阵型
 }
 ```
-2. Battlefield
+2. **Battlefield**
 描述大环境——战场，其本质是一个2维空间，每个位置上均可以放置一个生物
 ```
 public class Battlefield {
@@ -88,7 +88,7 @@ public class Battlefield {
     public void print(); //打印整个战场上的形势：对于生物，打印其图示符号；对于没有生物的位置，打印空格。
 }
 ```
-3. Formation
+3. **Formation**
 描述阵型，其所含的信息包括领导者的位置和部下们的位置
 ```
 public class Formation {
@@ -103,7 +103,7 @@ public class Formation {
     public int[] getLeaderPos(); //获取领导者的位置信息
 }
 ```
-4. SortController
+4. **SortController**
 描述排序器，是作业2中的简化版本。采用快速排序算法，基于葫芦娃的颜色属性进行比较，会输出排序中的位置变动信息及结果
 ```
 public class SortController {
