@@ -3,9 +3,9 @@
 
 ```src/creature //该package中含所有生物体```
 
-```public class Creature { public void move() {} }```
+```public class Creature { ... }```
 
-Creature类作为所有生物体类的父类，拥有一个“移动”的功能，即走到地图上的相应位置。
+Creature类作为所有生物体类的父类，拥有名字属性，还有一个“移动”的功能，即走到地图上的相应位置。
 
 生物体包含：
 - 葫芦娃（'&'表示）
@@ -30,9 +30,9 @@ Creature类作为所有生物体类的父类，拥有一个“移动”的功能
 
 ```src/formation //该package里面包含各种阵法```
 
-```public interface Formation {  public void form(); public void loose(); }``` 
+```public abstract class Formation { ... }``` 
 
-设置一个接口Formation，使每个阵型都有“形成阵型”和“解散阵型”两个功能。每个阵型的具体功能是在给定队首的坐标下，拍成或解散相应图形的阵型，实现离不开Creature中的move功能。
+设置一个接口Formation，有名字属性，还有使每个阵型都有“形成阵型”和“解散阵型”两个功能。每个阵型的具体功能是在给定队首的坐标下，拍成或解散相应图形的阵型，实现离不开Creature中的move功能。
 
 # Map地图
 
