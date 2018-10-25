@@ -1,7 +1,7 @@
 package com.cjinchi.util;
 
 public enum Color {
-    RED("红色"), ORANGE("橙色"), YELLOW("黄色"), GREEN("绿色"), CYAN("青色"), BLUE("蓝色"), VIOLET("紫色");
+    RED("绾㈣壊"), ORANGE("姗欒壊"), YELLOW("榛勮壊"), GREEN("缁胯壊"), CYAN("闈掕壊"), BLUE("钃濊壊"), VIOLET("绱壊");
 
     private String label;
 

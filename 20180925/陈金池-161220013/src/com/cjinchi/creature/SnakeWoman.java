@@ -6,7 +6,7 @@ public class SnakeWoman extends Creature implements Cheerful {
     private static SnakeWoman snakeWoman;
 
     private SnakeWoman() {
-        super("Éß¾«");
+        super("è›‡ç²¾");
     }
 
     public static SnakeWoman getInstance() {
@@ -17,6 +17,6 @@ public class SnakeWoman extends Creature implements Cheerful {
     }
 
     public void cheer() {
-        System.out.print("¼ÓÓÍ");
+        System.out.print("åŠ æ²¹");
     }
 }

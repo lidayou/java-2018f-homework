@@ -26,25 +26,25 @@ public class CalabashMan extends Creature {
             if (brothers[index - 1] == null) {
                 switch (index) {
                 case 1:
-                    brothers[index - 1] = new CalabashMan("老大", Color.RED, 1);
+                    brothers[index - 1] = new CalabashMan("澶у▋", Color.RED, 1);
                     break;
                 case 2:
-                    brothers[index - 1] = new CalabashMan("老二", Color.ORANGE, 2);
+                    brothers[index - 1] = new CalabashMan("浜屽▋", Color.ORANGE, 2);
                     break;
                 case 3:
-                    brothers[index - 1] = new CalabashMan("老三", Color.YELLOW, 3);
+                    brothers[index - 1] = new CalabashMan("涓夊▋", Color.YELLOW, 3);
                     break;
                 case 4:
-                    brothers[index - 1] = new CalabashMan("老四", Color.GREEN, 4);
+                    brothers[index - 1] = new CalabashMan("鍥涘▋", Color.GREEN, 4);
                     break;
                 case 5:
-                    brothers[index - 1] = new CalabashMan("老五", Color.CYAN, 5);
+                    brothers[index - 1] = new CalabashMan("浜斿▋", Color.CYAN, 5);
                     break;
                 case 6:
-                    brothers[index - 1] = new CalabashMan("老六", Color.BLUE, 6);
+                    brothers[index - 1] = new CalabashMan("鍏▋", Color.BLUE, 6);
                     break;
                 case 7:
-                    brothers[index - 1] = new CalabashMan("老七", Color.VIOLET, 7);
+                    brothers[index - 1] = new CalabashMan("涓冨▋", Color.VIOLET, 7);
                     break;
                 }
             }

@@ -4,7 +4,7 @@ public class ScorpionMan extends Creature {
     private static ScorpionMan scorpionMan;
 
     private ScorpionMan() {
-        super("Ğ«¾«");
+        super("èç²¾");
     }
 
     public static ScorpionMan getInstance() {

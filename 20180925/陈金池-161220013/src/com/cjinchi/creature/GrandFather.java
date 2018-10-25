@@ -6,7 +6,7 @@ public class GrandFather extends Creature implements Cheerful {
     private static GrandFather grandFather;
 
     private GrandFather() {
-        super("Ò¯Ò¯");
+        super("çˆ·çˆ·");
     }
 
     public static GrandFather getInstance() {
@@ -17,6 +17,6 @@ public class GrandFather extends Creature implements Cheerful {
     }
 
     public void cheer() {
-        System.out.print("¼ÓÓÍ");
+        System.out.print("åŠ æ²¹");
     }
 }

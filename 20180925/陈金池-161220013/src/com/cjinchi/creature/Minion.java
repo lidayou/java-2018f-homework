@@ -5,7 +5,7 @@ public class Minion extends Creature {
     private static Minion[] minions = new Minion[TOTAL_MINION_NUM];
 
     private Minion() {
-        super("ආ�");
+        super("喽啰");
     }
 
     public static Minion getInstance(int index) {
