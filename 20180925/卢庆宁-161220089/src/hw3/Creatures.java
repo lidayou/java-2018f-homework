@@ -21,6 +21,8 @@ class Creatures {						//生物群类
 			b.reset(cs[i]);
 		}
 	}
+	public void upset(int i) {}
+	public void sort() {};
 }
 
 class CalabashBrothers extends Creatures {	//葫芦娃群类

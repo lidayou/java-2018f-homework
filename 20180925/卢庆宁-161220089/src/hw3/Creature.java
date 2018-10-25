@@ -6,7 +6,7 @@ class Creature {							//生物体类
 	protected int x;							//行坐标
 	protected int y;							//列坐标
 	protected char ch;							//字符表示
-	Creature(){exist=false;}									//默认构造，令存在为false
+	Creature(){exist=false;ch=' ';}								//默认构造，令存在为false
 	public boolean getExist() {return exist;}					//获得四个保护变量的值
 	public String getName() {return name;}
 	public int getX() {return x;}
