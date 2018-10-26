@@ -17,17 +17,18 @@
 类文档注释截图：
 
 <div>
-    <img src = "image\comment1.JPG">
+    <img src = "image\comment1.jpg">
 </div>
 
 <div>
-    <img src = "image\comment2.JPG">
+    <img src = "image\comment2.jpg">
 </div>
+
 
 方法文档注释截图：
 
 <div align="center">
-    <img src = "image\comment4.JPG">
+    <img src = "image\comment4.jpg">
 </div>
 
 其他说明，尽管Author名为LUCUS BAI看起来跟我一点关系也没有（毕竟我既不姓白，又不叫卢卡斯），但那确实是我的别名，童叟无欺
