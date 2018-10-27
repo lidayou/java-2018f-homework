@@ -5,8 +5,6 @@ enum FormationType {
 public class Formation implements OrderDevice{
     int length,width;
     Ground ground;
-//    FormationType[] formationTypes = {FormationType.longSnakeArray,FormationType.CraneWingArray,FormationType.gooseFlyArray,
-//            FormationType.yokeArray, FormationType.fishScaleArray,FormationType.squareArray};
     Formation(int length, int width, Ground ground){
         this.width = width;
         this.length = length;
@@ -49,10 +47,10 @@ public class Formation implements OrderDevice{
                 }
             }
         }
-        switch (formationType){
+        switch (formationType){//除方円阵对怪物数量严格限制为7外，其他阵型均使用数学公式实现。阵型可扩展性较好。
             case longSnakeArray:
                 for(int i=0;i<count;i++){
-                    for(int j=0;j<count;j++){
+                    for(int j=0;j<count;j++){//对每个case中以j计数的循环，均为判断欲移动的位置与待移动的生物是否冲突
                         if(x[j]==width/2-count/2+i&&y[j]==length/3){
                             x[j]=x[i];y[j]=y[i];break;
                         }
