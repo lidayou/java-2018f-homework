@@ -1,3 +1,5 @@
+package creature;
+import color.COLOR;
 public class HuluWa extends Creature {
     private int priority;
     private COLOR color;

@@ -1,3 +1,5 @@
+package sort;
+import creature.HuluWa;
 public class Sort {
     public void bubbleSort(HuluWa[] brothers){
         for (int i = 0; i < brothers.length; i++) {
