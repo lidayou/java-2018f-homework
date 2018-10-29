@@ -1,11 +1,16 @@
-package com.homework3;
+package com.homework3.coordinate;
 
-public class Position
-{
-    int row;
-    int col;
+/**
+ * @Description 点的坐标
+ * @Author LUCUS BAI
+ * @Date 2018/10/23
+ */
+public class Position {
 
-    Position(int row, int col)
+    private int row;
+    private int col;
+
+    public Position(int row, int col)
     {
         this.row = row;
         this.col = col;
@@ -23,4 +28,5 @@ public class Position
         this.row += deltaRow;
         this.col += deltaCol;
     }
+
 }
