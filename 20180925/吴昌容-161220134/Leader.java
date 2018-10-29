@@ -5,16 +5,54 @@ import environment.Formation;
 
 import java.util.Vector;
 
-public class Leader extends Creature{
-    Vector strategies;
-    int nowPtr;
-    String name;
+enum LeaderEnum {
+    grandpa("爷爷", "$"),
+    snake("蛇精", "&");
 
-    public Leader(String argName, String argSign) {
-        strategies = new Vector(2);
-        nowPtr = 0;
+    private String name;
+    private String sign;
+
+    LeaderEnum(String argName, String argSign) {
         name = argName;
         sign = argSign;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public String getSign() {
+        return sign;
+    }
+}
+
+public class Leader extends Creature {
+    Vector strategies;
+    int nowPtr;
+    LeaderEnum id;
+
+    public Leader(String argName) {
+        strategies = new Vector(2);
+        nowPtr = 0;
+
+        for (int i = 0; i < LeaderEnum.values().length; ++i) {
+            if (LeaderEnum.values()[i].getName().equals(argName)) {
+                id = LeaderEnum.values()[i];
+                sign = id.getSign();
+                return;
+            }
+        }
+        id = null;
+        sign = "!";
+        System.out.println("Cannot find Leader:" + argName);
+
+//        try {
+//            id = LeaderEnum.valueOf(argName);
+//            sign = id.getSign();
+//        }
+//        catch (IllegalArgumentException err) {
+//            sign = "!";
+//            System.out.println("Cannot find Leader:" + argName);
+//        }
     }
 
     public void addFormation(Formation fm) {
