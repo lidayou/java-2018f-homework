@@ -5,7 +5,7 @@ import Creature.*;
  * @ Description：偃月阵
  */
 public class YanyueBattleArray {
-    public static void form(ScorpionMonster scorpionMonster,Underlings[] underlings,int row,int column)
+    public static void form(Creature scorpionMonster,Creature[] underlings,int row,int column)
     {
         scorpionMonster.standOnMap(row,column);
         int test=0;

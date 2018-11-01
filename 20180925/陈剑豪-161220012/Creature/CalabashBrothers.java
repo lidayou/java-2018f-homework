@@ -7,16 +7,17 @@ import BattleField.Space;
  * @ Author     ：cjh
  * @ Description：葫芦娃
  */
+
 public class CalabashBrothers extends Creature{
-    String name;// 葫芦娃的名字
     String color;// 葫芦娃的颜色
     int rank;// 葫芦娃中的排行
     CalabashBrothers(int i)
     {
+        init();
         this.color = CalabashEnum.values()[i].getColor();
         this.name =CalabashEnum.values()[i].getName();
         this.rank = CalabashEnum.values()[i].getRank();
-
+        list.add(this);
     }
     @Override
     public void standOnMap(int i,int j)
@@ -52,7 +53,7 @@ public class CalabashBrothers extends Creature{
     public static void swapPosition(CalabashBrothers[] brothers,int i,int j)/**两个葫芦娃交换位置*/
     {
 
-        CalabashBrothers temp=new CalabashBrothers(1);
+        CalabashBrothers temp;
         temp=brothers[i];
         brothers[i]=brothers[j];
         brothers[j]=temp;

@@ -8,8 +8,10 @@ public class Underlings extends Creature{/**创建人：陈剑豪 创建时间�
     static int number=0;
     public Underlings()
     {
+        init();
         name="喽啰";
         number++;
+        list.add(this);
     }
     public static void Number()
     {
@@ -21,6 +23,7 @@ public class Underlings extends Creature{/**创建人：陈剑豪 创建时间�
         row=i;
         column=j;
         Space.space[i][j]=Existance.underlings;
+
     }
 
 }

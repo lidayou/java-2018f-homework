@@ -41,6 +41,13 @@ public class Space {/**创建人：陈剑豪 创建时间：2018.10.2*/
                 space[i][j]=Existance.nothing;
             }
         }
+        //System.out.println(Creature.list.size());
+
+        for(int i=0;i<Creature.list.size();i++)
+        {
+            //System.out.println(Creature.list.get(i).name);
+            Creature.list.get(i).init();
+        }
     }
 
     public void display()

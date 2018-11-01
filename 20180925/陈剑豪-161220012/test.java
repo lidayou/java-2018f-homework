@@ -9,8 +9,8 @@ public class test {/**创建人：陈剑豪 创建时间：2018.10.6*/
         CalabashBrothersSort.sortByName(brothers);// 有序排队
         ChangsheBattleArray.form(brothers,6,5);//将葫芦娃排成长蛇阵
 
-        ScorpionMonster scorpionMonster=new ScorpionMonster();
-        Underlings[] underlings=new Underlings[10];
+        Creature scorpionMonster=new ScorpionMonster();
+        Creature[] underlings=new Underlings[10];
         for(int i=0;i<10;i++)
         {
             underlings[i]=new Underlings();

@@ -5,7 +5,7 @@ import Creature.*;
  * @ Description：衝轭阵
  */
 public class ChongeBattleArray {
-    public static void form(ScorpionMonster scorpionMonster,Underlings[] underlings,int row,int column)
+    public static void form(Creature scorpionMonster,Creature[] underlings,int row,int column)
     {
         scorpionMonster.standOnMap(row,column);
         //System.out.println(underlings.length/2);
