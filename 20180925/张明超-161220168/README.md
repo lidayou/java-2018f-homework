@@ -7,6 +7,7 @@
 ## 本版本UML类图(显示了dependence)
 1.beings包和calabashGroup和CalabashCompare类
 ![Image text](https://raw.githubusercontent.com/cockroach20168/java-2018f-homework/master/20180925/%E5%BC%A0%E6%98%8E%E8%B6%85-161220168/img/modified2.png)
+  
 2.formations包
 ![Image text](https://raw.githubusercontent.com/cockroach20168/java-2018f-homework/master/20180925/%E5%BC%A0%E6%98%8E%E8%B6%85-161220168/img/modified3.png)
 ## 类说明
@@ -63,9 +64,9 @@ World|main函数所在，负责创建所有的对象|Object
 6.在一方阵营变换阵型时另一方并不需要移动，也不应当清除整个Battlefield上的数据，这里采用一个生物要被设置为新位置时将旧位置置为空的方式  
 
 ## 面向对象特性
-1.继承 Creatrue继承Being, Grandfather继承JustParty
-2.组合 formation 由FormationType和Pos组成
-3.多态 不同的生物重写不同的toldname
+1.继承 Creatrue继承Being, Grandfather继承JustParty  
+2.组合 formation 由FormationType和Pos组成  
+3.多态 不同的生物重写不同的toldname  
 
 ## 一些思考
 1.在后续要实现图形界面的情况下，显然每个葫芦娃需要一个或多个图片，可以考虑创建一个CalabashBrotherWithImage继承CalabashBrother，在创建CalabashGroup时将CalabashBrotherWithImage数组直接传入其中进行初始化，而Battlefield显然支持存储新类型的引用，这样在Battlefield显示时，使用CalabashBrotherWithImage的show方法可以做到从控制台的输出改为在图形界面上的显示  
