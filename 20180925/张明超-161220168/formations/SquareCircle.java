@@ -10,7 +10,6 @@ public class SquareCircle extends Formation{
         for(int i = 0; i < posList.length; i++){
             posList[i] = new pos();
         }
-        //System.out.print(posList[2]);
         posList[0].set(2,4);
         posList[1].set(2,0);
         posList[2].set(1,3);

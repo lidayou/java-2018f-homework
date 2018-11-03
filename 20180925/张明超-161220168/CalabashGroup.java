@@ -16,8 +16,8 @@ public class CalabashGroup{
     public void shuffle(){
         Collections.shuffle(group);
     }
-    public void sort(){
-        Collections.sort(group, new CalabashCompare());
+    public void sort(Comparator<CalabashBrother> comparator){
+        Collections.sort(group, comparator);
     }
     public void print(){
         for(int i = 0; i < group.size(); i++){
@@ -27,12 +27,7 @@ public class CalabashGroup{
     }
     private ArrayList<CalabashBrother> group;
 }
-class CalabashCompare implements Comparator<CalabashBrother>{
-    @Override
-    public int compare(CalabashBrother a, CalabashBrother b){
-        return a.getRank()-b.getRank();
-    }
-}
+
 
 
 

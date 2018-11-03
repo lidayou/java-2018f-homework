@@ -13,7 +13,7 @@ public class World {
         Battlefield battlefield = new Battlefield();
         calabashGroup.shuffle();
         calabashGroup.print();
-        calabashGroup.sort();
+        calabashGroup.sort(new CalabashCompare());
         calabashGroup.print();
         //calabashGroup.quickSort();
         new SquareCircle().formationCreatrue(battlefield, enemy, snake);
