@@ -1,111 +1,19 @@
-# 第三次作业
+# 作业：面向葫芦娃编程
 
----
-## 设计思想
-1. 由于需要一个二维空间，该空间中的任意一个位置坐标上可站立一个生物体，所以将位置坐标抽象成Cell类，将二维空间抽象成BattleField类，并包含一个NxN的二维数组，每个cell都有自己的坐标，知道此位置上是否有单位（unit），有哪个单位。。
-2. 需要有葫芦娃、老爷爷、蛇精、蝎子精、小喽啰五种生物体，每种生物体都有一些相同的属性和不同的属性，于是可以先创建一个基类Unit，其成员为共有属性。Grandpa、Scorpion、Snake、Monster、CalaBashBrother这五个类继承基类Unit，并包含自己的独特的属性。所有的单位都有自己的名字，并且知道自己所处的位置坐标。
-3. 各生物体要占据一个位置坐标，要有一定的阵形，并能不断变换。所以需要一个“控制者”来操纵这些变化，于是抽象出Player类，包含生物体坐标变化的相关操作。
+葫芦娃有七兄弟（没看过的请参考[豆瓣](https://movie.douban.com/subject/1428576/)）。红娃排行老大、橙娃排行老二、黄娃排行老三、绿娃排行老四、青娃排行老五、蓝娃排行老六、紫娃排行老七，七兄弟各有一身独特的本领。故事中还有其他主配角，包括老爷爷、蛇精、蝎子精、小喽啰等。
 
----
+![葫芦兄弟](http://english.cri.cn/mmsource/images/2009/06/24/4634carton1.jpg)
 
-## 代码简介
-1.BattleField.java
+请用**面向对象编程方法**，以Java语言编写程序，实现以下过程:
+1. 假设存在一个`NxN`的二维空间（`N>10`)，该空间中的任意一个位置坐标上可站立一个生物体（葫芦娃、老爷爷、蛇精、蝎子精、小喽啰均属于生物体）；
+2. 请让初始乱序的七个兄弟按下图所示阵型中的长蛇形依序（老大至老七）站队；
+3. 请在图中选择一个阵型（长蛇除外）让蝎子精领若干小喽啰站队；
+4. 将葫芦兄弟的长蛇阵营和蝎子精小喽啰阵营放置于二位空间中，形成对峙局面；
+5. 请选择合适位置将老爷爷和蛇精放置于空间中，为各自一方加油助威；
+6. 将上述对峙局面打印输出；
+7. 请让蝎子精小喽啰阵营变换一个阵法（长蛇除外），重复4-6步。
 
- - Cell类
-```java
-class Cell
-{
-    private boolean isEmpty;
-    private Unit unit;
-    public void setUnit(Unit unit);        //设置unit
-    public void setEmpty(boolean x);       //设置isEmpty
-    public Unit getUnit();                 //返回unit
-    public boolean getStatus();            //返回isEmpty
-}
-```
- - BattleField类
-```java
-public class BattleField {
-    private Cell[][] cells = new Cell[15][15];
-    public void print();                   //打印对峙局面
-    public Cell[][] getCells();            //返回二维数组
-}
-```
-2.Unit.java
+![阵法](http://www.jingduzhisheng.com/wsxs/201609/12/W020160912537837823809.jpg)
 
- - Unit类
-```java
-public class Unit {
-    private int x;
-    private int y;
-    private String name;
-    public void set(int x,int y);          //设置该单位的坐标
-    public int getX();                     //返回x坐标
-    public int getY();                     //返回y坐标
-    public String getName();
-}
-```
-- Grandpa、Scorpion、Snake、Monster、CalaBashBrother类
-```java
-class Grandpa extends Unit{
-    private String name;
-    Grandpa(){ name = "爷爷"; }
-    @Override public String getName(){ return name; }
-}
 
-class Scorpion extends Unit{
-    private String name;
-    Scorpion(){ name = "蝎子"; }
-    @Override public String getName(){ return name; }
-}
-
-class Snake extends Unit{
-    private String name;
-    Snake(){ name = "蛇精"; }
-    @Override public String getName(){ return name; }
-}
-
-class Monster extends Unit{
-    private String name;
-    Monster(){ name = "喽啰"; }
-    @Override public String getName() { return name; }
-}
-
-class CalaBashBrother extends Unit{
-    private int number;
-    private String name;
-    private String color;
-    public int getNumber() { return number; }
-    @Override public String getName() { return name; }
-    public String getColor() { return color; }
-}
-```
-3.Player.java
-
- - Player类
-```java
-public class Player {
-    //冒泡排序，用于给初始乱序的葫芦娃排序
-    public void bubble_sort(CalaBashBrother[] gourds, int n);
-    //将unit放置到field的（x，y）上
-    public void create(Unit unit, BattleField field, int x, int y);
-    //将unit移动到field的（x，y）上
-    public void change(Unit unit, BattleField field, int x, int y);
-    //创建葫芦娃阵型：长蛇
-    public void CB_formation_init(BattleField field,Unit[] gourds, int start);
-    //创建蝎子精阵型：方円
-    public void MO_formation_init(BattleField field,Unit[] monsters, int start_x, int start_y);
-    //变换蝎子精阵型：雁行
-    public void MO_formation_change_1(BattleField field,Unit[] monsters, int start_x, int start_y);
-}
-```
-
----
-## 用到的机制及好处
- - 封装：此程序封装了9个类，好处在于能隐藏内部实现，提高代码的安全性，也使得代码便于理解
- - 继承：Grandpa、Scorpion、Snake、Monster、CalaBashBrother继承了父类Unit，提高了代码的复用性和可维护性，使类与类之间产生关系，便于理解，也能大大减少代码的冗余程度
- - 多态：Unit的子类重写了父类的方法，在编译器进行动态绑定后，可根据对象类型来调用不同子类的方法，提高可扩充性和可维护性
-
----
-## 运行结果
-![1](images/1.jpg)<!-- .element width="80%" height="65%" -->
+完成后按照作业提交要求和流程，完成作业提交。各人在自己作业目录中除代码外，请添加一个README.md文件，用markdown语法以文字说明所写代码中用到哪些面向对象的概念、机制、设计理念等，并阐述这样做的好处。
