@@ -9,6 +9,12 @@ public class CalabashGroup{
             group.add(new CalabashBrother(i));
         }
     }
+    public CalabashGroup(CalabashBrother[] list){
+        group = new ArrayList<CalabashBrother>();
+        for(int i = 0; i < list.length; i++){
+            group.add(list[i]);
+        }
+    }
     public Creature[] getFormationCreatrue(){
         int size = group.size();
         return (Creature[])group.toArray(new CalabashBrother[size]);

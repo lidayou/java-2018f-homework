@@ -29,13 +29,13 @@ public abstract class Formation {
             }
         }
     }
-    protected class pos{
+    protected class Pos{
         private int posx;
         private int posy;
-        pos(){
+        Pos(){
 
         }
-        pos(int y, int x){
+        Pos(int y, int x){
             posx = x;
             posy = y;
         }
@@ -47,6 +47,6 @@ public abstract class Formation {
     protected FormationType type;
     protected int height;
     protected int width;
-    protected pos[] posList;
-    protected pos cheerPos = new pos();
+    protected Pos[] posList;
+    protected Pos cheerPos = new Pos();
 }

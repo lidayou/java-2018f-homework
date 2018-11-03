@@ -10,7 +10,7 @@ public class Being {
     public int getPositionx(){
         return positionx;
     }
-    public int getPositionx(){
+    public int getPositiony(){
         return positiony;
     }
 

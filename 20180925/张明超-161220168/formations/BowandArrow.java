@@ -6,9 +6,9 @@ public class BowandArrow extends Formation{
         height = 5;
         width = 5;
         cheerPos.set(3,0);
-        posList = new pos[8];
+        posList = new Pos[8];
         for(int i = 0; i < posList.length; i++){
-            posList[i] = new pos();
+            posList[i] = new Pos();
         }
         posList[0].set(0,2);
         posList[1].set(1,3);

@@ -6,9 +6,9 @@ public class CrescentMoon extends Formation{
         height = 6;
         width = 4;
         cheerPos.set(3,0);
-        posList = new pos[8];
+        posList = new Pos[8];
         for(int i = 0; i < posList.length; i++){
-            posList[i] = new pos();
+            posList[i] = new Pos();
         }
         posList[0].set(2,3);
         posList[1].set(2,1);

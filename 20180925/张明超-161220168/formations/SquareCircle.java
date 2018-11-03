@@ -6,9 +6,9 @@ public class SquareCircle extends Formation{
         height = 5;
         width = 5;
         cheerPos.set(2,2);
-        posList = new pos[8];
+        posList = new Pos[8];
         for(int i = 0; i < posList.length; i++){
-            posList[i] = new pos();
+            posList[i] = new Pos();
         }
         posList[0].set(2,4);
         posList[1].set(2,0);
