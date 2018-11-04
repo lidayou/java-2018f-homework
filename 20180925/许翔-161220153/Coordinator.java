@@ -1,7 +1,7 @@
 public class Coordinator {
     public static void main(String[] args){
         int mapSize = 20;
-        Formation formation = new Formation(mapSize);
+        Map map = new Map(mapSize);
         CalabashBros[] calabashBros = { new CalabashBros(0),
                                         new CalabashBros(1),
                                         new CalabashBros(2),
@@ -24,15 +24,15 @@ public class Coordinator {
         Creature[] badGuys = new Creature[underling.length+1];
         badGuys[0] = scorpion;
         System.arraycopy(underling, 0, badGuys, 1, underling.length);
-        formation.ChangShe(calabashBros, 8, 10, "Left");
-        formation.setSupporter(grandFather,"Left");
-        formation.FengShi(badGuys, 11, 10, "Right");
-        formation.setSupporter(snake, "Right");
-        formation.map.printWholeMap();
+        Formation.ChangShe(calabashBros, 8, 10, "Left", map);
+        grandFather.cheer(map);
+        Formation.FengShi(badGuys, 11, 10, "Right", map);
+        snake.cheer(map);
+        map.printWholeMap();
         System.out.println("***** Change the formation. *****");
-        formation.clearHalfMap("Right");
-        formation.FangYuan(badGuys, 11, 10, "Right");
-        formation.setSupporter(snake, "Right");
-        formation.map.printWholeMap();
+        map.clearHalfMap("Right");
+        Formation.FangYuan(badGuys, 11, 10, "Right", map);
+        snake.cheer(map);
+        map.printWholeMap();
     }
 }
