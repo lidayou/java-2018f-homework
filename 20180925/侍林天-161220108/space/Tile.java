@@ -1,3 +1,5 @@
+package space;
+import creature.*;
 public class Tile {
     private int coordinateX;
     private int coordinateY;
