@@ -70,7 +70,7 @@ public class Calabash {
         battlefield[a.XieZiJing.GetX()][a.XieZiJing.GetY()] = '-';
         int i = 0;
         while(i < a.louluo.size()) {
-            battlefield[a.louluo.get(i).GetX()][a.louluo.get(i).GetY()] = '-';
+            battlefield[a.louluo.get(i).getX()][a.louluo.get(i).getY()] = '-';
             i++;
         }
     }
