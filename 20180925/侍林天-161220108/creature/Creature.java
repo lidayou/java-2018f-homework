@@ -1,7 +1,9 @@
+package creature;
+import space.*;
 public class Creature {
     protected String name;
-    private int coordinateX;
-    private int coordinateY;
+    protected int coordinateX;
+    protected int coordinateY;
     public Creature(){
         coordinateX = -1;
         coordinateY = -1;
@@ -31,8 +33,8 @@ public class Creature {
     public boolean moveTo(TwoDimensionSpace space, int x, int y){
         if (!space.isExceed(x, y)){
             if (space.isEmpty(x, y)) {
-                space.setSpace(x, y, this);
                 space.cleanSpace(coordinateX, coordinateY);
+                space.setSpace(x, y, this);
                 coordinateX = x;
                 coordinateY = y;
                 return true;

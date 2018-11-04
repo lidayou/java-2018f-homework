@@ -1,3 +1,5 @@
+package space;
+import creature.*;
 public class TwoDimensionSpace {
     private Tile space[][];
     private int size;
@@ -9,6 +11,9 @@ public class TwoDimensionSpace {
                 space[i][j] = new Tile(i, j);
             }
         }
+    }
+    public int size() {
+        return size;
     }
     public boolean isEmpty(int x, int y){
         if (!isExceed(x, y)){
