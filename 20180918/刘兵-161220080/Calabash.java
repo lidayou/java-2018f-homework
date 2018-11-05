@@ -37,51 +37,27 @@ public class Calabash
 			}
 		}
 	}
-	public static void merge(CalabashBrother[] cbs,int start,int mid,int end) {
-		CalabashBrother[] tmp=new CalabashBrother[end-start+1];
-		int i = start;                                               
-		int j = mid+1;                                                                                                     
-		int k = 0;	                                          
-		while (i <= mid&&j <= end) {                                
-			if (cbs[i].rank < cbs[j].rank) {
-				tmp[k]=cbs[i];
-				if(i!=k+start)
-					tmp[k].moveposi(i,k);
-				i++;
-				k++;
-				
+	public static void binarysort(CalabashBrother[] cbs,int start,int end) {
+		for(int i=start+1;i<=end;i++) {
+			CalabashBrother tmp=cbs[i];
+			int low=0;
+			int high=i-1;
+			int mid=-1;
+			while(low<=high) {
+				mid=(high+low)/2;
+				if(cbs[mid].getrank()>tmp.getrank()) 
+					high=mid-1;
+				else
+					low=mid+1;
 			}
-			else {
-				tmp[k]=cbs[j];
-				if(j!=k+start)
-					tmp[k].moveposi(j,k);
-				j++;
-				k++;
+			for(int j=i-1;j>=low;j--) {
+				cbs[j+1]=cbs[j];
+				cbs[j+1].moveposi(j, j+1);
 			}
-		}
-		while (i <= mid) {
-			tmp[k]=cbs[i];
-			if(i!=k+start)
-				tmp[k].moveposi(i,k);
-			i++;
-			k++;
-		}
-		while (j <= end) {
-			tmp[k]=cbs[j];
-			if(j!=k+start)
-				tmp[k].moveposi(j,k);
-			j++;
-			k++;
-		}
-		for(int t=start;t<=end;t++)
-			cbs[t]=tmp[t-start];
-	}
-	public static void mergesort(CalabashBrother[] cbs,int start,int end) {
-		if(start<end) {
-			int mid=(start+end)/2;
-			mergesort(cbs,start,mid); 
-			mergesort(cbs,mid+1,end);
-			merge(cbs,start,mid,end);
+			cbs[low]=tmp;
+			if(i!=low) {
+				cbs[low].moveposi(i, low);
+			}
 		}
 	}
 	public static void main(String[] args) {
@@ -92,7 +68,7 @@ public class Calabash
 			System.out.println(cbs1[i].getname());
 		}
 		CalabashBrother[] cbs2= {CalabashBrother.FOURTH,CalabashBrother.THIRD,CalabashBrother.SEVENTH,CalabashBrother.SECOND,CalabashBrother.FIRST,CalabashBrother.SIXTH,CalabashBrother.FIFTH};
-		mergesort(cbs2,0,6);
+		binarysort(cbs2,0,6);
 		System.out.println("二分法排序后结果：");
 		for(int i=0;i<cbs2.length;i++) {
 			System.out.println(cbs2[i].getcolor());
