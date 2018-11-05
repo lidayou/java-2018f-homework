@@ -2,8 +2,8 @@
  * 以造世主的角度，创建双方上场的战士，并将其组织放入战场中。
  * @see class FightFileld, class Formation, Class Team.
  * @author why
- * @Time 2018-9-27
- * @version 1.0
+ * @Time 2018-11-5
+ * @version 2.0
  * 
  * */
 
@@ -13,7 +13,13 @@ import java.util.Scanner;
 
 public class FightField {
 	/*
-	 * 程序主要的执行入口，在此类中导入战场，加入战士，选择阵型，显示战场信息。
+	 * 程序主要的执行入口，在此类中导入战场，加入战士，选择阵型，显示战场信息.
+	 * <p>
+	 *     在此类中生成Warrior的成员，作为参与战斗的主体成员<br>
+	 *     此类中还用到的Team类的成员以及Formation类的成员<br>
+	 *     所有的执行性动作在本类中完成。<br>
+	 * @param true: 正确, false: 错误
+	 * @return： boolean 
 	 * */
 	private static final int N = 15;
 	private Warrior[][] fields;
@@ -22,9 +28,14 @@ public class FightField {
 		Scanner in = new Scanner(System.in);
 		FightField ff = new FightField();
 		//登录每队的战士，并且显示其基本信息
-		Team teamGood = new Team();
-		Team teamBad = new Team();
-		loading(teamGood.team, teamBad.team);
+		Team teamGood = new Team("GoodMan");
+		Team teamBad = new Team("BadMan");
+		loading(teamGood, teamBad);
+		try {
+			teamGood.checkMember();
+			teamBad.checkMember();
+		}catch(MyException e) {
+		}
 		teamGood.showWarriors();
 		teamBad.showWarriors();
 		//初始化阵型
@@ -55,18 +66,18 @@ public class FightField {
 		fields = new Warrior[N][N];
 	}
 	//登录两只队伍的武将
-	private static void loading(ArrayList<Warrior> teamGood, ArrayList<Warrior> teamBad) {
+	private static void loading(Team teamGood, Team teamBad) {
 		System.out.println("创建即将上场进行对决的对象......");
 		String name = "大二三四五六七";
 		for (int i=0; i<7; i++) {
 			teamGood.add(new CalabashBrothers(name.charAt(i) + "娃", ""));
 		}
-		teamGood.add(new Warrior("老爷爷", "吃瓜", 1));
-		teamBad.add(new Warrior("蝎子精", "领队", 2));
+		teamGood.add(new Warrior("老爷爷", "看戏", teamBad.getSide()));
+		teamBad.add(new Warrior("蝎子精", "领队", teamBad.getSide()));
 		for (int i=0; i<6; i++) {
-			teamBad.add(new Warrior("小兵 ", "送头", 2));
+			teamBad.add(new Warrior("小兵 ", "冲锋", teamBad.getSide()));
 		}
-		teamBad.add(new Warrior("蛇精", "吃瓜", 2));
+		teamBad.add(new Warrior("蛇精", "看戏", teamBad.getSide()));
 	}
 	//显示战场的对决情况
 	private void showFields() {
@@ -100,27 +111,17 @@ public class FightField {
 		System.out.println("**********1----------雁形阵**********");
 		System.out.println("**********2----------鹤翼阵**********");
 		System.out.println("**********3----------冲轭阵**********");
-		int f1 = in.nextInt();
+		int f1 = -1;
+		// deal with the error: index out of bounds
 		this.goBattle(teamGood.team, Formation.getForm(0, 1));
-		this.goBattle(teamBad.team, Formation.getForm(f1, 2));
-	}
-}
-
-
-class Team{
-	/*
-	 * 创建队伍类，由此创建双方的队伍对象
-	 * Variables: ArrayList<Warrior> team;
-	 * Methods: showWarriors();
-	 * */
-	public ArrayList<Warrior> team;
-	
-	Team(){
-		team = new ArrayList<Warrior>();
-	}
-	public void showWarriors() {
-		for(Warrior k:team)
-			k.showMe();
+		try {
+			f1 = in.nextInt();
+			this.goBattle(teamBad.team, Formation.getForm(f1, 2));
+		}catch( IndexOutOfBoundsException e){
+			System.out.println("your input is out of bound! please input again!");
+			f1 = in.nextInt();
+			this.goBattle(teamBad.team, Formation.getForm(f1, 2));
+		}
 	}
 }
 

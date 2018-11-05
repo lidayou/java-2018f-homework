@@ -1,14 +1,10 @@
 /*
- * 在Warriors接口的要求下，构造一个Warrior类，用于对双方战士的描述
- * @see class Warrior
- * @author why
- * @Time 2018-9-27
- * @version 1.0
- * 
+ * 在Warriors接口的要求下，构造一个Warrior类，在这个世界中存活的所有生物
+ * 都是Warrior，但却又有不同的功能
  * */
 package javahw3;
 
-public class Warrior implements Warriors {
+public class Warrior implements WarriorInterface {
 	/*
 	 * Variables: name, function, position, team;
 	 * Methods: getName(), getFunction(), getPosition(), changePosition(), toString(), showMe();
@@ -18,32 +14,37 @@ public class Warrior implements Warriors {
 	private int[] position;
 	private String team;
 	
-	public Warrior(String name, String function, int team) {
+	public Warrior(String name, String function, String team) {
 		this.name = name;
 		this.function = function;
-		if(team==1)
-			this.team = "GoodMan";
-		else
-			this.team = "BadMan";
+		this.team = team;
 		position = new int[2];
 	}
 	
 	public String getName() {
 		return name;
 	}
-
 	public String getFunction() {
 		return function;
 	}
-
+	public void changeFunction(String function) {
+		this.function = function;
+	}
 	public int[] getPosition() {
 		return position;
 	}
-
 	public void changePosition(int m, int n) {
 		position[0] = m;
 		position[1] = n;
 	}
+	public String getTeam() {
+		return team;
+	}
+	public void changeTeam(String team) {
+		this.team = team;
+	}
+
+	
 	//重载自带的toString函数，用于System.out的调用
 	public String toString() {
 		return name;
