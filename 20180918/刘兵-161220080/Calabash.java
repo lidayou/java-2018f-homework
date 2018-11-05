@@ -2,8 +2,8 @@
 public class Calabash
 {
 	public enum CalabashBrother {
-		FIRST("ÀÏ´ó","ºìÉ«",1),SECOND("ÀÏ¶ş","³ÈÉ«",2),THIRD("ÀÏÈı","»ÆÉ«",3),FOURTH("ÀÏËÄ","ÂÌÉ«",4),
-		FIFTH("ÀÏÎå","ÇàÉ«",5),SIXTH("ÀÏÁù","À¶É«",6),SEVENTH("ÀÏÆß","×ÏÉ«",7);
+		FIRST("è€å¤§","çº¢è‰²",1),SECOND("è€äºŒ","æ©™è‰²",2),THIRD("è€ä¸‰","é»„è‰²",3),FOURTH("è€å››","ç»¿è‰²",4),
+		FIFTH("è€äº”","é’è‰²",5),SIXTH("è€å…­","è“è‰²",6),SEVENTH("è€ä¸ƒ","ç´«è‰²",7);
 		private final String name;
 		private final String color;
 		private final int rank;
@@ -63,13 +63,13 @@ public class Calabash
 	public static void main(String[] args) {
 		CalabashBrother[] cbs1= {CalabashBrother.SIXTH,CalabashBrother.THIRD,CalabashBrother.SEVENTH,CalabashBrother.SECOND,CalabashBrother.FIRST,CalabashBrother.FIFTH,CalabashBrother.FOURTH};
 		Bubblesort(cbs1,7);
-		System.out.println("Ã°ÅİÅÅĞòºó½á¹û£º");
+		System.out.println("å†’æ³¡æ’åºåç»“æœï¼š");
 		for(int i=0;i<cbs1.length;i++) {
 			System.out.println(cbs1[i].getname());
 		}
 		CalabashBrother[] cbs2= {CalabashBrother.FOURTH,CalabashBrother.THIRD,CalabashBrother.SEVENTH,CalabashBrother.SECOND,CalabashBrother.FIRST,CalabashBrother.SIXTH,CalabashBrother.FIFTH};
 		binarysort(cbs2,0,6);
-		System.out.println("¶ş·Ö·¨ÅÅĞòºó½á¹û£º");
+		System.out.println("äºŒåˆ†æ³•æ’åºåç»“æœï¼š");
 		for(int i=0;i<cbs2.length;i++) {
 			System.out.println(cbs2[i].getcolor());
 		}
