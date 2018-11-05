@@ -2,6 +2,13 @@ package space;
 
 
 //一个小方块 可以用Square做成一个N*N空间
+/**
+* @ClassName: Square
+* @Description: 描述组成棋盘的一个基本单元
+* @author 13745
+* @date 2018年11月4日
+*
+*/
 public class Square {
 	private int x;
 	private int y;
