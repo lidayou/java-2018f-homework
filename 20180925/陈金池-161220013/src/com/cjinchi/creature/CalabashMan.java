@@ -1,7 +1,6 @@
 package com.cjinchi.creature;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,25 +60,21 @@ public class CalabashMan extends Creature {
         }
     }
 
-    public static CalabashMan[] getRandomCalabashMans() {
-        CalabashMan[] calabashMans = new CalabashMan[getTotalNum()];
-        for (int i = 0; i < getTotalNum(); i++) {
-            calabashMans[i] = getInstance(i + 1);
+    public static List<CalabashMan> getRandomCalabashMans() {
+        List<CalabashMan> calabashMans = new ArrayList<>();
+        for (int i = 1; i <= getTotalNum(); i++) {
+            calabashMans.add(getInstance(i));
         }
-
-        List<CalabashMan> calabashManList = Arrays.asList(calabashMans);
-        Collections.shuffle(calabashManList);
-        return calabashManList.toArray(new CalabashMan[0]);
+        Collections.shuffle(calabashMans);
+        return calabashMans;
     }
 
-    public static void sortBySequence(CalabashMan[] brothers) {
-        for (int i = 0; i < brothers.length - 1; i++) {
-            for (int j = 0; j < brothers.length - i - 1; j++) {
-                if (brothers[j].getSeq() > brothers[j + 1].getSeq()) {
+    public static void sortBySequence(List<CalabashMan> mans) {
+        for (int i = 0; i < mans.size() - 1; i++) {
+            for (int j = 0; j < mans.size() - i - 1; j++) {
+                if (mans.get(j).getSeq() > mans.get(j + 1).getSeq()) {
                     // exchange
-                    CalabashMan temp = brothers[j];
-                    brothers[j] = brothers[j + 1];
-                    brothers[j + 1] = temp;
+                    Collections.swap(mans, j, j + 1);
                 }
             }
         }
