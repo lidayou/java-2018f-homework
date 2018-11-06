@@ -1,5 +1,8 @@
 # Java Homework 3
-
+## 2018.11.06更新(Position类)
+- 添加了Position类，表示BattleField上的一个位置。一个Position中存放一个Creature，而一个BattleField中存放一个Position矩阵。
+- 相比直接在BattleField中存放Creature矩阵，这样修改更符合逻辑。
+***
 ## 2018.11.06更新(Collection)
 - 使用Collection框架修改了程序中保存Creature的方式，简化了代码。比如，交换两个元素可以写为：
 ```java
@@ -13,12 +16,9 @@ if (mans.get(j).getSeq() > mans.get(j + 1).getSeq()) {
 public static List<CalabashMan> getRandomCalabashMans() {
     // Do someting
     Collections.shuffle(calabashMans);
-    //Do something
+    // Do something
 }
 ```
-
-
-
 ***
 
 ## 运行
