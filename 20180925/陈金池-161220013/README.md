@@ -1,5 +1,26 @@
 # Java Homework 3
 
+## 2018.11.06更新(Collection)
+- 使用Collection框架修改了程序中保存Creature的方式，简化了代码。比如，交换两个元素可以写为：
+```java
+if (mans.get(j).getSeq() > mans.get(j + 1).getSeq()) {
+    // Exchange
+    Collections.swap(mans, j, j + 1);
+}
+```
+生成随机葫芦娃List，可以写为：
+```java
+public static List<CalabashMan> getRandomCalabashMans() {
+    // Do someting
+    Collections.shuffle(calabashMans);
+    //Do something
+}
+```
+
+
+
+***
+
 ## 运行
 测试环境：JavaSE-10
 ```bash
