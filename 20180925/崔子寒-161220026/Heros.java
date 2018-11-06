@@ -1,23 +1,29 @@
 import Attributes.Color;
 import Creatures.Grandfather;
 import Creatures.CalabashBrother;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class Heros {
+    /*
     private CalabashBrother[] calabashBrothers={new CalabashBrother(Color.RED),new CalabashBrother(Color.ORANGE),
             new CalabashBrother(Color.YELLOW), new CalabashBrother(Color.GREEN),new CalabashBrother(Color.BLUE),
             new CalabashBrother(Color.CYAN),new CalabashBrother(Color.PURPLE),};
+            */
+    private ArrayList<CalabashBrother> calabashBrothers = new ArrayList<>();
     private Grandfather grandfather = new Grandfather();
 
+    public Heros() {
+        calabashBrothers.addAll(Arrays.asList(new CalabashBrother(Color.RED),new CalabashBrother(Color.ORANGE),
+                new CalabashBrother(Color.YELLOW), new CalabashBrother(Color.GREEN),new CalabashBrother(Color.BLUE),
+                new CalabashBrother(Color.CYAN),new CalabashBrother(Color.PURPLE)));
+    }
     /*shuffle randomly*/
     public void shuffle() {
-        Random rand = new Random() ;
-        for(int i = 0;i < 6;i++) {
-            int selectPosition = rand.nextInt(7 - i);
-            CalabashBrother temp = calabashBrothers[selectPosition];
-            calabashBrothers[selectPosition] = calabashBrothers[6 - i];
-            calabashBrothers[6 - i] = temp;
-        }
+        Collections.shuffle(calabashBrothers);
     }
 
     /*line up */
@@ -28,7 +34,8 @@ public class Heros {
             System.out.print(x.getColor().getName()+" ");
         }
         System.out.println("\n准备列队");
-        Mysort.myBubbleSort(calabashBrothers);
+        //Mysort.myBubbleSort(calabashBrothers);
+        Collections.sort(calabashBrothers);
 
         System.out.print("葫芦娃列队完毕：");
         for(CalabashBrother x:calabashBrothers){
@@ -41,11 +48,12 @@ public class Heros {
         return grandfather;
     }
 
-    public CalabashBrother[] getCalabashBrothers() {
+    public ArrayList<CalabashBrother> getCalabashBrothers() {
         return calabashBrothers;
     }
 }
 
+//用持有类型重写后，排序采用Collections.sort, 不再使用Mysort
 class Mysort {
     /*Swap two elements*/
     private static void swap(CalabashBrother[] brothers, int index1, int index2) {
