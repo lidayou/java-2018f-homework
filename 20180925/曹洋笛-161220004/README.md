@@ -2,75 +2,76 @@
 
 ## 符号说明
 - ABCDEFG：葫芦娃老大到老七  
-- @：老爷爷（助威）  
+- Y：老爷爷（助威）  
 - &：蝎子精  
 - o：小喽啰  
-- $：蛇精（助威）  
+- S：蛇精（助威）  
 
-## 机制
-- 7个葫芦娃采用枚举类 —— 封装  
-    - 限制了葫芦娃的可能取值（不会错误地出现第八个葫芦娃）  
-- 葫芦娃阵型相关操作与妖怪阵型相关操作分为不同的类 —— 封装  
-    - 代码模块化  
-    - 为什么不把老爷爷和蛇精以助威为由单独作为一个类？  
-        依照本程序的设定，老爷爷（蛇精）的位置获取方法为：  
-        在7个葫芦娃（所有小喽啰和蝎子精）中随机选取一个为基准点，再生成两个从-2到2的随机数分别作为x轴偏移量和y轴偏移量，从基准点移动此偏移量所在的位置，若合理，则为老爷爷（蛇精）的助威位置。因此老爷爷（蛇精）位置不会偏离对应的阵型太远，也作为阵型的一部分，不能放到其他类中。  
-- 妖怪的7种不同阵型都有相同的父类 —— 继承  
-    - 因为每一种阵型除了妖怪数量、妖怪的坐标数组不同外，其对阵型的操作是相同的，将相同的部分实现在父类中，7个子类各自继承此父类，唯有构造函数不同，而妖怪数量、妖怪的坐标数组等不同的量赋值于构造函数中  
-    - 提高了代码的复用性和可维护性  
+## 效果演示
 
-## 设计理念
-- Guys 枚举类  
-    定义了7个葫芦娃对应的显示符号
-- brotherFormation 类   
-    定义了与葫芦娃阵型相关的操作，包括：  
-    - 变量  
-        葫芦娃坐标（数组）  
-        老爷爷坐标
-    - 方法  
-        brotherFormation：葫芦娃排好阵型  
-        oldCheer：老爷爷找到自己的位置  
-        inField：葫芦娃阵型进入场地  
-        delFormation：葫芦娃阵型离开场地  
-        movFormation：葫芦娃阵型在场地中整体移动  
-- monsterFormation 类  
-    定义了与妖怪阵型相关的操作，且作为所有不同的妖怪阵型的父类，其共通的操作包括：  
-    - 变量  
-        小喽啰人数  
-        小喽啰+蝎子精坐标（数组，蝎子精为数组末尾的）  
-        蛇精坐标  
-    - 方法  
-        snakeCheer：蛇精找到自己的位置  
-        inField：妖怪阵型进入场地  
-        delFormation：妖怪阵型离开场地  
-        movFormation：妖怪阵型在场地中整体移动  
-- vFormation 等 7 个 monsterFormation 的子类  
-    仅构造函数不同，参数为各自阵型中的蝎子精坐标，确定蝎子精和小喽啰的 7 个阵型（鹤翼，雁行，冲轭，鱼鳞，方円，偃月，锋矢）  
-      
-- 公共类  
-    - 静态变量  
-        fieldLen：场地边长（正方形）  
-        field：场地（char型二维数组）  
-    - 静态方法  
-        initField：初始化场地（每个位置都是空格）  
-        findField：返回场地中参数(x,y)坐标处的字符  
-        setField：将场地中参数(x,y)处的字符设为参数c  
-        printField：打印场地  
-        main 函数
+<img src="img_readme/0.png" width=45%>
+<img src="img_readme/1.png" width=85%>
+<img src="img_readme/2.png" width=45%>
+<img src="img_readme/3.png" width=45%>
+<img src="img_readme/4.png" width=85%>
+<img src="img_readme/5.png" width=45%>
+<img src="img_readme/6.png" width=45%>
 
-## 流程说明
-- 葫芦娃以长蛇阵在场地左侧站好：  
-    （葫芦娃排出长蛇阵，老爷爷找到自己的位置助威）  
-- 妖怪们以鹤翼阵在场地右侧站好：  
-    （蝎子精和小喽啰排出鹤翼阵，蛇精找到自己的位置助威）  
-- 妖怪们改变阵型为雁行阵  
-- 妖怪们改变阵型为冲轭阵  
-- 妖怪们改变阵型为鱼鳞阵  
-- 妖怪们改变阵型为方円阵  
-- 妖怪们改变阵型为偃月阵  
-- 妖怪们改变阵型为锋矢阵  
-- 妖怪们向左前进 3 步  
-- 葫芦娃向右前进 1 步  
-- 妖怪们向右后退 2 步  
-- 葫芦娃向右追击 1 步  
-  
+## 类图
+
+<img src="img_readme/Main.jpg" width=100%>
+
+## Point
+点类型，属性为行和列，能够进行简单的显示行列、判断是否相等、移动等操作。  
+
+## Type
+enum 类型，为各阵型的名字：  
+HY("鹤翼阵"), YX("雁行阵"), CE("冲轭阵"), CS("长蛇阵"), YL("鱼鳞阵"),
+FY("方円阵"), YY("偃月阵"), FS("锋矢阵");  
+
+## Creature
+属性有：名字 String name，打印符号 char symbol  
+根据行为方式的不同，被继承为3类：  
+- 葫芦娃：Brothers  
+  - 内部类 enum Members，规定了7个葫芦娃的名字，排行，颜色  
+- 妖怪：Monsters  
+  - 从“小喽啰”中继承出“首领”蝎子精：Scorpion
+- 啦啦队：Mascot
+  - 被“老爷爷” Elder 与”蛇精“ Snake 继承  
+
+## Formation
+其属性包括：  
+- 阵型种类 Types type  
+- 阵型行数 int formRangeRow  
+- 阵型列数 int formRangeCol  
+- 阵型图 Creature[][] creatureMap （没有人的位置为 null）
+- 阵型的中心点 Point formCenter （用来定位）  
+
+其方法包括：  
+- Point center() // 得到阵型中心坐标  
+- Types getType() // 得到阵型类型  
+- int getRowNum() // 得到阵型行数  
+- int getColNum() // 得到阵型列数  
+- boolean isEmpty(int r, int c) // 某处是否有人  
+- char[][] getFormMap() // 得到阵型打印效果  
+
+子类就是八种阵型:  
+（鹤翼阵 HeYi，雁行阵 YanXing，冲轭阵 ChongE，长蛇阵 ChangShe，鱼鳞阵 YuLin，方円阵 FangYuan，偃月阵 YanYue，锋矢阵 FengShi）  
+它们的不同之处在于构造函数。
+
+## WorldMap
+将各个 Formation 固定到世界当中。  
+WorldMap 在定义了地图的行列数 rangeRow, rangeCol 之后，仅仅保留各个阵型的对象以及该阵型在地图中应该在的位置（Point 类型，指示该阵型中心点坐标）。  
+移动阵型的操作只需要改变该阵型的中心点定位；  
+改变妖怪阵型的操作只需要改变妖怪阵型所引用的对象（如从雁行阵改为鱼鳞阵，则原来的 monForm = yxForm 变为 monForm = ylForm，其中 monForm 是 Formation 类型，yxForm/ylForm 是 YanXing/YuLin 类型）。  
+而打印世界地图，即 showWorld() 的过程，才是把各个阵型正式“空降”到世界地图上，其过程是：  
+- 建立一个行列为 rangeRow, rangeCol 的地图 char[][] map  
+- 初始化，使 map 的每个元素都为 ' '（空格）  
+- 通过 Formation 的行为 char[][] getFormMap()，得到葫芦娃和妖怪阵型局部的显示图  
+- 通过葫芦娃阵型和妖怪阵型的中心点定位，将这两个局部小图的内容覆盖到世界地图 map 上  
+- 通过啦啦队老爷爷和蛇精的定位点，将老爷爷和蛇精的符号覆盖到世界地图 map 上  
+- 打印世界地图
+
+## Observer
+main 函数所在的类。
+形成一个类似于mud游戏的效果，可以供使用者做出选择，以控制 WorldMap 的行为。
