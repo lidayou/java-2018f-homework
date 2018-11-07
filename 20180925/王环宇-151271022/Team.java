@@ -1,6 +1,7 @@
 package javahw3;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Team{
 	/*
@@ -15,18 +16,31 @@ public class Team{
 		this.side = side;
 	}
 	public void showWarriors() {
-		for(Warrior k:team)
-			k.showMe();
+		Iterator<Warrior> it = team.iterator();
+		while(it.hasNext()) {
+			it.next().showMe();
+		}
 	}
 	public String getSide() {
 		return side;
 	}
-	public void add(Warrior obj) {
-		team.add(obj);
+	public void add(Warrior temp) {
+		team.add(temp);
+	}
+	
+	public void goBattle(Warrior [][] fields, int[][] place) {
+		for(int i=0; i<team.size(); i++) {
+			int m = place[i][0];
+			int n = place[i][1];
+			team.get(i).changePosition(m, n);
+			fields[m][n] = team.get(i);
+		}
 	}
 	
 	public void checkMember() throws MyException{
-		for(Warrior w: team) {
+		Iterator<Warrior> it = team.iterator();
+		while(it.hasNext()) {
+			Warrior w = it.next();
 			try {
 				if(w.getTeam() != side)
 					throwMyException(w.getName());

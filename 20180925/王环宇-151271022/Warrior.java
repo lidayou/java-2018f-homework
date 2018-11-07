@@ -44,14 +44,13 @@ public class Warrior implements WarriorInterface {
 		this.team = team;
 	}
 
-	
 	//重载自带的toString函数，用于System.out的调用
 	public String toString() {
 		return name;
 	}
 	//自定义显示函数，打印出对象的所有关键信息
 	public void showMe() {
-		System.out.println(name+" team:"+team+" ["+position[0]+","+position[1]+"]");
+		System.out.println(name+" team:"+team+" "+function+" ["+position[0]+","+position[1]+"]");
 	}
 	
 }
