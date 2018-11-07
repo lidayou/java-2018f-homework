@@ -1,24 +1,10 @@
 package sort;
+
 import creature.HuluWa;
-public interface Sort {
-    public void sort(HuluWa[] brothers);
-}
 
-/*public class Sort {
-    public void bubbleSort(HuluWa[] brothers){
-        for (int i = 0; i < brothers.length; i++) {
-            for (int j = 0; j < brothers.length-i-1; j++) {
-                if (!brothers[j].comparePriority(brothers[j+1])) {
-                    brothers[j].swapHuluWa(brothers[j+1], j,j+1);
-                    HuluWa temp = brothers[j+1];
-                    brothers[j+1] = brothers[j];
-                    brothers[j] = temp;
-                }
-            }
-        }
-    }
-
-    public void biInsertSort(HuluWa[] brothers){
+public class HuluWaColorSort implements Sort {
+    @Override
+    public void sort(HuluWa[] brothers) {
         for (int i = 1; i < brothers.length; i++){
             int mid = 0;
             int begin = 0;
@@ -51,6 +37,4 @@ public interface Sort {
             }
         }
     }
-
-
-}*/
+}
