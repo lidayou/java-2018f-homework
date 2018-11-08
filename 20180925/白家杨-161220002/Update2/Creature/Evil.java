@@ -1,11 +1,6 @@
 package Update2.Creature;
 
-import Update2.BattleField;
-import Update2.Creature.Creature;
-import Update2.Strategy.Changshe;
-import Update2.Strategy.Heyi;
-import Update2.Strategy.Strategy;
-import Update2.Strategy.Yuling;
+import Update2.Strategy.*;
 import Update2.UI;
 
 import java.awt.event.ItemListener;
@@ -75,15 +70,43 @@ public class Evil extends Creature implements ItemListener{
         if (e.getStateChange() == ItemEvent.SELECTED) {     // 查看是否为新选中的选项触发
             if (e.getItem().equals("长蛇阵")) {  // 查看触发的选项
                 System.out.println("Demon 长蛇阵");
+                bat.AppendText("妖怪摆出了长蛇阵");
                 UseStrategy(new Changshe());
             }
             else if(e.getItem().equals("鹤翼阵")){
                 System.out.println("Demon 鹤翼阵");
+                bat.AppendText("妖怪摆出了鹤翼阵");
                 UseStrategy(new Heyi());
+            }
+            else if(e.getItem().equals("方圆阵")){
+                System.out.println("Demon 方圆阵");
+                bat.AppendText("妖怪摆出了方圆阵");
+                UseStrategy(new Fangyuan());
+            }
+            else if(e.getItem().equals("锋矢阵")){
+                System.out.println("Demon 锋矢阵");
+                bat.AppendText("妖怪摆出了锋矢阵");
+                UseStrategy(new Fengshi());
+            }
+            else if(e.getItem().equals("雁行阵")){
+                System.out.println("Demon 雁行阵");
+                bat.AppendText("妖怪摆出了雁行阵");
+                UseStrategy(new Yanxing());
+            }
+            else if(e.getItem().equals("偃月阵")){
+                System.out.println("Demon 偃月阵");
+                bat.AppendText("妖怪摆出了偃月阵");
+                UseStrategy(new Yanyue());
             }
             else if(e.getItem().equals("鱼鳞阵")){
                 System.out.println("Demon 鱼鳞阵");
+                bat.AppendText("妖怪摆出了鱼鳞阵");
                 UseStrategy(new Yuling());
+            }
+            else if(e.getItem().equals("衡轭阵")){
+                System.out.println("Demon 衡轭阵");
+                bat.AppendText("妖怪摆出了衡轭阵");
+                UseStrategy(new Henggui());
             }
             else {
                 ;

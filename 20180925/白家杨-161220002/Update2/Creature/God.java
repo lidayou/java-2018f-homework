@@ -1,6 +1,5 @@
 package Update2.Creature;
 
-import Update2.BattleField;
 //import Update2.Creature.*;
 import Update2.Strategy.Changshe;
 import Update2.Strategy.Heyi;
@@ -83,6 +82,7 @@ public class God extends Creature implements ItemListener {
             else if(e.getItem().equals("鱼鳞阵")){
                 System.out.println("Demon 鱼鳞阵");
                 UseStrategy(new Yuling());
+
             }
             else {
                 ;
