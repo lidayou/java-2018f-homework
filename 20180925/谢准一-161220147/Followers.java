@@ -1,26 +1,26 @@
-public class Followers {
+public class Followers extends Creature{
 
-    static int count = 0;
     private int x;
     private int y;
-    private char symbol;
     Followers(){
+        super("Follower", '*');
         x = 0;
         y = 0;
-        symbol = '*';
+
     }
     Followers(int i, int j) {
+        super("Follower", '*');
         x = i;
         y = j;
-        symbol = '*';
+
     }
     public void StandToField() {
         Calabash.battlefield[x][y] = symbol;
     }
-    public int GetX() {
+    public int getX() {
         return x;
     }
-    public int GetY() {
+    public int getY() {
         return y;
     }
 }
