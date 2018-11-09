@@ -1,4 +1,305 @@
-# ´úÂëËµÃ÷
+#   
+# World v3.0 °æ
+- µ±Ç°°æ±¾  
+- µÚÒ»¸ö **GUI** °æ±¾   
+  - ²Ëµ¥À¸£¬¿ÉÒÔ½øĞĞ£ºÖØÖÃ¡¢¸Ä±äÑı¹ÖÕóĞÍ  
+  - ³õÊ¼Ì¬Îª×Ô¶¯Ä£Ê½£¬¶Ô²Ëµ¥À¸½øĞĞÈÎÒâ²Ù×÷ºó½øÈëÊÖ¶¯Ä£Ê½
+  - Ìí¼Ó¼üÅÌ¼àÌı£¬¿ÉÒÔ¿ØÖÆËùÓĞÕóÓªµÄÒÆ¶¯
+- ¸Ä±äÁË¿ØÖÆÊÀ½çµÄ»úÖÆ£º  
+  - Ë¦ÊÖÕÆ¹ñ **God**£¨½ö½ö´´ÔìÁ½¸ö¡°±íÀïÊÀ½ç¡±¶ÔÏó£©  
+  - ÀïÊÀ½ç **CharWorld**£¨ÊÀ½çµÄ»ù´¡£©  
+  - ±íÊÀ½ç **GUIWorld**£¨¸ù¾İÀïÊÀ½çµÄ²¼¾ÖÊµÏÖ GUI£©  
+- Ê¹ÓÃ Collection µÄ HashMap ¶ÔÕóĞÍÀà½øĞĞÖØĞ´  
+  - Formation ÖĞµÄÃ¿¸öµãÊ¹ÓÃ **HashMap<Point, Creature>** ½øĞĞ´æ´¢  
+- ÖØĞÂ·â×°ÁË util ¹¤¾ß°ü  
+  - enum ÀàÔö¼ÓÎª3¸ö£¨ÒıÈë¡°ÕóÓª Group ¸ÅÄî¡±£©  
+  - Point ÀàµÄº¯ÊıÌí¼ÓÁË @Override µÄ equals() ºÍ hashCode()  
+- Ïû³ıÁË±íÀïÊÀ½çÖĞ´óÁ¿²»±ØÒªµÄµã¶¨Î»ºÍ²»±ØÒªµÄ¶ÔÏó
+- ¶Ô¿ØÖÆÕóĞÍ¸Ä±äºÍÒÆ¶¯µÄº¯Êı½øĞĞµ÷ÕûÒÔ¼õÉÙÖØ¸´´úÂë  
+  - ÅĞ¶ÏºÏÀíĞÔµÄº¯Êı½øĞĞÖØĞ´  
+  - ¶Ô²»Í¬ÕóÓªµÄËùÓĞÒÆ¶¯Ààº¯ÊıºÏ²¢ÎªÒ»¸ö
+- ²ÉÓÃÁË **javadoc** ¸ñÊ½ÖØĞ´ÁË×¢ÊÍ
+- ÏÂÒ»°æ±¾Ç°Õ°£º  
+  - ¼´½«Ìí¼Ó·ºĞÍ  
+  - ¼´½«Õë¶Ô¡°ÕóÓª¡±¶Ô formations °ü½øĞĞÎ¢µ÷  
+  - ¼´½«ÀûÓÃ¡°ÕóÓª¡±½øÒ»²½ºÏ²¢º¯Êı£¬¼õÉÙÏàËÆ´úÂë
+
+## ÀàÍ¼
+<img src="img_readme/3.0-class.png" width=100%>
+
+- world    
+  - God.java
+  - CharWindow.java  
+  - GUIWindow.java  
+  - creatures  
+    - Creature.java
+    - Brothers.java  
+    - Monsters.java  
+    - Scorpion.java  
+    - Mascot.java  
+    - Elder.java  
+    - Snake.java
+  - formations  
+    - Formation.java
+    - HeYi.java
+    - YanXing.java
+    - ChongE.java
+    - ChangShe.java
+    - YuLin.java
+    - FangYuan.java
+    - YanYue.java
+    - FengShi.java
+  - util
+    - Point.java
+    - GroupType.java
+    - CreatureType.java
+    - FormationType.java
+    - Range.java
+    - WorldSleep.java
+
+## ÏêÏ¸ËµÃ÷
+### £¨Ò»£©package world
+#### 1. God
+ÕâÊÇÒ»¸ö´´ÔìÍêÊÀ½ç¾ÍÅÜµÄ£¬²¢²»¸ºÔğµÄÉñ¡£
+```java
+    public static void main(String[] args) {
+        CharWindow cWin = new CharWindow();
+        new GUIWindow(cWin);
+    }
+```
+#### 2. CharWorld
+ÊÀ½çµÄ±¾ÖÊ¡£  
+##### £¨1£©ÊôĞÔ  
+¶¨ÒåÁËËÄ´óÕóÓª£¨ºùÂ«ÍŞ¡¢Ñı¹Ö¡¢ÀÏÒ¯Ò¯¡¢Éß¾«£©µÄ¶ÔÏóºÍÎ»ÖÃ  
+```java
+    public Formation broForm;
+    public Formation monForm;
+    public Snake snake = new Snake();
+    public Elder elder = new Elder();
+    private Point pBroCen; 
+    private Point pMonCen; 
+    private Point pEld;
+```
+ÕâÑù¾Í²»ĞèÒªÏÔÊ½µØ¸ø³öºÍÎ¬»¤ÕûÕÅµØÍ¼£¬Ò²¾ÍÊÇËµ£¬Ö»ÓĞÔÚĞèÒª´òÓ¡µÄÊ±ºòÀûÓÃ¶ÔÏóºÍÎ»ÖÃÏÖÉú³É¿ØÖÆÌ¨µÄµØÍ¼Êä³ö£¨·½·¨ CharWorld.showWorld()£©»ò GUI µÄµØÍ¼Êä³ö£¨·½·¨ GUIWorld.showAtLast()£©  
+##### £¨2£©·½·¨  
+ÖØÒªµÄ public ·½·¨°üÀ¨£º  
+```java
+    /** ¸ù¾İ class Range ¶¨ÒåµÄÖµ³õÊ¼»¯ËùÓĞ¶ÔÏó¼°ÆäÎ»ÖÃ*/
+    public void initAll();
+    /** ½«ÕóÓª type ÏòÓÒÏÂ·½ÒÆ¶¯ÏòÁ¿ d */
+    public void movGroup(GroupType type, Point d);
+    /** ¸Ä±äÑı¹ÖÕóĞÍµ½ĞÂÕóĞÍtype */
+    public void changeFormation(FormationType type);
+```
+¸¨ÖúµÄ private ·½·¨ÓĞĞ©ÓÃÓÚÅĞ¶ÏÒ»¸öÒÆ¶¯»òÕóĞÍ±ä»»ÊÇ·ñ¿ÉĞĞ£¨±ÈÈç£¬ÊÇ·ñ³¬³öµØÍ¼±ß½çÒÔ¼°ÊÇ·ñÓëÆäËûÕóÓªµÄÎ»ÖÃ²úÉú³åÍ»£©£»ÓĞĞ©ÄÜ¸ù¾İÕóĞÍÖÖÀà´´½¨¶ÔÓ¦µÄÕóĞÍ¶ÔÏóµÈµÈ¡£  
+  
+#### 3. GUIWorld extends JFrame
+ÔÚÊÀ½çµÄ±¾ÖÊÉÏ£¬°üÁËÒ»²ãºÃ¿´µÄÍâÆ¤¡£  
+##### £¨1£©ÊôĞÔ  
+¶¨ÒåÁË²Ëµ¥À¸ÒÔ¼°²Ëµ¥Ïî£»  
+¶¨ÒåÁË²Ëµ¥/¼üÅÌÊÂ¼ş¼àÌı£»  
+¶¨ÒåÁË·ÅÍ¼Æ¬ÓÃµÄ±êÇ© ¡­¡­  
+```java
+    ...
+    /** GUI ÊÀ½çµÄÔ­ĞÍ ¡ª¡ª char ÊÀ½ç */
+    private CharWindow cWin;
+    /** ²Ëµ¥ÊÂ¼ş¼àÌı */
+    private MenuMonitor menuMonitor; // MenuMonitor ÊÇÄÚ²¿Àà
+    /** ¼üÅÌÊÂ¼ş¼àÌı */
+    private KeyMonitor keyMonitor; // KeyMonitor ÊÇÄÚ²¿Àà
+    /** ¶¨Òå±³¾°Í¼Æ¬ËùÔÚ±êÇ© */
+    private JLabel ground;
+    /** ¶¨ÒåÒ»Èº±êÇ©ÒÔ·ÅÖÃÈËÎïÍ¼Æ¬ */
+    private JLabel[][] cell;
+    ...
+```
+##### £¨2£©·½·¨  
+¹¹Ôìº¯ÊıµÄ×îºóµ÷ÓÃÁË×Ô¶¯Ä£Ê½ **autoWorld()**£¬¼´´°¿Ú¸Õ¸Õµ¯³ö¾Í»á½øÈë×Ô¶¯Ä£Ê½¡£  
+ÖØÒªµÄ·½·¨ÓĞ£º
+```java
+    /** Çå¿ÕGUIÊÀ½ç */
+    public void removeAtFirst();
+    /** ÒÀÕÕcharÊÀ½çµÄÑù×Ó»­³öGUIÊÀ½ç */
+    public void showAtLast();
+    /** ×Ô¶¯Ä£Ê½ */
+    public void autoWorld();
+```
+Çå¿ÕÊÀ½çÈ»ºó½øĞĞÒÆ¶¯µÈ²Ù×÷È»ºóÔÙÖØĞÂ»­³öÊÀ½çÊÇË¢ĞÂ´°¿ÚµÄ·½Ê½¡£  
+##### £¨3£©ÄÚ²¿Àà
+```java
+    /** ¼àÌı²Ëµ¥Ïî */
+    class MenuMonitor implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == menuItReset)
+                handleReset();
+            else if (e.getSource() == menuItHY)
+                handleMon(FormationType.HY);
+            else if (e.getSource() == menuItYX)
+                handleMon(FormationType.YX);
+            else if (e.getSource() == menuItCE)
+                handleMon(FormationType.CE);
+            else if (e.getSource() == menuItYL)
+                handleMon(FormationType.YL);
+            else if (e.getSource() == menuItFY)
+                handleMon(FormationType.FY);
+            else if (e.getSource() == menuItYY)
+                handleMon(FormationType.YY);
+            else if (e.getSource() == menuItFS)
+                handleMon(FormationType.FS);
+        }
+    }
+    /** ²Ëµ¥À¸¡°¿ªÊ¼¡±->¡°ÖØÖÃ¡± */
+    public void handleReset() {
+        isAuto = false;     // È¡Ïû×Ô¶¯Ä£Ê½
+        removeAtFirst();    // Çå¿Õ
+        cWin.initAll();     // ÖØÖÃ
+        cWin.showWorld();   // ÖØ»­¿ØÖÆÌ¨
+        showAtLast();       // ÖØ»­ GUI
+    }
+    /** ²Ëµ¥À¸¡°¿ªÊ¼¡±->¡°ÕóĞÍ¡± */
+    public void handleMon(FormationType type) {
+        isAuto = false;             // È¡Ïû×Ô¶¯Ä£Ê½
+        nextForm = type;            // ´¦Àí sleep Òı·¢µÄÑÓ³ÙÎÊÌâ
+        removeAtFirst();            // Çå¿Õ
+        cWin.changeFormation(type); // ¸ÄÕóĞÍ
+        cWin.showWorld();           // ÖØ»­¿ØÖÆÌ¨
+        showAtLast();               // ÖØ»­ GUI
+    }
+```
+```java
+    /** ¼àÌı¼üÅÌÏî */
+    class KeyMonitor implements KeyListener {
+        @Override
+        public void keyTyped(KeyEvent e) {}
+        @Override
+        public void keyPressed(KeyEvent e) {}
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (isAuto) return; // ×Ô¶¯Ä£Ê½²»Ö§³ÖÊ¹ÓÃ¼üÅÌ
+            removeAtFirst();
+            switch (e.getKeyCode()) {
+            // ÒÆ¶¯ºùÂ«ÍŞ£ºWDSA
+            case KeyEvent.VK_W: cWin.movGroup(GroupType.Bro, new Point(-1, 0)); break;
+            case KeyEvent.VK_D: cWin.movGroup(GroupType.Bro, new Point(0, 1)); break;
+            case KeyEvent.VK_S: cWin.movGroup(GroupType.Bro, new Point(1, 0)); break;
+            case KeyEvent.VK_A: cWin.movGroup(GroupType.Bro, new Point(0, -1)); break;
+            // ÒÆ¶¯Ñı¹Ö£ºUP/RIGHT/DOWN/LEFT
+            case KeyEvent.VK_UP: cWin.movGroup(GroupType.Mon, new Point(-1, 0)); break;
+            case KeyEvent.VK_RIGHT: cWin.movGroup(GroupType.Mon, new Point(0, 1)); break;
+            case KeyEvent.VK_DOWN: cWin.movGroup(GroupType.Mon, new Point(1, 0)); break;
+            case KeyEvent.VK_LEFT: cWin.movGroup(GroupType.Mon, new Point(0, -1)); break;
+            // ÒÆ¶¯ÀÏÒ¯Ò¯£ºTHGF
+            case KeyEvent.VK_T: cWin.movGroup(GroupType.Eld, new Point(-1, 0)); break;
+            case KeyEvent.VK_H: cWin.movGroup(GroupType.Eld, new Point(0, 1)); break;
+            case KeyEvent.VK_G: cWin.movGroup(GroupType.Eld, new Point(1, 0)); break;
+            case KeyEvent.VK_F: cWin.movGroup(GroupType.Eld, new Point(0, -1)); break;
+            // ÒÆ¶¯Éß¾«£ºILKJ
+            case KeyEvent.VK_I: cWin.movGroup(GroupType.Snk, new Point(-1, 0)); break;
+            case KeyEvent.VK_L: cWin.movGroup(GroupType.Snk, new Point(0, 1)); break;
+            case KeyEvent.VK_K: cWin.movGroup(GroupType.Snk, new Point(1, 0)); break;
+            case KeyEvent.VK_J: cWin.movGroup(GroupType.Snk, new Point(0, -1)); break;
+            }
+            cWin.showWorld();
+            showAtLast();
+        }
+    }
+```
+
+### £¨¶ş£©package world.creatures  
+#### Creature
+ĞÂÔöÈËÎïÀàĞÍÏî£¬Ä¿µÄÊÇÔÚ CharWindow ÒÔ¼° GUIWindowÖĞºÏ²¢º¯Êı£¨¶Ô²»Í¬ÈËÎïÀàĞÍ½øĞĞ²Ù×÷µÄ¶à¸öÏàËÆµÄº¯ÊıºÏ²¢ÎªÒ»¸ö£¬¸ù¾İ CreatureTyp e²ÎÊı²»Í¬¶øÖ´ĞĞ²»Í¬µÄ²Ù×÷£©
+```java
+    /** ÈËÎïÀàĞÍ */
+    protected CreatureType type;
+```
+
+### £¨Èı£©package world.formations
+#### Formation
+ÉÏÒ»°æ±¾ÖĞÎ¬»¤µÄÕóĞÍÍ¼ Creature[][] creatureMap ÓÉÓÚÀË·Ñ¿Õ¼ä£¨Ã»ÓĞÈËÎïµÄµØ·½Ò²ÓĞ¿ÕÖ¸Õë£©±»ÌÔÌ­£¬È¡¶ø´úÖ®µÄÊÇ HashMap£¬½ö½ö¼ÇÂ¼ÕóĞÍÖĞÈËÎïµÄ¡°µãÎ»ÖÃ->ÈËÎïÀàĞÍ¡±ĞÅÏ¢¡£  
+```java
+    public Map<Point, Creature> formMap;
+    protected Formation(...) {
+        ...
+        formMap = new HashMap<Point, Creature>();
+    }
+```
+Òò¶øÆä×ÓÀà£¬¸÷ÖÖÕóĞÍµÄ¹¹Ôìº¯Êı·¢ÉúÁË¸Ä±ä¡£ÒÔ³åéîÕóÎªÀı£º
+```java
+    public ChongE() {		
+        super(FormationType.CE, 6, 2, 3, 0); // ÒÔÕóĞÍÍ¼ËùÕ¼ĞĞÁĞ¹¹½¨		
+        // Ñı¹ÖµÄÎ»ÖÃ
+        formMap.put(new Point(1, 0), new Monsters());
+        formMap.put(new Point(3, 0), new Scorpion()); // Ğ«×Ó¾«
+        formMap.put(new Point(5, 0), new Monsters());
+        formMap.put(new Point(0, 1), new Monsters());
+        formMap.put(new Point(2, 1), new Monsters());
+        formMap.put(new Point(4, 1), new Monsters());
+    }
+```
+
+### £¨ËÄ£©package world.util
+#### 1. Point
+×î³õÊ¹ÓÃ Map<Point, Creature> formMap ³öÏÖÁË formMap.containsKey(point) ÓÀÔ¶Îª¼ÙµÄÇé¿ö£»Ô­À´ÊÇÒòÎªÔÚ±È½ÏÁ½¸ö Point ¶ÔÏóµÄ¼üÖµÊ±µ÷ÓÃÁË Object µÄ equals() ·½·¨£¬¶øµ¼ÖÂ±È½ÏµÄÊÇµØÖ·¶ø·ÇÖµ£¬ÓÚÊÇÖØĞ´ÁË equals() ·½·¨£º  
+```java
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (obj instanceof Point) {
+            Point p = (Point) obj;
+            return ((this.pRow == p.pRow) && (this.pCol == p.pCol));
+        }
+        return false;
+    }
+```
+µ«ÊÇÕâÊ±·¢ÏÖ formMap.containsKey(point) ÈÔÈ»ÓÀÔ¶Îª¼Ù£¬Ô­À´ÓÉÓÚÊ¹ÓÃµÄÊÇ Hash ±í£¬Object ÓÖÓÃÁË¶ÔÏóµÄµØÖ·¼ÆËã HashCode£¬ÓÚÊÇÔÙÖØĞ´¸Ä³ÉÀûÓÃĞĞÓëÁĞµÄÖµ¼ÆËã HashCode£º  
+```java
+    @Override
+    public int hashCode() {
+        return Objects.hash(pRow, pCol);
+    }
+```  
+#### 2. Range
+¶¨ÒåÁËÊÀ½çµØÍ¼ÉÏµÄĞí¶à³£Á¿£¬±ÈÈçÊÀ½çµÄĞĞÊıÁĞÊıÒÔ¼°ËÄ´óÕóÓªµÄ³õÊ¼Î»ÖÃµÈ¡£
+
+#### 3. WorldSleep
+¶¨ÒåÁË·½·¨ worldSleep(int time)£¬ÓÃÓÚ GUIWorld µÄ×Ô¶¯Ä£Ê½µÄÊ±¼ä¼ä¸ô¡£
+
+#### 4. GroupType
+ËÄ´óÕóÓª¡£  
+Õâ¸öÕóÓªµÄÇø·Ö·½Ê½ÊÇ¡°²Ù×÷ÉúĞ§µÄµ¥Ôª¡±£¬¼´£¬ÒÆ¶¯ÀÏÒ¯Ò¯Ê±£¬ºùÂ«ÍŞ¡¢Ñı¹ÖºÍÉß¾«¾ù²»ÄÜÒÆ¶¯£¬ËùÒÔÀÏÒ¯Ò¯Çø·ÖÓÚÁíÈıÕßĞÎ³ÉÒ»¸ö¡°ÕóÓª¡±£»Æß¸öºùÂ«ÍŞÒ»ÆğÒÆ¶¯£¬ËùÒÔÊÇÍ¬Ò»¸ö¡°ÕóÓª¡±¡£
+```java
+    public enum GroupType {
+        Bro("ºùÂ«ÍŞ"),
+        Mon("Ñı¹Ö"),
+        Eld("ÀÏÒ¯Ò¯"),
+        Snk("Éß¾«");
+        public String name;
+        private GroupType(String name) { // ¹¹Ôì·½·¨
+            this.name = name;
+        }
+    }
+```
+#### 5. CreatureType & FormationType
+CreatureType£ºÉúÎïµÄ×îÏ¸Àà±ğ»®·Ö£¬Ö»Òª´æÔÚ²»Í¬¼´Îª²»Í¬µÄÖÖÀà¡£  
+°üÀ¨£ºBro1, Bro2, Bro3, Bro4, Bro5, Bro6, Bro7, Scorp, Mons, Snk, Eld.  
+FormationType£º  
+°üÀ¨£ºHY, YX, CE, CS, YL, FY, YY, FS.  
+
+## ÑİÊ¾
+<img src="img_readme/3.0-0.gif" width=100%>
+
+#   
+# World v2.0 °æ
+- ×îºóÒ»¸ö¿ØÖÆÌ¨°æ±¾  
+- Óë1.0Ïà±ÈÊ¹ÓÃpackage½øĞĞÁËÕûÀí
+- Óë1.0Ïà±È¶ÔÉúÎïÀàĞÍÖØĞÂ·â×°
+- ¸Ä±äÁË¿ØÖÆÊÀ½çµÄ»úÖÆ£º  
+  - ÊÀ½çµØÍ¼ WorldMap  
+  -  Àà Mud ÓÎÏ· Observer  
 
 ## ·ûºÅËµÃ÷
 - ABCDEFG£ººùÂ«ÍŞÀÏ´óµ½ÀÏÆß  
@@ -7,19 +308,8 @@
 - o£ºĞ¡à¶†ª  
 - S£ºÉß¾«£¨ÖúÍş£©  
 
-## Ğ§¹ûÑİÊ¾
-
-<img src="img_readme/0.png" width=45%>
-<img src="img_readme/1.png" width=85%>
-<img src="img_readme/2.png" width=45%>
-<img src="img_readme/3.png" width=45%>
-<img src="img_readme/4.png" width=85%>
-<img src="img_readme/5.png" width=45%>
-<img src="img_readme/6.png" width=45%>
-
 ## ÀàÍ¼
-
-<img src="img_readme/Main.jpg" width=100%>
+<img src="img_readme/2.0-class.jpg" width=100%>
 
 ## Point
 µãÀàĞÍ£¬ÊôĞÔÎªĞĞºÍÁĞ£¬ÄÜ¹»½øĞĞ¼òµ¥µÄÏÔÊ¾ĞĞÁĞ¡¢ÅĞ¶ÏÊÇ·ñÏàµÈ¡¢ÒÆ¶¯µÈ²Ù×÷¡£  
@@ -75,3 +365,12 @@ WorldMap ÔÚ¶¨ÒåÁËµØÍ¼µÄĞĞÁĞÊı rangeRow, rangeCol Ö®ºó£¬½ö½ö±£Áô¸÷¸öÕóĞÍµÄ¶ÔÏóÒÔ¼
 ## Observer
 main º¯ÊıËùÔÚµÄÀà¡£
 ĞÎ³ÉÒ»¸öÀàËÆÓÚmudÓÎÏ·µÄĞ§¹û£¬¿ÉÒÔ¹©Ê¹ÓÃÕß×ö³öÑ¡Ôñ£¬ÒÔ¿ØÖÆ WorldMap µÄĞĞÎª¡£
+
+## ÑİÊ¾
+<img src="img_readme/2.0-0.png" width=20%>
+<img src="img_readme/2.0-1.png" width=39%>
+<img src="img_readme/2.0-2.png" width=20%>
+<img src="img_readme/2.0-3.png" width=20%>
+<img src="img_readme/2.0-4.png" width=38%>
+<img src="img_readme/2.0-5.png" width=20%>
+<img src="img_readme/2.0-6.png" width=20%>
