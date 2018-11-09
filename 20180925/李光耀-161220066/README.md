@@ -58,14 +58,14 @@ Version1版本存在的问题以及修正措施。
 
    新的类图如下所示(和很多同学的设计大同小异)。
 
-![creatureUML](C:\Users\13745\Desktop\creatureUML.png)
+![creatureUML](https://github.com/lidayou/java-2018f-homework/blob/master/20180925/%E6%9D%8E%E5%85%89%E8%80%80-161220066/creatureUML.png)
 
 
 
 4. 由于已经不只有生物体了，将来还可能引入非生物体，将`CreatureImage`改名为`StypeImage`，使得名称更准确。
 5. 在张明超同学的`README`中提到阵型应该和生物体解耦，也应该和场地的大小无关。我觉得很对。原来我的每一个阵型是坐标和生物体同时初始化，然而位置是位置，生物体是生物体，两者应该独立。为此，对于管理类来说需要更细致的划分。这也在一定程度上体现了`SOLID`原则的`S`，每个类应该具有单一的职责。为此新的`regulate`包中管理类的关系如下所示。
 
-![administerUML](C:\Users\13745\Desktop\administerUML.png)
+![administerUML](https://github.com/lidayou/java-2018f-homework/blob/master/20180925/%E6%9D%8E%E5%85%89%E8%80%80-161220066/administerUML.png)
 
 	
 
