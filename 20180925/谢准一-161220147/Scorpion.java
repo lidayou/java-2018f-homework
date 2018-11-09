@@ -1,16 +1,17 @@
-public class Scorpion {
+public class Scorpion extends Creature{
     private int x;
     private int y;
-    private char symbol;
+
     Scorpion(){
+        super("蝎子精", '$');
         x = 0;
         y = 0;
-        symbol = '$';
+
     }
     Scorpion(int i, int j) {
+        super("蝎子精", '$');
         x = i;
         y = j;
-        symbol = '$';
     }
     void SetPositon(int i, int j) {
         x = i;
