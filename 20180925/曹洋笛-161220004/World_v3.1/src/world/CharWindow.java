@@ -28,9 +28,9 @@ public class CharWindow {
 
 	// 对象
 	/**	定义葫芦娃阵型对象 */
-	public Formation broForm;
+	public Formation<Brothers> broForm;
 	/**	定义妖怪阵型对象 */
-	public Formation monForm;
+	public Formation<Monsters> monForm;
 	/**	蛇精对象 */
 	public Snake snake = new Snake();
 	/**	老爷爷对象 */
@@ -59,6 +59,8 @@ public class CharWindow {
 	public void initAll() {
 		broForm = new ChangShe(); // 葫芦娃阵型，只能是长蛇阵
 		monForm = new HeYi(); // 妖怪阵型，初始化为鹤翼阵
+		snake = new Snake();
+		elder = new Elder();
 		// 定位点的初始化
 		pBroCen = Range.leftCenterP.copy();
 		pMonCen = Range.rightCenterP.copy();
@@ -86,14 +88,13 @@ public class CharWindow {
 		return pSnk;
 	}
 	
-	/**	@param type 阵型类型值
-	 *	@return 阵型对象 */
-	private Formation setForm(FormationType type) {
+	/**	@param type 阵型类型值（不为长蛇阵，因为此函数是为了妖怪阵型变换而设）
+	 *	@return 妖怪阵型对象 */
+	private Formation<Monsters> setForm(FormationType type) {
 		switch (type) {
 		case HY: return new HeYi(); 
 		case YX: return new YanXing(); 
 		case CE: return new ChongE();
-		case CS: return new ChangShe();
 		case YL: return new YuLin();
 		case FY: return new FangYuan();
 		case YY: return new YanYue();
@@ -112,7 +113,7 @@ public class CharWindow {
 	/**	@param form 阵型form
 	 *	 @param pCen 阵型位置，中心点pCen
 	 *	@return {@code true}: 该阵型在世界地图范围之内 */
-	private boolean inRange(Formation form, Point pCen) {
+	private <T extends Creature> boolean inRange(Formation<T> form, Point pCen) {
 		if (form == null) return false; // debug
 		for (Point p : form.formMap.keySet()) { // 将阵型移位到以pCen为中心
 			if (!p.mov(pCen).mov(form.getFormCen().reverse()).in(LU, RD))
@@ -134,7 +135,7 @@ public class CharWindow {
 	 *	@param form 阵型form
 	 *	@param pCen 阵型位置，中心点pCen
 	 *	@return {@code true}: p点与该阵型冲突 */
-	private boolean inCollision(Point p, Formation form, Point pCen) {
+	private <T extends Creature> boolean inCollision(Point p, Formation<T> form, Point pCen) {
 		if (pCen == null) return true; // debug
 		if (p == null || form == null) return false; // 若为空一定不冲突
 		for (Point pf : form.formMap.keySet()) { // 将阵型移位到以pCen为中心
@@ -149,7 +150,7 @@ public class CharWindow {
 	 *	@param form2 阵型2
 	 *	@param p2Cen 阵型2位置，中心点p2Cen
 	 *	@return {@code true}: 阵型1与阵型2冲突 */
-	private boolean inCollision(Formation form1, Point p1Cen, Formation form2, Point p2Cen) {
+	private <T1 extends Creature, T2 extends Creature> boolean inCollision(Formation<T1> form1, Point p1Cen, Formation<T2> form2, Point p2Cen) {
 		if (p1Cen == null || p2Cen == null) return true; // debug
 		if (form1 == null || form2 == null) return false; // 若为空一定不冲突
 		for (Point p1 : form1.formMap.keySet()) {
@@ -194,7 +195,7 @@ public class CharWindow {
 	 *	@param pCen 待检查的摆放点pCen
 	 *	@param type 待检查的阵营
 	 *	@return {@code true}: pCen处可以摆放该阵型 */
-	private boolean checkGround(Formation form, Point pCen, GroupType type) {
+	private <T extends Creature> boolean checkGround(Formation<T> form, Point pCen, GroupType type) {
 		if (form == null) return false; // debug
 		if (!inRange(form, pCen)) {
 			System.out.println("超出地图范围");
@@ -224,7 +225,7 @@ public class CharWindow {
 	 *	@param pCen 为pBroCen/pMonCen
 	 *	@param d 相对位移(d.row(), d.col())
 	 *	@param type 待移动的阵营 */
-	private void movFormation(Formation form, Point pCen, Point d, GroupType type) {
+	private <T extends Creature> void movFormation(Formation<T> form, Point pCen, Point d, GroupType type) {
 		if (form == null || pCen == null) return; // debug
 		if (d == null || d.equals(new Point(0, 0)))
 			System.out.println("阵型未移动");
@@ -282,11 +283,11 @@ public class CharWindow {
 		for (Point bp : broForm.formMap.keySet())
 			cMap[bp.row() + pBroCen.row() - broForm.getFormCen().row()]
 				[bp.col() + pBroCen.col() - broForm.getFormCen().col()] 
-						= broForm.formMap.get(bp).getSymbol();
+						= broForm.getCreature(bp).getSymbol();
 		for (Point mp : monForm.formMap.keySet())
 			cMap[mp.row() + pMonCen.row() - monForm.getFormCen().row()]
 				[mp.col() + pMonCen.col() - monForm.getFormCen().col()] 
-						= monForm.formMap.get(mp).getSymbol();
+						= monForm.getCreature(mp).getSymbol();
 		cMap[pEld.row()][pEld.col()] = elder.getSymbol();
 		cMap[pSnk.row()][pSnk.col()] = snake.getSymbol();
 		// 开始打印地图

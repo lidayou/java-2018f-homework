@@ -1,6 +1,7 @@
 package world.formations;
 
-import world.creatures.*;
+import world.creatures.Monsters;
+import world.creatures.Scorpion;
 import world.util.*;
 
 /**
@@ -18,7 +19,7 @@ import world.util.*;
  *	
  *	@author Mirror
  */
-public final class HeYi extends Formation {
+public final class HeYi extends Formation<Monsters> {
 	
 	public HeYi() {		
 		super(FormationType.HY, 7, 4, 3, 2); // 以阵型图所占行列构建

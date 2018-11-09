@@ -1,6 +1,7 @@
 package world.formations;
 
-import world.creatures.*;
+import world.creatures.Monsters;
+import world.creatures.Scorpion;
 import world.util.*;
 
 /**
@@ -16,7 +17,7 @@ import world.util.*;
  *	
  *	@author Mirror
  */
-public class FangYuan extends Formation {
+public class FangYuan extends Formation<Monsters> {
 	
 	public FangYuan() {		
 		super(FormationType.FY, 5, 5, 2, 2); // 以阵型图所占行列构建

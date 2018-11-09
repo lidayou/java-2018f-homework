@@ -1,6 +1,7 @@
 package world.formations;
 
-import world.creatures.*;
+import world.creatures.Monsters;
+import world.creatures.Scorpion;
 import world.util.*;
 
 /**
@@ -17,7 +18,7 @@ import world.util.*;
  *	
  *	@author Mirror
  */
-public class ChongE extends Formation {
+public class ChongE extends Formation<Monsters> {
 	
 	public ChongE() {		
 		super(FormationType.CE, 6, 2, 3, 0); // 以阵型图所占行列构建		

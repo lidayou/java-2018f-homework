@@ -1,6 +1,7 @@
 package world.formations;
 
-import world.creatures.*;
+import world.creatures.Monsters;
+import world.creatures.Scorpion;
 import world.util.*;
 
 /**
@@ -20,7 +21,7 @@ import world.util.*;
  *	
  *	@author Mirror
  */
-public class YanYue extends Formation {
+public class YanYue extends Formation<Monsters> {
 	
 	public YanYue() {		
 		super(FormationType.YY, 9, 6, 4, 2); // 以阵型图所占行列构建

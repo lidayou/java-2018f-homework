@@ -1,6 +1,129 @@
+#
+# World v3.1 版
+- 当前版本
+- 对 **Formation** 类添加泛型  
+- 对 CharWindow 和 GUIWindow 中涉及 Formation 类的方法添加泛型  
+- 对不会被继承的类添加了 final 关键字
+
+## 详细说明（仅对修改3.0的部分进行说明）
+### （一）Formation
+Formation 类，一切阵型类的父类。由于阵型里有的放了葫芦娃（长蛇阵），有的放了妖怪（除了长蛇阵的其他阵型），为了直观，对 Formation 进行了泛型处理，受到影响的方法和变量如下： 
+```java
+public abstract class Formation<T extends Creature> {
+    ...
+    /** 阵型的 <位置，对象> 集合 */
+    public Map<Point, T> formMap;
+    /** 构造函数，在子类的构造函数中调用 */
+    protected Formation(FormationType t, int r, int c, int cr, int cc) {
+        type = t;
+        formRowNum = r;
+        formColNum = c;
+        pFormCen = new Point(cr, cc);
+        formMap = new HashMap<Point, T>();
+    }
+    /** 得到阵型在点p处的对象 */
+    public T getCreature(Point p) {
+        return formMap.get(p);
+    }
+    ...
+}
+```
+既然父类被改变了，8个阵型子类也需要处理，以下妖怪阵型以鹤翼阵为例，其他同理：
+```java
+public final class HeYi extends Formation<Monsters> {
+    public HeYi() {		
+        super(FormationType.HY, 7, 4, 3, 2); // 以阵型图所占行列构建
+        // 妖怪的位置
+        formMap.put(new Point(0, 3), new Monsters());
+        formMap.put(new Point(1, 2), new Monsters());
+        formMap.put(new Point(2, 1), new Monsters());
+        formMap.put(new Point(3, 0), new Scorpion()); // 蝎子精
+        formMap.put(new Point(4, 1), new Monsters());
+        formMap.put(new Point(5, 2), new Monsters());
+        formMap.put(new Point(6, 3), new Monsters());
+    }
+}
+```
+同样，葫芦娃阵型的长蛇阵改变如下：
+```java
+public final class ChangShe extends Formation<Brothers> {
+    public ChangShe() {		
+        super(FormationType.CS, 7, 1, 3, 0); // 以阵型图所占行列等构建
+        // 葫芦娃的位置
+        formMap.put(new Point(0, 0), new Brothers(0));
+        formMap.put(new Point(1, 0), new Brothers(1));
+        formMap.put(new Point(2, 0), new Brothers(2));
+        formMap.put(new Point(3, 0), new Brothers(3));
+        formMap.put(new Point(4, 0), new Brothers(4));
+        formMap.put(new Point(5, 0), new Brothers(5));
+        formMap.put(new Point(6, 0), new Brothers(6));
+    }
+}
+```
+
+### （二）CharWindow
+首先改变的是对象的实例化过程：
+```java
+    public Formation<Brothers> broForm; // 葫芦娃阵型对象
+    public Formation<Monsters> monForm; // 妖怪阵型对象
+```
+随后参数或返回值上带有 Formation 类型（通常传的参数是 broForm 和 monForm）的方法都需要添加泛型（以下只选取了一部分有代表性的方法，并非全部）：
+```java
+    /** 根据阵型类型为妖怪阵型进行实例化（由于是妖怪阵型，无长蛇阵） */
+    private Formation<Monsters> setForm(FormationType type) {
+        switch (type) {
+        case HY: return new HeYi(); 
+        case YX: return new YanXing(); 
+        case CE: return new ChongE();
+        case YL: return new YuLin();
+        case FY: return new FangYuan();
+        case YY: return new YanYue();
+        case FS: return new FengShi();
+        default: return new HeYi(); 
+        }
+    }
+```
+下面是一个较为复杂的：
+```java
+    /** 判断位于 p1Cen 的阵型 form1 与位于 p2Cen 的阵型 form2 是否会冲突 */
+    private <T1 extends Creature, T2 extends Creature> boolean inCollision(Formation<T1> form1, Point p1Cen, Formation<T2> form2, Point p2Cen) {
+        if (p1Cen == null || p2Cen == null) return true;
+        if (form1 == null || form2 == null) return false; // 若为空一定不冲突
+        for (Point p1 : form1.formMap.keySet()) {
+            for (Point p2 : form2.formMap.keySet()) { // 将阵型移位到以p1Cen, p2Cen为中心
+                if (p1.mov(p1Cen).mov(form1.getFormCen().reverse()).equals(p2.mov(p2Cen).mov(form2.getFormCen().reverse()))) 
+                   return true;
+            }
+        }
+        return false;
+    }
+```
+上述 inCollision() 方法需要两个 T1，T2 的原因是，调用此方法时两个参数的类型常常不同，如一个调用：
+```java
+    ... inCollision(monForm, pMonCen, broform, pBroCen) ...
+```
+上例中分别是 Formation\<Brothers> 和 Formation\<Monsters>，需要不同的“T”。  
+其他泛型的方法还有：
+```java
+    /** 向右下方把阵型 form 移动向量 d */
+    private <T extends Creature> void movFormation(Formation<T> form, Point pCen, Point d, GroupType type) {...}
+```
+剩下的泛型方法在此便不举例了。
+
+### （三）GUIWindow
+作为 CharWindow 的表象，GUIWindow 也受到了轻微的波及：
+```java
+    /** 在窗口的 r 行 c 列放置阵型 form */
+    private <T extends Creature> void setFormation(int r, int c, Formation<T> form) {...}
+    /** 从窗口的 r 行 c 列移除阵型 form */
+    private <T extends Creature> void removeFormation(int r, int c, Formation<T> form) {...}
+```
+## 总述
+不同于 World v2.0 到 World v3.0 的飞跃，World v3.1 相对于 v3.0 几乎仅仅添加了泛型，并且使代码更加严谨，其余部分几乎没有改变。
+
+
 #   
 # World v3.0 版
-- 当前版本  
 - 第一个 **GUI** 版本   
   - 菜单栏，可以进行：重置、改变妖怪阵型  
   - 初始态为自动模式，对菜单栏进行任意操作后进入手动模式
@@ -19,10 +142,6 @@
   - 判断合理性的函数进行重写  
   - 对不同阵营的所有移动类函数合并为一个
 - 采用了 **javadoc** 格式重写了注释
-- 下一版本前瞻：  
-  - 即将添加泛型  
-  - 即将针对“阵营”对 formations 包进行微调  
-  - 即将利用“阵营”进一步合并函数，减少相似代码
 
 ## 类图
 <img src="img_readme/3.0-class.png" width=100%>
@@ -291,6 +410,7 @@ FormationType：
 
 ## 演示
 <img src="img_readme/3.0-0.gif" width=100%>
+
 
 #   
 # World v2.0 版

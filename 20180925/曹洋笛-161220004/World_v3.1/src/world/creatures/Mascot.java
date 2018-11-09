@@ -5,9 +5,9 @@ package world.creatures;
  *	
  *	@author Mirror
  */
-public abstract class Mascot extends Creature {
+public class Mascot extends Creature {
 
-	protected Mascot() {
+	public Mascot() {
 		super();
 	}
 	

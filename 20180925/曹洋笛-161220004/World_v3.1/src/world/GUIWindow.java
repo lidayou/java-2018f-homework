@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import world.creatures.Creature;
 import world.formations.*;
 import world.util.*;
 
@@ -183,17 +185,17 @@ public class GUIWindow extends JFrame {
 	
 	/**	在窗口上放阵型.
 	 *	阵型类型为form，中心行列为(r, c) */
-	private void setFormation(int r, int c, Formation form) {
+	private <T extends Creature> void setFormation(int r, int c, Formation<T> form) {
 		// 遍历阵型内所有(坐标, 实体)对
 		for (Point p : form.formMap.keySet())
 			setCreature(p.row() + r - form.getFormCen().row(),
-					p.col() + c - form.getFormCen().col(), form.formMap.get(p).getType());
+					p.col() + c - form.getFormCen().col(), form.getCreature(p).getType());
 		
 	}
 
 	/**	从窗口上移走阵型.
 	 *	阵型类型为form，中心行列为(r, c) */
-	private void removeFormation(int r, int c, Formation form) {
+	private <T extends Creature> void removeFormation(int r, int c, Formation<T> form) {
 		// 遍历阵型内所有(坐标, 实体)对
 		for (Point p : form.formMap.keySet())
 			removeCreature(p.row() + r - form.getFormCen().row(),
@@ -310,6 +312,7 @@ public class GUIWindow extends JFrame {
 			cWin.initAll();
 			cWin.showWorld();
 			showAtLast();
+			if (!isAuto) break;
 			// 2回合，妖怪摆雁行阵
 			WorldSleep.worldSleep(500);
 			removeAtFirst();

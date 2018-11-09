@@ -1,6 +1,6 @@
 package world.formations;
 
-import world.creatures.*;
+import world.creatures.Brothers;
 import world.util.*;
 
 /**
@@ -10,7 +10,7 @@ import world.util.*;
  *
  *	@see Formation
  */
-public class ChangShe extends Formation {
+public class ChangShe extends Formation<Brothers> {
 	
 	public ChangShe() {		
 		super(FormationType.CS, 7, 1, 3, 0); // 以阵型图所占行列等构建

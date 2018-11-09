@@ -18,7 +18,7 @@ import world.util.*;
  *	@see #isOccupied(Point)
  *	@see #getFormMap()
  */
-public abstract class Formation {
+public abstract class Formation<T extends Creature> {
 		
 	/**	阵型种类 {@value} */
 	private FormationType type;
@@ -33,7 +33,7 @@ public abstract class Formation {
 	private Point pFormCen;
 	
 	/**	阵型内人物的(坐标, 实体)对集合 {@value} */
-	public Map<Point, Creature> formMap;
+	public Map<Point, T> formMap;
 	
 	/**	构造函数，得到属性值 */
 	protected Formation(FormationType t, int r, int c, int cr, int cc) {
@@ -41,7 +41,7 @@ public abstract class Formation {
 		formRowNum = r;
 		formColNum = c;
 		pFormCen = new Point(cr, cc);
-		formMap = new HashMap<Point, Creature>();
+		formMap = new HashMap<Point, T>();
 	}
 	
 	/**	得到阵型类型 */
@@ -64,10 +64,14 @@ public abstract class Formation {
 		return pFormCen;
 	}
 	
+	/**	得到阵型在点p处的对象 */
+	public T getCreature(Point p) {
+		return formMap.get(p);
+	}
+	
 	/**	某处是否有人
 	 *	@param p 位置p
-	 *	@return {@code true}: 有人; {@code false}: 无人
-	 */
+	 *	@return {@code true}: 有人; {@code false}: 无人 */
 	public boolean isOccupied(Point p) {
 		return (formMap.containsKey(p));
 	}
@@ -82,7 +86,7 @@ public abstract class Formation {
 			for (int j = 0; j < formColNum; j++) {
 				Point p = new Point(i, j);
 				if (isOccupied(p))
-					System.out.print(formMap.get(p).getSymbol() + " ");
+					System.out.print(getCreature(p).getSymbol() + " ");
 				else
 					System.out.print("  ");
 			}
