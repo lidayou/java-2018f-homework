@@ -1,8 +1,18 @@
 # README
 
-## copyright@why | version 1.2 | date 2018-9-28 
+## copyright@why | version 2.0 | date 2018-11-5 
 
 ## https://github.com/cjnjuwhy
+
+>更新内容：
+>
+>添加了几处异常处理机制，使得程序更加稳定。
+>
+>自定义了一个新的异常，及时发现并且“归化”异类，保证了在同一组中不会出现“间谍”存在；
+>
+>对类重新进行组织，使得相互之间的通讯只能通过接口而不能直接作用数据；
+
+
 
 ##### 1. 所包含的文件
 
@@ -35,7 +45,7 @@ CalabashBrothers.java
 
 #### 3. UML图
 
-![UML](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/UML.png)
+![UML](/pic/UML.png)
 
 
 
@@ -132,12 +142,12 @@ public class CalabashBrothers extends Warrior{
 
 #### 5. 执行过程
 
-![](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/round1.png)
+![](/pic/round1.png)
 
 
 
-![round2](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/round2.png)
+![round2](/pic/round2.png)
 
 
 
-![allwarriors](https://github.com/cjnjuwhy/java-2018f-homework/blob/master/20180925/%E7%8E%8B%E7%8E%AF%E5%AE%87-151271022/pic/allwarriors.png)
+![allwarriors](/pic/allwarriors.png)
