@@ -2,7 +2,7 @@
 ---
 ### rewrite CalabashBrother
 - 使用持有对象ArrayList替换数组
-```
+``` java
 //private CalabashBrother[] brothers;
 private ArrayList<CalabashBrother> brothers = new ArrayList<>();
 
@@ -11,10 +11,12 @@ private ArrayList<Minion> minions = new ArrayList<>(Collections.nCopies(MINIONS_
 ```
 由于使用了持有对象，葫芦娃乱序和排序可以直接使用Collection的`shuffle`和`sort`方法，不再使用自己写的乱序和排序的函数。  
 乱序：  
-`Collections.shuffle(brothers);`
+```java
+Collections.shuffle(brothers);
+```
 排序：  
 在CalabashBrother类需要继承接口Comparable并需要在类中重写compareTo函数使得葫芦娃可以被比较，如下所示：
-```
+```java
 	@Override
 	public int compareTo(CalabashBrother b) {
         if (this.rank > b.rank) {
@@ -25,10 +27,14 @@ private ArrayList<Minion> minions = new ArrayList<>(Collections.nCopies(MINIONS_
 	}
 ```
 再直接调用sort函数即可：
-`Collections.sort(brothers);`
+``` java
+Collections.sort(brothers);
+```
 - Gnerics泛型
 坐标类Coord增加了限定符<T extends Creature>，明确了坐标上站着的是一种生物。
-`public class Coord<T extends Creature>{...}`
+```java
+public class Coord<T extends Creature>{...}
+```
 对于每一种阵法类，我增加了<T extends Creature>的限定符，表示该阵法在创建之时，就应该指定到底是谁在排阵法。是葫芦娃CalabashBrother？还是妖怪Bad？    
 这样创建一个阵法时必须指定排阵法的对象类型了：
 ```
