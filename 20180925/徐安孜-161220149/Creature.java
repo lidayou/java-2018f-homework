@@ -9,14 +9,14 @@ public class Creature{
 }
 
 class LittleMonster extends Creature {
-    LittleMonster(){
-        symbol='喽';
+    LittleMonster(char name){
+        symbol=name;
     }
 }
 
 class Scorpion extends Creature {
-    Scorpion(){
-        symbol='蝎';
+    Scorpion(char name){
+        symbol=name;
     }
 }
 
@@ -39,10 +39,12 @@ enum CalabashRank{
 }
 
 class Calabash extends Creature {
-    CalabashRank rank;
+    int rank;
+    char color;
     Calabash(CalabashRank r){
-        rank = r;
-        symbol=rank.color;
+        rank=r.id;
+        color=r.color;
+        symbol=r.color;
     }
 }
 
