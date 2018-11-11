@@ -11,7 +11,7 @@ public class Formation {
                 }
     }
 
-    public static void ChangShe(BattleField field,Camp camp, int start)
+    public static void ChangShe(BattleField field,Camp<? extends Unit> camp, int start)
     {
         if(camp.getLeader().getName().equals("爷爷"))
         {
@@ -27,7 +27,7 @@ public class Formation {
         }
     }
 
-    public static void YanXing(BattleField field,Camp camp, int start_x, int start_y)
+    public static void YanXing(BattleField field,Camp<?> camp, int start_x, int start_y)
     {
         if(camp.getLeader().getName().equals("爷爷"))
         {
@@ -52,7 +52,7 @@ public class Formation {
         }
     }
 
-    public static void HengE(BattleField field,Camp camp, int start_x, int start_y)
+    public static void HengE(BattleField field,Camp<?> camp, int start_x, int start_y)
     {
         if(camp.getLeader().getName().equals("爷爷"))
         {
