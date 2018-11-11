@@ -1,87 +1,53 @@
 public class Creature {
-    protected String name;
-    protected int positionX;
-    protected int positionY;
+    protected CreatureName name;
 
     Creature(){
-        this.name = "Undefined";
-        this.positionX = 0;
-        this.positionY = 0;
+        this.name = CreatureName.Undefined;
     }
-    Creature(String name){
-        this.name = name;
-        this.positionX = 0;
-        this.positionY = 0;
-    }
-    Creature(String name, int x, int y){
-        this.name = name;
-        this.positionX = x;
-        this.positionY = y;
-    }
-    public void changePosition(int x, int y) {
-        positionX = x;
-        positionY = y;
-    }
-    public void print(){
-        System.out.print("_ ");
+    Creature(CreatureName cn){
+        this.name = cn;
     }
 }
 
 class CalabashBros extends Creature{
     private int number;
-    private String color;
+    private CalabashColor color;
 
     CalabashBros(int number){
         this.number = number;
         switch (number){
-            case 0:name = "老大"; color = "红色"; break;
-            case 1:name = "老二"; color = "橙色"; break;
-            case 2:name = "老三"; color = "黄色"; break;
-            case 3:name = "老四"; color = "绿色"; break;
-            case 4:name = "老五"; color = "青色"; break;
-            case 5:name = "老六"; color = "蓝色"; break;
-            case 6:name = "老七"; color = "紫色"; break;
+            case 0:name = CreatureName.Calabash1; color = CalabashColor.RED; break;
+            case 1:name = CreatureName.Calabash2; color = CalabashColor.ORANGE; break;
+            case 2:name = CreatureName.Calabash3; color = CalabashColor.YELLOW; break;
+            case 3:name = CreatureName.Calabash4; color = CalabashColor.GREEN; break;
+            case 4:name = CreatureName.Calabash5; color = CalabashColor.CYAN; break;
+            case 5:name = CreatureName.Calabash6; color = CalabashColor.BLUE; break;
+            case 6:name = CreatureName.Calabash7; color = CalabashColor.PURPLE; break;
         }
-        //this.name = name;
-        //this.color = color;
-        this.positionX = 0;
-        this.positionY = 0;
-    }
-    public void print(){
-        System.out.print("H ");
     }
 }
 
 class GrandFather extends Creature{
     GrandFather(){
-        this.name = "老爷爷";
-        this.positionX = 0;
-        this.positionY = 0;
+        this.name = CreatureName.GrandFather;
     }
-    public void print(){
-        System.out.print("G ");
-    }
+    //public void cheer(Map map){
+    //    map.setCreature(this,map.getSize()/2-1, 0);
+    //}
 }
 
 class Snake extends Creature{
     Snake(){
-        this.name = "蛇精";
-        this.positionX = 0;
-        this.positionY = 0;
+        this.name = CreatureName.Snake;
     }
-    public void print(){
-        System.out.print("S ");
-    }
+    //public void cheer(Map map){
+    //    map.setCreature(this,map.getSize()/2+1, map.getSize()-1);
+    //}
 }
 
 class Scorpion extends Creature{
     Scorpion(){
-        this.name = "蝎子精";
-        this.positionX = 0;
-        this.positionY = 0;
-    }
-    public void print(){
-        System.out.print("X ");
+        this.name = CreatureName.Scorpion;
     }
 }
 
@@ -89,12 +55,7 @@ class Underling extends Creature{
     private int number;
 
     Underling(int number){
-        this.name = "小喽啰";
+        this.name = CreatureName.Underling;
         this.number = number;
-        this.positionX = 0;
-        this.positionY = 0;
-    }
-    public void print(){
-        System.out.print("x ");
     }
 }
