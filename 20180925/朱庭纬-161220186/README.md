@@ -37,12 +37,12 @@ public class Coord<T extends Creature>{...}
 ```
 对于每一种阵法类，我增加了<T extends Creature>的限定符，表示该阵法在创建之时，就应该指定到底是谁在排阵法。是葫芦娃CalabashBrother？还是妖怪Bad？    
 这样创建一个阵法时必须指定排阵法的对象类型了：
-```
+```java
 world.setBrothers(new Changshe<CalabashBrother>(), 4, 1);
 world.setMonsters(new Heyi<Bad>(), 3, 8);
 ```
 施法函数conjure在数组换为持有对象ArrayList之后的参数也需要改了。
-```
+```java
 //public boolean conjure(BattleField bf, Creature[] creatures, int startRow, int startColumn);
 public boolean conjure(BattleField bf, ArrayList<? extends Creature> creatures, int startRow, int startColumn);
 ```
@@ -50,7 +50,7 @@ public boolean conjure(BattleField bf, ArrayList<? extends Creature> creatures, 
 
 - RTTI
 在不了解什么是“运行时类型信息之前”，我在Creature类中设置了一个枚举类型Property表示属性（Good or Bad），通过getProperty方法来获取类型信息。现在通过instanceof方法可以直接获取到类型信息了。
-```
+```java
 if(!creatures.isEmpty() && creatures.get(0) instanceof Good) {
     ...
 } else if(!creatures.isEmpty() && creatures.get(0) instanceof Bad) {
