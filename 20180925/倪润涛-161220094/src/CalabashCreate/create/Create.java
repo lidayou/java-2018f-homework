@@ -2,7 +2,18 @@ package CalabashCreate.create;
 
 import CalabashCreate.beings.*;
 
-public class Create {
+public class Create<T extends Factory>{
+    public T [][]field;
+    private InterFactory<T> fact;
+    /*Create(InterFactory<T> f)
+    {
+        this.fact= f;
+        this.field = fact.createMatrix(15);
+        for (int i = 0; i < 15; ++i)
+            for (int j = 0; j < 15; ++j)
+                field[i][j] = fact.createO();
+    }*/
+
     public Calabash []calabashCreate()
     {
         int []Rank = {0,3,2,5,1,6,4};
@@ -14,13 +25,13 @@ public class Create {
         return brothers;
     }
 
-    private static void Swap(Calabash[]brothers, int src, int dest)
+    private void Swap(Calabash[]brothers, int src, int dest)
     {
         Calabash temp = brothers[src];
         brothers[src] = brothers[dest];
         brothers[dest] = temp;
     }
-    private static void Sort(Calabash []brothers)
+    private void Sort(Calabash []brothers)
     {
         for(int i=0;i<brothers.length;i++)
         {

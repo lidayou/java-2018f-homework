@@ -2,7 +2,7 @@ package CalabashCreate.Formation;
 
 import CalabashCreate.beings.Goblin;
 import CalabashCreate.beings.Snake;
-import CalabashCreate.create.Create;
+import CalabashCreate.create.*;
 
 public class Chonge extends Formation{
     public void goatChange()

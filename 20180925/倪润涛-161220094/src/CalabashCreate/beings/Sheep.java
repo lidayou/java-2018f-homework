@@ -4,7 +4,6 @@ public class Sheep extends Beings {
     int type;
     Sheep()
     {
-        switch (type = 1) {
-        }
+        type = 1;
     }
 }
