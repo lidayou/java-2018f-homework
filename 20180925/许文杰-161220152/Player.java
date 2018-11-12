@@ -11,10 +11,10 @@ public class Player {
                 new CalaBashBrother(6,"六娃","蓝色")};
         Grandpa grandpa = new Grandpa();
         Formation.bubble_sort(gourds, 7);
-        Camp camp1 = new Camp(grandpa,gourds,7);
+        Camp<Grandpa> camp1 = new Camp<>(grandpa,gourds,7);
 
         Snake snake = new Snake();
-        Camp camp2 = new Camp(snake);
+        Camp<Snake> camp2 = new Camp<>(snake);
         Scorpion scorpion = new Scorpion();
         camp2.add_unit(scorpion);
         for(int i = 0; i<7;i++) {
@@ -25,7 +25,8 @@ public class Player {
         Formation.ChangShe(field, camp1,4);
         Formation.YanXing(field,camp2,11,7);
         field.print();
-        grandpa.cheer();
+        camp1.getLeader().cheer();
+        //grandpa.cheer();
         System.out.println();
         System.out.println("                 -----第二次对峙局面：葫芦娃：长蛇   蝎子精：衡轭-----");
         Formation.HengE(field,camp2,3,14);

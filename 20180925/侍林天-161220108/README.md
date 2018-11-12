@@ -1,3 +1,13 @@
+#rewrite with generics
+##改写Tile类
+* public class Tile<T extends Creature> {
+    private T creatureStandOnTile;
+}
+##改写TwoDimensionSpace类
+* public class TwoDimensionSpace<T extends Creature> {
+    private Tile<T> space[][];
+}
+
 # 面向葫芦娃编程3：阵型
 ***
 ## 需求分析
