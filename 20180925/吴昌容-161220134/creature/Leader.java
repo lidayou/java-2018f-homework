@@ -3,6 +3,7 @@ package creature;
 import environment.Battlefield;
 import environment.Formation;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 enum LeaderEnum {
@@ -26,12 +27,12 @@ enum LeaderEnum {
 }
 
 public class Leader extends Creature {
-    Vector strategies;
+    ArrayList<Formation> strategies;
     int nowPtr;
     LeaderEnum id;
 
     public Leader(String argName) {
-        strategies = new Vector(2);
+        strategies = new ArrayList<>(2);
         nowPtr = 0;
 
         for (int i = 0; i < LeaderEnum.values().length; ++i) {
@@ -60,7 +61,7 @@ public class Leader extends Creature {
     }
     public void embattle(Battlefield world, Creature[] kids) {
         nowPtr = (nowPtr + 1) % strategies.size();
-        Formation fm = (Formation) strategies.get(nowPtr);
+        Formation fm = strategies.get(nowPtr);
 
         move(world, fm.getLeaderPos()[0], fm.getLeaderPos()[1]);
 
