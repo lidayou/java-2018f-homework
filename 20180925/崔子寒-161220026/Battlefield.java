@@ -1,37 +1,39 @@
 import Attributes.Position;
 import Creatures.*;
-import java.io.*;
+import java.util.ArrayList;
 
 public class Battlefield {
-    private Block[][] battlefield = new Block[10][20];
+    private ArrayList<ArrayList<Block<Creature>>> battlefield = new ArrayList<>();
     public Battlefield() {
         for(int i = 0;i < 10;i++) {
+            ArrayList<Block<Creature>> blockColumn = new ArrayList<>();
             for( int j = 0;j < 20;j++) {
-                battlefield[i][j] = new Block();
+                blockColumn.add(new Block());
             }
+            battlefield.add(blockColumn);
         }
     }
     public void print() {
-        for(int i = 0;i < 10;i++) {
-            for(int j = 0; j<20 ;j++) {
-                battlefield[i][j].outputInfo();
-                if(j == 9){
-                    System.out.print("|");
+        for (ArrayList<Block<Creature>> blockColumn:battlefield) {
+            for(Block block:blockColumn) {
+                block.outputInfo();
+                if(blockColumn.indexOf(block) == 9) {
+                    System.out.print('|');
                 }
             }
             System.out.println();
         }
     }
     public void clear() {
-        for(int i = 0;i < 10;i++) {
-            for(int j = 0;j < 20;j++) {
-                battlefield[i][j].creatureLeave();
+        for (ArrayList<Block<Creature>> blockColumn:battlefield) {
+            for(Block block:blockColumn) {
+                block.creatureLeave();
             }
         }
     }
     public void creatureEnter(Creature creature, Position position) {
         try{
-            battlefield[position.getX()][position.getY()].creatureEnter(creature);
+            battlefield.get(position.getX()).get(position.getY()).creatureEnter(creature);
         }
         catch (NullPointerException e) {
             e.printStackTrace();
@@ -41,11 +43,11 @@ public class Battlefield {
     }
 }
 
-class Block {
-    private Creature creature = null;
+class Block<T extends Creature> {
+    private T creature = null;
     private boolean isEmpty = true;
 
-    public boolean creatureEnter(Creature creature) throws NullPointerException{
+    public boolean creatureEnter(T creature) throws NullPointerException{
         isEmpty = false;
         this.creature = creature;
         if(this.creature==null) {

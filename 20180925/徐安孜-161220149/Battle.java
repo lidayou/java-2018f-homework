@@ -1,5 +1,4 @@
-import java.lang.reflect.Array;
-import java.text.Normalizer;
+
 import java.util.*;
 
 public class Battle{
@@ -21,21 +20,21 @@ public class Battle{
         //create and place grandpa&snake
         GoodBoss grandpa = new GoodBoss('爷');
         BadBoss snake= new BadBoss('蛇');
-        god.placeCharacter(battlefield,grandpa,7,1);
-        god .placeCharacter(battlefield,snake,3,18);
+        god.placeCreature(battlefield,grandpa,7,1);
+        god .placeCreature(battlefield,snake,3,18);
 
         //create and place monsters
         ArrayList<Creature> ScorpionSquad = new ArrayList<>();
-        ScorpionSquad.add(new Scorpion());
+        ScorpionSquad.add(new Scorpion('蝎'));
         for(int i=0;i<8;i++)
-            ScorpionSquad.add(new LittleMonster());
+            ScorpionSquad.add(new LittleMonster('喽'));
         god.placeFormation(battlefield,new WingFormation(ScorpionSquad.size()),ScorpionSquad,5,10);
         battlefield.display();
 
         //changer the formation of monsters
-        god.removeCharacter(battlefield,ScorpionSquad);
-        ScorpionSquad.add(new LittleMonster());
-        ScorpionSquad.add(new LittleMonster());
+        god.removeCreature(battlefield,ScorpionSquad);
+        ScorpionSquad.add(new LittleMonster('喽'));
+        ScorpionSquad.add(new LittleMonster('喽'));
         god.placeFormation(battlefield,new GeeseFormation(ScorpionSquad.size()),ScorpionSquad,5,7);
         battlefield.display();
     }
