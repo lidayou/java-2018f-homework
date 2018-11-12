@@ -52,7 +52,7 @@ Formation.java
 
 #### 3. UML图
 
-![UML](/pic/UML.png)
+![UML](./pic/UML.png)
 
 
 
