@@ -21,25 +21,41 @@ class Creature {
     void stepOn(BattleField field, int r, int c) {
         placeC = c;
         placeR = r;
+        field.bricks[r][c].holder = this;
         field.bricks[r][c].sign = sign;
     }
 
     void leave(BattleField field){
+        field.bricks[placeR][placeC].holder = null;
         field.bricks[placeR][placeC].sign = '_';
         placeR = -1;
         placeC = -1;
     }
+
+    public String toString() {
+        return CName;
+    }
 }
 
-abstract class CreatureQueue {
-    abstract void JumpOntoField(BattleField field, Formation form);
+interface CreatureQueueBehaviors {
+    void JumpOntoField(BattleField field, Formation form);
 }
 
-/*class Underlings extends Creature{
+/*
+class Underlings extends Creature{
     Underlings() {
         super("小喽啰", Factions.EVIL, 'v');
     }
-}*/
+    // implements the Generator interface using anonymous inner classes
+    public static Generator<Underlings> generator() {
+        return new Generator<Underlings>() {
+            public Underlings next() {
+                return new Underlings();
+            }
+        };
+    }
+}
+*/
 
 class underlingsGenerator implements Generator<Creature>{
     public Creature next()  {
@@ -47,7 +63,7 @@ class underlingsGenerator implements Generator<Creature>{
     }
 }
 
-class VillainQueue extends CreatureQueue {
+class VillainQueue implements CreatureQueueBehaviors {
     private List<Creature> vlQueue;
     private int numTotal, numOnField;
 
@@ -55,16 +71,20 @@ class VillainQueue extends CreatureQueue {
         vlQueue = new ArrayList<>();
         vlQueue.add(new Creature("蝎子精", Factions.EVIL, 'w'));
 
-        /*Creature[] underlings = new Creature[n-1];
+        /*
+        Creature[] underlings = new Creature[n-1];
         for (Creature c:underlings)
             c = new Creature("小喽啰", Factions.EVIL, 'v');    //Arrays.fill()?
         Collections.addAll(vlQueue, underlings);
         */
         Generators.fill(vlQueue, new underlingsGenerator(), n-1);
+        //Generators.fill(vlQueue, Underlings.generator(), n-1);
+        //Incompatible equality constraint: Underlings and Creature
+        // gen: Generator<T> - Underlings.generator()(Generator<Underlings>)
         numTotal = n;
     }
 
-    void JumpOntoField(BattleField field, Formation form){
+    public void JumpOntoField(BattleField field, Formation form){
         int idx = 0;
         for (int r = 4; r < 15; r++) {
             for (int c = 0; c < 10; c++) {
@@ -111,9 +131,11 @@ class CalabashBro extends Creature {
         return seq;
     }
 
+    /*
     String getName() {
         return CName;
     }
+    */
 
     Color getColor() {
         return color;
@@ -128,7 +150,7 @@ class CalabashBro extends Creature {
     }
 }
 
-class CBQueue extends CreatureQueue {
+class CBQueue implements CreatureQueueBehaviors {
     List<CalabashBro> broQueue;
 
     CBQueue() {
@@ -166,9 +188,11 @@ class CBQueue extends CreatureQueue {
 
     void countOffAcName() {
         for (int i = 0; i < 6; i++) {
-            System.out.print(broQueue.get(i).getName()+" ");
+            //System.out.print(broQueue.get(i).getName()+" ");
+            System.out.print(broQueue.get(i)+" ");
         }
-        System.out.println(broQueue.get(6).getName());
+        //System.out.println(broQueue.get(6).getName());
+        System.out.println(broQueue.get(6));
     }
 
     void countOffAcColor() {
@@ -178,7 +202,7 @@ class CBQueue extends CreatureQueue {
         System.out.println(broQueue.get(6).getColor().CName);
     }
 
-    void JumpOntoField(BattleField field, Formation form){
+    public void JumpOntoField(BattleField field, Formation form){
         int idx = 0;
         for (int r = 4; r < 15; r++) {
             for (int c = 0; c < 10; c++) {
