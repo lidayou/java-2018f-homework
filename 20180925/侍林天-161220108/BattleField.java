@@ -1,41 +1,42 @@
+import sort.HuluWaBubbleSort;
+import space.*;
+import group.*;
+import formation.*;
+import creature.*;
+
 public class BattleField {
-    private TwoDimensionSpace space;
-    private HuluBrothers huluBrothers;
-    private Team monsters;
     public BattleField(int N){
-        space = new TwoDimensionSpace(N);
-        huluBrothers = new HuluBrothers();
-        monsters = new Team("妖怪", 7);
-    }
-    public void displayBattleField(){
-        space.displaySpace();
+
     }
     public static void main(String[] args){
-        BattleField field = new BattleField(20);
+        //BattleField field = new BattleField(20);
         //field.displayBattleField();
-        field.huluBrothers.random();
-        field.huluBrothers.generateChangshe(field.space, 10, 7, 0);
-        field.displayBattleField();
+        TwoDimensionSpace<Creature> space = new TwoDimensionSpace<>(20);
+        HuluBrothers huluBrothers = new HuluBrothers();
+        Monsters monsters = new Monsters(7);
+        huluBrothers.random();
+        huluBrothers.generateFormation(new ChangsheFormation(), space, 10, 7, 0);
+        space.displaySpace();
         System.out.println();
-        field.huluBrothers.colorSort();
-        field.huluBrothers.generateChangshe(field.space, 10, 7, 0);
-        field.displayBattleField();
-        field.monsters.generateChangshe(field.space, 10,11, 1);
-        field.displayBattleField();
-        field.monsters.generateHeyi(field.space, 12, 18, 1);
-        field.displayBattleField();
-        field.huluBrothers.generateHeyi(field.space, 12, 2, 0);
-        field.space.displaySpace();
-        field.monsters.generateYanhang(field.space, 13, 12, 1);
-        field.space.displaySpace();
-        field.huluBrothers.generateHenge(field.space, 10, 7, 0);
-        field.space.displaySpace();
-        field.monsters.generateFangmen(field.space, 10, 12, 1);
-        field.space.displaySpace();
-        field.monsters.generateFengshi(field.space, 10, 13, 1);
-        field.space.displaySpace();
-        field.huluBrothers.generateYulin(field.space, 10, 7, 0);
-        field.space.displaySpace();
+        huluBrothers.sort(new HuluWaBubbleSort());
+        huluBrothers.generateFormation(new ChangsheFormation(), space, 10, 7, 0);
+        space.displaySpace();
+        monsters.generateFormation(new ChangsheFormation(), space, 10,11, 1);
+        space.displaySpace();
+        monsters.generateFormation(new HeyiFormation(), space, 12, 18, 1);
+        space.displaySpace();
+        huluBrothers.generateFormation(new HeyiFormation(), space, 12, 2, 0);
+        space.displaySpace();
+        monsters.generateFormation(new YanhangFormation(), space, 13, 12, 1);
+        space.displaySpace();
+        huluBrothers.generateFormation(new HengeFormation(), space, 10, 7, 0);
+        space.displaySpace();
+        monsters.generateFormation(new FangmenFormation(), space, 10, 12, 1);
+        space.displaySpace();
+        monsters.generateFormation(new FengshiFormation(), space, 10, 13, 1);
+        space.displaySpace();
+        huluBrothers.generateFormation(new YulinFormation(), space, 10, 7, 0);
+        space.displaySpace();
         /*field.huluBrothers.random();
         field.huluBrothers.shoutBrothersName();
         field.huluBrothers.prioritySort();
