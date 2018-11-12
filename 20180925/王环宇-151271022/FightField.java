@@ -2,8 +2,8 @@
  * 以造世主的角度，创建双方上场的战士，并将其组织放入战场中。
  * @see class FightFileld, class Formation, Class Team.
  * @author why
- * @Time 2018-11-5
- * @version 2.0
+ * @Time 2018-11-12
+ * @version 3.0
  * 
  * version 3.0 修改建议：
  * 修改目标，用collection来完善这个葫芦娃的程序       finished

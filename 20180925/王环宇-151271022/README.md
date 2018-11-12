@@ -1,6 +1,6 @@
 # README
 
-## copyright@why | version 2.0 | date 2018-11-5 
+## copyright@why | version 3.0 | date 2018-11-12
 
 ## https://github.com/cjnjuwhy
 
@@ -11,6 +11,8 @@
 >自定义了一个新的异常，及时发现并且“归化”异类，保证了在同一组中不会出现“间谍”存在；
 >
 >对类重新进行组织，使得相互之间的通讯只能通过接口而不能直接作用数据；
+>
+> 利用collection来完成了葫芦娃程序。
 
 
 
@@ -21,6 +23,11 @@ FightField.java
 Warriors.java
 Warrior.java
 CalabashBrothers.java
+CalabashBrothersEnum.java // undo
+Team.java
+WarriorInterface.java
+MyException.java
+Formation.java
 ```
 
 ##### 2. 编写思路
