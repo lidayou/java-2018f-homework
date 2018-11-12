@@ -153,8 +153,8 @@ public class CalabashBrothers extends Warrior{
 
 
 
-![round2](/pic/round2.png)
+![round2](./pic/round2.png)
 
 
 
-![allwarriors](/pic/allwarriors.png)
+![allwarriors](./pic/allwarriors.png)
