@@ -35,6 +35,18 @@ abstract class CreatureQueue {
     abstract void JumpOntoField(BattleField field, Formation form);
 }
 
+/*class Underlings extends Creature{
+    Underlings() {
+        super("小喽啰", Factions.EVIL, 'v');
+    }
+}*/
+
+class underlingsGenerator implements Generator<Creature>{
+    public Creature next()  {
+        return new Creature("小喽啰", Factions.EVIL, 'v');
+    }
+}
+
 class VillainQueue extends CreatureQueue {
     private List<Creature> vlQueue;
     private int numTotal, numOnField;
@@ -42,10 +54,13 @@ class VillainQueue extends CreatureQueue {
     VillainQueue(int n) {
         vlQueue = new ArrayList<>();
         vlQueue.add(new Creature("蝎子精", Factions.EVIL, 'w'));
-        Creature[] underlings = new Creature[n-1];
+
+        /*Creature[] underlings = new Creature[n-1];
         for (Creature c:underlings)
             c = new Creature("小喽啰", Factions.EVIL, 'v');    //Arrays.fill()?
         Collections.addAll(vlQueue, underlings);
+        */
+        Generators.fill(vlQueue, new underlingsGenerator(), n-1);
         numTotal = n;
     }
 
@@ -141,6 +156,7 @@ class CBQueue extends CreatureQueue {
             broQueue[i].changePlaceInQue(i, false);
         }
         */
+        System.out.println("Shuffling...");
         Collections.shuffle(broQueue, new Random(47));
         for (CalabashBro bro : broQueue) {
             int place = broQueue.indexOf(bro);
