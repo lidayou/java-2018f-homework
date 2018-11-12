@@ -2,13 +2,13 @@ public class CbFormation {
     public static Brother[] CbList;
     CbFormation() {
         CbList = new Brother[7];
-        CbList[0] = new Brother(4);
-        CbList[1] = new Brother(2);
-        CbList[2] = new Brother(6);
-        CbList[3] = new Brother(1);
-        CbList[4] = new Brother(5);
-        CbList[5] = new Brother(7);
-        CbList[6] = new Brother(3);
+        CbList[0] = new Brother("老四", "绿色", '④', 4);
+        CbList[1] = new Brother("老二", "橙色", '②', 2);
+        CbList[2] = new Brother("老六", "蓝色", '⑥', 6);
+        CbList[3] = new Brother("老大", "红色", '①', 1);
+        CbList[4] = new Brother("老五", "青色", '⑤', 5);
+        CbList[5] = new Brother("老七", "紫色", '⑦', 7);
+        CbList[6] = new Brother("老三", "黄色", '③', 3);
     }
     public static void CbSetLongLineArray() {
         BubbleSort(CbList);
