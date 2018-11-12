@@ -1,18 +1,18 @@
+package Being;
 public class grandpa extends Creature{
-    private int x;
-    private int y;
-    grandpa() {
+
+    public grandpa() {
         super("爷爷", '@');
         x = 0;
         y = 0;
 
     }
-    grandpa(int i, int j) {
+    public grandpa(int i, int j) {
         super("爷爷", '@');
         x = i;
         y = j;
     }
-    public void set_position(int i, int j){
+    public void setPosition(int i, int j){
         x = i;
         y = j;
     }
@@ -25,4 +25,5 @@ public class grandpa extends Creature{
     public int getX(){
         return x;
     }
+    public char getSymbol() { return symbol; }
 }
