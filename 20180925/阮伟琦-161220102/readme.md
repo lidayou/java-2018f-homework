@@ -6,7 +6,7 @@
 ## package & class
 
 <div>
-    <img src="pictures\package & class.png" width=70%>
+    <img src="pictures\package & class.png" width=50%>
 </div>
 
 如图，在设计的时候觉得说这个企划的关键应该是一个战场battlefield，然后field上面有一个一个的格子，格子里可能有各种各样的character。所以unit这个class便应运而生，battlefield主要的功能就是承载一个class unit的二维数组作为真正的field所在。然后我想来想去，还是觉得站队形应该是character自己的本领，所以便还是把各个type的队形作为了class human的function，同理cheer也应该是如此。
@@ -15,11 +15,11 @@
 <div>
     <img src="pictures\UML of gup.png" width=70%>
  	<hr/>
-    <img src="pictures\UML of character.png" width=70%>
+    <img src="pictures\UML of character.png" width=90%>
     <hr/>
-    <img src="pictures\UML of stggc_teammember.png" width=70%>
+    <img src="pictures\UML of stggc_teammember.png" width=90%>
     <hr/>
-    <img src="pictures\UML of shimada_alice.png" width=70%>
+    <img src="pictures\UML of shimada_alice.png" width=90%>
 </div>
 
 ## function
@@ -72,9 +72,9 @@ public void cheer(battlefield field, int x, int y, human character)
 ## outcome
 
 <div>
-    <img src="pictures\outcome1.png" width=70%>
+    <img src="pictures\outcome1.png" width=30%>
  	<hr/>
-    <img src="pictures\outcome2.png" width=70%>
+    <img src="pictures\outcome2.png" width=30%>
 </div>
 
 ## 后续思考
