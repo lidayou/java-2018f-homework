@@ -6,6 +6,7 @@
 ## package & class
 （图）
 如图，在设计的时候觉得说这个企划的关键应该是一个战场battlefield，然后field上面有一个一个的格子，格子里可能有各种各样的character。所以unit这个class便应运而生，battlefield主要的功能就是承载一个class unit的二维数组作为真正的field所在。然后我想来想去，还是觉得站队形应该是character自己的本领，所以便还是把各个type的队形作为了class human的function，同理cheer也应该是如此。
+部分UML如下：
 
 ## function
 主要的function除去初始化不说，比较关键的function就是各个formation以及cheer的function。我觉得formation和cheer因为不是所有class human的对象都具有的function，而且其中formation的实现还有跨类的现象，所以决定把它们作为一个interface来看待，现在想想其实也没什么不妥当的地方。实现如下（formation只贴了两种不同的snaketype作为例子）：
@@ -28,11 +29,31 @@ public void snaketype(int x, int y, int num, battlefield field, human character[
 }
 ```
 想法就是每次变阵前首先要清理掉原有的在战场上留下的痕迹（这其实不是特别合理后面会提到），然后在有必要的位置放上character就ok了。这里用到的setcharacter function是一个unit的function，作用就是在某个给定的位置set character：
-（图）
+```
+public void setcharacter(human character)
+{
+    this.is_occupied = true;
+    this.people = character;
+}
+```
 值得一提的是，实现clear的时候用到了类型检查的方法。
-（图）
-关于cheer，如下：
-（图）
+```
+private void clear(battlefield field)
+{
+    for(int i = 0; i < 17; i++)
+        for(int j = 0; j < 17; j++)
+            if(field.getfield()[i][j].get_is_occupied())
+                if(university_student.class.isInstance(field.getfield()[i][j].gethuman()))
+                    field.getfield()[i][j].setfree();
+}
+```
+关于cheer，暂时只是set character了而已，并没有什么其他的操作。如下：
+```
+public void cheer(battlefield field, int x, int y, human character)
+{
+    field.getfield()[x][y].setcharacter(character);
+}
+```
 
 ## outcome
 （图）
