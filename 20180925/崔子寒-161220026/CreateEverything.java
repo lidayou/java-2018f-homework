@@ -1,30 +1,38 @@
 import Attributes.Position;
 import Creatures.*;
 import Formations.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class CreateEverything {
 
     private static Heros heros= new Heros();
-    private static CalabashBrother[] calabashBrothers;
+    private static ArrayList<CalabashBrother> calabashBrothers;
     private static Grandfather grandfather;
-    private static Monster[] monsters = new Monster[8];
+    private static ArrayList<Monster> monsters;
     private static Scorpion scorpion = new Scorpion();
     private static Snake snake = new Snake();
     private static Battlefield battlefield = new Battlefield();
-    private static FormationProvider[] formationProviders = {new HeYi(),new YanXing(),new ChongE(),
-    new ChangShe(),new YuLin(),new Fang(),new YanYue(),new FengShi()};
+    private  static ArrayList<FormationProvider> formationProviders ;
 
     public static void init() {
+        formationProviders = new ArrayList<>();
+        formationProviders.addAll(Arrays.asList(new HeYi(),new YanXing(),new ChongE(),
+                new ChangShe(),new YuLin(),new Fang(),new YanYue(),new FengShi()));
+        monsters = new ArrayList<>();
         for(int i = 0;i < 8;i++) {
-            monsters[i] = new Monster();
+            monsters.add(new Monster());
         }
         heros.shuffle();
         heros.lineUp();
         calabashBrothers = heros.getCalabashBrothers();
         grandfather = heros.getGrandfather();
-        for(int i = 0;i < 7;i++) {
-            calabashBrothers[i].setPosition(i+1,17);
+        int delta = 0;
+        for(CalabashBrother cb : calabashBrothers) {
+            cb.setPosition(delta+1,17);
+            delta++;
         }
     }
 
@@ -39,8 +47,8 @@ public class CreateEverything {
     }
     public static  void badGuysChangeFormation(FormationProvider formationProvider) {
         Position[] positions = formationProvider.provideFormation();
-        for(int i = 0;i < 8;i++) {
-            monsters[i].setPosition(positions[i].getX(),positions[i].getY());
+        for(Monster monster:monsters) {
+            monster.setPosition(positions[monsters.indexOf(monster)].getX(),positions[monsters.indexOf(monster)].getY());
         }
         scorpion.setPosition(5,0);
         Random rand = new Random();
@@ -52,6 +60,7 @@ public class CreateEverything {
         }
         battlefield.creatureEnter(scorpion,scorpion.getPosition());
         battlefield.creatureEnter(snake,snake.getPosition());
+        System.out.println("----------------------------------------------------------------------");
     }
 
     public static  void main(String[] args ) throws InterruptedException{
@@ -61,7 +70,6 @@ public class CreateEverything {
             badGuysChangeFormation(fp);
             battlefield.print();
             battlefield.clear();
-            System.out.println("----------------------------------------------------------------------");
             Thread.sleep(1500);
 
         }

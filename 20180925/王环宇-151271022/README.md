@@ -62,7 +62,7 @@ FormationInterface.java
 
 #### 3. UML图
 
-![UML](/pic/UML.png)
+![UML](./pic/UML.png)
 
 
 
@@ -163,8 +163,8 @@ public class CalabashBrothers extends Warrior{
 
 
 
-![round2](/pic/round2.png)
+![round2](./pic/round2.png)
 
 
 
-![allwarriors](/pic/allwarriors.png)
+![allwarriors](./pic/allwarriors.png)

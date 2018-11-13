@@ -1,29 +1,29 @@
 import java.util.ArrayList;
 
-public class Camp {
-    private ArrayList<Unit>list;
-    private Unit leader;
-    Camp(Unit leader)
+public class Camp<T extends Unit> {
+    private ArrayList<Unit>soldiers;
+    private T leader;
+    Camp(T leader)
     {
         this.leader = leader;
-        list = new ArrayList<>();
+        soldiers = new ArrayList<>();
     }
-    Camp(Unit leader, Unit[] unit,int num)
+    Camp(T leader, Unit[] unit,int num)
     {
         this.leader = leader;
-        list = new ArrayList<>();
+        soldiers = new ArrayList<>();
         for(int i = 0;i<num;i++)
-            list.add(unit[i]);
+            soldiers.add(unit[i]);
     }
     public void add_unit(Unit unit)
     {
-        list.add(unit);
+        soldiers.add(unit);
     }
     public ArrayList<Unit> getList()
     {
-        return list;
+        return soldiers;
     }
-    public Unit getLeader()
+    public T getLeader()
     {
         return leader;
     }

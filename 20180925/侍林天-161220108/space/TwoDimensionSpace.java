@@ -1,7 +1,7 @@
 package space;
 import creature.*;
-public class TwoDimensionSpace {
-    private Tile space[][];
+public class TwoDimensionSpace<T extends Creature> {
+    private Tile<T> space[][];
     private int size;
     public TwoDimensionSpace(int N){
         size = N;
@@ -33,7 +33,7 @@ public class TwoDimensionSpace {
             return true;
         }
     }
-    public void setSpace(int x, int y, Creature p){
+    public void setSpace(int x, int y, T p){
         if (!isExceed(x,y)){
             space[x][y].setCreatureStandOnTile(p);
         }

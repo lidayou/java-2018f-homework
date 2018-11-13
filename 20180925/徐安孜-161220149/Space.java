@@ -1,3 +1,7 @@
+
+
+
+
 public class Space{
     private int length,width;
     private Creature map[][];
@@ -6,8 +10,8 @@ public class Space{
         length = l;
         width = w;
         map = new Creature[length][width];
-        for(int i=0;i<13;i++)
-            for(int j=0;j<13;j++)
+        for(int i=0;i<length;i++)
+            for(int j=0;j<width;j++)
                 map[i][j]=null;
     }
     boolean validation(int x,int y){
@@ -25,10 +29,10 @@ public class Space{
         }
         System.out.println();
     }
-    void characterEnterSpace(Creature c, int x, int y){
+    void creatureEnterSpace(Creature c, int x, int y){
         map[x][y]=c;
     }
-    void characterLeaveSpace(int x,int y){
+    void creatureLeaveSpace(int x, int y){
         map[x][y]=null;
     }
 }
