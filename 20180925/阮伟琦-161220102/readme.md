@@ -79,9 +79,9 @@ public void cheer(battlefield field, int x, int y, human character)
 ## outcome
 
 <div>
-    <img src="pictures\outcome1.png" width=30%>
+    <img src="pictures\outcome1.png" width=20%>
  	<hr/>
-    <img src="pictures\outcome2.png" width=30%>
+    <img src="pictures\outcome2.png" width=20%>
 </div>
 
 ## 后续思考
