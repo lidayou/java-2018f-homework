@@ -10,7 +10,7 @@
 
 ## function
 主要的function除去初始化不说，比较关键的function就是各个formation以及cheer的function。我觉得formation和cheer因为不是所有class human的对象都具有的function，而且其中formation的实现还有跨类的现象，所以决定把它们作为一个interface来看待，现在想想其实也没什么不妥当的地方。实现如下（formation只贴了两种不同的snaketype作为例子）：
-```
+```java
 public void snaketype(int x, int y, int num, battlefield field, human leader, human character[])
 {
     clear(field);
@@ -20,7 +20,7 @@ public void snaketype(int x, int y, int num, battlefield field, human leader, hu
     }
 }
 ```
-```
+```java
 public void snaketype(int x, int y, int num, battlefield field, human character[]) {
     //field.getfield()[x][y].setcharacter(this);
     for (int i = 0; i < num; i++) {
@@ -29,7 +29,7 @@ public void snaketype(int x, int y, int num, battlefield field, human character[
 }
 ```
 想法就是每次变阵前首先要清理掉原有的在战场上留下的痕迹（这其实不是特别合理后面会提到），然后在有必要的位置放上character就ok了。这里用到的setcharacter function是一个unit的function，作用就是在某个给定的位置set character：
-```
+```java
 public void setcharacter(human character)
 {
     this.is_occupied = true;
@@ -37,7 +37,7 @@ public void setcharacter(human character)
 }
 ```
 值得一提的是，实现clear的时候用到了类型检查的方法。
-```
+```java
 private void clear(battlefield field)
 {
     for(int i = 0; i < 17; i++)
@@ -48,7 +48,7 @@ private void clear(battlefield field)
 }
 ```
 关于cheer，暂时只是set character了而已，并没有什么其他的操作。如下：
-```
+```java
 public void cheer(battlefield field, int x, int y, human character)
 {
     field.getfield()[x][y].setcharacter(character);
