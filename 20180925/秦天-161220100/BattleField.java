@@ -48,5 +48,6 @@ public class BattleField {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 }

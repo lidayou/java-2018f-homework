@@ -1,9 +1,12 @@
 //package qt;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Troop{
-	protected Fighter[] fighters;
+	protected List<Fighter> fighters=new LinkedList<>();
 	protected Audience audience;
-	public Fighter[] getFighters() {
+	public List<Fighter> getFighters() {
 		return fighters;
 	}
 	public Audience getAudience() {
