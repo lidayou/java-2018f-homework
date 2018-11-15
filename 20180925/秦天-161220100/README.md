@@ -6,7 +6,7 @@
 - 整场战斗作为一个抽象概念，抽象为类Battle。
 - 具体类间关系见UML类图：
 ![UML](
-        java-2018f-homework/20180925/秦天-161220100/UML.png
+        https://github.com/Qcer17/java-2018f-homework/blob/master/20180925/%E7%A7%A6%E5%A4%A9-161220100/UML.png
       )
 # 面向对象机制
 ## 封装
