@@ -45,15 +45,6 @@ public class Leader extends Creature {
         id = null;
         sign = "!";
         System.out.println("Cannot find Leader:" + argName);
-
-//        try {
-//            id = LeaderEnum.valueOf(argName);
-//            sign = id.getSign();
-//        }
-//        catch (IllegalArgumentException err) {
-//            sign = "!";
-//            System.out.println("Cannot find Leader:" + argName);
-//        }
     }
 
     public void addFormation(Formation fm) {
