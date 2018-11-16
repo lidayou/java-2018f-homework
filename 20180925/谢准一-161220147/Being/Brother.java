@@ -1,15 +1,17 @@
+package Being;
+
 public class Brother extends Creature {
     private int rank;
     private String color;
-    private int x;
-    private int y;
-    Brother(String name, String color, char symbol, int rank) {
-        super(name,symbol);
+
+
+    public Brother(String name, String color, char symbol, int rank){
+        super(name, symbol);
         this.color = color;
         this.rank = rank;
 
     }
-    Brother(String name, String color, char symbol, int rank, int x, int y) {
+    public Brother(String name, String color, char symbol, int rank, int x, int y) {
         super(name, symbol);
         this.color = color;
         this.rank = rank;
