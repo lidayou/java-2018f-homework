@@ -1,6 +1,8 @@
 package creature;
 
-public class CalabashBrother extends Good {
+//import java.util.Comparator;
+
+public class CalabashBrother extends Good implements Comparable<CalabashBrother> {
 	
 	private int rank;
 	private String name;
@@ -48,6 +50,17 @@ public class CalabashBrother extends Good {
 			break;
 		}
 		return ret;
+	}
+
+
+	@Override
+	public int compareTo(CalabashBrother b) {
+		// TODO Auto-generated method stub
+        if (this.rank > b.rank) {
+            return 1;
+        } else {
+            return -1;
+        }
 	}
 
 }

@@ -2,12 +2,12 @@ package space;
 
 import creature.Creature;
 
-public class Coord {
+public class Coord<T extends Creature> {
 
 	private boolean existCreature;
-	private Creature creatureInCoord;
+	private T creatureInCoord;
 	
-	public boolean setCreature(Creature creature) {
+	public boolean setCreature(T creature) {
 		if (existCreature) {
 			return false;
 		} else {
