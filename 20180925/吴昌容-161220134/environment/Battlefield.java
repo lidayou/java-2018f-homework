@@ -3,15 +3,18 @@ package environment;
 import creature.*;
 
 public class Battlefield {
-    Creature[][] matrix;
+    Position<Creature>[][] matrix;
     final int size;
 
     public Battlefield(int sz)
     {
         size = sz;
-        matrix = new Creature[size][];
+        matrix = new Position[size][];
         for (int i = 0; i < size; ++i) {
-            matrix[i] = new Creature[size];
+            matrix[i] = new Position[size];
+            for (int j = 0; j < size; ++j) {
+                matrix[i][j] = new Position<>();
+            }
         }
     }
 
@@ -19,20 +22,20 @@ public class Battlefield {
         int x = object.getX();
         int y = object.getY();
 
-        matrix[x][y] = object;
+        matrix[x][y].setConetnt(object);
     }
     public Creature getCreature(int x, int y) {
-        return matrix[x][y];
+        return matrix[x][y].getConetnt();
     }
     public void clear(int x, int y) {
-        matrix[x][y] = null;
+        matrix[x][y].setConetnt(null);
     }
 
     public void print() {
         for (int i = size - 1; i >= 0; --i) {
             for (int j = 0; j < size; ++j) {
-                if (matrix[j][i] != null) {
-                    matrix[j][i].display();
+                if (matrix[j][i].getConetnt() != null) {
+                    matrix[j][i].getConetnt().display();
                     System.out.print("  ");
                 }
                 else {
