@@ -7,7 +7,7 @@ public class CalabashBoy extends Creature{
 	// -----------------------------------Variables---------------------------------
 	public int rank;	
 	private CalabashInfo cbInfo;
-	private Image img;	//葫芦娃个人形象
+	private Image img;	
 	
 	
 	//----------------------------------Properties-------------------------------------
@@ -18,7 +18,7 @@ public class CalabashBoy extends Creature{
 	public int getRank() {
 		return rank;
 	}
-	//构造函数
+
 	public CalabashBoy(Location l, int rank, Administrator ad){
 		this.loc = l;
 		this.admin = ad;

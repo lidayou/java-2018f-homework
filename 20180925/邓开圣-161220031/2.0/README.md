@@ -1,8 +1,16 @@
 # Java 第三次作业2.0
 
+**邓开圣 161220031**
+
 [TOC]
 
-## 1. 整体结构
+## 1. 代码使用方法
+
+将src文件夹中的源代码文件与resources文件夹中的资源文件**放在同一目录下**，然后直接运行代码即可，按空格键变换阵型。
+
+本文件若有无法阅读的部分请参见[README.pdf](https://github.com/KSDeng/java-2018f-homework/blob/master/20180925/%E9%82%93%E5%BC%80%E5%9C%A3-161220031/2.0/README.pdf)
+
+## 2. 整体结构
 
 ```mermaid
 graph LR
@@ -28,7 +36,7 @@ graph LR
 
 
 
-## 2.代码特色分析
+## 3.代码特色分析
 
 ### 枚举类型
 
@@ -230,21 +238,21 @@ private class KeyMonitor extends KeyAdapter{
 
 
 
-## 3.部分效果展示
+## 4.部分效果展示
 
-<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/%E6%96%B9%E9%97%A8.PNG?raw=true">
+<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/result/%E9%95%BF%E8%9B%872.PNG?raw=true">
+
+<center>长蛇</center>
+
+<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/result/%E6%96%B9%E9%97%A82.PNG?raw=true">
 
 <center>方门</center>
 
-<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/%E5%81%83%E6%9C%88.PNG?raw=true">
+<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/result/%E9%B9%A4%E7%BF%BC2.PNG?raw=true">
+
+<center>鹤翼</center>
+
+<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/result/%E5%81%83%E6%9C%882.PNG?raw=true">
 
 <center>偃月</center>
-
-<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/%E8%A1%A1%E8%BD%A8.PNG?raw=true">
-
-<center>衡轨</center>
-
-<img src="https://github.com/KSDeng/pictures/blob/master/pictures/javaHW3/%E9%9B%81%E8%A1%8C.PNG?raw=true">
-
-<center>雁行</center>
 
