@@ -2,7 +2,7 @@ package javahw3;
 
 import java.util.ArrayList;
 
-public class Formation{
+public class Formation implements FormationInterface{
 	/*
 	 * 阵型类，保存双方的阵型信息
 	 * Variables: ArrayList<int[][]> book1, ArrayList<int[][]> book1;

@@ -2,20 +2,24 @@
  * 以造世主的角度，创建双方上场的战士，并将其组织放入战场中。
  * @see class FightFileld, class Formation, Class Team.
  * @author why
- * @Time 2018-11-5
- * @version 2.0
+ * @Time 2018-11-12
+ * @version 3.0
  * 
- * version 3.0 修改建议：
- * 修改目标，用collection来完善这个葫芦娃的程序       finished
- * 选取更合适的collection，将已有的实现用自带的方法实现    finished
- * 增加乱序操作和排序操作，使得程序更加符合要求 undo
- * 增加Interface
+ * version 4.0 修改建议：
+ * 增加乱序操作和排序操作，使得程序更加符合要求 ，完成了乱序操作，而没有完成排序操作
+ * 排序操作是一个大问题，Bad阵营中，一大一小，其随；Good阵营中，完成了Enum之后比较会简单些
+ * 在Java中，对于容器的排序是否也是那么简单？
+ * 
+ * 使用泛型完成代码，尝试泛型中的那些方法，同时也利用这个时间来回顾一下泛型的一些内容
  * 
  * */
 
 package javahw3;
+import java.util.Random;
 //import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class FightField {
 	/*
@@ -27,13 +31,15 @@ public class FightField {
 	 * @param true: 正确, false: 错误
 	 * @return： boolean 
 	 * */
+	static int SHUFFLE = 50;
+	
 	private static final int N = 15;
 	public Warrior[][] fields;
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		FightField ff = new FightField();
-		//登录每队的战士，并且显示其基本信息
+		//登录每队的战士并且显示其基本信息
 		Team teamGood = new Team("GoodMan");
 		Team teamBad = new Team("BadMan");
 		loading(teamGood, teamBad);
@@ -42,8 +48,8 @@ public class FightField {
 			teamBad.checkMember();
 		}catch(MyException e) {
 		}
-		teamGood.showWarriors();
-		teamBad.showWarriors();
+		teamGood.showTeam();
+		teamBad.showTeam();
 		//初始化阵型
 		Formation.initialization();
 		/*-----------------------ROUND 1------------------------*/
@@ -60,8 +66,8 @@ public class FightField {
 		
 		in.close();
 		
-		teamGood.showWarriors();
-		teamBad.showWarriors();
+		teamGood.showTeam();
+		teamBad.showTeam();
 	}
 	//Constructor
 	private FightField() {
@@ -85,8 +91,25 @@ public class FightField {
 		}
 		teamBad.add(new Warrior("小兵"+6, "冲锋", teamGood.getSide()));
 		teamBad.add(new Warrior("蛇精", "看戏", teamBad.getSide()));
-		// 此处需要一个打乱顺序的操作以及一个排序操作
-		// 但Java中能不能够像C++那样自定义排序？
+		// shuffle
+		shuffle(teamGood);
+		shuffle(teamBad);
+	}
+	
+	public static void shuffle(Team team) {
+		Random rdm = new Random();
+		for(int i=0; i<SHUFFLE; i++) {
+			int t1 = Math.abs(rdm.nextInt()) % team.team.size();
+			int t2 = Math.abs(rdm.nextInt()) % team.team.size();
+			if(t1 == t2)
+				continue;
+			else {
+				Warrior w;
+				w = team.team.get(t1);
+				team.team.set(t1, team.team.get(t2));
+				team.team.set(t2, w);
+			}
+		}
 	}
 	
 	// show the fields
