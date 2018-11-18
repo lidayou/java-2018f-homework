@@ -2,7 +2,6 @@
 ## 11月18日 更新说明
 ##### 1.为打斗场面添加了图形界面显示。使用的框架是Swing框架。
 ##### 2.新增GUI类，完成图形界面的显示。
-+ GUI.java
 <br>
 GUI继承自JFrame，为了模拟出相应大小的战场空间，其内部储存了一个JLabel的二维数组。采用GridLayou(10,15)的布局方式，将JLabel按照次序排列在窗口上。
 另外，GUI具有方法：public void setLabel(int x, int y,String path)，可以将路径为path的图片展示在坐标为(x,y)的JLabel上。
