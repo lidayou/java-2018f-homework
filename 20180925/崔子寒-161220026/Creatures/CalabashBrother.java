@@ -30,5 +30,12 @@ public class CalabashBrother extends Creature implements Comparable{
         }
         return 0;
     }
+    public String toString() {
+        return color.getName();
+    }
+
+    public String getImagePath() {
+        return "src/ResourceFiles/"+(1+color.ordinal())+".jpg";
+    }
 }
 

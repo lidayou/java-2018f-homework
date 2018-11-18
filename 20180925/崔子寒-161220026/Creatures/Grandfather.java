@@ -6,4 +6,10 @@ public class Grandfather extends Creature implements Cheer {
     }
 
     public void cheer(){}
+    public String toString() {
+        return "爷爷";
+    }
+    public String getImagePath() {
+        return "src/ResourceFiles/grandfather.jpg";
+    }
 }

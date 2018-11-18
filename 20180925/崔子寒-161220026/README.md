@@ -1,4 +1,12 @@
 # 相关说明
+## 11月18日 更新说明
+#####1.为打斗场面添加了图形界面显示。使用的框架是Swing框架。
+#####2.新增GUI类，完成图形界面的显示。
++ GUI.java
+GUI继承自JFrame，为了模拟出相应大小的战场空间，其内部储存了一个JLabel的二维数组。采用GridLayou(10,15)的布局方式，将JLabel按照次序排列在窗口上。
+另外，GUI具有方法：public void setLabel(int x, int y,String path)，可以将路径为path的图片展示在坐标为(x,y)的JLabel上。
+所以，在原来遍历战场将结果输出到控制台的时候，只需要加上一句setLabel就可以将结果同时显示在窗口上，不需要对原有代码进行过多的修改。
+
 ## 11月6日  重构说明
 ##### 1.原本一些使用数组的地方，改为了使用持有对象。另外对于葫芦娃的排序，由于使用了持有对象，所以不再用自己写的算法，而是使用了**Collections.sort**方法。具体包括：
 + Heros.java
@@ -15,7 +23,7 @@ private static ArrayList<FormationProvider> formationProviders;
 ```
 + Battlefield.java
 ```java
-//private Block[][] battlefield = new Block[10][20];
+//private Block[][] battlefield = new Block[10][15];
 private ArrayList<ArrayList<Block<Creature>>> battlefield = new ArrayList<>();
 ```
 
@@ -44,6 +52,7 @@ class Block<T extends Creature>
 (6) Heroes类：代表正义阵营。正义阵营可以完成葫芦娃排序，置乱的功能。
 ![image](https://github.com/czhnju161220026/image/blob/master/res3class3.png?raw=true)
 (7) CreateEverything类：完成创世界的的任务。
+(8) GUI类：新增了GUI类，继承自JFrame。GUI类的主要作用是将输出的信息同步显示到窗口上。
 
 
 ### 2. 类方法的说明
@@ -52,6 +61,8 @@ class Block<T extends Creature>
 ``` java  
 /*输出自身信息，在派生类中被分别覆盖为所需要的方法*/
 public void outputInfo(); 
+/*给出储存自己图片的路径*/
+public String getImagePath();
 ```
 (2) Block&lt;T extends Creature&gt;:
 ``` java
@@ -61,12 +72,16 @@ public boolean creatureEnter(T creature);
 public void creatureLeave();
 /*输出信息，直接调用所绑定生物的outputInfo()*/
  public void outputInfo();
+ /*将坐标为x,y的生物显示在GUI界面上*/
+ public void showInGUI(int x, int y, GUI gui);
 ```
 
 (3) Battlefield:
 ``` java
  /*遍历二维空间，打印战场的实时情况*/
  public void print();
+ /*遍历二维空间，将战场显示在窗口上*/
+ public void showInGUI(GUI gui);
  /*清空战场*/
  public void clear();
  /*生物进入坐标为（i,j）d的空间*/
@@ -87,8 +102,13 @@ public void creatureLeave();
 /*给出一个坐标数组，描述指定的阵型*/
 Position[] provideFormation();
 ```
+(6) GUI类
+``` java
+/*让坐标为x,y的JLabel控件显示path所指定的图片*/
+public void setLabel(int x, int y,String path);
+```
 
-(6) CreateEverything类
+(7) CreateEverything类
 ``` java
 /*初始化工作：实例化怪兽，葫芦娃，葫芦娃置乱，排序*/
 public static void init()；
@@ -99,10 +119,11 @@ public static void badGuysChangeFormation(FormationProvider formationprovider);
 /*main函数*/
 init();
 for(FormationProvider fp:formationProviders) {
-    herosEnter();
-    badGuysChangeFormation(fp);
-    battlefield.print();
-    battlefield.clear();
+    herosEnter();                //英雄进入战场
+    badGuysChangeFormation(fp);  //坏人变阵
+    battlefield.print();         //在控制台输出战场信息
+    battlefield.showInGUI(gui);  //在GUI上显示战场信息
+    battlefield.clear();         
     Thread.sleep(1500);
 }
 ```
@@ -117,10 +138,11 @@ for(FormationProvider fp:formationProviders) {
 4. 泛型：Block类运用了泛型的思想，直观的说明了其可以持有任意的Creature及其派生类。
 
 这些设计思想提高了代码的复用效率，而且和现实世界比较类似，是以后的学习过程中应该多加运用，多多领悟的。
+良好的封装和解耦合性可以为后期添加新功能时省却很多麻烦，例如添加GUI显示时。
 
 ## 运行效果
 
-![image](https://github.com/czhnju161220026/image/blob/master/res3v2.png?raw=true)
+![image](https://github.com/czhnju161220026/image/blob/master/res3v3.png?raw=true)
 
 
 
