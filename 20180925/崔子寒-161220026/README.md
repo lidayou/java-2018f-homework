@@ -3,6 +3,7 @@
 ##### 1.为打斗场面添加了图形界面显示。使用的框架是Swing框架。
 ##### 2.新增GUI类，完成图形界面的显示。
 + GUI.java
+<br>
 GUI继承自JFrame，为了模拟出相应大小的战场空间，其内部储存了一个JLabel的二维数组。采用GridLayou(10,15)的布局方式，将JLabel按照次序排列在窗口上。
 另外，GUI具有方法：public void setLabel(int x, int y,String path)，可以将路径为path的图片展示在坐标为(x,y)的JLabel上。
 所以，在原来遍历战场将结果输出到控制台的时候，只需要加上一句setLabel就可以将结果同时显示在窗口上，不需要对原有代码进行过多的修改。
@@ -39,7 +40,7 @@ class Block<T extends Creature>
 
 ## 设计
 ### 1. 类的划分
-对具有不同功能的类进行包管理。
+对具有不同功能的类进行包管理。<br>
 (1) Creatures包括：抽象基类Creature,派生类CalabashBrother，Grandfather，Snake，Monster和Scorpion。另外蛇精和爷爷继承了接口Cheer，拥有cheer()方法，另外认为葫芦娃是可以根据颜色进行排序的，因此CalabashBrother实现了**Comparable接口**的compareTo方法。
 ![image](https://github.com/czhnju161220026/image/blob/master/res3class.png?raw=true)
 <br>
