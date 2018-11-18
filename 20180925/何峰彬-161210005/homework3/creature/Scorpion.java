@@ -1,10 +1,9 @@
 package homework3.creature;
 
-public class Scorpion extends Creature {
+public class Scorpion extends Monster {
     private static Scorpion scorpion = new Scorpion();
 
     private Scorpion(){
-        super();
         name = "蝎";
     }
 

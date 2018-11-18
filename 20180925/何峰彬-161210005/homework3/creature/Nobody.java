@@ -1,8 +1,7 @@
 package homework3.creature;
 
-public class Nobody extends Creature{
+public class Nobody extends Monster{
     public Nobody(){
-        super();
         name = "喽";
     }
 }
