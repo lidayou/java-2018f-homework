@@ -42,16 +42,21 @@ class Block<T extends Creature>
 对具有不同功能的类进行包管理。
 (1) Creatures包括：抽象基类Creature,派生类CalabashBrother，Grandfather，Snake，Monster和Scorpion。另外蛇精和爷爷继承了接口Cheer，拥有cheer()方法，另外认为葫芦娃是可以根据颜色进行排序的，因此CalabashBrother实现了**Comparable接口**的compareTo方法。
 ![image](https://github.com/czhnju161220026/image/blob/master/res3class.png?raw=true)
-
+<br>
 (2) Attributes包中的类描述了生物应该具有的属性，目前包括Position和Color两个属性，分别表示生物在战场中的位置，以及葫芦娃的颜色。
+<br>
 (3)Formations包提供了阵型数据的功能。接口FormationProvider定义了一个阵型类应该具有provideFormation方法，返回一个坐标数组。所有的阵型类都继承自这个接口。
 ![image](https://github.com/czhnju161220026/image/blob/master/res3class2.png?raw=true)
-
+<br>
 (4) Battlefield类：二维空间类，类内部有一个Block对象的矩阵。
+<br>
 (5) Block类：Block类代表一个单位空间，使用泛型的方法，它可以持有任意Creature子类。
+<br>
 (6) Heroes类：代表正义阵营。正义阵营可以完成葫芦娃排序，置乱的功能。
 ![image](https://github.com/czhnju161220026/image/blob/master/res3class3.png?raw=true)
+<br>
 (7) CreateEverything类：完成创世界的的任务。
+<br>
 (8) GUI类：新增了GUI类，继承自JFrame。GUI类的主要作用是将输出的信息同步显示到窗口上。
 
 
