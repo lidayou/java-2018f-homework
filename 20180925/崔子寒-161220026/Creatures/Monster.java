@@ -8,7 +8,7 @@ public class Monster extends Creature {
         return "小怪";
     }
 
-    public String getImagePath() {
-        return "src/ResourceFiles/monster.png";
+    public int getIconIndex() {
+        return 9;
     }
 }

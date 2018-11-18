@@ -6,7 +6,7 @@ public class Scorpion extends Creature{
     public String toString() {
         return "蝎子";
     }
-    public String getImagePath() {
-        return "src/ResourceFiles/scorpion.png";
+    public int getIconIndex() {
+        return 8;
     }
 }

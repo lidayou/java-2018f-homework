@@ -11,7 +11,7 @@ public class Snake extends Creature implements Cheer {
         return "蛇精";
     }
 
-    public String getImagePath() {
-        return "src/ResourceFiles/snake.jpg";
+    public int getIconIndex() {
+        return 7;
     }
 }

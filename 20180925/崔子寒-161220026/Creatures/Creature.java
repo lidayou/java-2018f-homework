@@ -12,5 +12,5 @@ public abstract class Creature {
         return  position;
     }
     public abstract void outputInfo();
-    public abstract String getImagePath();
+    public abstract int getIconIndex();
 }

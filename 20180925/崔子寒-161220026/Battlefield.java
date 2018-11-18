@@ -34,7 +34,7 @@ public class Battlefield {
         }
     }
 
-    public void showInGUI(GUI gui) throws IOException{
+    public void showInGUI(GUI gui) {
         for(int i = 0;i<10;i++) {
             for(int j =0;j<15;j++) {
                 battlefield.get(i).get(j).showInGUI(i,j,gui);
@@ -88,13 +88,13 @@ class Block<T extends Creature> {
         }
     }
 
-    public void showInGUI(int x, int y, GUI gui) throws IOException {
+    public void showInGUI(int x, int y, GUI gui){
         if(isEmpty) {
-            gui.setLabel(x,y,"");
+            gui.setLabel(x,y,-1);
         }
         else {
             try{
-                gui.setLabel(x,y,""+creature.getImagePath());
+                gui.setLabel(x,y,creature.getIconIndex());
             }
             catch (NullPointerException e) {
                 e.printStackTrace();

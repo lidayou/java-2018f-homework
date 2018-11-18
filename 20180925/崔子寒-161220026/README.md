@@ -4,7 +4,7 @@
 ##### 2.新增GUI类，完成图形界面的显示。
 <br>
 GUI继承自JFrame，为了模拟出相应大小的战场空间，其内部储存了一个JLabel的二维数组。采用GridLayou(10,15)的布局方式，将JLabel按照次序排列在窗口上。
-另外，GUI具有方法：public void setLabel(int x, int y,String path)，可以将路径为path的图片展示在坐标为(x,y)的JLabel上。
+另外，GUI具有方法：public void setLabel(int x, int y,int index)，可以将index指示的图片展示在坐标为(x,y)的JLabel上。
 所以，在原来遍历战场将结果输出到控制台的时候，只需要加上一句setLabel就可以将结果同时显示在窗口上，不需要对原有代码进行过多的修改。
 
 ## 11月6日  重构说明
@@ -66,8 +66,8 @@ class Block<T extends Creature>
 ``` java  
 /*输出自身信息，在派生类中被分别覆盖为所需要的方法*/
 public void outputInfo(); 
-/*给出储存自己图片的路径*/
-public String getImagePath();
+/*给出储存自己图片的编号*/
+public String getIconIndex();
 ```
 (2) Block&lt;T extends Creature&gt;:
 ``` java
@@ -109,8 +109,8 @@ Position[] provideFormation();
 ```
 (6) GUI类
 ``` java
-/*让坐标为x,y的JLabel控件显示path所指定的图片*/
-public void setLabel(int x, int y,String path);
+/*让坐标为x,y的JLabel控件显示相应的图片*/
+public void setLabel(int x, int y,int Index);
 ```
 
 (7) CreateEverything类

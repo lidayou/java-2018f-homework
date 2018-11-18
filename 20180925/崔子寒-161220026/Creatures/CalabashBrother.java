@@ -34,8 +34,8 @@ public class CalabashBrother extends Creature implements Comparable{
         return color.getName();
     }
 
-    public String getImagePath() {
-        return "src/ResourceFiles/"+(1+color.ordinal())+".jpg";
+    public int getIconIndex() {
+        return color.ordinal();
     }
 }
 
