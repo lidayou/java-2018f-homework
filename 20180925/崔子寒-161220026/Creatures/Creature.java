@@ -12,4 +12,5 @@ public abstract class Creature {
         return  position;
     }
     public abstract void outputInfo();
+    public abstract int getIconIndex();
 }

@@ -6,4 +6,12 @@ public class Snake extends Creature implements Cheer {
     }
 
     public void cheer(){}
+
+    public String toString() {
+        return "蛇精";
+    }
+
+    public int getIconIndex() {
+        return 7;
+    }
 }

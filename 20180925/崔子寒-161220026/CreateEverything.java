@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import java.io.*;
+import javax.swing.*;
+
 public class CreateEverything {
 
     private static Heros heros= new Heros();
@@ -31,7 +34,7 @@ public class CreateEverything {
         grandfather = heros.getGrandfather();
         int delta = 0;
         for(CalabashBrother cb : calabashBrothers) {
-            cb.setPosition(delta+1,17);
+            cb.setPosition(delta+1,12);
             delta++;
         }
     }
@@ -42,7 +45,7 @@ public class CreateEverything {
         }
         Random rand = new Random();
         int temp_x = 3+rand.nextInt(4);
-        grandfather.setPosition(temp_x,19);
+        grandfather.setPosition(temp_x,13);
         battlefield.creatureEnter(grandfather,grandfather.getPosition());
     }
     public static  void badGuysChangeFormation(FormationProvider formationProvider) {
@@ -63,12 +66,14 @@ public class CreateEverything {
         System.out.println("----------------------------------------------------------------------");
     }
 
-    public static  void main(String[] args ) throws InterruptedException{
+    public static  void main(String[] args ) throws InterruptedException ,IOException{
+        GUI gui = new GUI();
         init();
         for(FormationProvider fp:formationProviders) {
             herosEnter();
             badGuysChangeFormation(fp);
             battlefield.print();
+            battlefield.showInGUI(gui);
             battlefield.clear();
             Thread.sleep(1500);
 

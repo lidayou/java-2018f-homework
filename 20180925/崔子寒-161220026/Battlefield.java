@@ -1,5 +1,7 @@
 import Attributes.Position;
 import Creatures.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Battlefield {
@@ -7,7 +9,7 @@ public class Battlefield {
     public Battlefield() {
         for(int i = 0;i < 10;i++) {
             ArrayList<Block<Creature>> blockColumn = new ArrayList<>();
-            for( int j = 0;j < 20;j++) {
+            for( int j = 0;j < 15;j++) {
                 blockColumn.add(new Block());
             }
             battlefield.add(blockColumn);
@@ -31,6 +33,15 @@ public class Battlefield {
             }
         }
     }
+
+    public void showInGUI(GUI gui) {
+        for(int i = 0;i<10;i++) {
+            for(int j =0;j<15;j++) {
+                battlefield.get(i).get(j).showInGUI(i,j,gui);
+            }
+        }
+    }
+
     public void creatureEnter(Creature creature, Position position) {
         try{
             battlefield.get(position.getX()).get(position.getY()).creatureEnter(creature);
@@ -68,6 +79,22 @@ class Block<T extends Creature> {
         else {
             try{
                 creature.outputInfo();
+            }
+            catch (NullPointerException e) {
+                e.printStackTrace();
+                System.err.println("Null pointer");
+                System.exit(-1);
+            }
+        }
+    }
+
+    public void showInGUI(int x, int y, GUI gui){
+        if(isEmpty) {
+            gui.setLabel(x,y,-1);
+        }
+        else {
+            try{
+                gui.setLabel(x,y,creature.getIconIndex());
             }
             catch (NullPointerException e) {
                 e.printStackTrace();
