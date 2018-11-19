@@ -51,4 +51,8 @@ public class TwoDimensionSpace<T extends Creature> {
             System.out.println();
         }
     }
+
+    public Creature getCreature(int i, int j) {
+        return space[i][j].getCreature();
+    }
 }

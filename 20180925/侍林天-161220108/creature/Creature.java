@@ -1,9 +1,14 @@
 package creature;
 import space.*;
+import javax.imageio.*;
+import java.io.*;
+import java.awt.*;
 public class Creature {
     protected String name;
     protected int coordinateX;
     protected int coordinateY;
+    protected String imgPath;
+    protected Image image;
     public Creature(){
         coordinateX = -1;
         coordinateY = -1;
@@ -14,6 +19,8 @@ public class Creature {
         coordinateY = -1;
         this.name = name;
     }
+    public String getPath() { return imgPath; }
+    public Image getImage() {return image; }
     public String getName(){
         return name;
     }
