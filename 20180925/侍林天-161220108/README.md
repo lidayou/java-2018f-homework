@@ -1,5 +1,6 @@
 # add gui
 ## 增加了一个gui
+![avatar](https://github.com/LintianShi/java-2018f-homework/blob/master/20180925/%E4%BE%8D%E6%9E%97%E5%A4%A9-161220108/gui/show.png)
 ### MainWindow类
 * 继承于JFrame，有成员JLabel[][]，通过GridLayout布局。
 * refresh()接口：当二维空间上有Creature的时候就显示Creature对应的图片，没有的时候就显示background的图片。
