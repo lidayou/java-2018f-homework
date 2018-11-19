@@ -1,6 +1,6 @@
 package homework3.creature;
 
-public class GrandPa extends Creature{
+public class GrandPa extends Justice{
     public static GrandPa grandPa = new GrandPa();
 
     private GrandPa(){

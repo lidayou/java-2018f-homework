@@ -1,26 +1,28 @@
 package homework3.creature;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class HuLuWa extends Creature {
+public class HuLuWa extends Justice {
     public final Color color;
     public final Seniority seniority;
-    static int count = 0;
+    private static List<HuLuWa> instances = new ArrayList<>();
+    private static int count = 0;
 
     private HuLuWa(){
-        super();
         this.color = Color.values()[count];
         this.seniority = Seniority.values()[count];
         name = seniority.getName();
-        count ++;
+        count++;
     }
 
-    public static HuLuWa getNewInstance(){
-        if(count == 7){
-            return null;
+    public static List<HuLuWa> getNewInstances() {
+        if(instances.size() == 0){
+            for(int i = 0; i < 7; i ++){
+                instances.add(new HuLuWa());
+            }
         }
-        else{
-            return new HuLuWa();
-        }
+        return instances;
     }
 }
 
