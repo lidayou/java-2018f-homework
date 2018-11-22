@@ -14,7 +14,7 @@
 ## 2.模块说明
 这次更新依然采用包管理的形式进行管理。
 1. guiApp包：guiApp包包含了**GameController**和**Main**两个类，负责和用户进行交互，类视图如下：
-![image](https://github.com/czhnju161220026/image/blob/master/Gui.jpg?raw=true)<br\>
+![image](https://github.com/czhnju161220026/image/blob/master/Gui.jpg?raw=true)<br>
 **GameController**中定义了三个Handler，分别处理开始按钮，变换阵形按钮，和游戏结束按钮的点击事件。还有方法displayBattlefield和clearBattlefield用来展示和清空战场。<br>
 **Main**中的start函数设置场景并进行展示。
 
@@ -29,7 +29,7 @@
 4. Battle包：该包包含了表示战场和对阵双方的类Battlefield、Heros和BadGuys。类视图如下：
 ![image](https://github.com/czhnju161220026/image/blob/master/Battle.jpg?raw=true)
 
-5. Attributes包：包含了枚举类型的颜色和坐标类Position，类视图如下：<br\>
+5. Attributes包：包含了枚举类型的颜色和坐标类Position，类视图如下：<br>
 ![image](https://github.com/czhnju161220026/image/blob/master/Attribute.jpg?raw=true)
 
 
