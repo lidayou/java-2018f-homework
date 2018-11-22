@@ -1,6 +1,11 @@
 package Creatures;
 
+import javafx.scene.image.Image;
+
 public class Grandfather extends Creature implements Cheer {
+    public Grandfather() {
+        image = new Image("resourceFiles/grandfather.jpg");
+    }
     public void outputInfo() {
         System.out.print("爷爷");
     }
@@ -9,7 +14,9 @@ public class Grandfather extends Creature implements Cheer {
     public String toString() {
         return "爷爷";
     }
-    public int getIconIndex() {
-        return 10;
+
+    @Override
+    public Image getImage() {
+        return image;
     }
 }
