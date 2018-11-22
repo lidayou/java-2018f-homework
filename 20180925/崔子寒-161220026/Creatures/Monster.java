@@ -1,6 +1,11 @@
 package Creatures;
 
+import javafx.scene.image.Image;
+
 public class Monster extends Creature {
+    public Monster() {
+        image = new Image("resourceFiles/monster.png");
+    }
     public void outputInfo() {
         System.out.print("小怪");
     }
@@ -8,7 +13,8 @@ public class Monster extends Creature {
         return "小怪";
     }
 
-    public int getIconIndex() {
-        return 9;
+    @Override
+    public Image getImage() {
+        return image;
     }
 }
