@@ -1,6 +1,6 @@
 package creature;
 
-import javax.imageio.ImageIO;
+import javafx.scene.image.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,11 +10,6 @@ public class Grandpa extends Creature {
         coordinateX = -1;
         coordinateY = -1;
         imgPath = "src\\image\\grandpa.jpg";
-        try {
-            image = ImageIO.read(new File(imgPath));
-        }
-        catch (IOException e) {
-            ;
-        }
+        image = new Image("image/grandpa.jpg");
     }
 }

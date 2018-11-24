@@ -1,3 +1,4 @@
+package battle;
 import sort.HuluWaBubbleSort;
 import space.*;
 import group.*;
@@ -5,13 +6,17 @@ import formation.*;
 import creature.*;
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;
-import static gui.SwingConsole.*;
-import gui.*;
+
 
 
 public class BattleField {
-    public BattleField(int N){
-
+    public TwoDimensionSpace<Creature> space;
+    public HuluBrothers huluBrothers;
+    public Monsters monsters;
+    public BattleField(){
+        monsters = new Monsters(7);
+        huluBrothers = new HuluBrothers();
+        space = new TwoDimensionSpace<>(15);
     }
     public static void main(String[] args){
         //BattleField field = new BattleField(20);
@@ -36,7 +41,7 @@ public class BattleField {
         });
         label.setText("change");*/
 
-        TwoDimensionSpace<Creature> space = new TwoDimensionSpace<>(15);
+        /*TwoDimensionSpace<Creature> space = new TwoDimensionSpace<>(15);
         MainWindow window = new MainWindow(space);
         HuluBrothers huluBrothers = new HuluBrothers();
         Monsters monsters = new Monsters(7);

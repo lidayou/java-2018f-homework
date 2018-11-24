@@ -2,7 +2,7 @@ package creature;
 import space.*;
 import javax.imageio.*;
 import java.io.*;
-import java.awt.*;
+import javafx.scene.image.*;
 public class Creature {
     protected String name;
     protected int coordinateX;
@@ -38,6 +38,10 @@ public class Creature {
         coordinateY = y;
     }
     public boolean moveTo(TwoDimensionSpace space, int x, int y){
+        //System.out.print(x);
+        //System.out.print(" ");
+        //System.out.print(y);
+        //System.out.print("\n");
         if (!space.isExceed(x, y)){
             if (space.isEmpty(x, y)) {
                 space.cleanSpace(coordinateX, coordinateY);

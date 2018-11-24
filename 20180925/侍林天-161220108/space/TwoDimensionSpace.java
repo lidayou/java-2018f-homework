@@ -12,6 +12,15 @@ public class TwoDimensionSpace<T extends Creature> {
             }
         }
     }
+    public TwoDimensionSpace(int M, int N){
+        size = M;
+        space = new Tile[M][N];
+        for (int i = 0; i < M; i++){
+            for (int j = 0; j < N; j++){
+                space[i][j] = new Tile(i, j);
+            }
+        }
+    }
     public int size() {
         return size;
     }

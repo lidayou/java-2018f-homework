@@ -1,18 +1,13 @@
 package creature;
 import java.io.*;
-import javax.imageio.*;
+import javafx.scene.image.*;
 public class Demon extends Creature {
     public Demon() {
         name = "小喽喽";
         coordinateX = -1;
         coordinateY = -1;
         imgPath = "src\\image\\loulou.jpg";
-        try {
-            image = ImageIO.read(new File(imgPath));
-        }
-        catch (IOException e) {
-            ;
-        }
+        image = new Image("image/loulou.jpg");
 
 
     }
@@ -21,11 +16,6 @@ public class Demon extends Creature {
         coordinateX = -1;
         coordinateY = -1;
         imgPath = "src\\image\\loulou.jpg";
-        try {
-            image = ImageIO.read(new File(imgPath));
-        }
-        catch (IOException e) {
-            ;
-        }
+        image = new Image("image/loulou.jpg");
     }
 }
