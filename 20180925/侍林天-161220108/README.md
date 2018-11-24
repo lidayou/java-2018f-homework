@@ -1,5 +1,6 @@
 # add GUI with javafx
 ## 增加了一个GUI的类Main
+![avatar](https://github.com/LintianShi/java-2018f-homework/blob/master/20180925/%E4%BE%8D%E6%9E%97%E5%A4%A9-161220108/image/gui1.png)
 * Main继承于javafx的Application类
 * 这里使用了Scene builder进行UI的可见化设置。在start函数里通过加载FXML文件进行控件的布局。
 <pre>
@@ -66,6 +67,7 @@ public class Main extends Application {
     }
 </code>
 </pre>
+![avatar](https://github.com/LintianShi/java-2018f-homework/blob/master/20180925/%E4%BE%8D%E6%9E%97%E5%A4%A9-161220108/image/gui2.png)
 * 在GameController类里有函数void canvasDrag(MouseEvent event)，通过Scene builder注册到了canvas的鼠标拖拽事件上。当鼠标在画布canvas上拖拽时，就会通过坐标的换算找到Battlefield类space成员对应的位置，然后让已选择的生物体移动到该位置，从而实现拖动效果。
 <pre>
 <code>
