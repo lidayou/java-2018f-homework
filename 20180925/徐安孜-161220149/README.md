@@ -1,8 +1,8 @@
-#第三次作业更新2.0：重构代码，添加GUI
+# 第三次作业更新2.0：重构代码，添加GUI
 
 运行效果：
 单击鼠标切换喽啰阵型
-![avatar](../image/result.png)
+![avatar](/image/result.png)
 
 类间关系如下：
 
