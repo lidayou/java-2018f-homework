@@ -2,13 +2,13 @@
 
 运行效果：
 单击鼠标切换喽啰阵型
-![avatar](/image/result.png)
+![avatar](../徐安孜-161220149/image/result.png)
 
 类间关系如下：
 
 
 
-![avatar](../image/class.png)
+![avatar](../徐安孜-161220149/image/class.png)
 
 Formation类：其中包含了一个由Coordinate类型元素组成的动态数组，
 
