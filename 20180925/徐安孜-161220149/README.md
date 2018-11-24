@@ -2,13 +2,13 @@
 
 运行效果：
 单击鼠标切换喽啰阵型
-![avatar](/image/result.png)
+![avatar](../image/result.png)
 
 类间关系如下：
 
 
 
-![avatar](/image/class.png)
+![avatar](../image/class.png)
 
 Formation类：其中包含了一个由Coordinate类型元素组成的动态数组，
 
@@ -46,9 +46,9 @@ class SnakeFormation extends Formation{
 
 
 
-#第三次作业
+# 第三次作业
 
-###Creature类
+### Creature类
 空间中每个坐标处都可以存在一个生命体，葫芦娃、爷爷、蝎子、蛇精、小喽啰都属于生命体，因此可以让他们分别继承Creature类
 ```
 class Creature{...}
@@ -66,13 +66,13 @@ class Snake extends Creature
 ```
 
 
-###Formation枚举类
+### Formation枚举类
 Formation类中记录了阵型长、宽、组成阵型所需实体数量，并用数组形式记录了阵型式样（即各实体成员的相对位置），同时还包含一个由组成该阵型成员构成的动态数组
 操控者在在放置阵型时，根据阵型的绝对位置和其中成员的相对位置，将实体放置于空间特定坐标处
 
 
 
-###Manipulator类
+### Manipulator类
 操控者，负责各个生物体的创造、排序、放置、移除
 ```
 class Manipulator {
@@ -92,7 +92,7 @@ class Manipulator {
 ```
 
 
-###Space类
+### Space类
 其中包含了二位数组map记录地图信息
 Display()方法输出地图信息
 
