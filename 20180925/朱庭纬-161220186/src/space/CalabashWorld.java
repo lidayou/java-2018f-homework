@@ -1,8 +1,10 @@
 package space;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import creature.*;
-import formation.Formation;
+import formation.Conjurable;
 
 public class CalabashWorld {
 	
@@ -12,11 +14,13 @@ public class CalabashWorld {
 	
 	private BattleField battleField;
 	
-	private CalabashBrother[] brothers;
+	//private CalabashBrother[] brothers;
+	private ArrayList<CalabashBrother> brothers = new ArrayList<>();
 	private Grandpa grandpa;
 	private Scorpion scorpion;
 	private Snake snake;
-	private Minion[] minions = new Minion[MINIONS_NUM];
+	//private Minion[] minions = new Minion[MINIONS_NUM];
+	private ArrayList<Minion> minions = new ArrayList<>(Collections.nCopies(MINIONS_NUM,new Minion()));
 	
 	public CalabashWorld() {
 		// TODO Auto-generated constructor stub
@@ -26,9 +30,9 @@ public class CalabashWorld {
 		grandpa = new Grandpa();
 		scorpion = new Scorpion();
 		snake = new Snake();
-		for (int i = 0; i < MINIONS_NUM; i++) {
+		/*for (int i = 0; i < MINIONS_NUM; i++) {
 			minions[i] = new Minion();
-		}
+		}*/
 	}
 	
 	private void initBrothers() {
@@ -40,39 +44,48 @@ public class CalabashWorld {
 		CalabashBrother theSixth = new CalabashBrother(6, "老六", COLOR.BLUE);
 		CalabashBrother theYoungest = new CalabashBrother(7, "老七", COLOR.PURPLE);		
 		
-		brothers = new CalabashBrother[]{theOldest, theSecond, theThird, theForth, theFifth, theSixth, theYoungest};
+		brothers.add(theOldest);
+		brothers.add(theSecond);
+		brothers.add(theThird);
+		brothers.add(theForth);
+		brothers.add(theFifth);
+		brothers.add(theSixth);
+		brothers.add(theYoungest);
 	}
 	
 	public void brothersShuffle() {
 		// 葫芦娃乱序
+		/*
 		int length = brothers.length;
         for ( int i = length; i > 0; i-- ) {
         	Random random = new Random();
             int randInd = random.nextInt(i);
             swap(brothers, randInd, i - 1);
-        }
+        }*/
+		Collections.shuffle(brothers);
         System.out.println("葫芦娃乱序：");
         for(CalabashBrother k : brothers) {
         	System.out.print(k.getName() + " ");
         }
         System.out.println();
 	}	
-	
+	/*
 	public static <T> void swap(T[] a, int i, int j) {
         T temp = a[i];
         a[i] = a[j];
         a[j] = temp;
-    }
+    }*/
 	
 	public void brothersSort() {
 		// 冒泡排序
-		for (int i = brothers.length; i > 0 ; i--) {
+		/*for (int i = brothers.length; i > 0 ; i--) {
 			for (int j = 0; j < i-1; j++) {
 				if (brothers[j].getRank() > brothers[j+1].getRank()) {
 					swap(brothers, j, j + 1);				
 				}
 			}
-		}
+		}*/
+		Collections.sort(brothers);
 		System.out.println("葫芦娃排序：");
         for(CalabashBrother k : brothers) {
         	System.out.print(k.getName() + " ");
@@ -84,16 +97,22 @@ public class CalabashWorld {
 		System.out.print(battleField);
 	}
 	
-	public void setBrothers(Formation formation, int startRow, int startColumn) {
+	public void setBrothers(Conjurable formation, int startRow, int startColumn) {
 		formation.conjure(battleField, brothers, startRow, startColumn);
 	}
 	
-	public void setMonsters(Formation formation, int startRow, int startColumn) {
+	public void setMonsters(Conjurable formation, int startRow, int startColumn) {
+		/*
 		Bad[] bads = new Bad[MINIONS_NUM + 1];
 		for (int i = 0; i < MINIONS_NUM; i++) {
 			bads[i] = minions[i];
 		}
-		bads[MINIONS_NUM] = scorpion;
+		bads[MINIONS_NUM] = scorpion;*/
+		ArrayList<Bad> bads = new ArrayList<>();
+		for (int i = 0; i < MINIONS_NUM; i++) {
+			bads.add(minions.get(i));
+		}
+		bads.add(scorpion);
 		
 		formation.conjure(battleField, bads, startRow, startColumn);
 	}

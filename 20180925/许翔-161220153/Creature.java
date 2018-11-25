@@ -31,18 +31,18 @@ class GrandFather extends Creature{
     GrandFather(){
         this.name = CreatureName.GrandFather;
     }
-    public void cheer(Map map){
-        map.setCreature(this,map.getSize()/2-1, 0);
-    }
+    //public void cheer(Map map){
+    //    map.setCreature(this,map.getSize()/2-1, 0);
+    //}
 }
 
 class Snake extends Creature{
     Snake(){
         this.name = CreatureName.Snake;
     }
-    public void cheer(Map map){
-        map.setCreature(this,map.getSize()/2+1, map.getSize()-1);
-    }
+    //public void cheer(Map map){
+    //    map.setCreature(this,map.getSize()/2+1, map.getSize()-1);
+    //}
 }
 
 class Scorpion extends Creature{
