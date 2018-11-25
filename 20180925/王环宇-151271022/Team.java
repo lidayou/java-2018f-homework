@@ -3,7 +3,7 @@ package javahw3;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Team{
+public class Team implements TeamInterface{
 	/*
 	 * Variables: ArrayList<Warrior> team;
 	 * Methods: showWarriors();
@@ -15,7 +15,7 @@ public class Team{
 		team = new ArrayList<Warrior>();
 		this.side = side;
 	}
-	public void showWarriors() {
+	public void showTeam() {
 		Iterator<Warrior> it = team.iterator();
 		while(it.hasNext()) {
 			it.next().showMe();
@@ -35,6 +35,17 @@ public class Team{
 			team.get(i).changePosition(m, n);
 			fields[m][n] = team.get(i);
 		}
+	}
+	
+	public String toString() {
+		String s = new String();
+		Iterator<Warrior> it = team.iterator();
+		while(it.hasNext()) {
+			s += it.next();
+			s += "\n";
+		}
+		return s;
+		
 	}
 	
 	public void checkMember() throws MyException{
