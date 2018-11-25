@@ -52,7 +52,7 @@ ThreeSecondsWonder.setCycleCount(2);
 ThreeSecondsWonder.play();
 ```
 最终实现效果如下所示：
-![](stalemate.gif)
+![](READMEPic/stalemate.gif)
 
 ---
 ### rewrite CalabashBrother
@@ -117,11 +117,11 @@ if(!creatures.isEmpty() && creatures.get(0) instanceof Good) {
 以下是原文件：
 ## 文件结构
 本次实验采取 **一个类型一个java文件** 的设计方法，所以文件众多。为了方便项目管理与视图的清晰，将项目划分为几个包，将相关文件放入相关包中。具体结构如下图所示：
-![](File.png)
+![](READMEPic/File.png)
 
 
 ## 类图
-![](Class.png)
+![](READMEPic/Class.png)
 
 
 ## 设计思想
@@ -149,4 +149,4 @@ if(!creatures.isEmpty() && creatures.get(0) instanceof Good) {
     多态是同一个行为具有多个不同表现形式或形态的能力。就是同一个接口，使用不同的实例而执行不同操作。在BattleField类中override了toString操作，打印对峙局面时可以直接使用System.out.Println(BattleField)。
 
 ## 运行效果展示
-![](result.png)
+![](READMEPic/result.png)
