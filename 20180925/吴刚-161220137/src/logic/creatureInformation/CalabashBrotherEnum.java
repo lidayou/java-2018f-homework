@@ -1,4 +1,4 @@
-package creatureInformation;
+package logic.creatureInformation;
 
 public enum CalabashBrotherEnum{
     first("红色", "老大", 1), second("橙色", "老二", 2), third("黄色", "老三", 3), fourth("绿色", "老四", 4),

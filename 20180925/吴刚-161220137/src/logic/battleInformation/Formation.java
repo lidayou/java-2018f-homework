@@ -1,10 +1,12 @@
-package battleInformation;
+package logic.battleInformation;
 
-import creatureInformation.Creature;
+import logic.creatureInformation.Creature;
+
+import java.util.ArrayList;
 
 public class Formation {
     Board board;
-    Creature[] creatures;
+    private ArrayList<Creature> creatures;
 
     public Formation(Board board) {
         this.board = board;
@@ -70,8 +72,6 @@ public class Formation {
     //方阵
     public void matrixFormation(Sides sides, int beginX, int beginY){
         this.creatures = sides.creatures;
-        int level = creatures.length / 2 + 1;
-
-
+        int level = creatures.size() / 2 + 1;
     }
 }
