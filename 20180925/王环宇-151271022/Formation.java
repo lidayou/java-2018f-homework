@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Formation implements FormationInterface{
 	/*
-	 * ÕóĞÍÀà£¬±£´æË«·½µÄÕóĞÍĞÅÏ¢
+	 * é˜µå‹ç±»ï¼Œä¿å­˜åŒæ–¹çš„é˜µå‹ä¿¡æ¯
 	 * Variables: ArrayList<int[][]> book1, ArrayList<int[][]> book1;
 	 * Methods: initialization(), getForm(), convert();
 	 * */

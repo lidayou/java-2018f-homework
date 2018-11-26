@@ -1,22 +1,22 @@
-package javahw3;
-
-// this enum file is prepared for better manage CalabashBrothers
-// but not used now, it can be used in the future version
-public enum CalabashBrothersEnum {
-	´óÍÞ("ºì",1), ¶þÍÞ("³È",2), ÈýÍÞ("»Æ",3), ËÄÍÞ("ÂÌ",4), ÎåÍÞ("Çà",5), ÁùÍÞ("À¶",6), ÆßÍÞ("×Ï",7);
-	private final String name;
-	private final int order;
-	public int[] destination;
-	private CalabashBrothersEnum(String name, int order){
-		this.name = name;
-		this.order = order;
-		destination = new int[2];
-	}
-	public int[] where() {
-		return destination;
-	}
-	public void changePlace(int m, int n) {
-		destination[0] = m;
-		destination[1] = n;
-	}
-}
+//package javahw3;
+//
+//// this enum file is prepared for better manage CalabashBrothers
+//// but not used now, it can be used in the future version
+//public enum CalabashBrothersEnum {
+//	ï¿½ï¿½ï¿½ï¿½("ï¿½ï¿½",1), ï¿½ï¿½ï¿½ï¿½("ï¿½ï¿½",2), ï¿½ï¿½ï¿½ï¿½("ï¿½ï¿½",3), ï¿½ï¿½ï¿½ï¿½("ï¿½ï¿½",4), ï¿½ï¿½ï¿½ï¿½("ï¿½ï¿½",5), ï¿½ï¿½ï¿½ï¿½("ï¿½ï¿½",6), ï¿½ï¿½ï¿½ï¿½("ï¿½ï¿½",7);
+//	private final String name;
+//	private final int order;
+//	public int[] destination;
+//	private CalabashBrothersEnum(String name, int order){
+//		this.name = name;
+//		this.order = order;
+//		destination = new int[2];
+//	}
+//	public int[] where() {
+//		return destination;
+//	}
+//	public void changePlace(int m, int n) {
+//		destination[0] = m;
+//		destination[1] = n;
+//	}
+//}
