@@ -2,6 +2,8 @@ package form;
 
 import java.util.ArrayList;
 
+import javax.swing.JTextArea;
+
 import creature.*;
 import sort.Sort;
 
@@ -15,7 +17,7 @@ public class Form {
 	public Form(){
 		calabashBro = new CalabashBrothers();
 		oneGrandpa = new Grandpa();
-		System.out.println("葫芦兄弟开始排队……");
+		//System.out.println("葫芦兄弟开始排队……");
 		Sort sortCalabash = new Sort(calabashBro.sevenBro);
 		sortCalabash.sortByNo();//按照姓名排队
 		oneSnake = new Snake();
@@ -162,33 +164,33 @@ public class Form {
 		oneSnake.setPos(6, 12);
 		return 11;
 	}
-	public int formForBad() {
-		int rand = (int)(1 + Math.random() * ( 7 - 1 + 1));//�����ѡһ������
+	public int formForBad(JTextArea text) {
+		int rand = (int)(1 + Math.random() * ( 7 - 1 + 1));
 		while(rand == lastFormation) {
 			rand = (int)(1 + Math.random() * ( 7 - 1 + 1));
 		}
 		lastFormation = rand;
 		switch(rand) {
 		case 1:
-			System.out.println("蝎子精：鹤翼阵！");
+			text.append("蝎子精：鹤翼阵！\n");
 			return HE_YI();
 		case 2:
-			System.out.println("蝎子精：雁行阵！");
+			text.append("蝎子精：雁行阵！\n");
 			return YAN_XING();
 		case 3:
-			System.out.println("蝎子精：衡轭阵！");
+			text.append("蝎子精：衡轭阵！\n");
 			return HENG_E();
 		case 4:
-			System.out.println("蝎子精：鱼鳞阵！");
+			text.append("蝎子精：鱼鳞阵！\n");
 			return YU_LIN();
 		case 5:
-			System.out.println("蝎子精：方圆阵！");
+			text.append("蝎子精：方圆阵！\n");
 			return FANG_YUAN();
 		case 6:
-			System.out.println("蝎子精：偃月阵！");
+			text.append("蝎子精：偃月阵！\n");
 			return YAN_YUE();
 		case 7:
-			System.out.println("蝎子精：锋矢阵！");
+			text.append("蝎子精：锋矢阵！\n");
 			return FENG_SHI();
 		default:
 			return -1;

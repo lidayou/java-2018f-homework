@@ -26,15 +26,15 @@ public class Sort {
 					int tmp = queue[j];
 					queue[j] = queue[j + 1];
 					queue[j + 1] = tmp;
-					System.out.print(sevenBrothers[queue[j + 1]].tellName() + ": "+ (j + 1) + " -> " + (j + 2) + " ");
-					System.out.println(sevenBrothers[queue[j]].tellName() + ": "+ (j + 2) + " -> " + (j + 1));
+					//System.out.print(sevenBrothers[queue[j + 1]].tellName() + ": "+ (j + 1) + " -> " + (j + 2) + " ");
+					//System.out.println(sevenBrothers[queue[j]].tellName() + ": "+ (j + 2) + " -> " + (j + 1));
 				}
 			}
 		}
-		System.out.println("葫芦兄弟开始报数……");
-		for (int i = 0; i < 7; i++) {		
-			System.out.print(sevenBrothers[queue[i]].tellName() + " ");
-		}
-		System.out.print("\n");
+		//System.out.println("葫芦兄弟开始报数……");
+		//for (int i = 0; i < 7; i++) {		
+		//	System.out.print(sevenBrothers[queue[i]].tellName() + " ");
+		//}
+		//System.out.print("\n");
 	}
 }
