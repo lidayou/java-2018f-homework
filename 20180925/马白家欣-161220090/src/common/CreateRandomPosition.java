@@ -1,9 +1,8 @@
 package com.homework3.common;
 
-import com.homework3.battle.BattleField;
-import com.homework3.coordinate.JusticeAndEvilPosition;
-import com.homework3.coordinate.Position;
-import com.homework3.formation.Formation;
+import com.homework3.battle.*;
+import com.homework3.formation.*;
+import com.homework3.position.*;
 
 import java.util.Random;
 
@@ -12,9 +11,10 @@ import java.util.Random;
  * @Author LUCUS BAI
  * @Date 2018/10/23
  */
-public class CreateRandomPositon {
 
-    public static JusticeAndEvilPosition createRandomPositon(Formation evilFormation, Formation justiceFormation)
+public class CreateRandomPosition {
+
+    public static JusticeAndEvilPosition createRandomPosition(Formation evilFormation, Formation justiceFormation)
     {
         Random rand = new Random();
         int evilUpOffset = evilFormation.getUpOffset();
@@ -45,6 +45,4 @@ public class CreateRandomPositon {
 
         return newPosition;
     }
-
-
 }

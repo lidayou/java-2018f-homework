@@ -11,6 +11,7 @@ import java.awt.*;
  * @Author LUCUS BAI
  * @Date 2018/10/23
  */
+
 public class BattleFieldDisplay{
 
     public static final int DISPLAY_DELAY = 1000;
