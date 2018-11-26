@@ -1,5 +1,5 @@
 
-
+package main.java;
 import java.util.ArrayList;
 
 public class Formation{
@@ -11,18 +11,18 @@ public class Formation{
 class SnakeFormation extends Formation{
     SnakeFormation(int num){
         for(int i=0;i<num;i++)
-            pattern.add(new Coordinate(i,0));
+            pattern.add(new Coordinate(0,i));
     }
 }
 
 class WingFormation extends Formation{
     WingFormation(int num){
         int singleWing=(num-1)/2;
-        pattern.add(new Coordinate(singleWing,0));
+        pattern.add(new Coordinate(0,singleWing));
         for(int i=0;i<singleWing;i++)
-            pattern.add(new Coordinate(singleWing-1-i,i+1));
+            pattern.add(new Coordinate(i+1,singleWing-1-i));
         for(int i=0;i<(num-1-singleWing);i++)
-            pattern.add(new Coordinate(singleWing+1+i,i+1));
+            pattern.add(new Coordinate(i+1,singleWing+1+i));
     }
 }
 

@@ -1,22 +1,24 @@
 
+package main.java;
 
 public class Creature{
     Coordinate Location;
-    char symbol;
-    Creature(){
+    String imageURL;
+    Creature(String url){
         Location = new Coordinate(-1,-1);
+        imageURL =url;
     }
 }
 
 class LittleMonster extends Creature {
-    LittleMonster(char name){
-        symbol=name;
+    LittleMonster(String url){
+        super(url);
     }
 }
 
 class Scorpion extends Creature {
-    Scorpion(char name){
-        symbol=name;
+    Scorpion(String url){
+        super(url);
     }
 }
 
@@ -41,26 +43,26 @@ enum CalabashRank{
 class Calabash extends Creature {
     int rank;
     char color;
-    Calabash(CalabashRank r){
+    Calabash(CalabashRank r,String url){
+        super(url);
         rank=r.id;
         color=r.color;
-        symbol=r.color;
     }
 }
 
 
 class GoodBoss extends Creature
         implements CanCheer{
-   GoodBoss(char name){
-        symbol=name;
+   GoodBoss(String url){
+        super(url);
     }
     public void cheer() { }
 }
 
 class BadBoss extends Creature
         implements CanCheer{
-    BadBoss(char name){
-        symbol=name;
+    BadBoss(String url){
+        super(url);
     }
     public void cheer(){}
 

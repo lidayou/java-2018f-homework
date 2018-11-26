@@ -1,12 +1,18 @@
+package main.java;
+import javax.swing.text.html.ImageView;
 import java.util.ArrayList;
 
-public class Manipulator {
+
+
+public class SpaceManager {
+
     void placeCreature(Space bf, Creature c, int x, int y){
         c.Location.x=x;
         c.Location.y=y;
         bf.creatureEnterSpace(c,x,y);
     }
     void removeCreature(Space bf, Creature c){
+        if(c==null)return;
         bf.creatureLeaveSpace(c.Location.x,c.Location.y);
         c.Location.x=-1;
         c.Location.y=-1;
@@ -23,4 +29,6 @@ public class Manipulator {
         for(int i=0;i<members.size();i++)
             placeCreature(bf,members.get(i),x+f.pattern.get(i).x,y+f.pattern.get(i).y);
     }
+
+
 }
