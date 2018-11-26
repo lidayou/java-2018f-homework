@@ -1,10 +1,12 @@
 package space;
 
 import creature.Creature;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 public class BattleField {
 	
-	private Coord[][] coords;
+	private Coord<Creature>[][] coords;
 	private int row;
 	private int column;
 	
@@ -15,7 +17,7 @@ public class BattleField {
 		coords = new Coord[r][c];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				coords[i][j] = new Coord();
+				coords[i][j] = new Coord<Creature>();
 			}
 		}
 		
@@ -48,6 +50,17 @@ public class BattleField {
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
 				coords[i][j].clearCreature();
+			}
+		}
+	}
+	
+	public void guiDisplay(GraphicsContext gc) {
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				if (coords[i][j].existCreature()) {
+					Image image = coords[i][j].getCreatrue().getImage();      
+			        gc.drawImage(image, j*70, i*52, 60, 60);
+				}
 			}
 		}
 	}

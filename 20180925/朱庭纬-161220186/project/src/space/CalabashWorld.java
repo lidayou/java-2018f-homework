@@ -3,26 +3,40 @@ package space;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+
+import application.Main;
 import creature.*;
 import formation.Conjurable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 public class CalabashWorld {
 	
-	private static final int BATTLEFIELD_ROW = 15;
+	private static final int BATTLEFIELD_ROW = 11;
 	private static final int BATTLEFIELD_COLUMN = 15;
 	private static final int MINIONS_NUM = 7;
 	
+	private static final int CANVAS_WIDTH = 1100;
+	private static final int CANVAS_HEIGHT = 600;
+	
 	private BattleField battleField;
 	
-	//private CalabashBrother[] brothers;
 	private ArrayList<CalabashBrother> brothers = new ArrayList<>();
 	private Grandpa grandpa;
 	private Scorpion scorpion;
 	private Snake snake;
-	//private Minion[] minions = new Minion[MINIONS_NUM];
 	private ArrayList<Minion> minions = new ArrayList<>(Collections.nCopies(MINIONS_NUM,new Minion()));
 	
-	public CalabashWorld() {
+	Stage primaryStage;
+	Canvas canvas;
+	
+	public CalabashWorld(Stage primaryStage) {
 		// TODO Auto-generated constructor stub
 		
 		battleField = new BattleField(BATTLEFIELD_ROW, BATTLEFIELD_COLUMN);
@@ -30,9 +44,18 @@ public class CalabashWorld {
 		grandpa = new Grandpa();
 		scorpion = new Scorpion();
 		snake = new Snake();
-		/*for (int i = 0; i < MINIONS_NUM; i++) {
-			minions[i] = new Minion();
-		}*/
+		
+		StackPane root=new StackPane();
+	    root.setAlignment(Pos.CENTER);
+	    root.setPadding(new Insets(25, 25, 25, 25));
+	    
+	    canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+        
+        root.getChildren().add(canvas);
+        Scene scene = new Scene(root,1100,600);
+		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	private void initBrothers() {
@@ -55,36 +78,15 @@ public class CalabashWorld {
 	
 	public void brothersShuffle() {
 		// 葫芦娃乱序
-		/*
-		int length = brothers.length;
-        for ( int i = length; i > 0; i-- ) {
-        	Random random = new Random();
-            int randInd = random.nextInt(i);
-            swap(brothers, randInd, i - 1);
-        }*/
 		Collections.shuffle(brothers);
         System.out.println("葫芦娃乱序：");
         for(CalabashBrother k : brothers) {
         	System.out.print(k.getName() + " ");
         }
         System.out.println();
-	}	
-	/*
-	public static <T> void swap(T[] a, int i, int j) {
-        T temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }*/
+	}
 	
 	public void brothersSort() {
-		// 冒泡排序
-		/*for (int i = brothers.length; i > 0 ; i--) {
-			for (int j = 0; j < i-1; j++) {
-				if (brothers[j].getRank() > brothers[j+1].getRank()) {
-					swap(brothers, j, j + 1);				
-				}
-			}
-		}*/
 		Collections.sort(brothers);
 		System.out.println("葫芦娃排序：");
         for(CalabashBrother k : brothers) {
@@ -95,6 +97,8 @@ public class CalabashWorld {
 
 	public void displayField() {
 		System.out.print(battleField);
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		battleField.guiDisplay(gc);
 	}
 	
 	public void setBrothers(Conjurable formation, int startRow, int startColumn) {
@@ -102,12 +106,6 @@ public class CalabashWorld {
 	}
 	
 	public void setMonsters(Conjurable formation, int startRow, int startColumn) {
-		/*
-		Bad[] bads = new Bad[MINIONS_NUM + 1];
-		for (int i = 0; i < MINIONS_NUM; i++) {
-			bads[i] = minions[i];
-		}
-		bads[MINIONS_NUM] = scorpion;*/
 		ArrayList<Bad> bads = new ArrayList<>();
 		for (int i = 0; i < MINIONS_NUM; i++) {
 			bads.add(minions.get(i));
@@ -137,6 +135,8 @@ public class CalabashWorld {
 
 	public void clearBattleField() {
 		battleField.clear();
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 	}
 	
 }

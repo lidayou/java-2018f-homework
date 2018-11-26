@@ -1,5 +1,7 @@
 package creature;
 
+import javafx.scene.image.Image;
+
 //import java.util.Comparator;
 
 public class CalabashBrother extends Good implements Comparable<CalabashBrother> {
@@ -61,6 +63,37 @@ public class CalabashBrother extends Good implements Comparable<CalabashBrother>
         } else {
             return -1;
         }
+	}
+
+	@Override
+	public Image getImage() {
+		Image ret = null;
+		switch (color) {
+		case RED:
+			ret = new Image("img/huluwa1.png");
+			break;
+		case ORANGE:
+			ret = new Image("img/huluwa2.png");
+			break;
+		case YELLOW:
+			ret = new Image("img/huluwa3.png");
+			break;
+		case GREEN:
+			ret = new Image("img/huluwa4.png");
+			break;
+		case CYAN:
+			ret = new Image("img/huluwa5.png");
+			break;
+		case BLUE:
+			ret = new Image("img/huluwa6.png");
+			break;
+		case PURPLE:
+			ret = new Image("img/huluwa7.png");
+			break;
+		default:
+			break;
+		}
+		return ret;
 	}
 
 }

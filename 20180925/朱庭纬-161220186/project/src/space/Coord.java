@@ -28,4 +28,7 @@ public class Coord<T extends Creature> {
 		return creatureInCoord.toString();
 	}
 
+	public T getCreatrue() {
+		return creatureInCoord;
+	}
 }
