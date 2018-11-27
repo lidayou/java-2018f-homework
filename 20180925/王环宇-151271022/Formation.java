@@ -1,5 +1,3 @@
-package javahw3;
-
 import java.util.ArrayList;
 
 public class Formation implements FormationInterface{

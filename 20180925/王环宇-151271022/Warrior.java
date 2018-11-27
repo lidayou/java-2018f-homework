@@ -2,9 +2,8 @@
  * 在Warriors接口的要求下，构造一个Warrior类，在这个世界中存活的所有生物
  * 都是Warrior，但却又有不同的功能
  * */
-package javahw3;
 
-public class Warrior implements WarriorInterface {
+public class Warrior implements WarriorInterface{
 	/*
 	 * Variables: name, function, position, team;
 	 * Methods: getName(), getFunction(), getPosition(), changePosition(), toString(), showMe();
@@ -20,6 +19,7 @@ public class Warrior implements WarriorInterface {
 		this.team = team;
 		position = new int[2];
 	}
+	
 	
 	public String getName() {
 		return name;

@@ -6,15 +6,12 @@
  * @version 3.0
  * 
  * version 4.0 修改建议：
- * 增加乱序操作和排序操作，使得程序更加符合要求 ，完成了乱序操作，而没有完成排序操作
- * 排序操作是一个大问题，Bad阵营中，一大一小，其随；Good阵营中，完成了Enum之后比较会简单些
- * 在Java中，对于容器的排序是否也是那么简单？
+ * 增加乱序操作和排序操作，使得程序更加符合要求 ，完成了乱序操作和排序操作，但是排序操作还不够完善。
  * 
  * 使用泛型完成代码，尝试泛型中的那些方法，同时也利用这个时间来回顾一下泛型的一些内容
  * 
  * */
 
-package javahw3;
 import java.util.Random;
 //import java.util.ArrayList;
 import java.util.Scanner;
@@ -48,6 +45,12 @@ public class FightField {
 			teamBad.checkMember();
 		}catch(MyException e) {
 		}
+		teamGood.showTeam();
+		teamBad.showTeam();
+		
+		System.out.println("\nAfter sort the team:");
+		teamGood.sortTeam();
+		teamBad.sortTeam();
 		teamGood.showTeam();
 		teamBad.showTeam();
 		//初始化阵型
@@ -89,7 +92,7 @@ public class FightField {
 		for (int i=0; i<5; i++) {
 			teamBad.add(new Warrior("小兵"+i, "冲锋", teamBad.getSide()));
 		}
-		teamBad.add(new Warrior("小兵"+6, "冲锋", teamGood.getSide()));
+		teamBad.add(new Warrior("小兵"+5, "冲锋", teamGood.getSide()));
 		teamBad.add(new Warrior("蛇精", "看戏", teamBad.getSide()));
 		// shuffle
 		shuffle(teamGood);
