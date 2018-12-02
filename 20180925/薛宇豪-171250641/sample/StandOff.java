@@ -1,22 +1,36 @@
+package sample;
+
 import creature.*;
 import field.BattleField;
-import formation.*;
+import formation.SingleLineBattleArray;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.Scanner;
 
-public class StandOff {
-    static int row=20;
+public class StandOff extends Application {
+    static int row=10;
     static int column=20;
     static int singleRow=row;    //两个不同队伍各自的行和列的值
     static int singleColumn=column/2-1;
-    public static void main(String[] args){
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = fxmlLoader.load();
+        primaryStage.setTitle("CalabashBrother");
+        primaryStage.setScene(new Scene(root, 950, 600));
+        Controller controller = fxmlLoader.getController();
         Scanner scanner=new Scanner(System.in);
         BattleField battleField=new BattleField(row,column);
 
         BattleField leftBattleField;
         BattleField rightBattleField;
 
-        Coordinator coordinator=new Coordinator();  //初始化指挥员
+        sample.Coordinator coordinator=new sample.Coordinator(); //初始化指挥员
         CalabashBrother[] calabashBrothers=new CalabashBrother[7];  //初始化葫芦娃队伍
         coordinator.RandomSort(calabashBrothers);
         coordinator.BubbleSort(calabashBrothers);  //对起初乱序的七个葫芦娃进行排序
@@ -33,16 +47,17 @@ public class StandOff {
         if(leftBattleField!=null && rightBattleField!=null) {  //如果两个阵列均符合总场地的大小，则合并并打印
             Embattle(battleField,leftBattleField,rightBattleField);
         }
-        battleField.print();
+        battleField.print(controller);
 
-        rightBattleField=coordinator.command(demon,coordinator.RandomFormation(singleRow,singleColumn));  //随机将妖精再排列成一个阵列
-        if(leftBattleField!=null && rightBattleField!=null) {
-            Embattle(battleField,leftBattleField,rightBattleField);
-        }
-        battleField.print();
+        primaryStage.show();
     }
 
-    private static void Embattle(BattleField field,BattleField leftBattleField,BattleField rightBattleField) {  //合并两个阵列
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    private static void Embattle(BattleField field, BattleField leftBattleField, BattleField rightBattleField) {  //合并两个阵列
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < singleColumn; j++) {
                 field.battlefield[i][j].setCreature(leftBattleField.battlefield[i][j].getCreature());
@@ -51,7 +66,7 @@ public class StandOff {
         }
         Grandpa grandpa = new Grandpa();
         Snake snake = new Snake();
-        field.battlefield[0][singleColumn].setCreature(grandpa);
-        field.battlefield[0][(20 - 1) / 2 + 1].setCreature(snake);
+        field.battlefield[0][singleColumn-1].setCreature(grandpa);
+        field.battlefield[0][(20 - 1) / 2 + 2].setCreature(snake);
     }
 }
