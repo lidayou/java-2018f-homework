@@ -16,6 +16,9 @@ import java.util.Random;
 //import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.io.*;
 
 
 public class FightField {
@@ -29,52 +32,21 @@ public class FightField {
 	 * @return： boolean 
 	 * */
 	static int SHUFFLE = 50;
-	
+	private String file_name;
 	private static final int N = 15;
 	public Warrior[][] fields;
 
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		FightField ff = new FightField();
-		//登录每队的战士并且显示其基本信息
-		Team teamGood = new Team("GoodMan");
-		Team teamBad = new Team("BadMan");
-		loading(teamGood, teamBad);
-		try {
-			teamGood.checkMember();
-			teamBad.checkMember();
-		}catch(MyException e) {
-		}
-		teamGood.showTeam();
-		teamBad.showTeam();
-		
-		System.out.println("\nAfter sort the team:");
-		teamGood.sortTeam();
-		teamBad.sortTeam();
-		teamGood.showTeam();
-		teamBad.showTeam();
-		//初始化阵型
-		Formation.initialization();
-		/*-----------------------ROUND 1------------------------*/
-		System.out.println("ROUND1");
-		ff.round(teamGood, teamBad, in);
-		ff.showFields();
-		
-		System.out.println();
-		/*-----------------------ROUND 2------------------------*/
-		ff.initialization();
-		System.out.println("ROUND2");
-		ff.round(teamGood, teamBad, in);
-		ff.showFields();
-		
-		in.close();
-		
-		teamGood.showTeam();
-		teamBad.showTeam();
-	}
+
 	//Constructor
 	private FightField() {
+		file_name = new String();
 		initialization();
+		
+		SimpleDateFormat df = new SimpleDateFormat("_MMdd");//设置日期格式
+		String name = df.format(new Date());// new Date()为获取当前系统时间
+		SimpleDateFormat df1 = new SimpleDateFormat("YYYY-MM-dd HH:mm");//设置日期格式
+		file_name = "/Users/huanyu_wang/eclipse-workspace/JavaHomework/src/"+"FightField"+ name + ".txt";
+		this.writeToFile(df1.format(new Date()));
 	}
 
 	private void initialization() {
@@ -116,19 +88,19 @@ public class FightField {
 	}
 	
 	// show the fields
-	private void showFields() {
-		System.out.println("***************************************************战场对阵情况****************************************************");
+	private String showFields() {
+		String result = new String();
+		result += "***************************************************战场对阵情况****************************************************\n";
 		for (int i=0; i<N; i++) {
 			for (int j=0; j<N; j++) {
-				if(fields[i][j]==null)
-					System.out.print("---");
-				else
-					System.out.print(fields[i][j]);
-				System.out.print("\t");
+				if(fields[i][j]==null) result += "---";
+				else result += fields[i][j];
+				result += "\t";	
 			}
-			System.out.println();
+			result += "\n";
 		}
-		System.out.println("***************************************************战场对阵情况****************************************************");
+		result += "***************************************************战场对阵情况****************************************************\n";
+		return result;
 	}
 	
 	//将双方的武将送上战场
@@ -138,12 +110,7 @@ public class FightField {
 	
 	//自定义选择双方的阵型
 	private void round(Team teamGood, Team teamBad, Scanner in) {
-		System.out.println("************双方战士上场*************");
-		System.out.println("********请选择妖精上场的阵型*********");
-		System.out.println("**********0----------长蛇阵**********");
-		System.out.println("**********1----------雁形阵**********");
-		System.out.println("**********2----------鹤翼阵**********");
-		System.out.println("**********3----------冲轭阵**********");
+		Formation.show();
 		int f1 = -1;
 		// deal with the error: index out of bounds
 		this.goBattle(teamGood, Formation.getForm(0, 1));
@@ -155,6 +122,70 @@ public class FightField {
 			f1 = in.nextInt();
 			this.goBattle(teamBad, Formation.getForm(f1, 2));
 		}
+	}
+	
+	private void writeToFile(String str) {
+		System.out.println(str);
+		try {
+			File file =new File(file_name);
+			if(!file.exists()){
+				file.createNewFile();
+			}
+			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(str);
+			bw.write("\n");
+			bw.close();
+		
+		}catch(IOException e){
+				e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		FightField ff = new FightField();
+		
+		//登录每队的战士并且显示其基本信息
+		Team teamGood = new Team("GoodMan");
+		Team teamBad = new Team("BadMan");
+		loading(teamGood, teamBad);
+		try {
+			teamGood.checkMember();
+			teamBad.checkMember();
+		}catch(MyException e) { }
+		
+		teamGood.showTeam();
+		teamBad.showTeam();
+		
+		System.out.println("\nAfter sort the team:");
+		teamGood.sortTeam();
+		teamBad.sortTeam();
+		
+		teamGood.showTeam();
+		teamBad.showTeam();
+		
+		//初始化阵型
+		Formation.initialization();
+		/*-----------------------ROUND 1------------------------*/
+		ff.writeToFile("ROUND1");
+		ff.round(teamGood, teamBad, in);
+		ff.writeToFile(ff.showFields());
+		/*-----------------------ROUND 2------------------------*/
+		ff.initialization();
+		ff.writeToFile("ROUND2");
+		ff.round(teamGood, teamBad, in);
+		ff.writeToFile(ff.showFields());
+		
+		in.close();
+		
+		teamGood.showTeam();
+		teamBad.showTeam();
+		
+		ff.writeToFile("\n\n");
 	}
 }
 
