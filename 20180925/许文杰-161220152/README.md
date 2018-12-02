@@ -3,7 +3,7 @@
 ## 更新v4
 1. 使用javafx进行GUI绘制
 2. 更新文件结构，删除Player类，其功能由Main类代替。将数据部分放在data包中，将GUI界面部分放在sample包中，实现数据与界面的分离。
-![1](image/类.png)<!-- .element width="80%" height="65%" -->
+![1](image/类.PNG)<!-- .element width="80%" height="65%" -->
  - 运行结果
 ![1](image/界面.png)<!-- .element width="80%" height="65%" -->
 
