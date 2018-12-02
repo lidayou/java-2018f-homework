@@ -5,9 +5,15 @@ package com.homework3.being;
  * @Author LUCUS BAI
  * @Date 2018/10/23
  */
+
 public class CartoonCharacter extends Being {
 
     private String label;
+
+    public CartoonCharacter() {
+        this.label = " ";
+    }
+
 
     public CartoonCharacter(String label) {
         this.label = label;
