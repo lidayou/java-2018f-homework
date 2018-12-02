@@ -1,3 +1,5 @@
+package data;
+
 public class Formation {
     public static void bubble_sort(CalaBashBrother[] gourds, int n)
     {
@@ -15,15 +17,15 @@ public class Formation {
     {
         if(camp.getLeader().getName().equals("爷爷"))
         {
-            field.setUnit(camp.getLeader(), 0,0);
+            field.setUnit(camp.getLeader(), 0,2);
             for(int i = start;i<start+camp.getList().size();i++)
-                field.setUnit(camp.getList().get(i-start),i,0);
+                field.setUnit(camp.getList().get(i-start),i,2);
         }
         else
         {
-            field.setUnit(camp.getLeader(), field.getSize()-1,field.getSize()-1);
+            field.setUnit(camp.getLeader(), field.getRow()-1,field.getCol()-1);
             for(int i = start;i<start+camp.getList().size();i++)
-                field.setUnit(camp.getList().get(i-start),i,field.getSize()-1);
+                field.setUnit(camp.getList().get(i-start),i,field.getCol()-1);
         }
     }
 
@@ -41,7 +43,7 @@ public class Formation {
         }
         else
         {
-            field.setUnit(camp.getLeader(), field.getSize()-1,field.getSize()-1);
+            field.setUnit(camp.getLeader(), field.getRow()-1,field.getCol()-1);
             field.setUnit(camp.getList().get(0),start_x,start_y);
             for(int i = 1;i<camp.getList().size();i++)
             {
@@ -70,7 +72,7 @@ public class Formation {
         }
         else
         {
-            field.setUnit(camp.getLeader(), field.getSize()-1,field.getSize()-1);
+            field.setUnit(camp.getLeader(), field.getRow()-1,field.getCol()-1);
             field.setUnit(camp.getList().get(0),start_x,start_y);
             for(int i = 1;i<camp.getList().size();i++)
             {
