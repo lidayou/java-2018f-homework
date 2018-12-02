@@ -2,7 +2,7 @@ public class BattleField {
     private int N;
     private Creature[][] creatures;
     BattleField(){
-        N = 15;
+        N = 20;
         creatures = new Creature[N][N];
     }
     BattleField(int N){
@@ -126,6 +126,13 @@ public class BattleField {
         return result;
     }
 
+    boolean isPeopleNumberLessThanDeployLowerLimit(int limit, Creature[] member){
+        if(member.length<limit){
+            System.out.println("DeployLessLimitRepot: member[] number less than lower limitation of the deployment.");
+            return true;
+        }
+        return false;
+    }
     //Followings are Deployments
     void deployHeYiZhen(Creature leader, Creature[] member, boolean onright) {
         int[] pairloc=getLeaderLocation(onright);
@@ -147,85 +154,192 @@ public class BattleField {
     void deployYanXingZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
-        creatures[x][y]=leader;
-        leader.moveToLocation(x, y);
+        setCreatureToProperLocation(leader, x, y);
         if(onright){
-
+            for(int i=0;i<4;i++){
+                setCreatureToProperLocation(member[i], x-1-i, y+1+i);
+            }
         }
         else{
-
+            for(int i=0;i<4;i++){
+                setCreatureToProperLocation(member[i], x+1+i, y-1-i);
+            }
         }
     }
     void deployHengEZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
-        creatures[x][y]=leader;
-        leader.moveToLocation(x, y);
+        setCreatureToProperLocation(leader, x, y);
         if(onright){
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x-2, y);
+            setCreatureToProperLocation(member[i++], x+2, y);
+            setCreatureToProperLocation(member[i++], x-3, y+1);
+            setCreatureToProperLocation(member[i++], x-1, y+1);
+            setCreatureToProperLocation(member[i++], x+1, y+1);
         }
         else{
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x-2, y);
+            setCreatureToProperLocation(member[i++], x+2, y);
+            setCreatureToProperLocation(member[i++], x+3, y-1);
+            setCreatureToProperLocation(member[i++], x-1, y-1);
+            setCreatureToProperLocation(member[i++], x+1, y-1);
         }
     }
     void deployChangSheZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
-        creatures[x][y]=leader;
-        leader.moveToLocation(x, y);
+        setCreatureToProperLocation(leader, x, y);
         if(onright){
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x+1, y);
+            setCreatureToProperLocation(member[i++], x+2, y);
+            setCreatureToProperLocation(member[i++], x+3, y);
+            setCreatureToProperLocation(member[i++], x-1, y);
+            setCreatureToProperLocation(member[i++], x-2, y);
         }
         else{
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x+1, y);
+            setCreatureToProperLocation(member[i++], x+2, y);
+            setCreatureToProperLocation(member[i++], x-3, y);
+            setCreatureToProperLocation(member[i++], x-1, y);
+            setCreatureToProperLocation(member[i++], x-2, y);
         }
     }
     void deployYuLinZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
-        creatures[x][y]=leader;
-        leader.moveToLocation(x, y);
+        setCreatureToProperLocation(leader, x, y);
         if(onright){
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x, y+2);
+            setCreatureToProperLocation(member[i++], x, y+4);
+            setCreatureToProperLocation(member[i++], x, y+6);
+            setCreatureToProperLocation(member[i++], x-1, y+1);
+            setCreatureToProperLocation(member[i++], x-1, y+3);
+            setCreatureToProperLocation(member[i++], x-1, y+5);
+            setCreatureToProperLocation(member[i++], x+1, y+3);
+            setCreatureToProperLocation(member[i++], x-2, y+4);
+            setCreatureToProperLocation(member[i++], x-3, y+3);
         }
         else{
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x, y-2);
+            setCreatureToProperLocation(member[i++], x, y-4);
+            setCreatureToProperLocation(member[i++], x, y-6);
+            setCreatureToProperLocation(member[i++], x-1, y-1);
+            setCreatureToProperLocation(member[i++], x-1, y-3);
+            setCreatureToProperLocation(member[i++], x-1, y-5);
+            setCreatureToProperLocation(member[i++], x+1, y-3);
+            setCreatureToProperLocation(member[i++], x-2, y-4);
+            setCreatureToProperLocation(member[i++], x-3, y-3);
         }
     }
     void deployFangYuanZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
-        creatures[x][y]=leader;
-        leader.moveToLocation(x, y);
+        setCreatureToProperLocation(leader, x, y);
         if(onright){
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x+1, y+1);
+            setCreatureToProperLocation(member[i++], x+2, y+2);
+            setCreatureToProperLocation(member[i++], x-1, y+1);
+            setCreatureToProperLocation(member[i++], x-2, y+2);
+            setCreatureToProperLocation(member[i++], x-1, y+3);
+            setCreatureToProperLocation(member[i++], x+1, y+3);
+            setCreatureToProperLocation(member[i++], x, y+4);
         }
         else{
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x+1, y-1);
+            setCreatureToProperLocation(member[i++], x+2, y-2);
+            setCreatureToProperLocation(member[i++], x-1, y-1);
+            setCreatureToProperLocation(member[i++], x-2, y-2);
+            setCreatureToProperLocation(member[i++], x-1, y-3);
+            setCreatureToProperLocation(member[i++], x+1, y-3);
+            setCreatureToProperLocation(member[i++], x, y-4);
         }
     }
     void deployYanYueZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
-        creatures[x][y]=leader;
-        leader.moveToLocation(x, y);
+        setCreatureToProperLocation(leader, x, y);
         if(onright){
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x, y+1);
+            setCreatureToProperLocation(member[i++], x, y+2);
+            setCreatureToProperLocation(member[i++], x+1, y);
+            setCreatureToProperLocation(member[i++], x+1, y+1);
+            setCreatureToProperLocation(member[i++], x+1, y+3);
+            setCreatureToProperLocation(member[i++], x-1, y);
+            setCreatureToProperLocation(member[i++], x-1, y+1);
+            setCreatureToProperLocation(member[i++], x-1, y+3);
+            setCreatureToProperLocation(member[i++], x-2, y+2);
+            setCreatureToProperLocation(member[i++], x-2, y+4);
+            setCreatureToProperLocation(member[i++], x+2, y+4);
+            setCreatureToProperLocation(member[i++], x+2, y+4);
+            setCreatureToProperLocation(member[i++], x-3, y+4);
+            setCreatureToProperLocation(member[i++], x-3, y+5);
+            setCreatureToProperLocation(member[i++], x+3, y+4);
+            setCreatureToProperLocation(member[i++], x+3, y+5);
+            setCreatureToProperLocation(member[i++], x-4, y+6);
+            setCreatureToProperLocation(member[i++], x+4, y+6);
         }
         else{
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x, y-1);
+            setCreatureToProperLocation(member[i++], x, y-2);
+            setCreatureToProperLocation(member[i++], x+1, y);
+            setCreatureToProperLocation(member[i++], x+1, y-1);
+            setCreatureToProperLocation(member[i++], x+1, y-3);
+            setCreatureToProperLocation(member[i++], x-1, y);
+            setCreatureToProperLocation(member[i++], x-1, y-1);
+            setCreatureToProperLocation(member[i++], x-1, y-3);
+            setCreatureToProperLocation(member[i++], x-2, y-2);
+            setCreatureToProperLocation(member[i++], x-2, y-4);
+            setCreatureToProperLocation(member[i++], x+2, y-4);
+            setCreatureToProperLocation(member[i++], x+2, y-4);
+            setCreatureToProperLocation(member[i++], x-3, y-4);
+            setCreatureToProperLocation(member[i++], x-3, y-5);
+            setCreatureToProperLocation(member[i++], x+3, y-4);
+            setCreatureToProperLocation(member[i++], x+3, y-5);
+            setCreatureToProperLocation(member[i++], x-4, y-6);
+            setCreatureToProperLocation(member[i++], x+4, y-6);
         }
     }
     void deployFengShiZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
-        creatures[x][y]=leader;
-        leader.moveToLocation(x, y);
+        setCreatureToProperLocation(leader, x, y);
         if(onright){
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x, y+1);
+            setCreatureToProperLocation(member[i++], x, y+2);
+            setCreatureToProperLocation(member[i++], x, y+3);
+            setCreatureToProperLocation(member[i++], x, y+4);
+            setCreatureToProperLocation(member[i++], x, y+5);
+            setCreatureToProperLocation(member[i++], x+1, y+1);
+            setCreatureToProperLocation(member[i++], x-1, y+1);
+            setCreatureToProperLocation(member[i++], x+2, y+2);
+            setCreatureToProperLocation(member[i++], x-2, y+2);
+            setCreatureToProperLocation(member[i++], x+3, y+3);
+            setCreatureToProperLocation(member[i++], x-3, y+3);
         }
         else{
-
+            int i=0;
+            setCreatureToProperLocation(member[i++], x, y-1);
+            setCreatureToProperLocation(member[i++], x, y-2);
+            setCreatureToProperLocation(member[i++], x, y-3);
+            setCreatureToProperLocation(member[i++], x, y-4);
+            setCreatureToProperLocation(member[i++], x, y-5);
+            setCreatureToProperLocation(member[i++], x+1, y-1);
+            setCreatureToProperLocation(member[i++], x-1, y-1);
+            setCreatureToProperLocation(member[i++], x+2, y-2);
+            setCreatureToProperLocation(member[i++], x-2, y-2);
+            setCreatureToProperLocation(member[i++], x+3, y-3);
+            setCreatureToProperLocation(member[i++], x-3, y-3);
         }
     }
     //Developments end...

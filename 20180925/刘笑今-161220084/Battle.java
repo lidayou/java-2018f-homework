@@ -12,16 +12,9 @@ public class Battle {
         }
         BattleField bf = new BattleField();
 
-        bf.deployHeYiZhen(snakeevil, goblins, true);
+        bf.deployFengShiZhen(snakeevil, goblins, false);
+
         bf.printBattleFieldStatus();
 
-        bf.deployHeYiZhen(calabashbros[0], calabashbrosexpred, false);
-        bf.printBattleFieldStatus();
-        bf.removeCreaturesFromBattleField(goblins);
-        bf.printBattleFieldStatus();
-        bf.removeCreatureFromBattleField(snakeevil);
-        bf.printBattleFieldStatus();
-        bf.setCheeringCreatureLocation(oldpapa, false);
-        bf.printBattleFieldStatus();
     }
 }
