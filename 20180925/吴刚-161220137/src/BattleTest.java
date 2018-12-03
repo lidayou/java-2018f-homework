@@ -1,10 +1,9 @@
-import battleInformation.*;
+import logic.battleInformation.*;
 
 public class BattleTest {
     public static void main(String argv[]){
-        int n = 15;
         /* n * n 棋盘 */
-        Board board = new Board(n);
+        Board board = new Board();
         Sides.formation = new Formation(board);
 
         JustSide justSide = new JustSide();
@@ -21,5 +20,6 @@ public class BattleTest {
         /*妖精摆出鹤翼阵*/
         evilSide.changeFormation("flank");
         board.printBoard();
+
     }
 }
