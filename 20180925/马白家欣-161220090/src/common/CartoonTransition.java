@@ -1,6 +1,6 @@
-package com.homework3.common;
+package common;
 
-import com.homework3.being.*;
+import being.*;
 
 /**
  * @Description 一些CartoonCharacter的转化函数
@@ -89,7 +89,7 @@ public class CartoonTransition {
         } else if (cartoonCharacter instanceof LowLevelDemon) {
             return ROOT_PATH + "LowLevel.jpeg";
         } else {
-            return ROOT_PATH + "Void.jpeg";
+            return "";
         }
     }
 }

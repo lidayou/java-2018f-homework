@@ -1,4 +1,4 @@
-package com.homework3.being;
+package being;
 
 /**
  * @Description 黄葫芦boy

@@ -1,4 +1,4 @@
-package com.homework3.factory;
+package factory;
 
 /**
  * @Description

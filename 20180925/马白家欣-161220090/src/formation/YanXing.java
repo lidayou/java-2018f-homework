@@ -1,8 +1,8 @@
-package com.homework3.formation;
+package formation;
 
-import com.homework3.battle.BattleField;
-import com.homework3.being.*;
-import com.homework3.position.Position;
+import battle.BattleField;
+import being.*;
+import position.Position;
 
 /**
  * @Description 雁行
