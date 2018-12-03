@@ -1,6 +1,10 @@
+package items.calabash;
+
+import items.Creature;
+
 public class OldPapa extends Creature {
     private static int globalnums = 0;
-    OldPapa(){
+    public OldPapa(){
         if(globalnums != 0){
             System.out.println("OldPapa has been created...!");
             reportCreateFailed();

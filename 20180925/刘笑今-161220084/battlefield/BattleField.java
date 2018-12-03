@@ -1,11 +1,15 @@
+package battlefield;
+
+import items.*;
+
 public class BattleField {
     private int N;
     private Creature[][] creatures;
-    BattleField(){
+    public BattleField(){
         N = 20;
         creatures = new Creature[N][N];
     }
-    BattleField(int N){
+    public BattleField(int N){
         if(N>10){
             this.N=N;
             creatures = new Creature[N][N];
@@ -74,7 +78,7 @@ public class BattleField {
     public void removeCreatureFromBattleField(Creature ct){
         moveCreatureOutOfBattleField(ct);
     }
-    public void setCreatureToProperLocation(Creature ct, int x, int y){
+    private void setCreatureToProperLocation(Creature ct, int x, int y){
         if(!checkLocationOutOfBound(x,y)){
             moveCreatureOutOfBattleField(creatures[x][y]);
             creatures[x][y]=ct;
@@ -134,7 +138,7 @@ public class BattleField {
         return false;
     }
     //Followings are Deployments
-    void deployHeYiZhen(Creature leader, Creature[] member, boolean onright) {
+    public void deployHeYiZhen(Creature leader, Creature[] member, boolean onright) {
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);
@@ -151,7 +155,7 @@ public class BattleField {
             }
         }
     }
-    void deployYanXingZhen(Creature leader, Creature[] member, boolean onright){
+    public void deployYanXingZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);
@@ -166,7 +170,7 @@ public class BattleField {
             }
         }
     }
-    void deployHengEZhen(Creature leader, Creature[] member, boolean onright){
+    public void deployHengEZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);
@@ -187,7 +191,7 @@ public class BattleField {
             setCreatureToProperLocation(member[i++], x+1, y-1);
         }
     }
-    void deployChangSheZhen(Creature leader, Creature[] member, boolean onright){
+    public void deployChangSheZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);
@@ -208,7 +212,7 @@ public class BattleField {
             setCreatureToProperLocation(member[i++], x-2, y);
         }
     }
-    void deployYuLinZhen(Creature leader, Creature[] member, boolean onright){
+    public void deployYuLinZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);
@@ -237,7 +241,7 @@ public class BattleField {
             setCreatureToProperLocation(member[i++], x-3, y-3);
         }
     }
-    void deployFangYuanZhen(Creature leader, Creature[] member, boolean onright){
+    public void deployFangYuanZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);
@@ -262,7 +266,7 @@ public class BattleField {
             setCreatureToProperLocation(member[i++], x, y-4);
         }
     }
-    void deployYanYueZhen(Creature leader, Creature[] member, boolean onright){
+    public void deployYanYueZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);
@@ -309,7 +313,7 @@ public class BattleField {
             setCreatureToProperLocation(member[i++], x+4, y-6);
         }
     }
-    void deployFengShiZhen(Creature leader, Creature[] member, boolean onright){
+    public void deployFengShiZhen(Creature leader, Creature[] member, boolean onright){
         int[] pairloc=getLeaderLocation(onright);
         int x=pairloc[0], y=pairloc[1];
         setCreatureToProperLocation(leader, x, y);

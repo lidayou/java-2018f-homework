@@ -1,3 +1,8 @@
+import items.Creature;
+import items.calabash.*;
+import items.evil.*;
+import battlefield.*;
+
 public class Battle {
     public static void main(String[] args){
         //Create all possible creatures
