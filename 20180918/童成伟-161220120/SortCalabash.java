@@ -96,5 +96,5 @@ public class SortCalabash {
 	     A.CalabashBinary();
 	     A.Calacolor();
 	}
-
+	
 }
