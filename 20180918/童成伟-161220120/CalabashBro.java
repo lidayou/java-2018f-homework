@@ -1,13 +1,13 @@
 package homework2;
 
-enum Name {ÀÏ´ó,ÀÏ¶ş,ÀÏÈı,ÀÏËÄ,ÀÏÎå,ÀÏÁù,ÀÏÆß}
-enum Color {ºìÉ«,³ÈÉ«,»ÆÉ«,ÂÌÉ«,ÇàÉ«,À¶É«,×ÏÉ«}
+enum Name {è€å¤§,è€äºŒ,è€ä¸‰,è€å››,è€äº”,è€å…­,è€ä¸ƒ}
+enum Color {çº¢è‰²,æ©™è‰²,é»„è‰²,ç»¿è‰²,é’è‰²,è“è‰²,ç´«è‰²}
 
 public class CalabashBro {
 	public Color brocolor;
 	public Name broname;
 	
-	CalabashBro(Name name, Color color){//³õÊ¼»¯
+	CalabashBro(Name name, Color color){//åˆå§‹åŒ–
 		this.broname = name;
 		this.brocolor = color;
 	}

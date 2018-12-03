@@ -8,34 +8,34 @@ public class SortCalabash {
 
 	SortCalabash() {
 		for(int i = 0; i < bro.length; i++) {
-			CalabashBro temp = new CalabashBro(Name.values()[i],Color.values()[i]);//³õÊ¼»¯
+			CalabashBro temp = new CalabashBro(Name.values()[i],Color.values()[i]);//ï¿½ï¿½Ê¼ï¿½ï¿½
 	    	bro[i] = temp;
 	    }
 	}
 
-	public void messbro() //´òÂÒºùÂ«ÍŞË³Ğò
+	public void messbro() //æ‰“ä¹±è‘«èŠ¦å¨ƒé¡ºåº
 	{
 		int rank1,rank2;
 		Random random = new Random();
-		for(int i = 0; i < 14;i++) {//14´Î±£Ö¤³ä·Ö½»»»
-			rank1 = random.nextInt(7);//¿ØÖÆ·¶Î§
+		for(int i = 0; i < 14;i++) {//14æ¬¡ä¿è¯å……åˆ†äº¤æ¢
+			rank1 = random.nextInt(7);//æ§åˆ¶èŒƒå›´
 			rank2 = random.nextInt(7);
-			if(rank1 != rank2) {//Éú³ÉµÄÁ½¸öËæ»úÊı²»Ò»Ñù,½»»»Ë³Ğò
+			if(rank1 != rank2) {//ç”Ÿæˆçš„ä¸¤ä¸ªéšæœºæ•°ä¸ä¸€æ ·ï¼Œäº¤æ¢é¡ºåº
 				CalabashBro temp = bro[rank1];
 				bro[rank1] = bro[rank2];
 				bro[rank2] = temp;
 			}
 		}
-		System.out.print("´òÂÒË³Ğò:");
+		System.out.print("æ‰“ä¹±é¡ºåº:");
 		for(int i = 0;i < bro.length;i++) {
 			System.out.print(bro[i].broname.ordinal()+" ");
 		}
 		System.out.println();
 	 }
 	
-	 // Ã°ÅİÅÅĞò
+	 //å†’æ³¡æ’åº
 	 public void CalabashBubble() {
-		 System.out.println("½øĞĞÃ°ÅİÅÅĞò£º");
+		 System.out.println("è¿›è¡Œå†’æ³¡æ’åºï¼š");
 	     for(int i = 0; i < bro.length-1; i++) {
 	    	 for(int j = 0; j < bro.length-1; j++) {
 	    		 if(bro[j].broname.ordinal() > bro[j+1].broname.ordinal()) {
@@ -50,9 +50,9 @@ public class SortCalabash {
 	        
 	 }
 
-	 // ¶ş·Ö·¨
+	 //äºŒåˆ†æ³•
 	 public void CalabashBinary() {
-		 System.out.println("½øĞĞ¶ş·ÖÅÅĞò£º");
+		 System.out.println("è¿›è¡ŒäºŒåˆ†æ’åºï¼š");
 		 for(int i = 1; i < bro.length; i++) {
 			 CalabashBro temp = bro[i];
 	         int low = 0, high = i-1, mid = -1;
@@ -96,5 +96,5 @@ public class SortCalabash {
 	     A.CalabashBinary();
 	     A.Calacolor();
 	}
-	
+
 }
