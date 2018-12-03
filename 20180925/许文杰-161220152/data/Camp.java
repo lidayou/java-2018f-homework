@@ -1,14 +1,16 @@
+package data;
+
 import java.util.ArrayList;
 
 public class Camp<T extends Unit> {
     private ArrayList<Unit>soldiers;
     private T leader;
-    Camp(T leader)
+    public Camp(T leader)
     {
         this.leader = leader;
         soldiers = new ArrayList<>();
     }
-    Camp(T leader, Unit[] unit,int num)
+    public Camp(T leader, Unit[] unit,int num)
     {
         this.leader = leader;
         soldiers = new ArrayList<>();
@@ -27,4 +29,5 @@ public class Camp<T extends Unit> {
     {
         return leader;
     }
+    
 }
