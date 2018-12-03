@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class SortCalabash {
 
-	public Calabash[] bro = new Calabash[7];
+	public CalabashBro[] bro = new CalabashBro[7];
 
 	SortCalabash() {
 		for(int i = 0; i < bro.length; i++) {
-			Calabash temp = new Calabash(Name.values()[i],Color.values()[i]);//初始化
+			CalabashBro temp = new CalabashBro(Name.values()[i],Color.values()[i]);//初始化
 	    	bro[i] = temp;
 	    }
 	}
@@ -21,7 +21,7 @@ public class SortCalabash {
 			rank1 = random.nextInt(7);//控制范围
 			rank2 = random.nextInt(7);
 			if(rank1 != rank2) {//生成的两个随机数不一样,交换顺序
-				Calabash temp = bro[rank1];
+				CalabashBro temp = bro[rank1];
 				bro[rank1] = bro[rank2];
 				bro[rank2] = temp;
 			}
@@ -41,7 +41,7 @@ public class SortCalabash {
 	    		 if(bro[j].broname.ordinal() > bro[j+1].broname.ordinal()) {
 	    			 bro[j].printPoschange(j, j+1);
 	                 bro[j+1].printPoschange(j+1, j);
-	                 Calabash temp = bro[j];
+	                 CalabashBro temp = bro[j];
 	                 bro[j] = bro[j+1];
 	                 bro[j+1] = temp;
 	             }
@@ -54,7 +54,7 @@ public class SortCalabash {
 	 public void CalabashBinary() {
 		 System.out.println("进行二分排序：");
 		 for(int i = 1; i < bro.length; i++) {
-			 Calabash temp = bro[i];
+			 CalabashBro temp = bro[i];
 	         int low = 0, high = i-1, mid = -1;
 	         while(low <= high) {
 	        	 mid = (low + high) / 2;
