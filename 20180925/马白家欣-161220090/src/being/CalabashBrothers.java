@@ -1,4 +1,4 @@
-package com.homework3.being;
+package being;
 
 /**
  * @Description 葫芦兄弟，也是所有葫芦boys的父类

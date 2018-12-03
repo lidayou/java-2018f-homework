@@ -1,7 +1,7 @@
-package com.homework3.formation;
+package formation;
 
-import com.homework3.being.*;
-import com.homework3.position.Position;
+import being.*;
+import position.Position;
 
 import java.util.List;
 import java.util.Map;

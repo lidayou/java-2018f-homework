@@ -1,4 +1,4 @@
-package com.homework3.position;
+package position;
 
 /**
  * @Description 点的坐标

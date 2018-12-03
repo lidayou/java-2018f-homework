@@ -1,4 +1,4 @@
-package com.homework3.being;
+package being;
 
 /**
  * @Description 助威，尚不知有什么功能，向下implement时没有功能，调用报AssertException

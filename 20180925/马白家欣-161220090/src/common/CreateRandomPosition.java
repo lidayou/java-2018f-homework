@@ -1,8 +1,9 @@
-package com.homework3.common;
+package common;
 
-import com.homework3.battle.*;
-import com.homework3.formation.*;
-import com.homework3.position.*;
+import battle.*;
+import formation.*;
+import gui.Controller;
+import position.*;
 
 import java.util.Random;
 
@@ -31,12 +32,12 @@ public class CreateRandomPosition {
 
         do {
             newPosition.evilPosition = new Position(
-                    rand.nextInt(BattleField.FIELD_SIZE - (evilUpOffset + evilDownOffset)) + evilUpOffset,
-                    rand.nextInt(BattleField.FIELD_SIZE - (evilLeftOffset + evilRightOffset)) + evilLeftOffset);
+                    rand.nextInt(Controller.FIELD_HEIGHT - (evilUpOffset + evilDownOffset)) + evilUpOffset,
+                    rand.nextInt(Controller.FIELD_WIDTH - (evilLeftOffset + evilRightOffset)) + evilLeftOffset);
 
             newPosition.justicePosition = new Position(
-                    rand.nextInt(BattleField.FIELD_SIZE - (justiceUpOffset + justiceDownOffset)) + justiceUpOffset,
-                    rand.nextInt(BattleField.FIELD_SIZE - (justiceLeftOffset + justiceRightOffset)) + justiceLeftOffset);
+                    rand.nextInt(Controller.FIELD_HEIGHT - (justiceUpOffset + justiceDownOffset)) + justiceUpOffset,
+                    rand.nextInt(Controller.FIELD_WIDTH - (justiceLeftOffset + justiceRightOffset)) + justiceLeftOffset);
         }
         while ((Math.max(newPosition.justicePosition.getRow() - justiceUpOffset, newPosition.evilPosition.getRow() - evilUpOffset)
                 <= Math.min(newPosition.justicePosition.getRow() + justiceDownOffset, newPosition.evilPosition.getRow() + evilDownOffset))

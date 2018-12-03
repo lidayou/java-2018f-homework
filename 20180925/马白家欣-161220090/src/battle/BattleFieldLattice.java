@@ -1,6 +1,6 @@
-package com.homework3.battle;
+package battle;
 
-import com.homework3.being.*;
+import being.*;
 
 /**
  * @Description 战场方格，每个方格都含有一个CartoonCharacter角色，注意什么都没有也是一种特殊的CartoonCharacter

@@ -1,6 +1,6 @@
-package com.homework3.factory;
+package factory;
 
-import com.homework3.being.*;
+import being.*;
 
 /**
  * @Description
