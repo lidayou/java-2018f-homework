@@ -29,7 +29,7 @@
     public void report_name(){//打印名字
         System.out.print(name+"  ");
     }
-}
+    }
   ```
   - 妖怪
   ```java
@@ -51,7 +51,7 @@
     public void report_name(){//打印名字
         System.out.print(name+"  ");
     }
-}
+    }
   ```
   - 蛇精
 - 战场
