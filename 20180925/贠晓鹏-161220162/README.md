@@ -12,3 +12,12 @@
   - 蛇精
 - 战场
 - 双方阵营
+## 运作过程
+- 首先开始战争，战争的第一步是开辟战场，所以在war类中调用battlefield,创建一个新的战场对象，战场对象负责开辟一片固定大小的空间,并且指定妖怪数量
+```java
+     War war = new War(19, 12);
+```
+```java
+    private creatures[][] field;
+    private  int N;
+```
