@@ -13,4 +13,5 @@ public interface PictureDictionary {
     public static final Image imagescorpion = new Image("scorpion.jpg");
     public static final Image imagesnake = new Image("snake.jpg");
     public static final Image imagepapa = new Image("papa.jpg");
+    public static final Image imagegoblin = new Image("goblin.png");
 }

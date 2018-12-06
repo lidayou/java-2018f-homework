@@ -46,16 +46,7 @@ public class MainFx extends Application {
 
         initializeAllCreatures();
 
-        ChoiceBox<String> choicebox = new ChoiceBox<>();
 
-        choicebox.getItems().add("Apples");
-        choicebox.getItems().add("Bananas");
-
-        VBox layout = new VBox(10);
-        layout.setPadding(new Insets(20,20,20,20));
-        layout.getChildren().addAll(choicebox);
-
-        primaryStage.setScene(new Scene(layout, 300, 250));
         primaryStage.show();
     }
 
