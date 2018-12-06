@@ -9,7 +9,9 @@ public class BattleField {
         N = 20;
         creatures = new Creature[N][N];
     }
-    public BattleField(int N){
+
+    //Fixed battlefield size. Abort this function
+    /*public BattleField(int N){
         if(N>10){
             this.N=N;
             creatures = new Creature[N][N];
@@ -17,7 +19,8 @@ public class BattleField {
         else{
             System.out.println("BattleField TOO SMALL...!");
         }
-    }
+    }*/
+
     public int getSize(){
         return N;
     }
