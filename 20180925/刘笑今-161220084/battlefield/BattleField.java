@@ -10,6 +10,10 @@ public class BattleField {
         creatures = new Creature[N][N];
     }
 
+    public Creature[][] getCreatures(){
+        return creatures;
+    }
+
     //Fixed battlefield size. Abort this function
     /*public BattleField(int N){
         if(N>10){
@@ -74,6 +78,21 @@ public class BattleField {
             }
         }
     }
+    public void clearLeftBattleField(){
+        for(int i=0; i<N; i++){
+            for(int j=0; j<N/2; j++){
+                moveCreatureOutOfBattleField(creatures[i][j]);
+            }
+        }
+    }
+    public void clearRightBattleField(){
+        for(int i=0; i<N; i++){
+            for(int j=N/2+1; j<N; j++){
+                moveCreatureOutOfBattleField(creatures[i][j]);
+            }
+        }
+    }
+
     public void removeCreaturesFromBattleField(Creature[] ct){
         for(int i=0; i<ct.length; i++)
             moveCreatureOutOfBattleField(ct[i]);

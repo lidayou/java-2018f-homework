@@ -13,7 +13,7 @@ public class CalabashBro extends Creature {
             globalnums++;
             x = y = -1;
             name = CalabashDict.getNameFromRank(globalnums);
-            identifier = '|';
+            identifier = (char)((int)'0' + globalnums);
             faction=true;
         }
     }
