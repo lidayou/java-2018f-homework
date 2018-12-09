@@ -1,0 +1,11 @@
+1、Creature类是一个父类，它包含了所有生物体所共用的属性（生物名CreatureName、坐标位置x，y），这些属性设置为protected，方便子类操作；
+2、Granpa类是一个子类，继承于Creature类，可进行初始化；
+3、Calabash类是一个子类，继承于Creature类，但是新增了两个属性rank、name，便于区分7个不同的葫芦娃；
+4、Monsters类是一个子类，继承于Creature类，新增了一个属性name，便于区分不同类型的怪物；
+5、CalabashBrothers类定义了7个葫芦娃，并乱序初始化，还可以乱序的葫芦娃进行排序；
+6、Undeling类定义蝎子精和小喽啰，方便变换阵型；
+7、BattleField类对外隐藏了表示战场大小的变量N和表示战场状态的变量isbeing、creaturename，对外只提供设置生物体在战场上的位置和打印战场的功能；
+8、Formation类根据用户所选择的阵型设置葫芦娃和怪物们在战场上的位置；
+9、Main类实现类用户的输入和结果的输出。
+
+该代码中运用了封装、继承等，保护了内部状态，增强了安全性和可维护性，易于代码的复用。
