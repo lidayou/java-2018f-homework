@@ -1,16 +1,25 @@
 package huluwa;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 enum MonsterClass {Snake,Scorpions,Other}
 
 public class mst extends lives{
 	private int no;
-	private where pos;
 	private String name;
 	
 	public mst()
 	{
 		this.name="小喽啰";
-		this.pos=null;
+		this.InitThing(null);
+		ImageIcon ic=new ImageIcon("src/icon/low.png");
+		ic.setImage(ic.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+		JLabel tl=new JLabel(ic);
+		tl.setSize(ic.getIconWidth(), ic.getIconHeight());
+		this.InitThing(tl);
 	}
 	
 	
@@ -20,7 +29,7 @@ public class mst extends lives{
 	@Override
 	public void tell()
 	{
-		System.out.println(this.name()+" in "+this.pos.getX()+ ","+this.pos.getY());
+		System.out.println(this.name()+" in "+this.getX()+ ","+this.getY());
 		
 	}
 	

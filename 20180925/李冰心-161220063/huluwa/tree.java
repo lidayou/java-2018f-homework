@@ -1,4 +1,6 @@
 package huluwa;
+import huluwa.pic.*;
+
 import java.util.*;
 
 public class tree {
@@ -27,12 +29,12 @@ public class tree {
 		for(int i=1;i<=7;i++)
 		{
 			huluwa tmp=new huluwa(i);
-			tmp.set(space[1][i]);
+			tmp.set(space[2][i]);
 			this.boys.addElement(tmp);
 		}
 		
 		boss t1=new boss();
-		t1.set(space[5][5]);
+		t1.set(space[10][15]);
 		this.Boss=t1;
 		this.mons.addElement(t1);
 		for(int i=1;i<7;i++)
@@ -43,13 +45,13 @@ public class tree {
 		}
 		
 		this.yeye=new cheer(0);
-		this.yeye.set(space[0][0]);
+		this.yeye.set(space[1][1]);
 		this.snake=new cheer(1);
-		this.snake.set(space[row-1][col-1]);
+		this.snake.set(space[15][1]);
 
 	}
 	
-//	public int getRow() { return this.row; }
+	public int getRow() { return this.row; }
 
 	public int getCol() { return this.col; }
 
@@ -100,18 +102,37 @@ public class tree {
 	  
 	public static void main(String[] args)
 	{
-		tree all=new tree(20,20);
+		tree all=new tree(18,25);
 		all.start();
+		space t=new space();
+		
+		for(int i=0;i<all.getBoys().size();i++)
+		{
+			t.add(all.getBoys().elementAt(i).getThing());
+		}
+		for(int i=0;i<all.getMons().size();i++)
+		{
+			t.add(all.getMons().elementAt(i).getThing());
+		}
+		t.add(all.getSnake().getThing());
+		t.add(all.getYeye().getThing());
 		
 		list.changshe(all,all.getBoys(),1,3);
 		list.yanxing(all,all.getMons(),10,10);
-		all.print();
+		//all.print();
 		
 		all.yeye.cheers();
 		all.snake.cheers();
 		
+		try {
+			Thread.sleep(5000);
+		}catch(Exception e)
+		{
+			System.exit(0);
+		}
+		
 		list.heyi(all,all.getMons(),10,10);
-		all.print();
+		//all.print();
 		
 	}
 	
