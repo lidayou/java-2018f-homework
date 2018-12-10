@@ -17,6 +17,7 @@ import java.util.List;
 
 public class BattleCoordinator implements BattleGoOn {
 
+    @SuppressWarnings("unchecked")
     public List<BattleFieldLattice> oneRandomFormation() {
         BattleField<CartoonCharacter> battleField = new BattleField<>();
         Formation evilFormation = CreateFormation.createRandomFormationArray(new EvilFactory()).get(0);
@@ -27,6 +28,7 @@ public class BattleCoordinator implements BattleGoOn {
         return battleField.getBattleFieldLatticeArray();
     }
 
+    @SuppressWarnings("unchecked")
     public List<BattleFieldLattice> oneSpecifiedFormation(FormationType formationType) {
         BattleField<CartoonCharacter> battleField = new BattleField<>();
         Formation evilFormation = CreateFormation.createSpecifiedFormation(formationType, new EvilFactory());
@@ -37,6 +39,7 @@ public class BattleCoordinator implements BattleGoOn {
         return battleField.getBattleFieldLatticeArray();
     }
 
+    @SuppressWarnings("unchecked")
     public List<List<BattleFieldLattice>> groupRandomFormation() {
         List<List<BattleFieldLattice>> formationGroup = new ArrayList<>();
         BattleField<CartoonCharacter> battleField = new BattleField<>();

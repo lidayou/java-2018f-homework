@@ -40,10 +40,15 @@ public class Controller {
 
     /*public方法*/
     @FXML
-    public void buttonStartHandler() {
+    public void initialize() {
         this.initGraphicsContext();
         this.initBackground();
         this.initLattice();
+    }
+
+    @FXML
+    public void buttonStartHandler() {
+        this.initialize();
     }
 
     @FXML
