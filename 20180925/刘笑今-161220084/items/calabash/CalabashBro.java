@@ -1,7 +1,11 @@
+package items.calabash;
+
+import items.Creature;
+
 public class CalabashBro extends Creature {
     private static int globalnums = 0;
 
-    CalabashBro() {
+    public CalabashBro() {
         if (globalnums >= 7) {
             System.out.println("There can only exist 7 less Calabash Bros...!");
             reportCreateFailed();
@@ -9,7 +13,7 @@ public class CalabashBro extends Creature {
             globalnums++;
             x = y = -1;
             name = CalabashDict.getNameFromRank(globalnums);
-            identifier = '|';
+            identifier = (char)((int)'0' + globalnums);
             faction=true;
         }
     }

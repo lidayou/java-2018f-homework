@@ -1,3 +1,5 @@
+package items;
+
 public abstract class Creature {
     protected int x;
     protected int y;
@@ -25,7 +27,7 @@ public abstract class Creature {
         return identifier;
     }
 
-    void reportCreateFailed(){
+    protected void reportCreateFailed(){
         System.out.println("Creature create failed: The specific object has been created or the number reaches upper bound.");
     }
 }
