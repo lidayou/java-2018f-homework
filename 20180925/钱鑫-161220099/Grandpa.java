@@ -1,10 +1,8 @@
-package qx;
+package qx2;
 
 public class Grandpa extends Creature {
-    public Grandpa(int x,int y)
+    public Grandpa()
     {
-        CreatureName="爷爷";
-        this.x=x;
-        this.y=y;
+        setName("爷爷");
     }
 }

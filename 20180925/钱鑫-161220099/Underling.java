@@ -1,14 +1,8 @@
-package qx;
+package qx2;
 
-public class Underling {
-    public Monsters[] underlings;
+public class Underling extends Creature {
     public Underling()
     {
-        underlings=new Monsters[20];
-        underlings[0]=new Monsters(-1,-1,"蝎精");
-        for(int i=1;i<20;i++)
-        {
-            underlings[i]=new Monsters(-1,-1,"喽啰");
-        }
+        setName("喽啰");
     }
 }

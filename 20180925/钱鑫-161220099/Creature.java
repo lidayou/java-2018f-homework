@@ -1,19 +1,13 @@
-package qx;
+package qx2;
 
-public class Creature {
-    protected String CreatureName;
-    protected int x;
-    protected int y;
-    public String getCreatureNameName()
+public abstract class Creature {
+    protected String name;
+    public void setName(String name)
     {
-        return CreatureName;
+        this.name = name;
     }
-    public int getX()
+    public String getName()
     {
-        return x;
-    }
-    public int getY()
-    {
-        return y;
+        return name;
     }
 }
