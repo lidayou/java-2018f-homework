@@ -2,7 +2,7 @@ package huluwa;
 import java.util.*;
 
 public class list {
-	public static void changshe (tree all,Vector<lives> arr,int x0,int y0)
+	public static void changshe (tree all,Vector<? extends lives> arr,int x0,int y0)
 	{
 		if(arr.isEmpty())
 			return;
@@ -17,7 +17,7 @@ public class list {
 		}
 	}
 	
-	public static void heyi (tree all,Vector<lives> arr,int x0,int y0)
+	public static void heyi (tree all,Vector<? extends lives> arr,int x0,int y0)
 	{
 		if(arr.isEmpty())
 			return;
@@ -35,7 +35,7 @@ public class list {
 		}
 	}
 	
-	public static void yanxing (tree all,Vector<lives> arr,int x0,int y0)
+	public static void yanxing (tree all,Vector<? extends lives> arr,int x0,int y0)
 	{
 		if(arr.isEmpty())
 			return;

@@ -1,20 +1,30 @@
 package huluwa;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 public class cheer extends lives {
 	private int no;
-	private where pos;
 	private String name;
 	
 	public cheer(int x)
 	{
 		this.no=x%2;
+		String url="";
 		switch(this.no)
 		{
-		case 0:this.name="爷爷";break;
-		case 1:this.name="蛇精";break;
+		case 0:this.name="爷爷";url="src/icon/yeye.png";break;
+		case 1:this.name="蛇精";url="src/icon/se.png";break;
 		default:this.name=null;
 		}
-		this.pos=null;
+		ImageIcon ic=new ImageIcon(url);
+		ic.setImage(ic.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+		JLabel tl=new JLabel(ic);
+		tl.setSize(ic.getIconWidth(), ic.getIconHeight());
+		this.InitThing(tl);
+		this.InitPos(null);
 		
 	}
 	
@@ -31,7 +41,7 @@ public class cheer extends lives {
 	@Override
 	public void tell()
 	{
-		System.out.println(this.name()+" in "+this.pos.getX()+ ","+this.pos.getY());
+		System.out.println(this.name()+" in "+this.getX()+ ","+this.getY());
 		
 	}
 	
