@@ -1,5 +1,6 @@
 package beings;
 
+import gui.MySemaphore;
 import javafx.scene.image.ImageView;
 
 public class Being {
@@ -23,6 +24,12 @@ public class Being {
         imageView.setFitHeight(74);
         imageView.setFitWidth(74);
     }
+    public void setMySemaphore(MySemaphore mySemaphore){
+        this.mySemaphore = mySemaphore;
+    }
+    public MySemaphore getMySemaphore(){
+        return mySemaphore;
+    }
     public void setPosition(int positionx, int positiony) {
         this.positionx = positionx;
         this.positiony = positiony;
@@ -31,4 +38,5 @@ public class Being {
     protected int positionx = 0;
     protected int positiony = 0;
     protected ImageView imageView;
+    protected MySemaphore mySemaphore;
 }
