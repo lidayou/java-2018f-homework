@@ -4,6 +4,9 @@ import beings.Being;
 import beings.Creature;
 import gui.OutputAdapter;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Battlefield {
     public Battlefield(OutputAdapter adapter) {
         this.adapter = adapter;
@@ -13,8 +16,25 @@ public class Battlefield {
                 field[i][j] = null;
             }
         }
+        for(int i = 0; i < WIDTH; i++){
+            for(int j = 0; j < HEIGHT; j++){
+                lockList[i][j] = new ReentrantLock(true);
+            }
+        }
     }
-
+    public void printFieldText(){
+        for (int i = 0; i < HEIGHT; i++){
+            for(int j = 0; j < WIDTH; j++){
+                if(field[i][j] != null)
+                    field[i][j].toldname();
+                else{
+                    System.out.print("|      ");
+                }
+            }
+            System.out.print("|\n");
+        }
+        System.out.print('\n');
+    }
     public void printField(){
         for (int i = 0; i < HEIGHT; i++){
             for(int j = 0; j < WIDTH; j++){
@@ -58,30 +78,45 @@ public class Battlefield {
             return false;
         int oldPositionx = creature.getPositionx();
         int oldPositiony = creature.getPositiony();
-        boolean flag;
-        synchronized (this){
-            if(field[y][x] == null){
-                if (field[oldPositiony][oldPositionx] == creature) {
-                    field[oldPositiony][oldPositionx] = null;
+        boolean flag = false;
+        if(lockList[oldPositionx][oldPositiony].tryLock()){
+            try{
+                if(lockList[x][y].tryLock()) {
+                    try {
+                        if (field[y][x] == null) {
+                            if (field[oldPositiony][oldPositionx] == creature) {
+                                field[oldPositiony][oldPositionx] = null;
+                            }
+                            field[y][x] = creature;
+                            creature.setPosition(x, y);
+                            flag = true;
+                        } else {
+                            flag = false;
+                        }
+                        if (flag) {
+                            adapter.move(creature, x, y, oldPositionx, oldPositiony);
+                            //System.out.println("move from"+oldPositionx+","+oldPositiony+"to"+x+","+y);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        lockList[x][y].unlock();
+                        return flag;
+                    }
                 }
-                field[y][x] = creature;
-                creature.setPosition(x, y);
-                flag =  true;
+            }catch (Exception e){
+                e.printStackTrace();
             }
-            else{
-                flag = false;
-            }
-            if(flag) {
-                adapter.move(creature, x, y, oldPositionx, oldPositiony);
-                //System.out.println("move from"+oldPositionx+","+oldPositiony+"to"+x+","+y);
+            finally {
+                lockList[oldPositionx][oldPositiony].unlock();
             }
         }
-
         return flag;
     }
     private static final int WIDTH = 16;
     private static final int HEIGHT = 8;
     private Being[][] field;
+    private Lock[][] lockList = new Lock[WIDTH][HEIGHT];
     private OutputAdapter adapter;
     public int getHeight() {
         return HEIGHT;

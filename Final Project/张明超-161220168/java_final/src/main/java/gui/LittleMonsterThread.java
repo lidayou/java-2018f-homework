@@ -11,22 +11,23 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 public class LittleMonsterThread extends LittleMonster implements Runnable {
-    LittleMonsterThread(Battlefield battlefield){
+    LittleMonsterThread(Battlefield battlefield, MySemaphore mySemaphore){
         this.battlefield = battlefield;
+        this.setMySemaphore(mySemaphore);
     }
-    private void moveForward(){
-
-        battlefield.moveCreature(this.positionx+1, this.positiony, this);
-        try{
-            Thread.sleep(2000);
-        }catch (Exception e){
-            //do nothing
-        }
+    private boolean moveForward(){
+        return battlefield.moveCreature(this.positionx-1, this.positiony, this);
     }
     public void run(){
         while(true) {
-            moveForward();
-            break;
+            try{
+                mySemaphore.roundStartAcquire();
+                if(!moveForward()){
+                    mySemaphore.animationEndRelease();
+                }
+            }catch (Exception e){
+                //do nothing
+            }
         }
     }
     private Battlefield battlefield;

@@ -10,25 +10,32 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
-public class CalabashThread extends CalabashBrother implements Runnable {
-    CalabashThread(Battlefield battlefield, int i){
-        super(i);
-        this.battlefield = battlefield;
-    }
-    private void moveForward(){
+import java.util.concurrent.Semaphore;
 
-        battlefield.moveCreature(this.positionx+1, this.positiony, this);
-        try{
-            Thread.sleep(20000);
-        }catch (Exception e){
-            //do nothing
-        }
+public class CalabashThread extends CalabashBrother implements Runnable{
+
+    CalabashThread(Battlefield battlefield, int i, MySemaphore mySemaphore){
+        super(i);
+        this.setMySemaphore(mySemaphore);
+        this.battlefield = battlefield;
+        //this.roundTimer = roundTimer;
+    }
+    private boolean moveForward(){
+        return battlefield.moveCreature(this.positionx+1, this.positiony, this);
     }
     public void run(){
         while(true) {
-            moveForward();
-            //break;
+            try{
+                mySemaphore.roundStartAcquire();
+                if(!moveForward()){
+                    mySemaphore.animationEndRelease();
+                }
+            }catch (Exception e){
+                //do nothing
+            }
         }
     }
+
     private Battlefield battlefield;
+    //private RoundTimer roundTimer;
 }
