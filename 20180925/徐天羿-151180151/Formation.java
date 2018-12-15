@@ -8,50 +8,89 @@ public class Formation {
 		this.area = area;
 	}
 	
-	public void longSnakeFormation() {
-		for(int i = 4; i < 11; i++) {
-			Calabash bro = new Calabash(i-4, i, 3);
-			area.updateField(bro.getX(), bro.getY(), bro.getName());
-		}
-		Grandfather grand = new Grandfather(4, 1);
-		area.updateField(grand.getX(), grand.getY(), grand.getName() + ":" + grand.cheerGrand());
+	public void setGrandpa() {
+		Grandpa yeye = new Grandpa();
+		area.field[4][1] = yeye.getName() + ':' + yeye.cheerG();
 	}
 	
-	public void yokeFormation() {
-		area.clearMonster();
-		LittleBrother lit1 = new LittleBrother(4, 12);
-		LittleBrother lit2 = new LittleBrother(5, 11);
-		LittleBrother lit3 = new LittleBrother(6, 12);
-		LittleBrother lit4 = new LittleBrother(7, 12);
-		LittleBrother lit5 = new LittleBrother(8, 12);
-		LittleBrother lit6 = new LittleBrother(9, 11);
-		area.updateField(lit1.getX(), lit1.getY(), lit1.getName());
-		area.updateField(lit2.getX(), lit2.getY(), lit2.getName());
-		area.updateField(lit3.getX(), lit3.getY(), lit3.getName());
-		area.updateField(lit4.getX(), lit4.getY(), lit4.getName());
-		area.updateField(lit5.getX(), lit5.getY(), lit5.getName());
-		area.updateField(lit6.getX(), lit6.getY(), lit6.getName());
-		Scorpion sco = new Scorpion(7,10);
-		area.updateField(sco.getX(), sco.getY(), sco.getName());
-		Snake sna = new Snake(12, 13);
-		area.updateField(sna.getX(), sna.getY(), sna.getName() + ":" + sna.cheerSnake());
+	public void setSnake() {
+		Snake snake = new Snake();
+		area.field[9][13] = snake.getName() + ':' + snake.cheerS();
+	}
+	
+	public void snakeFormation() {
+		int[] locationX = {4,5,6,7,8,9,10};
+		int[] locationY = {3,3,3,3,3,3,3};
+		
+		for(int i = 0; i < locationX.length; i++) {
+			CalabashBrothers bro = new CalabashBrothers(i);
+			area.field[locationX[i]][locationY[i]] = bro.getName();
+		}
 	}
 	
 	public void craneFormation() {
-		area.clearMonster();
-		LittleBrother lit1 = new LittleBrother(5, 14);
-		LittleBrother lit2 = new LittleBrother(6, 13);
-		LittleBrother lit3 = new LittleBrother(7, 13);
-		LittleBrother lit4 = new LittleBrother(8, 11);
-		LittleBrother lit5 = new LittleBrother(9, 10);
-		area.updateField(lit1.getX(), lit1.getY(), lit1.getName());
-		area.updateField(lit2.getX(), lit2.getY(), lit2.getName());
-		area.updateField(lit3.getX(), lit3.getY(), lit3.getName());
-		area.updateField(lit4.getX(), lit4.getY(), lit4.getName());
-		area.updateField(lit5.getX(), lit5.getY(), lit5.getName());
-		Scorpion sco = new Scorpion(7, 9);
-		area.updateField(sco.getX(), sco.getY(), sco.getName());
-		Snake sna = new Snake(10, 13);
-		area.updateField(sna.getX(), sna.getY(), sna.getName() + ":" + sna.cheerSnake());
+		int[] locationX = {5,6,7,7,6,5};
+		int[] locationY = {8,9,10,12,13,14};
+		
+		for(int i = 0; i < locationX.length; i++) {
+			Monsters bro = new Monsters();
+			area.field[locationX[i]][locationY[i]] = bro.getName();
+		}
+		
+		Scorpion sco = new Scorpion();
+		area.field[8][11] = sco.getName();
 	}
+	
+	public void gooseFormation() {
+		int[] locationX = {10,9,8,6,5,4};
+		int[] locationY = {8,9,10,12,13,14};
+		
+		for(int i = 0; i < locationX.length; i++) {
+			Monsters bro = new Monsters();
+			area.field[locationX[i]][locationY[i]] = bro.getName();
+		}
+		
+		Scorpion sco = new Scorpion();
+		area.field[7][11] = sco.getName();
+	}
+	
+	public void yokeFormation() {
+		int[] locationX = {4,5,6,8,9,10};
+		int[] locationY = {12,11,12,12,11,12};
+		
+		for(int i = 0; i < locationX.length; i++) {
+			Monsters bro = new Monsters();
+			area.field[locationX[i]][locationY[i]] = bro.getName();
+		}
+		
+		Scorpion sco = new Scorpion();
+		area.field[7][11] = sco.getName();
+	}
+	
+	public void scaleFormation() {
+		int[] locationX = {7,4,6,7,6,7,8,7};
+		int[] locationY = {10,11,11,11,12,12,12,13};
+		
+		for(int i = 0; i < locationX.length; i++) {
+			Monsters bro = new Monsters();
+			area.field[locationX[i]][locationY[i]] = bro.getName();
+		}
+		
+		Scorpion sco = new Scorpion();
+		area.field[5][12] = sco.getName();
+	}
+	
+	public void arrowFormation() {
+		int[] locationX = {5,4,6,7,8,9,5};
+		int[] locationY = {10,11,11,11,11,11,12};
+		
+		for(int i = 0; i < locationX.length; i++) {
+			Monsters bro = new Monsters();
+			area.field[locationX[i]][locationY[i]] = bro.getName();
+		}
+		
+		Scorpion sco = new Scorpion();
+		area.field[5][11] = sco.getName();
+	}
+	
 }
