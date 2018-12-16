@@ -857,11 +857,6 @@ public class Main extends Application {
 
 
 
-## 演示
-
-![4.1](img_readme/4.1.gif)
-
-
 
 
 
@@ -1218,9 +1213,4 @@ public class Entity implements Runnable {
 - 包含的属性有：行，列
 - 包含的方法有：得到点坐标，重设点坐标，复制点，反向点，移动点等
 
-
-
-## 演示
-
-![4.0](img_readme/4.0.gif)
 
