@@ -1,13 +1,16 @@
 package world;
 	
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import world.gui.GUIBorder;
 import world.gui.GUIWindow;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
@@ -15,7 +18,7 @@ import javafx.scene.layout.StackPane;
 public class Main extends Application {
 	
 	/**	“舞台”，顶层容器	*/
-	private Stage worldStage;
+	public static Stage worldStage;
 	/**	显示菜单栏	*/
     private BorderPane worldBorder;
     /**	显示内容（背景+人物）以及监听键盘	*/
@@ -34,6 +37,7 @@ public class Main extends Application {
 		cWrd.showWorld();
 		try { // 初始化GUI
 			primaryStage.setTitle("葫芦娃大战妖怪");
+			primaryStage.getIcons().add(new Image("file:img/icon.png"));
 			primaryStage.setWidth(Global.winWidth);
 			primaryStage.setHeight(Global.winHeight);
 			primaryStage.setResizable(false); // 禁止窗口缩放
@@ -77,6 +81,30 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+	
+	/**	显示打开文件的文件选择器	*/
+	public static File showOpenXMLChooser() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("打开战斗记录");
+		fileChooser.setInitialDirectory(new File(Global.defaultPath)); // 默认路径
+        FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(xmlFilter); // 文件类型限制
+        File xmlFile = fileChooser.showOpenDialog(worldStage);
+        //System.out.println(xmlFile.getPath());
+        return xmlFile;
+	}
+
+	/**	显示保存文件的文件选择器	*/
+	public static File showSaveXMLChooser() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("保存战斗记录至");
+		fileChooser.setInitialDirectory(new File(Global.defaultPath)); // 默认路径
+        FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(xmlFilter); // 文件类型限制
+        File xmlFile = fileChooser.showSaveDialog(worldStage);
+        //System.out.println(xmlFile.getPath());
+        return xmlFile;
+	}
 	
 	public static void main(String[] args) {
 		launch(args);

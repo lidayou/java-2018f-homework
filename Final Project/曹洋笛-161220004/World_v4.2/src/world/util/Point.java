@@ -119,9 +119,7 @@ public final class Point {
 	}
 	
 	/**	¥Ú”°¥Àµ„	*/
-	public void show() {
-		System.out.print(pRow);
-		System.out.print(", ");
-		System.out.println(pCol);
+	public String show() {
+		return ("(" + pRow + "," + pCol + ")");
 	}
 }

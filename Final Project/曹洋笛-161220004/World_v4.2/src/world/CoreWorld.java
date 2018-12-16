@@ -22,7 +22,7 @@ import world.xml.*;
  *	@see #initFormation(FormationType, GroupType)
  *	@see #showWorld()
  *	@see GUIWindow
-	*/
+ */
 public final class CoreWorld {
 
 	/**	定义葫芦娃阵型对象，仅仅用于对实体的初始化	*/
@@ -39,18 +39,21 @@ public final class CoreWorld {
 	}
 	
 	/**	初始化全局变量	*/
-	private void initGlobal() {
+	public void initGlobal(boolean playingBack) {
 		Global.keepFormationRound = Global.keepFormationRoundNum;
 		Global.roundNum = 0;
+		// battleStart/battleEnd的变化历程为：
+		// [准备]：battleStart = false, battleEnd = false
+		// [进行中]：battleStart = true, battleEnd = false
+		// [结束]：battleStart = true, battleEnd = true
 		Global.battleStart = false;
 		Global.battleEnd = false;
+		Global.battlePlayingBack = playingBack;
 		Global.recordWriter = new XMLRecordWriter();
 	}
 	
 	/**	根据当前阵型重新写入初始化的实体	*/
 	private void initEntities() {
-		// 战斗未终结
-		Global.battleEnd = false;
 		// 先移除以前阵型的全部实体
 		Iterator<Integer> it = entities.keySet().iterator();
         while (it.hasNext()) {
@@ -70,6 +73,8 @@ public final class CoreWorld {
 		}
 		// 临时存储
 		Global.recordWriter.addEntityElements();
+		System.out.println("初始化中 · · · · · · 完成");
+		System.out.println("准备战斗");
 	}
 	
 	/**	初始化	*/
@@ -77,7 +82,7 @@ public final class CoreWorld {
 		broForm = new ChangShe(GroupType.Bro); // 葫芦娃阵型，初始化为长蛇阵
 		monForm = new HeYi(GroupType.Mon); // 妖怪阵型，初始化为鹤翼阵
 		// 根据阵型生成实体集
-		initGlobal();
+		initGlobal(false);
 		initEntities();
 	}
 	
@@ -87,7 +92,7 @@ public final class CoreWorld {
 			broForm = ftype.getFormation(GroupType.Bro);
 		else 
 			monForm = ftype.getFormation(GroupType.Mon);
-		initGlobal();
+		initGlobal(false);
 		initEntities();
 	}
 	

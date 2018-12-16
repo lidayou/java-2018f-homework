@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.MenuItem;
 
-import world.CoreWorld;
+import world.*;
 import world.util.*;
 
 
@@ -133,38 +133,40 @@ public class GUIBorder {
 	
     /**	菜单项 —— 重置	*/
 	private void handleReset() {
-		if (cWrd != null && gWin != null) {
-			gWin.clearWindow(); // 清除所有生物
-			System.out.println("重置");
-			cWrd.initAll();
-			gWin.initAnimItems();
-			cWrd.showWorld();
-			gWin.paintWindow(); // 绘制所有生物
-		}
+		if (cWrd != null && gWin != null) 
+			gWin.pressKeyR();
 		else System.out.println("error@GUIBorder: 未加载CharWindow/GUIWindow");
 	}
 
     /**	菜单项 —— 保存为	*/
 	private void handleSaveAs() {
-		
+		gWin.pressKeyS();
 	}
 
     /**	菜单项 —— 读取	*/
 	private void handleReadFrom() {
-		
+		gWin.loadRecord(false);
 	}
 
     /**	菜单项 —— 改变阵型	*/
 	private void handleForm(FormationType ftype, GroupType gtype) {
-		if (cWrd != null && gWin != null) {
-			gWin.clearWindow(); // 清除所有生物
-			System.out.println("改变" + gtype.name + "阵型至" + ftype.name);
-			cWrd.initFormation(ftype, gtype);
-			gWin.initAnimItems();
-			cWrd.showWorld();
-			gWin.paintWindow(); // 绘制所有生物
+		if (!Global.battlePlayingBack) { // 战斗模式
+			if (cWrd != null && gWin != null) {
+				gWin.clearWindow(); // 清除所有生物
+				System.out.println("改变" + gtype.label + "阵型至" + ftype.name);
+				cWrd.initFormation(ftype, gtype);
+				gWin.initLabels(true);
+				gWin.initAnimItems();
+				cWrd.showWorld();
+				gWin.paintWindow(); // 绘制所有生物
+			}
+			else System.out.println("error@GUIBorder: 未加载CharWindow/GUIWindow");
 		}
-		else System.out.println("error@GUIBorder: 未加载CharWindow/GUIWindow");
+    	else {
+    		String head = "改变阵型失败";
+    		String content = "请在[战斗]模式下改变阵型";
+    		Global.showAlertDialog(head, content);
+    	}
 	}
 
     /**	菜单项（可选） —— 显示动画	*/
