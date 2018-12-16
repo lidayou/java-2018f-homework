@@ -1,4 +1,4 @@
-package qx2;
+package qx3;
 
 import java.util.Scanner;
 
