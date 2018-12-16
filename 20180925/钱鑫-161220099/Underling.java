@@ -1,9 +1,8 @@
-package qx3;
+package qx2;
 
 public class Underling extends Creature {
     public Underling()
     {
         setName("喽啰");
-        setUrl("/picture/10.png");
     }
 }

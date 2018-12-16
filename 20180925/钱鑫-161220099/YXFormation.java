@@ -1,24 +1,21 @@
-package qx3;
+package qx2;
 
 import java.util.List;
 
-public class YLFormation implements MonsterFormation {
+public class YXFormation implements MonsterFormation {
     @Override
     public void formation(Monster monster,Battlefield battlefield)
     {
         int n=battlefield.getN();
         Snake snake=monster.getSnake();
         Scorpion scorpion=monster.getScorpion();
-        monster.init(9);
+        monster.init(6);
         List<Underling> underlings=monster.getUnderlings();
         battlefield.setPosition(n-1,n-1,snake);
-        battlefield.setPosition((n-1)/2,n-1,scorpion);
-        for(int i=1;i<=3;i++)
+        battlefield.setPosition((n-1)/2+3,n-1,scorpion);
+        for(int i=1;i<=6;i++)
         {
-            for(int j=0;j<(2*i-1);j++)
-            {
-                battlefield.setPosition((n-1)/2-i+1+j,n-5+i,underlings.get(j+(i-1)*(i-1)));
-            }
+            battlefield.setPosition((n-1)/2+3-i,n-1-i,underlings.get(i-1));
         }
     }
 }
