@@ -81,9 +81,7 @@ public class XMLRecordReader extends XMLRecordStructure {
 			int pc = Integer.parseInt(roundEle.attributeValue(posc));
 			int movr = Integer.parseInt(roundEle.attributeValue(dr));
 			int movc = Integer.parseInt(roundEle.attributeValue(dc));
-			Entity ene = toEnemy(roundEle.attributeValue(enemy));
-			boolean w = toBoolean(roundEle.attributeValue(win));
-			en.resetEntity(st, pr, pc, movr, movc, ene, w);
+			en.resetEntity(st, pr, pc, movr, movc);
 			// ≈–∂œ’Ω∂∑ «∑ÒΩ· ¯
 			if (root.element(entity + en.id).element(round + (n + 1)) == null)
 				Global.battleEnd = true;

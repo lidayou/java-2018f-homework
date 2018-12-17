@@ -135,9 +135,12 @@ public final class Global {
 	/**	默认保存文件	*/
 	public static final String defaultFilename = "records/defaultRecordFile.xml";
 
-	/**	默认保存路径	*/
+	/**	默认文件选择器初始路径	*/
 	public static final String defaultPath = "records/";
-	
+
+	/**	默认测试用文件	*/
+	public static final String defaultTestFilename = "records/JUnitTestRecordFile.xml";
+
 	/**	战斗结束后（非回放模式）	*/
 	public static boolean isAfterBattleNotPlayback() {
 		return (!battlePlayingBack && battleStart && battleEnd);

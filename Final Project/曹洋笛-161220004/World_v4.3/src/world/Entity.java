@@ -18,7 +18,6 @@ import world.util.*;
  * 	(2) 运动属性：移动方向 + 目标对象指针 + 胜利与否，由于有动画的显示
  *		@see #direction
  *		@see #enemy
- *		@see #hasWined
  *
  * 	@see #setMoveDirection
  *	@see #run()
@@ -43,9 +42,7 @@ public class Entity implements Runnable {
 	/**	移动方向	*/
 	public Point direction = new Point(0, 0);
 	/**	敌方对象的指针或null	*/
-	public Entity enemy = null;
-	/**	上一回合胜利与否	*/
-	public boolean hasWined = false;
+	private Entity enemy = null;
 
 	/**	设定id值
 	 *	@param bia 阵型内位置，记作偏移	*/
@@ -73,12 +70,10 @@ public class Entity implements Runnable {
 	}
 
 	/**	重设属性值，用于xml文件解析	*/
-	public void resetEntity(EntityState st, int pr, int pc, int movr, int movc, Entity ene, boolean w) {
+	public void resetEntity(EntityState st, int pr, int pc, int movr, int movc) {
 		state = st;
 		position.reset(pr, pc);
 		direction.reset(movr, movc);
-		enemy = ene;
-		hasWined = w;
 	}
 	
 	/**	返回[min, max]的随机整数	*/
@@ -127,7 +122,6 @@ public class Entity implements Runnable {
 	public void stand() {
 		direction.reset(0, 0); 
 		enemy = null;
-		hasWined = false;
 	}
 	
 	/**	获取到达敌方最近实体的随机方向，只能上下或左右.
@@ -188,8 +182,7 @@ public class Entity implements Runnable {
 				state = EntityState.OUT;
 			// 如果遇到了敌人
 			if (enemy != null) { 
-				hasWined = win(creature.getGroup()); // 决生死
-				if (hasWined) 
+				if (win(creature.getGroup())) // 决生死
 					enemy.state = EntityState.DEAD;
 				else this.state = EntityState.DEAD;
 			}

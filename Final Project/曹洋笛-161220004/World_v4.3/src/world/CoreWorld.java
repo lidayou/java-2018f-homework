@@ -49,7 +49,8 @@ public final class CoreWorld {
 		Global.battleStart = false;
 		Global.battleEnd = false;
 		Global.battlePlayingBack = playingBack;
-		Global.recordWriter = new XMLRecordWriter();
+		if (!Global.battlePlayingBack)
+			Global.recordWriter = new XMLRecordWriter();
 	}
 	
 	/**	根据当前阵型重新写入初始化的实体	*/
@@ -72,9 +73,8 @@ public final class CoreWorld {
 			entities.put(en.id, en);
 		}
 		// 临时存储
-		Global.recordWriter.addEntityElements();
-		System.out.println("初始化中 · · · · · · 完成");
-		System.out.println("准备战斗");
+		if (!Global.battlePlayingBack)
+			Global.recordWriter.addEntityElements();
 	}
 	
 	/**	初始化	*/
@@ -84,6 +84,8 @@ public final class CoreWorld {
 		// 根据阵型生成实体集
 		initGlobal(false);
 		initEntities();
+		System.out.println("初始化中 · · · · · · 完成");
+		System.out.println("准备战斗");
 	}
 	
 	/**	改变阵型的同时重置，位置初始化为默认位置	*/
@@ -94,6 +96,8 @@ public final class CoreWorld {
 			monForm = ftype.getFormation(GroupType.Mon);
 		initGlobal(false);
 		initEntities();
+		System.out.println("布阵中 · · · · · · " + gtype.label + "阵型：" + ftype.name);
+		System.out.println("准备战斗");
 	}
 	
 	/**	显示核心世界	*/

@@ -346,11 +346,6 @@ public class GUIWindow {
 			animFade = new ParallelTransition(animItems.get(en.id), ft);
 			animFade.play();
 		}
-		// 在这一回合击败了敌人
-		if (en.hasWined) { // 给敌人一个消失动画
-			animFade = new ParallelTransition(animItems.get(en.enemy.id), ft);
-			animFade.play();
-		}
 	}
 	
 	/**	根据生物类型获取对应的图像	*/

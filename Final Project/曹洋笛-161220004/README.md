@@ -1,6 +1,118 @@
-# World v4.2 版
+# World v4.3 版
 
 - 当前版本
+- 新实现的要求和功能有：
+  - 为代码中的 CoreWorld 类以及 XMLRecordReader 类的重要方法编写单元测试用例
+  - 部分 bug 修正以及代码优化
+
+- 下一阶段目标：
+  - 使用 Maven 进行构建管理
+  - 细节，禁止实体对象“出界(EntityState.OUT)”（当前允许出界，出界等同于死亡）
+  - 游戏平衡的设定优化（例如决定生死的概率、行进方向、攻击范围等）
+
+
+
+## 修改说明
+
+- 由于接下来即将使用 Maven 重新创建项目，所以当前即使改动很小也作为一个新版本了
+
+- 新增包 world.test
+
+
+
+### package world.test
+
+- #### class CoreWorldTest
+
+- #### class XMLRecordReaderTest
+
+原本我是不太在意单元测试的，而且 JavaFX 的 GUI 部分貌似是不能用 JUnit 进行测试的，所以我选取了 CoreWorld 类以及 XMLRecordReader 类编写 JUnit 单元测试，结果在测试到 XMLRecordReader 类的 void setEntityByRound(Entity en, int n) 方法时失败了：
+
+![4.3_junit0](img_readme/4.3_junit0.png)
+
+位置在：
+
+```java
+	assertTrue(expectedEntity.hasWined == actualEntity.hasWined);
+```
+
+这是个 boolean 类型的比较，最终发现在 setEntityByRound 方法中有一句：
+
+```java
+	boolean w = toBoolean(roundEle.attributeValue(win));
+```
+
+其中 win 为 true，而 w 为 false，然后发现错误在 XMLRecordStructure 抽象类的方法 toBoolean 中，使用了 “==” 比较两个 String 类型而不是 “.equals()”，修改为：
+
+```java
+	protected static boolean toBoolean(String label) {
+		//return ((label == "true") ? (true) : (false)); --> 修改前，error
+		return ((label.equals("true")) ? (true) : (false)); // 修改后
+	}
+```
+
+随后测试成功：
+
+![4.3_junit1](img_readme/4.3_junit1.png)
+
+看来单元测试还是能够找出一些 bug 的；
+
+随后发现虽然测试失败了，但是之前 World v4.2 版本的运行是没有问题的，这是不是说明 Entity 中，hasWined 这个属性是冗余的呢？
+
+于是查找所有引用 hasWined 的位置；当初设计 hasWined 的用意是在使用动画的时候，在给自己一个移动动画的同时，给被杀死的敌方一个消失动画；为了检测，在 hasWined 的条件判断下插一个桩：
+
+```java
+	private void playAnimation(Entity en) {
+		if (!en.position.equals(new Point(0, 0))) {
+            ... // 设置移动动画
+        }
+        // 如果自己在这一回合死掉了
+		if (en.state == EntityState.DEAD) { 
+            ... // 给自己设置一个消失动画
+			System.out.println(en.id + " DEAD"); // 插一个桩
+		}
+		// 如果在这一回合击败了敌人
+		if (en.hasWined) { 
+            ... // 给敌人一个消失动画
+			System.out.println(en.id + " hasWined"); // 插一个桩
+		}
+	}
+```
+
+发现输出只有“\*\*\*\* DEAD”，看来 hasWined 确实没有用到，那么被击败的敌人是如何消失的呢？
+
+再次观察 GUIWindow 的 start() 方法：
+
+```java
+	/**	开启所有实体的线程并播放动画	*/
+	public void start() {
+		for (Entity en: CoreWorld.entities.values()) {
+			// 通过回放或线程改变en的运动属性
+			if (Global.battlePlayingBack) // 回放模式
+				Global.recordReader.setEntityByRound(en, Global.roundNum);
+			else if (Global.isActionRound(en.creature.getGroup()))
+				en.start(); // 开始移动
+			else en.stand(); // 静止
+            ... // 添加时间轴，播放动画
+		}
+	}
+```
+
+原来，虽然 en.start() 的调用是利用 isActionRound 分了奇偶回合，但是无论是读取文件的方法 setEntityByRound 还是播放动画的过程都是不分奇偶回合的，所以即便不是本阵营的行动回合，动画总是播放的，所以自己即便不行动，该消失还是会消失的；
+
+明白了原因之后，就可以扔掉所有的 hasWined 属性和 xml 文件的相关节点了
+
+而 Entity 类中的运动属性 public Entity enemy（敌方对象的指针或null）与 hasWined 息息相关（因为只有遇到敌方对象，即 enemy != null 才会有 hasWined 的赋值），而且 enemy 属性也作为节点储存在 xml 文件中，甚至这个节点是最复杂的节点（因为是 Entity 指针类型），那么 enemy 会不会也是冗余的呢？
+
+经过分析和测试，enemy 还是必要的，但仅仅在 Entity 类内部有效，那么把这个属性改为 private，并删除 xml 文件中的 enemy 节点，这样，xml 文件的读写就大大地简化了
+
+于是通过 JUnit 单元测试，成功进行了代码的优化
+
+
+
+
+
+# World v4.2 版
 
 - 新实现的要求和功能有：
   - 按 **L** 键或点击菜单栏“**开始 -> 读取**”显示文件对话框让用户选择一个 xml 文件，读取战斗过程
@@ -32,7 +144,7 @@
 
 ### （一）package world.util
 
-#### class Global
+- #### class Global
 
 新增的重要全局变量/方法有：
 
@@ -654,7 +766,7 @@ public class Main extends Application {
 
 ### （二）package world.util
 
-#### enum EntityState
+- #### enum EntityState
 
 把原先 **Entity** 类的内部 **enum** 换到包 **world.util** 中，包括 **LIVE**, **DEAD**, **OUT** 三种状态
 
@@ -854,7 +966,6 @@ public class Main extends Application {
 		}
 	}
 ```
-
 
 
 
@@ -1103,12 +1214,11 @@ public final class YuLin extends Formation {
 
 ### （四）package world.entities
 
-#### class Entity
-
-- 生物实体类，是本版本相对以前版本的最大改变
- - 生物 + 位置 + 线程（行为），世界的每个生物都有其对应的实体
- - 使用接口 Runnable
- - 部分代码：
+- #### class Entity
+  - 生物实体类，是本版本相对以前版本的最大改变
+   - 生物 + 位置 + 线程（行为），世界的每个生物都有其对应的实体
+   - 使用接口 Runnable
+   - 部分代码：
 
 ```java
 public class Entity implements Runnable {
@@ -1212,5 +1322,4 @@ public class Entity implements Runnable {
 - 点类型
 - 包含的属性有：行，列
 - 包含的方法有：得到点坐标，重设点坐标，复制点，反向点，移动点等
-
 

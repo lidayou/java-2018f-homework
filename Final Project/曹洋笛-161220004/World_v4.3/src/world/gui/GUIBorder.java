@@ -153,7 +153,6 @@ public class GUIBorder {
 		if (!Global.battlePlayingBack) { // 战斗模式
 			if (cWrd != null && gWin != null) {
 				gWin.clearWindow(); // 清除所有生物
-				System.out.println("改变" + gtype.label + "阵型至" + ftype.name);
 				cWrd.initFormation(ftype, gtype);
 				gWin.initLabels(true);
 				gWin.initAnimItems();

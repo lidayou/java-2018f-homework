@@ -1,6 +1,5 @@
 package world.xml;
 
-import world.*;
 import world.util.*;
 
 /**
@@ -17,7 +16,7 @@ import world.util.*;
  *
  *	@author Mirror
  */
-public class XMLRecordStructure {
+public abstract class XMLRecordStructure {
 
 	// 以下为各节点名String
 	protected static final String records = "records"; // 根
@@ -34,16 +33,6 @@ public class XMLRecordStructure {
 	protected static final String enemy = "enemy"; // Entity -> enemy
 	protected static final String win = "win"; // Entity -> hasWined
 	
-	/**	@return 对应的标签字符串 */
-	protected static String toBooleanLabel(boolean bool) {
-		return ((bool) ? ("true") : ("false"));
-	}
-
-	/**	@return 对应的boolean值 */
-	protected static boolean toBoolean(String label) {
-		return ((label == "true") ? (true) : (false));
-	}
-
 	/**	@return 对应的人物类型 */
 	protected static CreatureType toCreatureType(String label) {
 		switch (label) {
@@ -70,21 +59,4 @@ public class XMLRecordStructure {
 		default: return EntityState.OUT;
 		}
 	}
-	
-	/**	@return 对应的敌方实体对象指针	*/
-	protected static Entity toEnemy(String label) {
-		if (label.equals("null")) 
-			return null;
-		else // label为entities集合的id号
-			return CoreWorld.entities.get(Integer.parseInt(label));
-	}
-
-	/**	@return 对应的敌方对象字符串 */
-	protected static String toEntityLabel(Entity ene) {
-		if (ene == null)
-			return "null";
-		else
-			return String.valueOf(ene.id);
-	}
-
 }

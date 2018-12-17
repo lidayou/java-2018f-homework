@@ -69,8 +69,6 @@ public class XMLRecordWriter extends XMLRecordStructure {
 			roundEle.addAttribute(posc, String.valueOf(en.position.col()));
 			roundEle.addAttribute(dr, String.valueOf(en.direction.row()));
 			roundEle.addAttribute(dc, String.valueOf(en.direction.col()));
-			roundEle.addAttribute(enemy, toEntityLabel(en.enemy));
-			roundEle.addAttribute(win, toBooleanLabel(en.hasWined));
 		}
 	}
 	
