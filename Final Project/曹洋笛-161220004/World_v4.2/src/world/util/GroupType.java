@@ -10,8 +10,8 @@ public enum GroupType {
 	Bro("葫芦娃"),
 	Mon("妖怪");
 
-	public String name;
-	private GroupType(String name) { // 构造方法
-		this.name = name;
+	public String label;
+	private GroupType(String lab) { // 构造方法
+		this.label = lab;
 	}
 }

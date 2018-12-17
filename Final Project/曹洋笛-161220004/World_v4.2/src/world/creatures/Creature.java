@@ -9,7 +9,7 @@ import world.util.*;
  *	
  *	@see #type
  *	@see #getGroup()
-	*/
+ */
 public class Creature {
 
 	/**	人物类型	*/

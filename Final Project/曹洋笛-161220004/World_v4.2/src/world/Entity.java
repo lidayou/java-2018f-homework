@@ -17,16 +17,16 @@ import world.util.*;
  *
  * 	(2) 运动属性：移动方向 + 目标对象指针 + 胜利与否，由于有动画的显示
  *		@see #direction
- *		@see #target
+ *		@see #enemy
  *		@see #hasWined
+ *
  * 	@see #setMoveDirection
  *	@see #run()
  *	@see #start()
+ *	@see CharWindow.#entities
  * 
  *	@author Mirror
- * 
- *	@see CharWindow.#entities
-	*/
+ */
 public class Entity implements Runnable {
 	
 	/**	编号，为阵营号*1000+阵型偏移	*/
@@ -42,8 +42,8 @@ public class Entity implements Runnable {
 	
 	/**	移动方向	*/
 	public Point direction = new Point(0, 0);
-	/**	目标对象的指针或空地null	*/
-	public Entity target = this;
+	/**	敌方对象的指针或null	*/
+	public Entity enemy = null;
 	/**	上一回合胜利与否	*/
 	public boolean hasWined = false;
 
@@ -73,23 +73,12 @@ public class Entity implements Runnable {
 	}
 
 	/**	重设属性值，用于xml文件解析	*/
-	public void resetEntity(EntityState st, int pr, int pc, int movr, int movc, boolean w) {
+	public void resetEntity(EntityState st, int pr, int pc, int movr, int movc, Entity ene, boolean w) {
 		state = st;
 		position.reset(pr, pc);
 		direction.reset(movr, movc);
+		enemy = ene;
 		hasWined = w;
-		// 设置target
-		if (state == EntityState.DEAD || state == EntityState.OUT) { // 本实体对象死亡/出界
-			target = this;
-			return;
-		} // 查看目标位置情况
-		target = getLiveEntityAt(position.mov(direction));
-		if (target != null && target.creature.getGroup() == creature.getGroup()) { // 目标位置是同阵营实体
-			if (Global.keepFormationRound > 0) // 保持阵型时移动照常，目标位置仅能为空地或敌人
-				target = null;
-			else // 大乱斗时，不移动
-				target = this;
-		}
 	}
 	
 	/**	返回[min, max]的随机整数	*/
@@ -109,7 +98,7 @@ public class Entity implements Runnable {
 	
 	/**	获取最近的敌方实体的位置
 	 *	@return 若敌方全部消灭，返回null；否则返回距离最近的敌方实体位置	*/
-	private Point getNearEnemyTarget() {
+	private Point getNearestEnemy() {
 		Entity nearEn = null; // 最近的敌方实体指针
 		int nearD = Integer.MAX_VALUE; // 最近距离
 		for (Entity en: CoreWorld.entities.values()) {
@@ -134,26 +123,31 @@ public class Entity implements Runnable {
 		return null;
 	}
 
+	/**	初始化运动属性	*/
+	public void stand() {
+		direction.reset(0, 0); 
+		enemy = null;
+		hasWined = false;
+	}
+	
 	/**	获取到达敌方最近实体的随机方向，只能上下或左右.
 	 *	设置direction为(1, 0) 或 (-1, 0) 或 (0, 1) 或 (0, -1)或(0, 0) 
 	 *	不允许同时设定两个实体对象的方向	*/
 	private void setMoveDirection() {
-		hasWined = false;
-		// 本实体对象死亡/出界
-		if (state == EntityState.DEAD || state == EntityState.OUT) { 
-			target = this;
-			direction.reset(0, 0);
-			return;
-		}
-		// 要求保持阵型
+		stand(); // 初始化运动属性
+		// 若要求保持阵型
 		if (Global.keepFormationRound > 0) { 
 			if (creature.getGroup() == GroupType.Bro) 
 				direction.reset(0, 1);
 			else 
 				direction.reset(0, -1);
 		} 
-		else { // 进入大乱斗模式
-			Point pTarget = getNearEnemyTarget();
+		else { // 否则进入大乱斗模式
+			Point pTarget = getNearestEnemy();
+			if (pTarget == null) { // 敌人全都消灭，战斗结束
+				Global.battleEnd = true;
+				return;
+			}
 			int signRow = (pTarget.row() > position.row()) ? (1) : (-1);
 			int signCol = (pTarget.col() > position.col()) ? (1) : (-1);
 			// 增强随机性，使对战更精彩
@@ -166,15 +160,12 @@ public class Entity implements Runnable {
 				direction.reset((rand <= 5) ? (new Point(signRow, 0)) : (new Point(0, signCol)));
 		}
 		// 查看目标位置情况
-		target = getLiveEntityAt(position.mov(direction));
-		if (target != null && target.creature.getGroup() == creature.getGroup()) { 
+		enemy = getLiveEntityAt(position.mov(direction));
+		if (enemy != null && enemy.creature.getGroup() == creature.getGroup()) { 
 			// 目标位置是同阵营实体
-			if (Global.keepFormationRound > 0) // 保持阵型时移动照常，目标位置仅能为空地或敌人
-				target = null;
-			else { // 大乱斗时，不移动
-				target = this;
+			enemy = null;
+			if (!(Global.keepFormationRound > 0)) // 大乱斗时，不移动
 				direction.reset(0, 0); 
-			}
 		}
 		// 目标位置是空地或敌人，移动照常
 		return;
@@ -185,22 +176,21 @@ public class Entity implements Runnable {
 	@Override
 	public void run() {
 		synchronized (this) {
-			if (Global.battleEnd == true) // 战斗结束
-				return;
-			setMoveDirection(); // 尝试移动
-			if (direction.equals(new Point(0, 0))) // 没有移动
-				return;
+			if (Global.battleEnd == true) return; // 战斗结束
+			if (state != EntityState.LIVE) return; // 本实体对象死亡/出界
+			// 尝试移动
+			setMoveDirection(); 
+			if (direction.equals(new Point(0, 0))) return;// 没有移动
 			// 先移动
 			position.reset(position.mov(direction));
 			// 如果出界了
 			if (!position.inWorld())
 				state = EntityState.OUT;
 			// 如果遇到了敌人
-			if (target != null && target != this) {
-				// 决生死
-				hasWined = win(creature.getGroup());
+			if (enemy != null) { 
+				hasWined = win(creature.getGroup()); // 决生死
 				if (hasWined) 
-					target.state = EntityState.DEAD;
+					enemy.state = EntityState.DEAD;
 				else this.state = EntityState.DEAD;
 			}
 		}
