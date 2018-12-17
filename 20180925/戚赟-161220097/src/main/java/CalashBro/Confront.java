@@ -1,4 +1,6 @@
-package huluwa;
+package CalashBro;
+import javafx.scene.canvas.Canvas;
+
 import java.util.*;
 import java.util.Random;
 
@@ -9,8 +11,12 @@ public class Confront {
     private Snake snake;
     private Scorpion scorpion;
     private Follower []follower;
-    Confront(){
-        //对峙的类含有下列的生物所以进行初始化
+    private Battlefield ground;
+    private Formation form;
+
+    public Confront(){
+        ground = new Battlefield(10,20); //创造一个10行20列的战场
+        form = new Formation();
         //葫芦娃
         Huluwas = new CalabashBrother[7];
         for(int i  = 0;i<7;i++)
@@ -33,38 +39,17 @@ public class Confront {
     }
     public static void main(String[]args)
     {
-        Confront battle = new Confront();
-        Battlefield ground = new Battlefield(10,20); //创造一个10行20列的战场
-        Formation form = new Formation();
-        Jfshow jf = new Jfshow();
-        battle.initHuluwa(ground); //放置葫芦娃
-        battle.initGrandfather(ground);
-        battle.initMonster(ground);
-        battle.printThefield(ground,jf);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-       System.out.println("排序葫芦娃");
-        battle.sortThehuluwa(ground);
-        battle.printThefield(ground,jf);
-
         for(FormationName x:FormationName.values()) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            battle.makeChangeofMonster(x,form,ground);
-            battle.printThefield(ground,jf);
         }
     }
 
-
     //初始化放置葫芦娃
-    public void initHuluwa(Battlefield ground)
-    {
+    public void initHuluwa( ) {
         Random rand =new Random();
         for(int i = 0; i  < 7;i++) {
             int k = rand.nextInt(7);
@@ -77,24 +62,19 @@ public class Confront {
         {
             ground.putTheCre(Huluwas[i],i+1,5);
         }
-        for(int i = 0;i <7;i++)
-        {
-            Huluwas[i].callTheposition();
-        }
     }
     //初始化爷爷
-     public void initGrandfather(Battlefield ground)
+     public void initGrandfather( )
      {
          ground.putTheCre(grandfather,5,0);
      }
      //初始化蛇精
-     public void initMonster(Battlefield ground)
+     public void initMonster( )
      {
          ground.putTheCre(snake,5,19);
      }
      //排序葫芦娃
-    public void sortThehuluwa(Battlefield ground)
-    {
+    public void sortThehuluwa( ) {
         for(int i = 6; i >= 0;i--)
         {
             for(int j = 0; j < i;j++)
@@ -113,22 +93,20 @@ public class Confront {
         }
     }
     //改变阵型
-    public void makeChangeofMonster(FormationName name,Formation form,Battlefield ground)
-    {
+    public void makeChangeofMonster(FormationName name) {
         int index = name.ordinal();
         form.changeFormation(index,scorpion,follower,ground);
     }
     //打印
-    public void printThefield(Battlefield ground,Jfshow jf)
-    {
+    public void printThefield(Canvas canvas) {
         for(int i = 0; i< 10;i++)
         {
             for(int j = 0; j < 20;j++)
             {
-                ground.showThecreature(i,j,jf);
+                ground.showThecreature(i,j,canvas);
             }
             System.out.println();
         }
-        jf.showJf();
     }
+    //public
 }
