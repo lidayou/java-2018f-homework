@@ -11,7 +11,7 @@ import common.RandomPosition;
 public class Scorpion extends Evil implements Fighting{
 
     public Scorpion() {
-        super(RandomPosition.randomPosition(new Evil()),"S", 1, 30, 6, 7000, 450, 0, 5, 0);
+        super(RandomPosition.randomPosition(new Evil()),"S", 1, 30, 11, 7000, 450, 0, 5, 0);
     }
 
     public void fighting() {

@@ -12,6 +12,6 @@ import java.util.Random;
  */
 public class Blue extends CalabashBrothers {
     public Blue() {
-        super(RandomPosition.randomPosition(new Justice()),"B", 1, 180, 15, 2200, 150, 0, 9, 0);
+        super(RandomPosition.randomPosition(new Justice()),"B", 1, 180, 30, 2200, 150, 0, 9, 0);
     }
 }

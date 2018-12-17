@@ -10,6 +10,6 @@ import common.RandomPosition;
 
 public class Green extends CalabashBrothers {
     public Green() {
-        super(RandomPosition.randomPosition(new Justice()),"G", 1, 40, 7, 2400, 1010, 0, 15, 0);
+        super(RandomPosition.randomPosition(new Justice()),"G", 1, 40, 15, 2400, 1010, 0, 15, 0);
     }
 }

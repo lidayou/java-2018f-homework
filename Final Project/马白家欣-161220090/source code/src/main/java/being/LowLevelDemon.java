@@ -11,7 +11,7 @@ import common.RandomPosition;
 public class LowLevelDemon extends Evil implements Fighting {
 
     public LowLevelDemon() {
-        super(RandomPosition.randomPosition(new Evil()),"L", 1, 35,8, 1800, 220, 0, 6, 0);
+        super(RandomPosition.randomPosition(new Evil()),"L", 1, 35,15, 1800, 220, 0, 6, 0);
     }
 
     public void fighting() {

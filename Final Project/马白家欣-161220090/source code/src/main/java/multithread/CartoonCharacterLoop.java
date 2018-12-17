@@ -25,7 +25,7 @@ public class CartoonCharacterLoop implements Runnable {
     private Being being;
     private List<BattleFieldLattice> battleFieldLatticeList;
 
-    static final int LOOP_DURATION = 1000;
+    static final int LOOP_DURATION = 1200;
 //    static final int LOOP_DURATION = 0;
 
     public CartoonCharacterLoop(Canvas mainCanvas, Being being, List<BattleFieldLattice> battleFieldLatticeList, Lock lock) {

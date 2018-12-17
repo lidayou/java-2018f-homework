@@ -11,7 +11,7 @@ import common.RandomPosition;
 public class Snake extends Evil implements CheerUp {
 
     public Snake() {
-        super(RandomPosition.randomPosition(new Evil()),"s", 1, 69, 15, 2800, 200, 0, 35, 0);
+        super(RandomPosition.randomPosition(new Evil()),"s", 1, 69, 28, 2800, 200, 0, 35, 0);
     }
 
     public void cheerUp() {
