@@ -1,5 +1,6 @@
 package world.xml;
 
+import world.*;
 import world.util.*;
 
 /**
@@ -7,7 +8,7 @@ import world.util.*;
  *	结构形如：<br>
  *	<records>
  *		<entity1000 ctype="Bro" r="10" c="4" />
- *			<round1 state="LIVE" posr="12" posc="3" dr="0" dc="1" win="false" />
+ *			<round1 state="LIVE" posr="12" posc="3" dr="0" dc="1" enemy="null" win="false" />
  *			<round2 ... />
  *			<round3 ... />
  *		<entity1017 ... />
@@ -30,16 +31,17 @@ public class XMLRecordStructure {
 	protected static final String posc = "posc"; // Entity -> position -> col
 	protected static final String dr = "dr"; // Entity -> direction -> row
 	protected static final String dc = "dc"; // Entity -> direction -> col
+	protected static final String enemy = "enemy"; // Entity -> enemy
 	protected static final String win = "win"; // Entity -> hasWined
 	
 	/**	@return 对应的标签字符串 */
-	protected static String toLabel(boolean bool) {
-		return (bool) ? ("true") : ("false");
+	protected static String toBooleanLabel(boolean bool) {
+		return ((bool) ? ("true") : ("false"));
 	}
 
 	/**	@return 对应的boolean值 */
 	protected static boolean toBoolean(String label) {
-		return (label == "true") ? (true) : (false);
+		return ((label == "true") ? (true) : (false));
 	}
 
 	/**	@return 对应的人物类型 */
@@ -65,8 +67,24 @@ public class XMLRecordStructure {
 		switch (label) {
 		case "LIVE": return EntityState.LIVE;
 		case "DEAD": return EntityState.DEAD;
-		case "OUT": return EntityState.OUT;
-		default: return null;
+		default: return EntityState.OUT;
 		}
 	}
+	
+	/**	@return 对应的敌方实体对象指针	*/
+	protected static Entity toEnemy(String label) {
+		if (label.equals("null")) 
+			return null;
+		else // label为entities集合的id号
+			return CoreWorld.entities.get(Integer.parseInt(label));
+	}
+
+	/**	@return 对应的敌方对象字符串 */
+	protected static String toEntityLabel(Entity ene) {
+		if (ene == null)
+			return "null";
+		else
+			return String.valueOf(ene.id);
+	}
+
 }

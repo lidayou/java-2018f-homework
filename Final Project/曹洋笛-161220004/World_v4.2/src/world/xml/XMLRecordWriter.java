@@ -11,6 +11,15 @@ import org.dom4j.io.XMLWriter;
 
 import world.*;
 
+/**
+ *	实现战斗记录xml文件的导出
+ *
+ *	@author Mirror
+ *
+ *	@see #XMLRecordWriter()
+ *	@see #addEntityElements()
+ *	@see #addRoundElements(int)
+ */
 public class XMLRecordWriter extends XMLRecordStructure {
 	
 	/**	文档	*/
@@ -60,7 +69,8 @@ public class XMLRecordWriter extends XMLRecordStructure {
 			roundEle.addAttribute(posc, String.valueOf(en.position.col()));
 			roundEle.addAttribute(dr, String.valueOf(en.direction.row()));
 			roundEle.addAttribute(dc, String.valueOf(en.direction.col()));
-			roundEle.addAttribute(win, toLabel(en.hasWined));
+			roundEle.addAttribute(enemy, toEntityLabel(en.enemy));
+			roundEle.addAttribute(win, toBooleanLabel(en.hasWined));
 		}
 	}
 	

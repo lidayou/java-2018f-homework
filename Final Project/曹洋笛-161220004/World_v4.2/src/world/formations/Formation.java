@@ -15,7 +15,7 @@ import world.util.*;
  *	@see #type
  *	@see #formMap
  *	@see #getCreature(Point)
-	*/
+ */
 public abstract class Formation {
 
 	/**	’Û–Õ÷÷¿‡ {@value}	*/

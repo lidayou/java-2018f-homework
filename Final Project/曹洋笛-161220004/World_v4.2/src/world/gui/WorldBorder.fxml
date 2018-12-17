@@ -11,9 +11,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="开始">
             <items>
-              <MenuItem fx:id="menuItReset" mnemonicParsing="false" text="重置" />
-                  <MenuItem fx:id="menuItSaveAs" mnemonicParsing="false" text="保存为" />
-                  <MenuItem fx:id="menuItReadFrom" mnemonicParsing="false" text="读取" />
+              <MenuItem fx:id="menuItReset" mnemonicParsing="false" text="重置 (R)" />
+                  <MenuItem fx:id="menuItSaveAs" mnemonicParsing="false" text="保存为 (S)" />
+                  <MenuItem fx:id="menuItReadFrom" mnemonicParsing="false" text="读取 (L)" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="葫芦娃阵型">
