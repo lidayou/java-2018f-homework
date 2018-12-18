@@ -1,14 +1,69 @@
-# World v4.3 版
+# World_v5.0 版
 
 - 当前版本
+- 新实现的要求和功能有：
+  - 使用 Maven 进行构建管理
+  - 部分 bug 修正
+- 下一阶段目标：
+  - 细节处理以及继续 debug
+  - 游戏平衡的设定优化（例如决定生死的概率、行进方向、攻击范围等）
+
+
+
+## 修改说明
+
+- 创建为 Maven 项目，对项目进行了重构
+
+- 修正了读取文件后“显示动画”层与“不显示动画”层不同步的 bug
+
+
+
+## 项目结构
+
+以下图片显示了 Maven 项目的结构：
+
+- 我的 GroupId 为cn.AldebaRain
+- 资源文件夹 resources 在src/main 中
+  - 包括 css 文件、fxml 文件(./gui/)，png 文件(./img/)
+  - 下面的 records 文件夹是保存的 defaultRecordFile.xml 是每次[战斗模式]的临时文件，JUnitTestRecordFile 是单元测试专用的，不可更改
+- 项目文件夹下的 myRecords 文件夹是每次打开文件选择器的默认文件夹，保存了精彩对战记录
+
+![5.0_maven0](img_readme/5.0_maven0.png)
+
+
+
+## 项目构建
+
+在 Eclipse 下右键项目执行 Run As -> Maven clean：
+
+![5.0_mavenclean](img_readme/5.0_mavenclean.png)
+
+右键项目执行 Run As -> Maven test：
+
+![5.0_maventest](img_readme/5.0_maventest.png)
+
+右键项目执行 Run As -> Maven install：
+
+![5.0_maveninstall](img_readme/5.0_maveninstall.png)
+
+最终在 target 目录产生了两个 jar 包：
+
+![5.0_maven1](img_readme/5.0_maven1.png)
+
+其中 original-world.jar 里只包含了工程自己的 class 文件，而 world.jar 包则包含了工程本身以及所有依赖的 jar 包的 class 文件，使用 world.jar，就能在控制台运行本项目：
+
+![5.0_mavenjar](img_readme/5.0_mavenjar.png)
+
+
+
+
+
+# World v4.3 版
+
 - 新实现的要求和功能有：
   - 为代码中的 CoreWorld 类以及 XMLRecordReader 类的重要方法编写单元测试用例
   - 部分 bug 修正以及代码优化
 
-- 下一阶段目标：
-  - 使用 Maven 进行构建管理
-  - 细节，禁止实体对象“出界(EntityState.OUT)”（当前允许出界，出界等同于死亡）
-  - 游戏平衡的设定优化（例如决定生死的概率、行进方向、攻击范围等）
 
 
 
@@ -122,10 +177,6 @@
   - **战斗过程的回放**，依然是按**空格**键显示下一回合
   - 对于不合法的键盘操作或菜单栏操作弹出 **Alert 提示框**
   - **GUI 界面**更加精致友好
-- 下一阶段目标：
-  - 为代码中的重要方法编写单元测试用例，并使用 Maven 进行构建管理
-  - 细节，禁止实体对象“出界(EntityState.OUT)”（当前允许出界，出界等同于死亡）
-  - 游戏平衡的设定优化（例如决定生死的概率、行进方向、攻击范围等）
 
 
 
@@ -611,9 +662,6 @@
   - 添加**动画**
   - **自动保存战斗过程**到默认 xml 文件
 
-- 下一阶段目标：
-  - 按 L 键显示文件对话框让用户选择一个文件，读取战斗过程
-  - 战斗过程另存为指定名称的文件
 
 
 
@@ -982,11 +1030,6 @@ public class Main extends Application {
   - **按空格键时所有生物体线程执行 start()，向敌方前进**
   - 当某个生物体于敌方相遇时，选取一个**概率决定双方生死**
 
-- 下一阶段目标
-  - 解决同阵营可能进入同一个“格子”导致重叠的问题
-  - 增加 start() 向敌方前进的随机性
-  - 使得最终只剩下一方阵营并判定胜利方
-  - 使用 JavaFX 改写
 
 
 
