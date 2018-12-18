@@ -41,10 +41,12 @@ class Grandpa extends Organisms{
 	}
 }
 public class Good {
-	Grandpa grandpa=new Grandpa();
-	CalabashBrothers calabash=new CalabashBrothers();
+	Grandpa grandpa;
+	CalabashBrothers calabash;
 	Formation goodFormation;
 	public Good() {
+		grandpa=new Grandpa();
+		calabash=new CalabashBrothers();
 	}
 	public void selectFormation(Battlefield battle) {
 		//这里应该做一个选择
