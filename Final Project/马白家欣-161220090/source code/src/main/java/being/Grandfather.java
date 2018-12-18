@@ -12,7 +12,7 @@ import position.Position;
 public class Grandfather extends Justice implements CheerUp {
 
     public Grandfather() {
-        super(RandomPosition.randomPosition(new Justice()), "g", 1, 20, 14, 1000, 90, 150, 0, 0);
+        super(RandomPosition.randomPosition(new Justice()), "g", 1, 20, 14, 300, 90, 150, 0, 0);
     }
 
     public void cheerUp() {

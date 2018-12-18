@@ -7,12 +7,14 @@ import battle.BattleFieldLattice;
 //import battle.BattleGoOn;
 import battle.BattleResult;
 import being.Being;
+import being.*;
 import common.CartoonTransition;
 import common.CommonMath;
 //import formation.FormationType;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -30,6 +32,14 @@ public class Controller {
     private static final Image backgroundImage = new Image("/background.jpg");
     private static final Image winnerCalabashBrothersImage = new Image("/winnerCalabashBrothers.jpeg");
     private static final Image winnerDemonImage = new Image("/winnerDemon.jpeg");
+    private static final Image superAttackRedImage = new Image("/SuperAttackRed.jpg");
+    private static final Image superAttackOrangeImage = new Image("/SuperAttackOrange.jpg");
+    private static final Image superAttackYellowImage = new Image("/SuperAttackYellow.jpg");
+    private static final Image superAttackGreenImage = new Image("/SuperAttackGreen.jpg");
+    private static final Image superAttackCyanImage = new Image("/SuperAttackCyan.jpg");
+    private static final Image superAttackBlueImage = new Image("/SuperAttackBlue.jpg");
+    private static final Image superAttackPurpleImage = new Image("/SuperAttackPurple.jpg");
+    private static final Image superAttackGrandfatherImage = new Image("/SuperAttackGrandfather.jpg");
     public static final int FIELD_WIDTH = 10;
     public static final int FIELD_HEIGHT = 8;
     public static final Color LATTICE_FILL_COLOR = Color.rgb(200, 200, 200, 0.5);
@@ -80,9 +90,16 @@ public class Controller {
                     if(image != null && being.getLabel().equals("*")) {
                         mainGraphicsContext.drawImage(image,
                                 rectangle.getX() + (rectangle.getWidth() - image.getWidth())/2,
-                                rectangle.getY() + (rectangle.getHeight() - image.getHeight())/2,
+                                rectangle.getY() + (rectangle.getHeight() - image.getWidth())/2,
                                 image.getWidth(),
-                                image.getHeight());
+                                image.getWidth());
+                    }
+                    else if(image != null && being.getLabel().equals("+")) {
+                        mainGraphicsContext.drawImage(image,
+                                rectangle.getX() + (rectangle.getWidth() - rectangle.getWidth()/2)/2,
+                                rectangle.getY() + (rectangle.getHeight() - rectangle.getWidth()/2)/2,
+                                rectangle.getWidth()/2,
+                                rectangle.getWidth()/2);
                     }
                     else if(being.getLabel().equals("X")) {
                         mainGraphicsContext.drawImage(image,
@@ -125,6 +142,63 @@ public class Controller {
                 }
             }
         }
+    }
+
+    public static void displaySuperAttack(Canvas mainCanvas, Being being, double alpha) {
+        GraphicsContext mainGraphicsContext = getGraphicsContext(mainCanvas);
+        mainGraphicsContext.setGlobalAlpha(alpha);
+        if(being instanceof Red) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackRedImage);
+            mainGraphicsContext.drawImage(superAttackRedImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else if(being instanceof Orange) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackOrangeImage);
+            mainGraphicsContext.drawImage(superAttackOrangeImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else if(being instanceof Yellow) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackYellowImage);
+            mainGraphicsContext.drawImage(superAttackYellowImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else if(being instanceof Green) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackGreenImage);
+            mainGraphicsContext.drawImage(superAttackGreenImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else if(being instanceof Cyan) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackCyanImage);
+            mainGraphicsContext.drawImage(superAttackCyanImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else if(being instanceof Blue) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackBlueImage);
+            mainGraphicsContext.drawImage(superAttackBlueImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else if(being instanceof Purple) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackPurpleImage);
+            mainGraphicsContext.drawImage(superAttackPurpleImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else if(being instanceof Grandfather) {
+            Rectangle backgroundImageRectangle = getImageRectangle(mainCanvas, superAttackGrandfatherImage);
+            mainGraphicsContext.drawImage(superAttackGrandfatherImage,
+                    backgroundImageRectangle.getX(), backgroundImageRectangle.getY(),
+                    backgroundImageRectangle.getWidth(), backgroundImageRectangle.getHeight());
+        }
+        else {
+            assert false;
+        }
+        mainGraphicsContext.setGlobalAlpha(1);
     }
 
     public static void displayResults(Canvas mainCanvas, BattleResult battleResult){

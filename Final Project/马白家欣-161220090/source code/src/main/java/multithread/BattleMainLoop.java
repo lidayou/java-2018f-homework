@@ -5,6 +5,7 @@ import battle.BattleResult;
 import being.*;
 import gui.Controller;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.io.*;
 import java.util.List;
@@ -25,6 +26,7 @@ public class BattleMainLoop implements Runnable{
     private BufferedReader infile;
     private static final String FILE_PATH = "." + File.separator + "output.txt";
     private static final int LOW_LEVEL_DEMON_COUNT = 10;
+    private static final int LOOP_SUPER_ATTACK_MAINTAIN = 20;
 
 
     public BattleMainLoop(Canvas mainCanvas, List<BattleFieldLattice> battleFieldLatticeList, Lock lock, boolean isBattle) {
@@ -96,7 +98,32 @@ public class BattleMainLoop implements Runnable{
             try {
                 bw.write(battleFieldLatticeListToString());
 
+                Being superAttackBeing = this.superAttackDetect();
+                if(superAttackBeing != null) {
+
+                    for(int i = 0; i < LOOP_SUPER_ATTACK_MAINTAIN; i++) {
+                        Controller.displayBattleField(this.mainCanvas, this.battleFieldLatticeList);
+                        Controller.displaySuperAttack(mainCanvas, superAttackBeing, (double) i / LOOP_SUPER_ATTACK_MAINTAIN);
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    for(int i = LOOP_SUPER_ATTACK_MAINTAIN; i >= 0; i--) {
+                        Controller.displayBattleField(this.mainCanvas, this.battleFieldLatticeList);
+                        Controller.displaySuperAttack(mainCanvas, superAttackBeing, (double) i / LOOP_SUPER_ATTACK_MAINTAIN);
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
                 Controller.displayBattleField(this.mainCanvas, this.battleFieldLatticeList);
+
                 if(this.winner() == BattleResult.CALABASH_BROTHERS) {
                     try {
                         Thread.sleep(1000);
@@ -145,7 +172,7 @@ public class BattleMainLoop implements Runnable{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String contentLine = null;
+        String contentLine;
         try {
             contentLine = infile.readLine();
             int lineCount = 0;
@@ -183,6 +210,17 @@ public class BattleMainLoop implements Runnable{
 
     }
 
+    private Being superAttackDetect() {
+        for (BattleFieldLattice aBattleFieldLatticeList : this.battleFieldLatticeList) {
+            if (aBattleFieldLatticeList.getBeing().getLabel().equals("+") &&
+              !((Bullet) aBattleFieldLatticeList.getBeing()).isChecked()) {
+                ((Bullet) aBattleFieldLatticeList.getBeing()).setChecked(true);
+                return ((Bullet) aBattleFieldLatticeList.getBeing()).getBeing();
+            }
+        }
+        return null;
+    }
+
     private BattleResult winner() {
         Evil evil = new Evil();
         if(evil.isOver(this.battleFieldLatticeList)) {
@@ -212,7 +250,9 @@ public class BattleMainLoop implements Runnable{
         String label = string.substring(0, 1);
         int hp = Integer.parseInt(string.substring(1));
         if (label.equals("*")) {
-            return new BattleFieldLattice(new Bullet(new Being()));
+            return new BattleFieldLattice(new Bullet(new Being(), false));
+        } else if (label.equals("+")) {
+            return new BattleFieldLattice(new Bullet(new Being(), true));
         } else if (label.equals("R")) {
             Being being = new Red();
             being.setRemainedHp(hp);
@@ -261,8 +301,7 @@ public class BattleMainLoop implements Runnable{
             return new BattleFieldLattice(new Gravestone());
         } else if (label.equals(CartoonCharacter.EMPTY_LABEL)) {
             return new BattleFieldLattice();
-        }
-        else {
+        } else {
             assert false;
             return null;
         }

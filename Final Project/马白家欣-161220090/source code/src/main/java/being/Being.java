@@ -140,7 +140,7 @@ public class Being {
         assert false : "move() must be overridden！";
     }
 
-    public synchronized void attack(Canvas mainCanvas, List<BattleFieldLattice> battleFieldLatticeList, Lock lock) {
+    public synchronized void attack(Canvas mainCanvas, List<BattleFieldLattice> battleFieldLatticeList, Lock lock, boolean isSuper) {
         assert false : "attack() must be overridden！";
     }
 

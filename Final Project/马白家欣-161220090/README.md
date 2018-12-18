@@ -1,3 +1,38 @@
+# 迭代2(2018.12.18)
+
+## 版本说明
+
+- 加入了必杀技和必杀特效
+- 同比例降低双方血量，加快战斗进程
+
+- 修正了一些bug
+
+## 效果展示
+
+必杀技随机触发，攻击速度越高越容易触发
+
+##### 必杀技触发效果：
+
+<div align=center>
+    <img src = "image\superAttack1.jpg" width='100%'>
+</div>
+
+##### 必杀技的子弹效果：
+
+<div align=center>
+    <img src = "image\superAttack2.jpg" width='100%'>
+</div>
+
+##### 必杀技实际效果：
+
+恢复能力和杀伤能力翻倍
+
+##### 实际gif展示：
+
+<div align=center>
+    <img src = "image\show3.gif" width='100%'>
+</div>
+
 # 迭代1(2018.12.14)
 
 ## 关键词
@@ -356,7 +391,7 @@ private BattleFieldLattice stringToBattleFieldLattice(String string) {
 ## 致谢
 
         首先感谢曹老师和余老师的精彩讲解，两位老师的讲解非常生动而且内容充实，使得我对于面向对象和Java语言的理解更进一步深入了，并且也使得我了解到了Java中的许多区别于C++的特性，最主要的，也使得我能第一次系统化的接触面向对象思想和Java语言。
-
+    
         其次感谢Java课程和大作业，Java课程的学习是辛苦的，但能体会到一种新的语言之美却是获益匪浅的；大作业的阶段性完成是艰辛的，但能看到葫芦娃的跳动却是充满趣味的。Java课程和大作业让我真正应用了面向对象思想和Java语言，并且也消除了我之前对于多线程等的很多恐惧。由衷地感到这一趟学习之旅不虚此行。
-
+    
         最后感谢辛勤付出的助教学长学姐们，认真阅读我们的.md和.java，维护着java-2018f-homework上的存在各种各样问题的pull request。

@@ -16,6 +16,7 @@ public class CartoonTransition {
     private static final String ROOT_PATH = "/";
 
     private static final Image bulletImage = new Image(ROOT_PATH + "Bullet.png");
+    private static final Image superBulletImage = new Image(ROOT_PATH + "SuperBullet.png");
     private static final Image redImage = new Image(ROOT_PATH + "Red.jpeg");
     private static final Image orangeImage = new Image(ROOT_PATH + "Orange.jpeg");
     private static final Image yellowImage = new Image(ROOT_PATH + "Yellow.jpeg");
@@ -143,6 +144,8 @@ public class CartoonTransition {
 
         if (being.getLabel().equals("*")) {
             return bulletImage;
+        } else if(being.getLabel().equals("+")) {
+            return superBulletImage;
         } else if (being.getLabel().equals("R")) {
             return redImage;
         } else if (being.getLabel().equals("O")) {

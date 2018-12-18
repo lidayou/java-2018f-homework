@@ -42,8 +42,8 @@ public class CartoonCharacter extends Being {
     }
 
     @Override
-    public synchronized void attack(Canvas mainCanvas, List<BattleFieldLattice> battleFieldLatticeList, Lock lock) {
-        new Thread(new BulletLoop(mainCanvas, new Bullet(this), battleFieldLatticeList, lock)).start();
+    public synchronized void attack(Canvas mainCanvas, List<BattleFieldLattice> battleFieldLatticeList, Lock lock, boolean isSuper) {
+        new Thread(new BulletLoop(mainCanvas, new Bullet(this, isSuper), battleFieldLatticeList, lock)).start();
     }
 
     @Override

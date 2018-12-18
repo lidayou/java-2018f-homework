@@ -2,6 +2,7 @@ package multithread;
 
 import battle.BattleFieldLattice;
 import being.Being;
+import being.Justice;
 import gui.Controller;
 import javafx.scene.canvas.Canvas;
 import position.Position;
@@ -25,8 +26,10 @@ public class CartoonCharacterLoop implements Runnable {
     private Being being;
     private List<BattleFieldLattice> battleFieldLatticeList;
 
-    static final int LOOP_DURATION = 1200;
+    static final int LOOP_DURATION = 1800;
 //    static final int LOOP_DURATION = 0;
+    private static final int LOOP_SUPER_ATTACK = 15;
+//    static final int LOOP_SUPER_ATTACK_MAINTAIN = 100;
 
     public CartoonCharacterLoop(Canvas mainCanvas, Being being, List<BattleFieldLattice> battleFieldLatticeList, Lock lock) {
         this.mainCanvas = mainCanvas;
@@ -39,6 +42,7 @@ public class CartoonCharacterLoop implements Runnable {
     public synchronized void run() {
         int moveLoopCount = 0;
         int attackLoopCount = 0;
+        int attackCount = 0;
         while (true) {
             moveLoopCount++;
             attackLoopCount++;
@@ -70,12 +74,21 @@ public class CartoonCharacterLoop implements Runnable {
             if(attackLoopCount >= LOOP_DURATION / this.being.getAttackSpeed()) {
                 lock.lock();
                 try {
-                    being.attack(mainCanvas, this.battleFieldLatticeList, this.lock);
+                    attackCount++;
+                    if(attackCount >= LOOP_SUPER_ATTACK && this.being instanceof Justice) {
+                        being.attack(mainCanvas, this.battleFieldLatticeList, this.lock, true);
+                        attackCount = 0;
+                    }
+                    else {
+                        being.attack(mainCanvas, this.battleFieldLatticeList, this.lock, false);
+                    }
+
                 }finally {
                     lock.unlock();
                 }
                 attackLoopCount = 0;
             }
+
             try {
                 Thread.sleep(random.nextInt(20) + 1);
             } catch (InterruptedException e) {

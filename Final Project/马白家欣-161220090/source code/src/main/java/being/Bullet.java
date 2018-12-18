@@ -18,13 +18,33 @@ import static being.CartoonCharacter.EMPTY_LABEL;
 public class Bullet extends Being {
 
     Being being;
+    boolean isChecked;
 
-    public Bullet(Being being) {
+    public Bullet(Being being, boolean isSuper) {
         super();
         this.being = being;
-        this.setLabel("*");
+        this.isChecked = false;
+        if(isSuper) {
+            this.setLabel("+");
+        }
+        else {
+            this.setLabel("*");
+        }
+
         this.setNowPosition(this.being.getNowPosition());
         this.setSpeed(50);
+    }
+
+    public Being getBeing() {
+        return being;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     @Override
@@ -39,7 +59,7 @@ public class Bullet extends Being {
         }
 
         if (battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing().getLabel().equals(EMPTY_LABEL)
-         || battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing().getLabel().equals("*")) {
+         || battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing() instanceof Bullet) {
             battleFieldLatticeList.set(getNowPosition().toInt(), new BattleFieldLattice());
         }
         if (Position.isExceedBoundary(newPosition) || this.cartoonCharacterDetect(battleFieldLatticeList)) {
@@ -56,7 +76,7 @@ public class Bullet extends Being {
         if (battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing().getLabel().equals(EMPTY_LABEL)
         ||  battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing().getLabel().equals("X")) {
             return false;
-        } else if (battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing().getLabel().equals("*")) {
+        } else if (battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing() instanceof Bullet) {
             return false;
         } else {
             Being cartoonCharacter = battleFieldLatticeList.get(this.getNowPosition().toInt()).getBeing();
