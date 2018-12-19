@@ -7,6 +7,9 @@
 [submodule "ljy"]
 	path = Final Project/冷嘉怿-161220061
 	url = https://github.com/lengjiayi/SimpleHuluGame
+[submodule "Final Project/尤明辉-161220161"]
+	path = Final Project/尤明辉-161220161
+	url = https://github.com/YmHAHAHa/CalaBash
 [submodule "Final Project/秦天-161220100"]
 	path = Final Project/秦天-161220100
 	url = https://github.com/Qcer17/JavaFinal
