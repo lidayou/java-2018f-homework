@@ -1,15 +1,32 @@
 
-# 作业提交流程
+## README
 
-1. 注册github账号（假设账户名称为javalover。若已注册则跳过此步骤）；
-2. 用此账号登陆github（若已登陆则跳过此步骤）；
-3. fork本仓库（ https://github.com/njuics/java-2018f-homework ）至自己账户，仓库url为（ https://github.com/javalover/java-2018f-homework );
-4. 在你的本机clone你所fork的仓库(javalover/java-2018f-homework）；
-	1. 对于简单作业（在我们讲使用maven/gradle等构建工具开发java工程之前），请使用以下步骤
-		1. 在javalover/java-2018f-homework进入当前作业目录，例如java-2018f-homework／20180911目录，新建子目录`张三-151220001`,此处“张三”和“151220001” 分别替换真实姓名和学号;
-		2. 将你写好的代码文件拷贝到该目录下，然后执行`git add .`, `git commit -a` 和`git push`
-	2. 对于复杂作业和最后的大作业（在我们讲使用maven/gradle等构建工具开发java工程之后），请使用以下步骤
-		1. 在javalover账户下新建一个代码仓库，例如myhomework；
-		2. 在myhomework下编写代码，代码使用`git add .`, `git commit -a` 和`git push`等命令进行管理；
-		3. 在javalover/java-2018f-homework进入当前作业目录，例如java-2018f-homework／20180911目录，执行`git submodule add https://github.com/javalover/myhomework 张三-151220001`,此处“张三”和“151220001” 分别替换真实姓名和学号。  
-5. 在javalover/java-2018f-homework上创建“Pull request"
+### Version 2.0
+
+1. 添加了遗漏的葫芦娃**Sort类**，添加**CalabashColor枚举**规范葫芦娃的创建
+2. 后续发现**Creature类**目前没有抽象的必要，改回基类，但使用**final**阻止对部分方法的改写
+3. 添加**Cheer接口**用于爷爷和蛇精的相关方法，并在相应位置添加了注解
+4. 解决了打印的排版问题
+5. 对**Formation**类应用了继承和多态的思想，由于**Formation类**需要处理不同类型的生物，故添加泛型
+6. 加入了**Collection**，对战场上出现的生物团体和不同**Formation**的内部坐标应用了**ArrayList**
+
+### Version1.0
+
+1. 重构了代码，去除了不必要的部分，增强可读性
+2. 将**Creature类**设置为抽象类，各个生物由此继承
+3. 新增几种阵型，并更改了阵型的实现方式
+4. 由于汉字字符，打印时存在排版问题，将在后续进行解决
+
+### 1.设计思路
+
+##### 设计葫芦娃大战妖怪的整体思路如下：
+
+1. 设计对战角色。所有的角色都是生物，葫芦娃、蝎子精、爷爷等等都应由生物即**Creature类**派生。生物具备的基本特征是汇报自己的名字。
+2. 设计阵型即**Formation类**。**Formation类**包含各种阵型，调度不同生物出现在对应位置。
+3. 设计场地即**Field类**。**Field类**构建对战场地。
+4. 我或者说**main函数**扮演上帝的角色，命令场地**Field类**呈现对峙局面。**Field类**完成场地的初始化，以及对**Formation类**下达指示，完成阵型的排列，随后通过**printField函数**完成呈现。
+
+### 2.面向对象的概念
+
+1. 抽象类的使用
+2. 继承
