@@ -1,4 +1,6 @@
-package huluwa;
+package CalashBro;
+
+import javafx.scene.image.Image;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,14 +30,12 @@ public class CalabashBrother extends Creature{
     public CalabashBrother(int i,int x,int y)
     {
         super(x,y);
+        this.image =  new Image(this.getClass().getClassLoader().getResource("pic/1.jpg").toString()
+                ,50,50,false,false);
         theBro = Color.values()[i];
         this.name = theBro.getName();
         nature = true;
         pro = i;
-        ownimage = new ImageIcon("E:\\pro_java\\homework3_huluwa\\src\\huluwa\\pic\\"+this.name+".jpg");
-        ownimage.setImage(ownimage.getImage().getScaledInstance(50, 50,  Image.SCALE_DEFAULT));
-        label = new JLabel(ownimage);
-        label.setSize(50,50);
     }
     public void callTheposition()
     {
