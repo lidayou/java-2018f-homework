@@ -81,4 +81,4 @@ changeFormation()不会自动添加或削减至阵型数量上限的小喽啰，
 
 ## 输出示例
 ![](https://github.com/DarkMagicXYZ/Java-2018f-pics/blob/master/Outputv2.0-1.png)
-![](https://github.com/DarkMagicXYZ/Java-2018f-pics/blob/master/Outputv2.0.-2png)
+![](https://github.com/DarkMagicXYZ/Java-2018f-pics/blob/master/Outputv2.0-2.png)
