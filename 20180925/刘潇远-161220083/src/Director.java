@@ -1,8 +1,8 @@
-import java.lang.*;
+package main;
 import java.util.*;
 import BattleField.*;
 import Beings.*;
-import java.util.concurrent.*;
+import Randomnum.*;
 public class Director {
 	
 	private BattleFields BFs;
@@ -329,6 +329,9 @@ public class Director {
 	public void showBF() {
 		BFs.BFOutput();
 	}
+	public void clearBattleField() {
+		BFs.initializeBattleField();
+	}
 	public static void main(String[] args) {
 		//BattleFields battlefields = new BattleFields();
 		Director director = new Director(new BattleFields(),new CalabashBrothers());//, new Monsters());
@@ -357,6 +360,8 @@ public class Director {
 		
 		//作业三
 		//葫芦娃以长蛇阵放在阵地中
+		while(true) {
+			director.clearBattleField();
 		int x0,y0;
 		Vector<Creature>CBList = new Vector<Creature>();
 		CBList.add(director.getBrother(0));
@@ -367,7 +372,7 @@ public class Director {
 		CBList.add(director.getBrother(5));
 		CBList.add(director.getBrother(6));
 		do {
-			x0 = Randomnum.getRandom(20);
+			x0 = Randomnum.getRandom(10);
 			y0 =Randomnum.getRandom(10);
 			director.QuickSort(0, 6);
 			System.out.println(CBList.size());
@@ -376,7 +381,7 @@ public class Director {
 		//放置爷爷	
 		GrandPa g = new GrandPa();
 		do {
-			x0 = Randomnum.getRandom(20);
+			x0 = Randomnum.getRandom(10);
 			y0 =Randomnum.getRandom(10);
 		}while(!director.setFormation(x0, y0, 0, g));
 		
@@ -389,7 +394,7 @@ public class Director {
 		Vector<Creature>MonsterList = new Vector<Creature>();
 		do {
 			MonsterList.clear();
-			x1 = Randomnum.getRandom(20);
+			x1 = Randomnum.getRandom(10);
 			y1 =Randomnum.getRandom(10) + 10;
 			switch(formation) {
 			
@@ -513,15 +518,15 @@ public class Director {
 		//放置蛇精
 		Snake S = new Snake();
 		do {
-			x1 = Randomnum.getRandom(20);
+			x1 = Randomnum.getRandom(10);
 			y1 =Randomnum.getRandom(10)+10;
 		}while(!director.setFormation(x1, y1, 10, S));
 		System.out.println(x1+" "+y1);
 		director.showBF();
-		//try{Thread.sleep(10000);
-		//}catch(InterruptedException e) {
-		//}
-		//}
+		try{Thread.sleep(10000);
+		}catch(InterruptedException e) {
+		}
+		}
 
 		
 	}

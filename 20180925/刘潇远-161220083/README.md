@@ -222,11 +222,12 @@ public class BattleFields {//战场为M*N的矩形
     private int N;
     //场地
 	private  BattleField BFs[][];
-	private ArrayList<BattleField<? extends Beings>> BF = new ArrayList<>();
     //默认构造函数
 	public BattleFields();
     //带参构造函数
 	BattleFields(int m, int n);
+	//初始化场地。实际上就是将所有格子都赋空指针
+	public void initializeBattleField();
     //作业三，场地能否容纳阵型
 	public boolean Containable(int x, int y, int length, int height);
     //在战场(x,y)位置放置物体t
@@ -236,7 +237,7 @@ public class BattleFields {//战场为M*N的矩形
 
 }
 ```
-#### default package
+#### package main
 Director.java
 ```javascript
 import java.lang.*;
@@ -282,11 +283,14 @@ public class Director {
 	public CalabashBrother getBrother(int index);
 	//显示战场情况
 	public void showBF();
+	//清空战场
+	public void clearBattleField();
 	//主函数
 	public static void main(String[] args);
 	
 }
 ```
+#### package Randomnum
 ```javascript
 import java.util.Random;
 public class Randomnum {

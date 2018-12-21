@@ -11,14 +11,11 @@ public class BattleFields {//战场为M*N的矩形
 	//private ArrayList<BattleField<? extends Beings>> BF = new ArrayList<>();
 	//private T battleField[][];
 	public BattleFields(){
-		M = 20;
+		M = 10;
 		N = 20;
 		BFs = new BattleField[M][N];
-		for(int i = 0; i < M;i++) {
-			for(int j = 0; j < N;j++) {
-				BFs[i][j]=null;
-			}
-		}
+		initializeBattleField();
+
 
 	}
 	BattleFields(int m, int n){
@@ -26,13 +23,16 @@ public class BattleFields {//战场为M*N的矩形
 		M = m;
 		N = n;
 		BFs = new BattleField[M][N];
+		initializeBattleField();
+
+
+	}
+	public void initializeBattleField() {
 		for(int i = 0; i < M;i++) {
 			for(int j = 0; j < N;j++) {
 				BFs[i][j]=null;
 			}
 		}
-
-
 	}
 	public boolean Containable(int x, int y, int SizeX, int SizeY) {
 		if(((x + SizeX) <= M) && ((y + SizeY) <= N) && ((x + SizeX) >=0 ) && ((y + SizeY) >=0))return true;
