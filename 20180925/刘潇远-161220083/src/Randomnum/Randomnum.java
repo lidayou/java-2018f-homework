@@ -1,3 +1,4 @@
+package java2018.CalabashBrother.Randomnum;
 import java.util.Random;
 public class Randomnum {
 	static Random r = new Random();

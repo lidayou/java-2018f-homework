@@ -1,8 +1,8 @@
-package main;
+package java2018.CalabashBrother.main;
 import java.util.*;
-import BattleField.*;
-import Beings.*;
-import Randomnum.*;
+import java2018.CalabashBrother.BattleField.*;
+import java2018.CalabashBrother.Beings.*;
+import java2018.CalabashBrother.Randomnum.*;
 public class Director {
 	
 	private BattleFields BFs;
@@ -155,45 +155,45 @@ public class Director {
 
 		case "偃月"://同上
 			
-			if(BFs.Containable(x, y, 4, 9)) {
+			if(BFs.Containable(x, y, 9, 5)) {
 				list.get(0).MoveToPos(x+3, y);
 				BFs.SetBFPosition(x+3, y, list.get(0));
 				list.get(1).MoveToPos(x+4, y);
-				BFs.SetBFPosition(x+4, y, list.get(2));
+				BFs.SetBFPosition(x+4, y, list.get(1));
 				list.get(2).MoveToPos(x+5, y);
-				BFs.SetBFPosition(x+5, y, list.get(3));
+				BFs.SetBFPosition(x+5, y, list.get(2));
 				list.get(3).MoveToPos(x+3, y+1);
-				BFs.SetBFPosition(x+3, y+1, list.get(4));
+				BFs.SetBFPosition(x+3, y+1, list.get(3));
 				list.get(4).MoveToPos(x+4, y+1);
-				BFs.SetBFPosition(x+4, y+1, list.get(5));
+				BFs.SetBFPosition(x+4, y+1, list.get(4));
 				list.get(5).MoveToPos(x+5, y+1);
-				BFs.SetBFPosition(x+5, y+1, list.get(6));
+				BFs.SetBFPosition(x+5, y+1, list.get(5));
 				list.get(6).MoveToPos(x+1, y+2);
-				BFs.SetBFPosition(x+1, y+2, list.get(7));
+				BFs.SetBFPosition(x+1, y+2, list.get(6));
 				list.get(7).MoveToPos(x+2, y+2);
-				BFs.SetBFPosition(x+2, y+2, list.get(8));
+				BFs.SetBFPosition(x+2, y+2, list.get(7));
 				list.get(8).MoveToPos(x+3, y+2);
-				BFs.SetBFPosition(x+3, y+2, list.get(9));
+				BFs.SetBFPosition(x+3, y+2, list.get(8));
 				list.get(9).MoveToPos(x+4, y+2);
-				BFs.SetBFPosition(x+4, y+2, list.get(10));
+				BFs.SetBFPosition(x+4, y+2, list.get(9));
 				list.get(10).MoveToPos(x+5, y+2);
-				BFs.SetBFPosition(x+5, y+2, list.get(11));
+				BFs.SetBFPosition(x+5, y+2, list.get(10));
 				list.get(11).MoveToPos(x+6, y+2);
-				BFs.SetBFPosition(x+6, y+2, list.get(12));
+				BFs.SetBFPosition(x+6, y+2, list.get(11));
 				list.get(12).MoveToPos(x+7, y+2);
-				BFs.SetBFPosition(x+7, y+2, list.get(13));
+				BFs.SetBFPosition(x+7, y+2, list.get(12));
 				list.get(13).MoveToPos(x+1, y+3);
-				BFs.SetBFPosition(x+1, y+3, list.get(14));
+				BFs.SetBFPosition(x+1, y+3, list.get(13));
 				list.get(14).MoveToPos(x+2, y+3);
-				BFs.SetBFPosition(x+2, y+3, list.get(15));
+				BFs.SetBFPosition(x+2, y+3, list.get(14));
 				list.get(15).MoveToPos(x+6, y+3);
-				BFs.SetBFPosition(x+6, y+3, list.get(16));
+				BFs.SetBFPosition(x+6, y+3, list.get(15));
 				list.get(16).MoveToPos(x+7, y+3);
-				BFs.SetBFPosition(x+7, y+3, list.get(17));
+				BFs.SetBFPosition(x+7, y+3, list.get(16));
 				list.get(17).MoveToPos(x, y+4);
-				BFs.SetBFPosition(x, y+4, list.get(18));
+				BFs.SetBFPosition(x, y+4, list.get(17));
 				list.get(18).MoveToPos(x+8, y+4);
-				BFs.SetBFPosition(x+8, y+4, list.get(19));
+				BFs.SetBFPosition(x+8, y+4, list.get(18));
 				return true;
 			}
 			else return false;
@@ -514,6 +514,7 @@ public class Director {
 				break;
 			
 		}
+			System.out.println("x1"+x1+"y1"+y1);
 		}while(!director.setFormation(x1, y1, 10, formationName, MonsterList));
 		//放置蛇精
 		Snake S = new Snake();
@@ -523,7 +524,7 @@ public class Director {
 		}while(!director.setFormation(x1, y1, 10, S));
 		System.out.println(x1+" "+y1);
 		director.showBF();
-		try{Thread.sleep(10000);
+		try{Thread.sleep(100);
 		}catch(InterruptedException e) {
 		}
 		}

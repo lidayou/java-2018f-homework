@@ -1,6 +1,6 @@
 
-package BattleField;
-import Beings.*;
+package java2018.CalabashBrother.BattleField;
+import java2018.CalabashBrother.Beings.*;
 public class BattleField<T extends Beings> {
 
 	private T Being;

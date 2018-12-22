@@ -1,4 +1,4 @@
-package Beings;
+package java2018.CalabashBrother.Beings;
 public class Beings {
 	protected int x, y;
 	

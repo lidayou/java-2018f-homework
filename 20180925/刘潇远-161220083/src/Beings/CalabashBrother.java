@@ -1,4 +1,4 @@
-package Beings;
+package java2018.CalabashBrother.Beings;
 enum NameAndColor {//
 	RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE;
 	String[] NAME = {"老大", "老二", "老三", "老四", "老五", "老六", "老七"};

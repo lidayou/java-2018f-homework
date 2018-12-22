@@ -1,4 +1,4 @@
-package Beings;
+package java2018.CalabashBrother.Beings;
 /*
 enum CalabashBrother {//
 	RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE;

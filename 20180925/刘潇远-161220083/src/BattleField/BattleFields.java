@@ -1,6 +1,6 @@
-package BattleField;
+package java2018.CalabashBrother.BattleField;
 import java.util.*;
-import Beings.*;
+import java2018.CalabashBrother.Beings.*;
 public class BattleFields {//战场为M*N的矩形
 	//version 1.0
 

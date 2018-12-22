@@ -1,4 +1,4 @@
-package Beings;
+package java2018.CalabashBrother.Beings;
 public class Creature extends Beings{
 	protected int CE;//Combat Effectiveness
 	protected int DEF;//Defence
